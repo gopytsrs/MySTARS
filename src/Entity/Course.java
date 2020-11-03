@@ -6,6 +6,7 @@ public class Course {
     private String courseName;
     private int au;
     private ArrayList<String> lessonType;
+    private School offeringSchool;
 
     public String getCourseCode() {
         return courseCode;
@@ -41,5 +42,13 @@ public class Course {
 
     public void addLessonType(String lessonType){
         this.lessonType.add(lessonType);
+    }
+
+    public School getOfferingSchool() {
+        return offeringSchool;
+    }
+
+    public void setOfferingSchool(School offeringSchool) {
+        this.offeringSchool = offeringSchool;
     }
 }
