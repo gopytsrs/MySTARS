@@ -4,7 +4,11 @@ public class Account {
     private String username;
     private String password;
     private String accountType;
-
+    public Account(String username, String password, String accountType){
+        setUsername(username);
+        setPassword(password);
+        setAccountType(accountType);
+    }
     public String getUsername() {
         return username;
     }
