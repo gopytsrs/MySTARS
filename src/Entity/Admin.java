@@ -1,3 +1,5 @@
+package Entity;
+
 public class Admin {
     private int adminID;
     public int getAdminID(){return adminID;}
