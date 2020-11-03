@@ -10,8 +10,9 @@
 
 <br></br>
 
-<h4>Workflow</h4>
+### Workflow
 1. Firstly, pull the updates in main to your local repo
+
     ```bash
     $ git pull
     ```
