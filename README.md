@@ -54,4 +54,6 @@
     ![](https://i.ibb.co/3hcc6Dw/Screenshot-2020-11-03-231612.jpg)
     ****
     
+    If it doesn't appear, try clicking on branch and create the pull request from there
+    
 8. Let your team check the code before they merge the pull request
