@@ -9,6 +9,18 @@
 ![](https://i.ibb.co/ygWZc8q/Screenshot-2020-11-03-143649.jpg)
 
 <br></br>
+### Before you start
+
+Make sure to clone the repository to your local machine first
+```bash
+ $ git clone git@github.com:seangoats/MySTARS-CZ2002.git
+```
+
+Or if that doesn't work, try:
+
+```bash
+ $ git clone https://github.com/seangoats/MySTARS-CZ2002.git
+```
 
 ### Workflow
 1. Firstly, pull the updates in main to your local repo
