@@ -1,4 +1,7 @@
 package com.Main;
+import Boundary.*;
+import Entity.*;
+import Control.*;
 
 public class Main {
 
