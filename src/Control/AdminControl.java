@@ -6,7 +6,7 @@ public class AdminControl {
     private int adminID;
 
     public void editStudentAccessPeriod(){
-
+    	//hi guys
     }
 
     public void addStudent(Student student){
