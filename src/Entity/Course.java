@@ -7,6 +7,7 @@ public class Course {
     private int au;
     private ArrayList<String> lessonType;
     private School offeringSchool;
+    private ArrayList<Index> indexList;
 
     public String getCourseCode() {
         return courseCode;
