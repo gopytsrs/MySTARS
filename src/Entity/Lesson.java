@@ -1,16 +1,17 @@
 package Entity;
-
+import Enum.LessonType;
+import Enum.Week;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class Lesson {
     private int indexNo;
-    private String classType;
+    private LessonType lessonType;
     private DayOfWeek day;
     private LocalTime startTime;
     private LocalTime endTime;
     private String location;
-    private String weeks;
+    private Week weeks;
 
     public int getIndexNo() {
         return indexNo;
@@ -20,12 +21,12 @@ public class Lesson {
         this.indexNo = indexNo;
     }
 
-    public String getClassType() {
-        return classType;
+    public LessonType getLessonType() {
+        return lessonType;
     }
 
-    public void setClassType(String classType) {
-        this.classType = classType;
+    public void setLessonType(LessonType lessonType) {
+        this.lessonType = lessonType;
     }
 
     public DayOfWeek getDay() {
@@ -60,11 +61,11 @@ public class Lesson {
         this.location = location;
     }
 
-    public String getWeeks() {
+    public Week getWeeks() {
         return weeks;
     }
 
-    public void setWeeks(String weeks) {
+    public void setWeeks(Week weeks) {
         this.weeks = weeks;
     }
 }
