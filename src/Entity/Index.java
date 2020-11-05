@@ -5,11 +5,13 @@ import java.time.LocalDateTime;
 import java.util.Deque;
 
 public class Index {
+    private String courseName;
+    private String courseCode;
     private int indexNo;
     private String groupNo;
     private int vacancy;
     public static Deque<Student> waitList;
-    private Lesson lessons;
+    private Lesson[] lessons = new Lesson[3];
     private String[] lessonVenue;
 
     public int getIndexNo() {
@@ -36,9 +38,14 @@ public class Index {
         this.vacancy = vacancy;
     }
 
-    public void addToWaitlist(Student student){}
+    public void addToWaitlist(Student student){
 
-    public void removeFromWaitlist(Student student){}
+        waitList.add(student);
+    }
+
+    public void removeFromWaitlist(Student student){
+        waitList.remove(student);
+    }
 
     public LocalDateTime[] getLessonTime(Lesson lessons){
         return new LocalDateTime[3];
