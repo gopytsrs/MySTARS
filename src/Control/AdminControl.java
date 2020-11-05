@@ -6,60 +6,74 @@ import java.util.*;
 
 public class AdminControl {
     private int adminID;
-    public int choice;
-    Scanner sc = new Scanner(System.in);
 
     public void AdminControl(){
 
     }
 
-    public LocalDateTime editStudentAccessPeriod(LocalDateTime currentDateTime){
-        choice = 0;
+    // Method should have no parameters
+    public LocalDateTime editStudentAccessPeriod(LocalDateTime currentDateTime, Scanner sc){
+    // Check for school inside this method, then get currentaccessdatetime
 
-        System.out.println("The current access period is " + currentDateTime);
-        System.out.println("Would you like to change the access period?");
-        System.out.println("1. Yes");
-        System.out.println("2. No");
-        System.out.println("Please enter your choice: ");
+    /*    System.out.println("Which school to change access period");
+        school = sc.next();
 
-        switch (choice){
-            case 1:
-                System.out.println("Date time to change access period to? (YYYY-MM-DDTHH:MM)");
-                String changeDateTime = sc.nextLine();
-                currentDateTime = LocalDateTime.parse(changeDateTime);
-                System.out.println("The current access period is " + currentDateTime);
-                System.out.println("Access Period Changed");
-                break;
+        AccessPeriod accessPeriod = school.getAccessPeriod();
+        currentDateTime = accessPeriod.getStartDate(); */
 
-            case 2:
-                System.out.println("The current access period is " + currentDateTime);
-                break;
+        int choice = 0;
+        boolean changed = false;
 
-            default:
-                System.out.println("Please enter a valid number. (1 or 2)");
-                break;
-        }
+        do{
+            System.out.println("The current access period is " + currentDateTime);
+            System.out.println("Would you like to change the access period?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            System.out.println("Please enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice){
+                case 1:
+                    System.out.println("Date time to change access period to? (YYYY-MM-DDTHH:MM)");
+                    String changeDateTime = sc.next();
+                    currentDateTime = LocalDateTime.parse(changeDateTime);
+                    System.out.println("The current access period is " + currentDateTime);
+                    System.out.println("Access Period Changed");
+                    changed = true;
+                    break;
+
+                case 2:
+                    System.out.println("The current access period is " + currentDateTime);
+                    changed = true;
+                    break;
+
+                default:
+                    System.out.println("Please enter a valid number. (1 or 2)");
+                    break;
+            }
+        }while(!changed);
 
         return currentDateTime;
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student, Scanner sc){
         String username;
         String password;
-        Boolean confirmed = false;
-        choice = 0;
+        boolean confirmed = false;
+        int choice = 0;
+
+        System.out.println("Username: ");
+        username = sc.next();
+
+        System.out.println("Password: ");
+        password = sc.next();
 
         while (!confirmed) {
-            System.out.println("Username: ");
-            username = sc.nextLine();
-
-            System.out.println("Password: ");
-            password = sc.nextLine();
-
             System.out.println("Would you like to confirm that username is " + username + " and password is " + password + ".");
             System.out.println("1. Yes");
             System.out.println("2. No");
             System.out.println("Please enter your choice: ");
+            choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
@@ -71,10 +85,17 @@ public class AdminControl {
                 case 2:
                     //let the loop run 1 more time
                     System.out.println("Please re-enter the username and password");
+
+                    System.out.println("Username: ");
+                    username = sc.next();
+                    System.out.println("Password: ");
+                    password = sc.next();
+
                     break;
 
                 default:
                     System.out.println("Please enter a valid number. (1 or 2)");
+                    sc.next();
                     break;
             }
         }
