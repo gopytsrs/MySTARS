@@ -13,6 +13,18 @@ public class Lesson {
     private String location;
     private Week weeks;
 
+    public Lesson(){}
+
+    public Lesson(int indexNo, LessonType lessonType, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location, Week weeks){
+        this.lessonType = lessonType;
+        this.indexNo = indexNo;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.location = location;
+        this.weeks = weeks;
+    }
+
     public int getIndexNo() {
         return indexNo;
     }

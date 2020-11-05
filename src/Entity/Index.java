@@ -12,8 +12,15 @@ public class Index {
     private int vacancy;
     public static Deque<Student> waitList;
     private Lesson[] lessons = new Lesson[3];
-    private String[] lessonVenue;
 
+    public Index(){}
+    public Index(String courseName, String courseCode, int indexNo, String groupNo, int vacancy){
+        this.courseName = courseName;
+        this.courseCode = courseCode;
+        this.indexNo = indexNo;
+        this.groupNo = groupNo;
+        this.vacancy = vacancy;
+    }
     public int getIndexNo() {
         return indexNo;
     }
@@ -53,11 +60,4 @@ public class Index {
 
     public void setLessonTime(Lesson lessons){}
 
-    public String[] getLessonVenue(Lesson lessons){
-        return new String[3];
-    }
-
-    public void setLessonVenue(Lesson lessons){
-
-    }
 }

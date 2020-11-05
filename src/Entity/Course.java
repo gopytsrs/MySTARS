@@ -9,6 +9,8 @@ public class Course {
     private School offeringSchool;
     private ArrayList<Index> indexList;
 
+    public Course(){}
+
     public String getCourseCode() {
         return courseCode;
     }
