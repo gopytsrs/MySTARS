@@ -51,21 +51,33 @@ Or if that doesn't work, try:
     ```bash
     $ git commit -m "Your commit message here"
     ```
+5. Fetch and merge in case there are any changes
+    ```bash
+    $ git fetch
+    ```
+    
+    ```bash
+    $ git merge
+    ```
+   Manually resolve merge conflicts at this step if there are any
    
-5. Push your commits to a remote branch with the same name
+   After resolving merge conflicts, add and commit again
+   <hr>
+   
+6. Push your commits to a remote branch with the same name
     ```bash
     $ git push -u origin branch-name
     ```
-6. Return to the Github repo on your browser, this should appear, click on the button
+7. Return to the Github repo on your browser, this should appear, click on the button
 
     ![](https://i.ibb.co/fMjdcp8/Screenshot-2020-11-03-231544.jpg)
     ****
     
-7. Create the pull request.
+8. Create the pull request.
     
     ![](https://i.ibb.co/3hcc6Dw/Screenshot-2020-11-03-231612.jpg)
     ****
     
     If it doesn't appear, try clicking on branch and create the pull request from there
     
-8. Let your team check the code before they merge the pull request
+9. Let your team check the code before they merge the pull request
