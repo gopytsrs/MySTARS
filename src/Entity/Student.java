@@ -1,100 +1,107 @@
-package Entity;
-
 import java.util.ArrayList;
 
+//Important notes:
+//Account is created in this class, to update the values passed into account constructor
+//Entity should pass all attributes into the constructor of student class
 public class Student {
-    private String name;
-    private String matricNo;
-    private String email;
-    private int year;
-    private String gender;
-    private int noOfAUS;
-    private School school;
-    private ArrayList<Course> plannedCourses;
-    private ArrayList<Course> assignedCourses;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMatricNo() {
-        return matricNo;
-    }
-
-    public void setMatricNo(String matricNo) {
-        this.matricNo = matricNo;
-    }
-
-    public School getSchool() {
-        return school;
-    }
-
-    public void setSchool(School school) {
-        this.school = school;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getNoOfAUS() {
-        return noOfAUS;
-    }
-
-    public void setNoOfAUS(int noOfAUS) {
-        this.noOfAUS = noOfAUS;
-    }
-
-    public ArrayList<Course> getAssignedCourses() {
-        return assignedCourses;
-    }
-
-    public ArrayList<Course> getPlannedCourses() {
-        return plannedCourses;
-    }
-
-    public void setAssignedCourses(ArrayList<Course> assignedCourses) {
-        this.assignedCourses = assignedCourses;
-    }
-
-    public void setPlannedCourses(ArrayList<Course> plannedCourses) {
-        this.plannedCourses = plannedCourses;
-    }
-
-    public void addAssignedCourses(Course course){
-
-    }
-    public void addPlannedCourses(Course course) {
-
-    }
-    public void removeAssignedCourses(Course course){
-
-    }
-    public void addNoOfAU(int au){
-
-    }
+	
+	private String name;
+	private String matricNo;
+	private String email;
+	private int year;
+	private School school;
+	private String gender;
+	private String nationality;
+	private Account account;	//created within this class
+	private ArrayList<CourseRegistration> assignedCourse = new ArrayList<CourseRegistration>();
+	private ArrayList<CourseRegistration> courseRegistrationList = new ArrayList<CourseRegistration>();
+	private int noOfAUs = 0;
+	private final int MAXAU = 23;
+	
+	public Student(String name, String matricNo, String email, int year, School school, String gender, 
+				   String nationality) {	//collect all info from control class
+		//Initialise all collected attributes
+		this.name = name;
+		this.matricNo = matricNo;
+		this.email = email;
+		this.year = year;
+		this.school = school;
+		this.gender = gender;
+		this.nationality = nationality;
+		//Create new account for student with default username and pw
+		this.account = new Account(username=this.name, password="password", accountType="student");	//input 
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getMatricNo() {
+		return this.matricNo;
+	}
+	public void setMatricNo(String matric) {
+		this.matricNo = matric;
+	}
+	public String getEmail() {
+		return this.email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public int getYear() {
+		return this.year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public School getSchool() {
+		return this.school;
+	}
+	public void setSchool(School school) {
+		this.school = school;
+	}
+	public String getGender() {
+		return this.gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getNationality() {
+		return this.nationality;
+	}
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	public Account getAccount() {
+		return this.account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	public ArrayList<CourseRegistration> getAssignedCourse{
+		return this.assignedCourse;
+	}
+	public void addAssignedCourse(CourseRegistration course) {
+		this.assignedCourse.add(course);		
+	}
+	public void removeAssignedCourse(CourseRegistration course) {
+		this.assignedCourse.remove(course);
+	}
+	public ArrayList<CourseRegistration> getCourseRegistrationList(){
+		return this.courseRegistrationList;
+	}
+	public void addCourseRegistration(CourseRegistrationList course) {
+		this.courseRegistrationList.add(course);
+	}
+	public void removeCourseRegistration(CourseRegistrationList course) {
+		this.courseRegistrationList.remove(course);
+	}
+	public int getNoOfAU() {
+		return this.noOfAUs;
+	}
+	public void addNoOfAU(int au) {
+		this.noOfAUs += au;
+	}
 }
