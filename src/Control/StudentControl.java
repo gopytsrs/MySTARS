@@ -5,7 +5,10 @@ import Entity.*;
 import java.util.ArrayList;
 
 public class StudentControl {
-    public void addCourse(Course course){}
+    public void addCourse(Course course){
+        //go to school -> print course
+        //ask for course -> show indexes if correct -> ask if want to add the course and index -> register courses
+    }
 
     public void dropCourse(Course course){
     }
@@ -18,7 +21,7 @@ public class StudentControl {
     public void changeIndex(){
     }
 
-    public void swopIndex(){}
+    public void swapIndex(){}
 
     public void register(){
 

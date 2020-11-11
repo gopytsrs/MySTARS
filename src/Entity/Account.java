@@ -1,5 +1,11 @@
 package Entity;
 
+
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 public class Account {
     private String username;
     private String password;
@@ -8,6 +14,12 @@ public class Account {
         setUsername(username);
         setPassword(password);
         setAccountType(accountType);
+    }
+
+    private String validate(){
+
+
+        return "Fail";
     }
     public String getUsername() {
         return username;

@@ -1,6 +1,8 @@
 package Control;
 
 import Entity.*;
+
+import java.io.*;
 import java.time.*;
 import java.util.*;
 
@@ -23,6 +25,12 @@ public class AdminControl {
 
         int choice = 0;
         boolean changed = false;
+
+        do {
+            System.out.println("What school do you want to check?");
+            String school = sc.nextLine();
+            }
+        }while (school < 5);
 
         do{
             System.out.println("The current access period is " + currentDateTime);
@@ -64,7 +72,6 @@ public class AdminControl {
 
         System.out.println("Username: ");
         username = sc.next();
-
         System.out.println("Password: ");
         password = sc.next();
 
@@ -85,7 +92,6 @@ public class AdminControl {
                 case 2:
                     //let the loop run 1 more time
                     System.out.println("Please re-enter the username and password");
-
                     System.out.println("Username: ");
                     username = sc.next();
                     System.out.println("Password: ");
@@ -101,8 +107,37 @@ public class AdminControl {
         }
     }
 
-    public void addCourse(Course course){
+    public void addCourse(Scanner sc){
+        int vacancies = 20;
+        int totalNoOfStudent = 20;
 
+        System.out.println("Course code (all capitalised): ");
+        String code = sc.next();
+        System.out.println("Name of the course: ");
+        sc.nextLine();
+        String courseName = sc.nextLine();
+
+        try {
+            File myObj = new File(code + ".txt");
+            if (myObj.createNewFile()) {
+                System.out.println("Course created: " + myObj.getName());
+
+                try (FileWriter fw = new FileWriter(code + ".txt", true);
+                     BufferedWriter bw = new BufferedWriter(fw);
+                     PrintWriter out = new PrintWriter(bw)){
+                    out.println("Course Name: " + courseName);
+                    out.println("Vacancies: " + vacancies + "/" + totalNoOfStudent);
+                } catch (IOException e) {
+                    System.out.println("An error had occurred.");
+                }
+            } else {
+                System.out.println("What would you like to update?");
+                //update the course
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     public void deleteCourse(Course course){
