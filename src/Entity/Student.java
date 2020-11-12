@@ -1,11 +1,12 @@
 package Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //Important notes:
 //Account is created in this class, to update the values passed into account constructor
 //Entity should pass all attributes into the constructor of student class
-public class Student {
+public class Student implements Serializable {
 
     private String name;
     private String matricNo;
