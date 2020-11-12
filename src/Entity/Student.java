@@ -16,8 +16,8 @@ public class Student implements Serializable {
     private String gender;
     private String nationality;
     private Account account;    //created within this class
-    private ArrayList<CourseRegistration> assignedCourse = new ArrayList<CourseRegistration>();
-    private ArrayList<CourseRegistration> courseRegistrationList = new ArrayList<CourseRegistration>();
+    private ArrayList<CourseRegistration> assignedCourse;
+    private ArrayList<CourseRegistration> courseRegistrationList;
     private int noOfAUs = 0;
     private final int MAXAU = 23;
 
@@ -99,9 +99,7 @@ public class Student implements Serializable {
         this.account = account;
     }
 
-    public ArrayList<CourseRegistration> getAssignedCourse
-
-    {
+    public ArrayList<CourseRegistration> getAssignedCourse() {
         return this.assignedCourse;
     }
 
@@ -117,11 +115,11 @@ public class Student implements Serializable {
         return this.courseRegistrationList;
     }
 
-    public void addCourseRegistration(CourseRegistrationList course) {
+    public void addCourseRegistration(CourseRegistration course) {
         this.courseRegistrationList.add(course);
     }
 
-    public void removeCourseRegistration(CourseRegistrationList course) {
+    public void removeCourseRegistration(CourseRegistration course) {
         this.courseRegistrationList.remove(course);
     }
 
