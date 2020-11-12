@@ -44,7 +44,23 @@ public class StudentControl {
 
         }
     }
-    public void printRegisteredCourses(ArrayList<Course> courses){}
+    public void printRegisteredCourses(){
+        ArrayList<CourseRegistration>registeredCourses = student.getCourseRegistrationList();
+        ArrayList<CourseRegistration>assignedCourses = student.getAssignedCourse();
+        System.out.println("Course Code: Course Name: Index: AU: Status");
+        for(CourseRegistration course: registeredCourses){
+            System.out.printf("%s:",course.getCourseCode());
+            System.out.printf(" %s:",course.getCourseName());
+            System.out.printf(" %d:",course.getIndex().getIndexNo());
+            System.out.printf(" %d:",course.getAu());
+            if(assignedCourses.contains(course)){
+                System.out.printf(" Assigned");
+            } else {
+                System.out.printf(" On wait list");
+            }
+        }
+
+    }
 
     public void checkAvailableSlots(){
     }
