@@ -4,6 +4,7 @@ public class CourseRegistration {
     private Index index;
     private String courseCode;
     private String courseName;
+    private int au;
     private Student student;
     public Index getIndex()
     {
@@ -36,5 +37,13 @@ public class CourseRegistration {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public int getAu() {
+        return au;
+    }
+
+    public void setAu(int au) {
+        this.au = au;
     }
 }
