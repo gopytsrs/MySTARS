@@ -116,6 +116,39 @@ public class StudentControl {
     }
 
     public void changeIndex(){
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
+        Course course = null;
+        Index indexToDrop = null;
+        Index indexToAdd = null;
+
+        System.out.println("Enter current index no:");
+        int currentIndexNo = Integer.valueOf(scanner.nextLine());
+
+        // Check if index to drop is in the student's assigned courses
+        for(CourseRegistration assignedCourse: assignedCourses) {
+            //Index is in assignedCourses, get the index to drop and get the course
+            if (assignedCourse.getIndex().getIndexNo() == currentIndexNo) {
+                indexToDrop = assignedCourse.getIndex();
+                //From here need to get the course to see the other indexes
+
+            } else {
+                System.out.println("You are not registered for that Index No.");
+                return;
+            }
+        }
+
+        System.out.println("Enter desired index no:");
+        int desiredIndexNo = Integer.valueOf(scanner.nextLine());
+        //Create the Index object based on desiredIndexNo, but we need to know the course
+        //Check if index to change to has vacancies
+
+
+
+
+
+
+
 
     }
 
