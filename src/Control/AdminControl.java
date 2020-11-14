@@ -28,7 +28,7 @@ public class AdminControl {
 
         /*do {
             System.out.println("What school do you want to check?");
-            String school = sc.nextLine();
+            String school = sc.nextInt();
             }
         while (school < 5);*/
 
@@ -107,37 +107,55 @@ public class AdminControl {
         }
     }
 
-    public void addCourse(Scanner sc){
+    public void addCourse(Scanner sc) {
         int vacancies = 20;
         int totalNoOfStudent = 20;
+        int choice = 0;
 
-        System.out.println("Course code (all capitalised): ");
-        String code = sc.next();
-        System.out.println("Name of the course: ");
-        sc.nextLine();
-        String courseName = sc.nextLine();
+        do {
+            System.out.println("Would you like to");
+            System.out.println("1. Add a course");
+            System.out.println("2. Update a course");
+            System.out.println("3. Exit");
+            System.out.println("Enter your choice here: ");
+            choice = sc.nextInt();
 
-        try {
-            File myObj = new File(code + ".txt");
-            if (myObj.createNewFile()) {
-                System.out.println("Course created: " + myObj.getName());
+            switch (choice){
+                case 1:
+                    System.out.println("Course Code (ALL CAPITALISED): ");
+                    String code = sc.next();
+                    System.out.println("Name of the Course: ");
+                    sc.nextLine();
+                    String courseName = sc.nextLine();
 
-                try (FileWriter fw = new FileWriter(code + ".txt", true);
-                     BufferedWriter bw = new BufferedWriter(fw);
-                     PrintWriter out = new PrintWriter(bw)){
-                    out.println("Course Name: " + courseName);
-                    out.println("Vacancies: " + vacancies + "/" + totalNoOfStudent);
-                } catch (IOException e) {
-                    System.out.println("An error had occurred.");
-                }
-            } else {
-                System.out.println("What would you like to update?");
-                //update the course
+                    try {
+                        File course = new File("course.txt");
+                        if (!course.createNewFile()) {
+                            System.out.println("Course created: " + course);
+                            try (FileWriter fw = new FileWriter("course.txt", true);
+                                 BufferedWriter bw = new BufferedWriter(fw);
+                                 PrintWriter out = new PrintWriter(bw)) {
+                                out.println("Course Code: " + course);
+                                out.println("Course Name: " + courseName);
+                                out.println("Vacancies: " + vacancies + "/" + totalNoOfStudent);
+                            } catch (IOException e) {
+                                System.out.println("An error had occurred.");
+                            }
+                        }
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+
+                case 2:
+                    System.out.println("What do you want to update?");
+                    System.out.println("1. Course Code");
+                    System.out.println("2. Course Name of a Course");
+                    System.out.println("3. Vacancy of a Course");
+                    System.out.println("4. Exit");
+
             }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+        }while (choice != 3);
     }
 
     public void deleteCourse(Course course){

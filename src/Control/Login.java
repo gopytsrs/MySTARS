@@ -42,14 +42,17 @@ public class Login {
             if (valid == false)
                 System.out.println("Invalid username/password. Please try again.");
         }while(valid != true);
-        /*if (domain.equals("student"))       // this sequence can be done in main page also
+
+        if (domain.equals("student"))       // this sequence can be done in main page also
         {
-            //open the display for student
+            StudentUI sUI = new StudentUI();
+            System.out.println("Hello, " + userName + ".What would you like to do today?");
+            sUI.studentMenu();
         }
         else if (domain.equals("admin"))
         {
             //open the display for admin
-        }*/
+        }
     }
     private void AccountsFromDatabase(String domain){
         String filename = domain+".txt";                //filename will be student.txt or admin.txt

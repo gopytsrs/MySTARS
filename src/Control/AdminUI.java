@@ -1,14 +1,7 @@
 package Control;
 
-public class AdminUI extends UI{
-    @Override
-    public void chooseAction() {
+public class AdminUI{
+    public void adminMenu() {
 
     }
-
-    @Override
-    public void displayStuff() {
-
-    }
-
 }
