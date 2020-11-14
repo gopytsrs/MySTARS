@@ -56,6 +56,10 @@ public class Course implements Serializable {
         this.offeringSchool = offeringSchool;
     }
 
+    public ArrayList<Index> getIndexList() {
+        return indexList;
+    }
+
     @Override
     public String toString() {
         return courseCode +

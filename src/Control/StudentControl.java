@@ -3,6 +3,7 @@ package Control;
 import Entity.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class StudentControl {
     Student student;
@@ -63,6 +64,20 @@ public class StudentControl {
     }
 
     public void checkAvailableSlots(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter index number:");
+        int indexNo = Integer.valueOf(scanner.nextLine());
+        ArrayList<Course> courses = new ArrayList<Course>();
+        for(Course course: courses){
+            ArrayList<Index> indexes = course.getIndexList();
+            for(Index index: indexes){
+                if(index.getIndexNo() == indexNo){
+                    System.out.printf("The number of available slots in Index %d of %s is %d",index.getIndexNo(),index.getCourseCode(),index.getVacancy());
+                    return;
+                }
+            }
+        }
+        System.out.println("That index number does not exist");
     }
 
     public void changeIndex(){

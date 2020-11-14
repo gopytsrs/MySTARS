@@ -60,4 +60,7 @@ public class Index {
 
     public void setLessonTime(Lesson lessons){}
 
+    public String getCourseCode() {
+        return courseCode;
+    }
 }
