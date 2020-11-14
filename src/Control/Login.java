@@ -38,7 +38,7 @@ public class Login {
             if (valid == false)
                 System.out.println("Invalid username/password. Please try again.");
         }while(valid != true);
-        if (domain.equals("student"))
+        if (domain.equals("student"))       // this sequence can be done in main page also
         {
             //open the display for student
         }
@@ -58,7 +58,7 @@ public class Login {
                 String[] token = line.split(" ");       // splitting the string to get username and password
                 if(token.length!=2){throw new IllegalArgumentException();} //exception is thrown if the line contains anything more or less than a username and password
                 Account A = new Account(token[0],token[1],domain);      //creating an Account object
-                Accountlist.add(A);     //adding all the Account objects into and array list
+                Accountlist.add(A);     //adding all the Account objects into an array list
             }
 
         } catch (FileNotFoundException e){
