@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyStore;
+
 public class Account {
     private String username;
     private String password;
@@ -16,10 +18,13 @@ public class Account {
         setAccountType(accountType);
     }
 
-    private boolean validate(){
-
-
-        return false;
+    public boolean validate(String username, String password){
+        if (!(username.equals(this.username)))
+            return false;
+        else if (!(username.equals(this.password)))
+            return false;
+        else
+            return true;
     }
     public String getUsername() {
         return username;
