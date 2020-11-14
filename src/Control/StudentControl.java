@@ -131,7 +131,6 @@ public class StudentControl {
             if (assignedCourse.getIndex().getIndexNo() == currentIndexNo) {
                 indexToDrop = assignedCourse.getIndex();
                 //From here need to get the course to see the other indexes
-
             } else {
                 System.out.println("You are not registered for that Index No.");
                 return;
