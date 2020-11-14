@@ -55,4 +55,14 @@ public class Course implements Serializable {
     public void setOfferingSchool(School offeringSchool) {
         this.offeringSchool = offeringSchool;
     }
+
+    @Override
+    public String toString() {
+        return courseCode +
+                "\t" + courseName +
+                "\t" + au +
+                "\t" + lessonType +
+                "\t" + offeringSchool +
+                "\t" + indexList;
+    }
 }
