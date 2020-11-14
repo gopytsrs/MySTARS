@@ -26,11 +26,11 @@ public class AdminControl {
         int choice = 0;
         boolean changed = false;
 
-        do {
+        /*do {
             System.out.println("What school do you want to check?");
             String school = sc.nextLine();
             }
-        }while (school < 5);
+        while (school < 5);*/
 
         do{
             System.out.println("The current access period is " + currentDateTime);

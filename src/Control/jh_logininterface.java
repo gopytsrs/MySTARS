@@ -4,8 +4,8 @@ import java.io.*;
 public class jh_logininterface {
     private String username;
     private String password;
-    loginController lc = new loginController();
-    public loginInterface() {
+    //loginController lc = new loginController();
+    public jh_logininterface() {
         Console console = System.console();
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your username:");
@@ -13,7 +13,7 @@ public class jh_logininterface {
         char[] pw = console.readPassword("Enter password");
         password = new String(pw);
         System.out.println(password);
-        lc.checkAccount(username, password);
+        //lc.checkAccount(username, password);
     }
     public void printInputError()
     {

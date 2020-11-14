@@ -32,7 +32,7 @@ public class Student implements Serializable {
         this.gender = gender;
         this.nationality = nationality;
         //Create new account for student with default username and pw
-        this.account = new Account(username = this.name, password = "password", accountType = "student");    //input
+        //this.account = new Account(username = this.name, password = "password", accountType = "student");    //input
     }
 
     public String getName() {
