@@ -16,10 +16,10 @@ public class Account {
         setAccountType(accountType);
     }
 
-    private String validate(){
+    private boolean validate(){
 
 
-        return "Fail";
+        return false;
     }
     public String getUsername() {
         return username;
