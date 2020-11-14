@@ -1,8 +1,8 @@
 package Enum;
 
 public enum LessonType {
-    LECTURE,
-    TUTORIAL,
+    LEC,
+    TUT,
     LAB,
-    SEMINAR;
+    SEM;
 }
