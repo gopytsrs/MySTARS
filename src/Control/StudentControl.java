@@ -18,13 +18,22 @@ public class StudentControl {
         //ask for course -> show indexes if correct -> ask if want to add the course and index -> register courses
     }
 
-    public void dropCourse(Course course) {
+    public void dropCourse() {
+        Scanner scanner = new Scanner(System.in);
+        String courseCode = scanner.nextLine();
+        CourseRegistration courseToDrop = null;
+
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
         ArrayList<CourseRegistration> registeredCourses = student.getCourseRegistrationList();
+        for(CourseRegistration course: registeredCourses){
+            if(course.getCourseCode().equals(courseCode)){
+                courseToDrop = course;
+            }
+        }
 
         for (CourseRegistration courseRegistered : registeredCourses) {
 
-            if (courseRegistered.getCourseCode() == course.getCourseCode()) {
+            if (courseRegistered.getCourseCode().equals(courseToDrop.getCourseCode())) {
                 //Check if course is assigned or registered only
                 Index index = courseRegistered.getIndex();
                 int vacancies = index.getVacancy();
