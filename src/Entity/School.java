@@ -19,8 +19,9 @@ public class School {
         return courseList;
     }                                               //1 course or whole list?
 
-    public void setAccessperiod(AccessPeriod accessperiod) {
-        this.accessperiod = accessperiod;
+    public void setAccessPeriod() {
+        this.accessperiod.setStartDate();
+        this.accessperiod.setEndDate();
     }                                               //is this really how to set the class access period?
 
     public void setSchoolName(String schoolName) {

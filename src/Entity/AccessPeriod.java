@@ -21,7 +21,7 @@ public class AccessPeriod {
             this.startDate = setDateTime();
         }
 
-        public void setEndDate(LocalDateTime endDate) {
+        public void setEndDate() {
             System.out.println("Enter end datetime: (Format: yyyy-mm-dd hh:mm)");
             this.endDate = setDateTime();
         }
