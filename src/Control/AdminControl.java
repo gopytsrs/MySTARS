@@ -108,54 +108,64 @@ public class AdminControl {
     }
 
     public void addCourse(Scanner sc) {
-        int vacancies = 20;
+        int noOfStudent = 0;
         int totalNoOfStudent = 20;
         int choice = 0;
 
         do {
             System.out.println("Would you like to");
             System.out.println("1. Add a course");
-            System.out.println("2. Update a course");
-            System.out.println("3. Exit");
+            System.out.println("2. Exit");
             System.out.println("Enter your choice here: ");
             choice = sc.nextInt();
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     System.out.println("Course Code (ALL CAPITALISED): ");
                     String code = sc.next();
-                    System.out.println("Name of the Course: ");
-                    sc.nextLine();
-                    String courseName = sc.nextLine();
 
                     try {
-                        File course = new File("course.txt");
-                        if (!course.createNewFile()) {
-                            System.out.println("Course created: " + course);
-                            try (FileWriter fw = new FileWriter("course.txt", true);
-                                 BufferedWriter bw = new BufferedWriter(fw);
-                                 PrintWriter out = new PrintWriter(bw)) {
-                                out.println("Course Code: " + course);
-                                out.println("Course Name: " + courseName);
-                                out.println("Vacancies: " + vacancies + "/" + totalNoOfStudent);
-                            } catch (IOException e) {
-                                System.out.println("An error had occurred.");
+                        File course = new File("courses.txt");
+                        BufferedReader br = new BufferedReader(new FileReader(course));
+                        String courseExist;
+                        try {
+                            while ((courseExist = br.readLine()) != null) { //Read until the end
+                                if (courseExist.equals(code)){    //Check whether the course exist
+                                    System.out.println("Course Already Exist");
+                                }
+
+                                else{
+                                    try {
+                                        System.out.println("Course Created: " + course);
+                                        try (FileWriter fw = new FileWriter("course.txt", true);
+                                             BufferedWriter bw = new BufferedWriter(fw);
+                                             PrintWriter out = new PrintWriter(bw)) {
+                                            out.println(course);
+                                            out.println(noOfStudent + "/" + totalNoOfStudent);
+                                        } catch (IOException e) {
+                                            System.out.println("");
+                                        }
+                                    } catch (IOError e){
+
+                                    }
+                                }
                             }
+                        } catch (IOException e){
+                            System.out.println("An error occurred");
                         }
-                    } catch (IOException e) {
-                        System.out.println("An error occurred.");
-                        e.printStackTrace();
+
+                    } catch (FileNotFoundException f){
+                        System.out.println("File is not found");
                     }
-
                 case 2:
-                    System.out.println("What do you want to update?");
-                    System.out.println("1. Course Code");
-                    System.out.println("2. Course Name of a Course");
-                    System.out.println("3. Vacancy of a Course");
-                    System.out.println("4. Exit");
-
+                    System.out.println("Exiting...");
+                    break;
             }
-        }while (choice != 3);
+        } while (choice != 2);
+    }
+
+    public void updateCourse(Course course){
+
     }
 
     public void deleteCourse(Course course){
