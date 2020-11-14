@@ -28,10 +28,14 @@ public class Login {
             Scanner sc = new Scanner(System.in);
             System.out.println("Please enter your Username: ");
             userName = sc.next();
-            Console C = System.console();
-            char[] pw = C.readPassword("Please enter your Password: ");
-            password = new String(pw);
-            System.out.println("Please enter the domain(Student/Admin): ");
+            //System.out.println("Please enter your Password: ");
+            //Console C = System.console();
+            //char[] pw = {};
+            //pw = C.readPassword();   //find anther way to mask
+            //password = new String(pw);
+            System.out.println("Please enter your Password: ");
+            password = sc.next();
+            System.out.println("Please enter the domain(student/admin): ");
             domain = sc.next();
             AccountsFromDatabase(domain);
             valid = Authenticatepassword();
@@ -51,7 +55,7 @@ public class Login {
         String filename = domain+".txt";                //filename will be student.txt or admin.txt
         Accountlist = new ArrayList<Account>();
         try{
-            File AccountData = new File(filename);
+            File AccountData = new File(filename);      //file will be in main page
             Scanner reader = new Scanner(AccountData);
             while (reader.hasNextLine()){
                 String line = reader.nextLine();
@@ -72,7 +76,7 @@ public class Login {
         {
             Account B = Accountlist.get(i);
             boolean v = B.validate(this.userName,this.password);
-            if (v = true)
+            if (v == true)
                 return true;
         }
         return false;

@@ -21,7 +21,7 @@ public class Account {
     public boolean validate(String username, String password){
         if (!(username.equals(this.username)))
             return false;
-        else if (!(username.equals(this.password)))
+        else if (!(password.equals(this.password)))
             return false;
         else
             return true;
