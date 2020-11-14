@@ -10,26 +10,44 @@ public class Login {
     public String getUserName()
     {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your Username: ");
-        userName = sc.next();
         return userName;
-        System.out.println("Key in 1 for Student or 2 for Admin: ");
-        choice = sc.nextInt();
-        if (choice == 1)
-        {
-
-        }
     }
     public String getPassword()
     {
-        Console C = System.console();
-        char[] pw = C.readPassword("Please enter your Password: ");
-        password = new String(pw);
+
         return password;
     }
     public String getDomain()
     {
+        return domain;
+    }
+    public Login()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter your Username: ");
+        userName = sc.next();
+        Console C = System.console();
+        char[] pw = C.readPassword("Please enter your Password: ");
+        password = new String(pw);
+        System.out.println("Please enter the domain(Student/Admin): ");
+        domain = sc.next();
+        AccountsFromDatabase(domain);
+    }
+    private void AccountsFromDatabase(String domain){
+        String filename = domain+".txt";
+        try{
+            File Accountdata = new File(filename);
+            Scanner reader = new Scanner(Accountdata);
+            while (reader.hasNextLine()){
+                String
+            }
+
+        } catch (FileNotFoundException e){
+            System.out.println("Error in finding file");
+            e.printStackTrace();
+        }
+    }
+    private boolean Authenticatepassword(){
 
     }
 }
