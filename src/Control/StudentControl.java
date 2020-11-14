@@ -48,17 +48,18 @@ public class StudentControl {
     public void printRegisteredCourses(){
         ArrayList<CourseRegistration>registeredCourses = student.getCourseRegistrationList();
         ArrayList<CourseRegistration>assignedCourses = student.getAssignedCourse();
-        System.out.println("Course Code: Course Name: Index: AU: Status");
+        System.out.println("Course Code:\tCourse Name:\tIndex:\tAU:\tStatus");
         for(CourseRegistration course: registeredCourses){
-            System.out.printf("%s:",course.getCourseCode());
-            System.out.printf(" %s:",course.getCourseName());
-            System.out.printf(" %d:",course.getIndex().getIndexNo());
-            System.out.printf(" %d:",course.getAu());
+            System.out.printf("%s\t",course.getCourseCode());
+            System.out.printf("%s\t",course.getCourseName());
+            System.out.printf("%d\t",course.getIndex().getIndexNo());
+            System.out.printf("%d\t",course.getAu());
             if(assignedCourses.contains(course)){
-                System.out.printf(" Assigned");
+                System.out.printf("Assigned");
             } else {
-                System.out.printf(" On wait list");
+                System.out.printf("On wait list");
             }
+            System.out.println("");
         }
 
     }
@@ -81,6 +82,7 @@ public class StudentControl {
     }
 
     public void changeIndex(){
+
     }
 
     public void swapIndex(){}
