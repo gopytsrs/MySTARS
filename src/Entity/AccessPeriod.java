@@ -1,5 +1,8 @@
 package Entity;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
 public class AccessPeriod {
 
         private LocalDateTime startDate;
@@ -13,11 +16,19 @@ public class AccessPeriod {
             return startDate;
         }
 
-        public void setStartDate(LocalDateTime startDate) {
-            this.startDate = startDate;
+        public void setStartDate() {
+            System.out.println("Enter start datetime: (Format: yyyy-mm-dd hh:mm)");
+            this.startDate = setDateTime();
         }
 
         public void setEndDate(LocalDateTime endDate) {
-            this.endDate = endDate;
+            System.out.println("Enter end datetime: (Format: yyyy-mm-dd hh:mm)");
+            this.endDate = setDateTime();
+        }
+        public LocalDateTime setDateTime() {
+            Scanner scanner = new Scanner(System.in);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(scanner.nextLine(),formatter);
+            return dateTime;
         }
 }
