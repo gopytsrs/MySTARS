@@ -2,6 +2,7 @@ package Entity;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Deque;
 
 public class Index {
@@ -11,7 +12,7 @@ public class Index {
     private String groupNo;
     private int vacancy;
     public static Deque<Student> waitList;
-    private Lesson[] lessons = new Lesson[3];
+    private ArrayList<Lesson> lessons;
 
     public Index(){}
     public Index(String courseName, String courseCode, int indexNo, String groupNo, int vacancy){
@@ -50,17 +51,43 @@ public class Index {
         waitList.add(student);
     }
 
+    public static Deque<Student> getWaitList() {
+        return waitList;
+    }
+
     public void removeFromWaitlist(Student student){
         waitList.remove(student);
     }
 
-    public LocalDateTime[] getLessonTime(Lesson lessons){
-        return new LocalDateTime[3];
+//    public LocalDateTime[] getLessonTime(Lesson lessons){
+//        return new LocalDateTime[3];
+//    }
+//
+//    public void setLessonTime(Lesson lessons){}
+
+
+    public ArrayList<Lesson> getLessons() {
+        return lessons;
     }
 
-    public void setLessonTime(Lesson lessons){}
+    public void setLessons(ArrayList<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 
     public String getCourseCode() {
         return courseCode;
+    }
+
+    public boolean checkClash(Index indexToCheck){
+        for(Lesson lesson: lessons){
+            for(Lesson lesson1: indexToCheck.getLessons()){
+                if(lesson.getWeeks() == lesson1.getWeeks()){
+                    if(lesson.getStartTime().equals(lesson1.getStartTime()) || lesson.getEndTime().isAfter(lesson1.getStartTime()) ){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
