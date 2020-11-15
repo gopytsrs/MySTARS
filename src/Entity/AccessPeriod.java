@@ -25,7 +25,7 @@ public class AccessPeriod {
             System.out.println("Enter end datetime: (Format: yyyy-mm-dd hh:mm)");
             this.endDate = setDateTime();
         }
-        public LocalDateTime setDateTime() {
+        private static LocalDateTime setDateTime() {
             Scanner scanner = new Scanner(System.in);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm");
             LocalDateTime dateTime = LocalDateTime.parse(scanner.nextLine(),formatter);
