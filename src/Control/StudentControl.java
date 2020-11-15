@@ -94,11 +94,18 @@ public class StudentControl {
     public void checkAvailableSlots(){
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter index number:");
+        int indexNo = 0;
+        while (true) {
+            try {
+                System.out.println("Enter index number:");
+                indexNo = Integer.valueOf(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a index number.");
 
-        int indexNo = Integer.valueOf(scanner.nextLine());
+            }
+        }
         ArrayList<Course> courses = new ArrayList<Course>();
-
         //Loop through indexList of each course to find if the index exists
         for(Course course: courses){
             ArrayList<Index> indexes = course.getIndexList();
@@ -121,9 +128,18 @@ public class StudentControl {
         Course course = null;
         Index indexToDrop = null;
         Index indexToAdd = null;
+        int currentIndexNo = 0;
+        int desiredIndexNo = 0;
 
-        System.out.println("Enter current index no:");
-        int currentIndexNo = Integer.valueOf(scanner.nextLine());
+        while(true) {
+            try {
+                System.out.println("Enter current index no:");
+                currentIndexNo = Integer.valueOf(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a index number.");
+            }
+        }
 
         // Check if index to drop is in the student's assigned courses
         for(CourseRegistration assignedCourse: assignedCourses) {
@@ -136,9 +152,15 @@ public class StudentControl {
                 return;
             }
         }
-
-        System.out.println("Enter desired index no:");
-        int desiredIndexNo = Integer.valueOf(scanner.nextLine());
+        while(true) {
+            try {
+                System.out.println("Enter desired index no:");
+                desiredIndexNo = Integer.valueOf(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e){
+                System.out.println("Invalid input. Please enter a index number.");
+            }
+        }
         //Create the Index object based on desiredIndexNo, but we need to know the course
         //Check if index to change to has vacancies
 
