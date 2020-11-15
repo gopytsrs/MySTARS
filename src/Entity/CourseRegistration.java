@@ -46,4 +46,9 @@ public class CourseRegistration {
     public void setAu(int au) {
         this.au = au;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s\t%s\t%d\t%d\t",courseCode,courseName,index.getIndexNo(),au);
+    }
 }

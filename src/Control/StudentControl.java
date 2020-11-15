@@ -77,10 +77,7 @@ public class StudentControl {
 
         //Go through all the courses, each course is printed on a new line
         for(CourseRegistration course: registeredCourses){
-            System.out.printf("%s\t",course.getCourseCode());
-            System.out.printf("%s\t",course.getCourseName());
-            System.out.printf("%d\t",course.getIndex().getIndexNo());
-            System.out.printf("%d\t",course.getAu());
+            System.out.print(course);
             if(assignedCourses.contains(course)){
                 System.out.printf("Assigned");
             } else {
