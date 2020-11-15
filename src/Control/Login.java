@@ -46,12 +46,14 @@ public class Login {
         if (domain.equals("student"))       // this sequence can be done in main page also
         {
             StudentUI sUI = new StudentUI();
-            System.out.println("Hello, " + userName + ".What would you like to do today?");
+            System.out.println("Hello, " + userName + ". What would you like to do today?");
             sUI.studentMenu();
         }
         else if (domain.equals("admin"))
         {
-            //open the display for admin
+            AdminUI aUI = new AdminUI();
+            System.out.println("Hello, " + userName + ". What would you like to do today?");
+            aUI.adminMenu();
         }
     }
     private void AccountsFromDatabase(String domain){

@@ -1,4 +1,5 @@
 package Control;
+
 import java.util.Scanner;
 import Entity.*;
 
@@ -29,7 +30,7 @@ public class StudentUI{
                     break;
 
                 case 2:
-                    scontrol.dropCourse(course);
+                    scontrol.dropCourse();
                     break;
 
                 case 3:

@@ -15,7 +15,7 @@ public class AdminControl {
     }
 
     // Method should have no parameters
-    public LocalDateTime editStudentAccessPeriod(LocalDateTime currentDateTime, Scanner sc){
+    public LocalDateTime editStudentAccessPeriod(Scanner sc){
     // Check for school inside this method, then get currentaccessdatetime
 
     /*    System.out.println("Which school to change access period");
@@ -26,6 +26,7 @@ public class AdminControl {
 
         int choice = 0;
         boolean changed = false;
+        LocalDateTime currentDateTime = LocalDateTime.now();
 
         /*do {
             System.out.println("What school do you want to check?");
@@ -134,38 +135,47 @@ public class AdminControl {
                     String courseCode = sc.next();
 
                     try {
+                        System.out.println("This is fine!");
                         File course = new File("courses.txt");
                         BufferedReader br = new BufferedReader(new FileReader(course));
-                        String courseExist;
+                        String readCourse;
+                        boolean courseExist = false;
+
                         try {
-                            while ((courseExist = br.readLine()) != null) { //Read until the end
-                                if (courseExist.equals(courseCode)){    //Check whether the course exist
+                            while ((readCourse = br.readLine()) != null) { //Read until the end
+                                if (readCourse.equals(courseCode)) {    //Check whether the course exist
                                     System.out.println("Course Already Exist");
-                                }
-
-                                else{
-                                    try {
-                                        System.out.println("Course Created: " + course);
-                                        try (FileWriter fw = new FileWriter("course.txt", true);
-                                             BufferedWriter bw = new BufferedWriter(fw);
-                                             PrintWriter out = new PrintWriter(bw)) {
-                                            out.println(courseCode);
-                                            out.println(noOfStudent + "/" + totalNoOfStudent);
-                                        } catch (IOException e) {
-                                            System.out.println("An error has occurred.");
-                                        }
-                                    } catch (IOError e){
-
-                                    }
+                                    System.out.println("This is fine!");
+                                    courseExist = true;
+                                    break;
+                                } else {
+                                    continue;
                                 }
                             }
-                        } catch (IOException e){
-                            System.out.println("An error occurred");
+                        } catch (IOException e) {
+                            System.out.println("An error has occurred.");
                         }
 
+                        if (courseExist == false)
+                            try {
+                                System.out.println("This is fine!");
+                                System.out.println("Course Created: " + courseCode);
+                                try (FileWriter fw = new FileWriter("courses.txt", true);
+                                     BufferedWriter bw = new BufferedWriter(fw);
+                                     PrintWriter out = new PrintWriter(bw)) {
+                                    out.println("\n" + courseCode);
+                                    out.println(noOfStudent + "/" + totalNoOfStudent);
+                                    break;
+                                } catch (IOException e) {
+                                    System.out.println("An error has occurred.");
+                                }
+                            } catch (IOError e) {
+                                System.out.println("An error has occurred.");
+                            }
                     } catch (FileNotFoundException f){
                         System.out.println("File is not found");
                     }
+
                     break;
                 case 2:
                     System.out.println("Exiting...");
