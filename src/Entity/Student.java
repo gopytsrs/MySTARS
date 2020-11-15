@@ -130,4 +130,9 @@ public class Student implements Serializable {
     public void addNoOfAU(int au) {
         this.noOfAUs += au;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s\t%s\t%s\t%s\t%s\t",name,school.getSchoolName(),year,gender,nationality);
+    }
 }
