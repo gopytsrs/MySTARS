@@ -48,7 +48,7 @@ public class AdminUI{
                     break;
 
                 case 6:
-                    acontrol.printStudentByIndex(student, course);
+                    acontrol.printStudentByIndex(course);
                     break;
 
                 case 7:

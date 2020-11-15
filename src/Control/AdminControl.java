@@ -245,7 +245,39 @@ public class AdminControl {
 
     }
 
-    public void printStudentByIndex(Student student, Course course){
+    public void printStudentByIndex(Course course){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter index no:");
+        int indexNo = Integer.valueOf(scanner.nextLine());
+
+        //Load the index arraylist here to find the corresponding index
+        ArrayList<Index> indexes = new ArrayList<Index>();
+
+        Index indexToPrint = null;
+        for(Index index: indexes){
+            if(index.getIndexNo() ==  indexNo){
+                indexToPrint = index;
+            }
+        }
+
+        ArrayList<Student> registeredStudents = indexToPrint.getAssignedStudents();
+        Deque<Student> waitListStudents = indexToPrint.getWaitList();
+
+        System.out.println(
+                "Name\t" +
+                "School\t"+
+                "Year of Study\t"+
+                "Gender\t"+
+                "Nationality\t"+
+                "Status\t");
+        for(Student student: registeredStudents){
+            System.out.println(student + "Assigned");
+        }
+        for(Student student: waitListStudents){
+            System.out.println(student + "WaitList");
+        }
+
+
 
     }
 }
