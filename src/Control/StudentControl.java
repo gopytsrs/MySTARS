@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class StudentControl {
     Student student;
+    Scanner scanner = new Scanner(System.in);
 
     //Create StudentControl using this constructor
     public StudentControl(Student student){
@@ -19,7 +20,6 @@ public class StudentControl {
     }
 
     public void dropCourse() {
-        Scanner scanner = new Scanner(System.in);
         String courseCode = scanner.nextLine();
         CourseRegistration courseToDrop = null;
 
@@ -90,7 +90,6 @@ public class StudentControl {
 
     public void checkAvailableSlots(){
 
-        Scanner scanner = new Scanner(System.in);
         int indexNo = 0;
         while (true) {
             try {
@@ -120,7 +119,6 @@ public class StudentControl {
     }
 
     public void changeIndex(){
-        Scanner scanner = new Scanner(System.in);
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
         Course course = null;
         Index indexToDrop = null;
