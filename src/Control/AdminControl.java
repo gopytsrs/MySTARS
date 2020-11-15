@@ -3,6 +3,7 @@ package Control;
 import Entity.*;
 
 import java.io.*;
+import java.sql.SQLOutput;
 import java.time.*;
 import java.util.*;
 
@@ -65,18 +66,18 @@ public class AdminControl {
     }
 
     public void addStudent(Student student, Scanner sc){
-        String username;
+        String userName;
         String password;
         boolean confirmed = false;
         int choice = 0;
 
         System.out.println("Username: ");
-        username = sc.next();
+        userName = sc.next();
         System.out.println("Password: ");
         password = sc.next();
 
         while (!confirmed) {
-            System.out.println("Would you like to confirm that username is " + username + " and password is " + password + ".");
+            System.out.println("Would you like to confirm that username is " + userName + " and password is " + password + ".");
             System.out.println("1. Yes");
             System.out.println("2. No");
             System.out.println("Please enter your choice: ");
@@ -86,6 +87,14 @@ public class AdminControl {
                 case 1:
                     //create new username and password
                     System.out.println("Created Student Account");
+                    File course = new File("student.txt");
+                    try (FileWriter fw = new FileWriter("student.txt", true);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    PrintWriter out = new PrintWriter(bw)) {
+                    out.println(userName + " " + password);
+                } catch (IOException e) {
+                    System.out.println("An error has occurred.");
+                }
                     confirmed = true;
                     break;
 
@@ -93,7 +102,7 @@ public class AdminControl {
                     //let the loop run 1 more time
                     System.out.println("Please re-enter the username and password");
                     System.out.println("Username: ");
-                    username = sc.next();
+                    userName = sc.next();
                     System.out.println("Password: ");
                     password = sc.next();
 
@@ -122,7 +131,7 @@ public class AdminControl {
             switch (choice) {
                 case 1:
                     System.out.println("Course Code (ALL CAPITALISED): ");
-                    String code = sc.next();
+                    String courseCode = sc.next();
 
                     try {
                         File course = new File("courses.txt");
@@ -130,7 +139,7 @@ public class AdminControl {
                         String courseExist;
                         try {
                             while ((courseExist = br.readLine()) != null) { //Read until the end
-                                if (courseExist.equals(code)){    //Check whether the course exist
+                                if (courseExist.equals(courseCode)){    //Check whether the course exist
                                     System.out.println("Course Already Exist");
                                 }
 
@@ -140,10 +149,10 @@ public class AdminControl {
                                         try (FileWriter fw = new FileWriter("course.txt", true);
                                              BufferedWriter bw = new BufferedWriter(fw);
                                              PrintWriter out = new PrintWriter(bw)) {
-                                            out.println(course);
+                                            out.println(courseCode);
                                             out.println(noOfStudent + "/" + totalNoOfStudent);
                                         } catch (IOException e) {
-                                            System.out.println("");
+                                            System.out.println("An error has occurred.");
                                         }
                                     } catch (IOError e){
 
@@ -157,26 +166,76 @@ public class AdminControl {
                     } catch (FileNotFoundException f){
                         System.out.println("File is not found");
                     }
+                    break;
                 case 2:
                     System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Please enter a valid number. (1 or 2)");
                     break;
             }
         } while (choice != 2);
     }
 
-    public void updateCourse(Course course){
+    public void updateCourse(Course course, Scanner sc){
+        int choice = 0;
 
+        do {
+            System.out.println("Would you like to");
+            System.out.println("1. Update a course");
+            System.out.println("2. Exit");
+            System.out.println("Enter your choice here: ");
+            choice = sc.nextInt();
+
+            switch (choice){
+                case 1:
+                    try {
+                        // input the (modified) file content to the StringBuffer "input"
+                        BufferedReader file = new BufferedReader(new FileReader("courses.txt"));
+                        StringBuffer inputBuffer = new StringBuffer();
+                        String replacement;
+
+                        while ((replacement = file.readLine()) != null) {
+                            replacement = sc.next(); // line replacement done here
+                            inputBuffer.append(replacement);
+                        }
+                        file.close();
+
+                        // write the new string with the replaced line OVER the same file
+                        FileOutputStream fileOut = new FileOutputStream("courses.txt");
+                        fileOut.write(inputBuffer.toString().getBytes());
+                        fileOut.close();
+
+                    } catch (Exception e) {
+                        System.out.println("Problem reading file.");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Please enter a valid number. (1 or 2)");
+                    break;
+            }
+        } while (choice != 2);
     }
 
     public void deleteCourse(Course course){
 
     }
 
-    public void checkAvailableSlots(){
+    public void checkAvailableSlots(Course course){
 
     }
 
-    public void printStudentByCourse(){}
+    public void printStudentByCourse(Student student, Course course){
 
-    public void printStudentByIndex(){}
+    }
+
+    public void printStudentByIndex(Student student, Course course){
+
+    }
 }
