@@ -12,6 +12,7 @@ public class Index {
     private String groupNo;
     private int vacancy;
     public static Deque<Student> waitList;
+    public static ArrayList<Student> assignedStudents;
     private ArrayList<Lesson> lessons;
 
     public Index(){}
@@ -89,5 +90,9 @@ public class Index {
             }
         }
         return false;
+    }
+
+    public static ArrayList<Student> getAssignedStudents() {
+        return assignedStudents;
     }
 }
