@@ -1,23 +1,30 @@
-CZ2001
-0/20
+//Coursecode Coursname AU lessonType indexes
 
-CZ2002
-0/20
+"CZ2001" "ALGORITHMS" 3 "Lecture Tutorial Lab" ""
 
-CZ2005
-0/20
+"CZ2002" "OBJECT ORIENTED DESIGN AND PROGRAMMING" 3 "Lecture Tutorial Lab" ""
 
-CZ2007
-0/20
+"CZ2005" "OPERATING SYSTEMS" 3 "Lecture Tutorial Lab" ""
 
-MA2003
-0/20
+"CZ2007" "INTRODUCTION TO DATABASES" 3 "Lecture Tutorial Lab" ""
 
-MA1001
-0/20
+"MA2003" "INTRODUCTION TO THERMO-FLUIDS" 3 "Lecture Tutorial" ""
 
-MA1700
-0/20
+"MA1001" "DYNAMICS" 3 "Lecture Tutorial" ""
+
+"MA1700" ""
 
 MA2001
+
+
+AB1201
+0/20
+
+AB1301
+0/20
+
+AB1501
+0/20
+
+AD2101
 0/20
