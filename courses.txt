@@ -1,30 +1,28 @@
-//Coursecode Coursname AU lessonType indexes
+//Coursecode,Coursname,AU,lessonType,indexes
 
-"CZ2001" "ALGORITHMS" 3 "Lecture Tutorial Lab" ""
+"CZ2001","ALGORITHMS",3,"Lecture Tutorial Lab","474 475 476 477"
 
-"CZ2002" "OBJECT ORIENTED DESIGN AND PROGRAMMING" 3 "Lecture Tutorial Lab" ""
+"CZ2002","OBJECT ORIENTED DESIGN AND PROGRAMMING",3,"Lecture Tutorial Lab","342 343 344 345"
 
-"CZ2005" "OPERATING SYSTEMS" 3 "Lecture Tutorial Lab" ""
+"CZ2005","OPERATING SYSTEMS",3,"Lecture Tutorial Lab","681 682 683 684"
 
-"CZ2007" "INTRODUCTION TO DATABASES" 3 "Lecture Tutorial Lab" ""
+"CZ2007","INTRODUCTION TO DATABASES",3,"Lecture Tutorial Lab","366 367 368 369"
 
-"MA2003" "INTRODUCTION TO THERMO-FLUIDS" 3 "Lecture Tutorial" ""
+"MA2003","INTRODUCTION TO THERMO-FLUIDS".3,"Lecture Tutorial","676 677 678 679"
 
-"MA1001" "DYNAMICS" 3 "Lecture Tutorial" ""
+"MA1001","DYNAMICS",3,"Lecture Tutorial","849 850 851 852"
 
-"MA1700" ""
+"MA2001","Mechanics of Materials",3,"Lecture Tutorial","280 281 282 283"
 
-MA2001
+"MA2009","INTRODUCTION TO ELECTRICAL CIRCUITS & ELECTRONIC DEVICES",3,"Lecture Tutorial", "265 266 267 268"
+
+"AB1202","STATISTICAL AND QUANTITATIVE METHODS",3,"Lecture Tutorial","347 348 349 350"
+
+"AB1301","BUSINESS LAW",3,"Lecture Tutorial","896 897 898 899"
+
+"AB1501","MARKETING",3,"Lecture Tutorial","567 568 569 570"
+
+"AD2101","MANAGEMENT ACCOUNTING",4,"Lecture Tutorial","533 534 535 536"
 
 
-AB1201
-0/20
 
-AB1301
-0/20
-
-AB1501
-0/20
-
-AD2101
-0/20
