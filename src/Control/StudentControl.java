@@ -168,7 +168,10 @@ public class StudentControl {
 
     }
 
-    public void swapIndex(){}
+    public void swapIndex(){
+        System.out.println("Enter the index you want to swap:");
+
+    }
 
     public void register(){
 
