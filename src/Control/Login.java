@@ -24,8 +24,11 @@ public class Login {
     }
     public Login()
     {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the domain(student/admin): ");
+        domain = sc.next();
+        AccountsFromDatabase(domain);
         do {
-            Scanner sc = new Scanner(System.in);
             System.out.println("Please enter your Username: ");
             userName = sc.next();
             //System.out.println("Please enter your Password: ");
@@ -35,26 +38,10 @@ public class Login {
             //password = new String(pw);
             System.out.println("Please enter your Password: ");
             password = sc.next();
-            System.out.println("Please enter the domain(student/admin): ");
-            domain = sc.next();
-            AccountsFromDatabase(domain);
             valid = Authenticatepassword();
             if (valid == false)
                 System.out.println("Invalid username/password. Please try again.");
         }while(valid != true);
-
-        if (domain.equals("student"))       // this sequence can be done in main page also
-        {
-            StudentUI sUI = new StudentUI();
-            System.out.println("Hello, " + userName + ". What would you like to do today?");
-            sUI.studentMenu();
-        }
-        else if (domain.equals("admin"))
-        {
-            AdminUI aUI = new AdminUI();
-            System.out.println("Hello, " + userName + ". What would you like to do today?");
-            aUI.adminMenu();
-        }
     }
     private void AccountsFromDatabase(String domain){
         String filename = domain+".txt";                //filename will be student.txt or admin.txt
