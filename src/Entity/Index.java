@@ -1,10 +1,19 @@
 package Entity;
 
+import Enum.LessonType;
+import Enum.Week;
+
 import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.Scanner;
+
 
 public class Index implements Serializable {
+
     private String courseName;
     private String courseCode;
     private int indexNo;
@@ -73,8 +82,8 @@ public class Index implements Serializable {
         return lessons;
     }
 
-    public void setLessons(ArrayList<Lesson> lessons) {
-        this.lessons = lessons;
+    public void setLessons(Lesson L) {
+        lessons.add(L);
     }
 
     public String getCourseCode() {
@@ -96,5 +105,108 @@ public class Index implements Serializable {
 
     public static ArrayList<Student> getAssignedStudents() {
         return assignedStudents;
+    }
+
+    public void addLesson() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Input Lesson Type in all caps: ");
+        String lessonType1 = sc.next();
+        LessonType lessonType = null;
+        do {
+            switch (lessonType1) {
+                case ("LECTURE"): {
+                    lessonType = LessonType.LEC;
+                    break;
+                }
+                case ("LABORATORY"): {
+                    lessonType = LessonType.LAB;
+                    break;
+                }
+                case ("TUTORIAL"): {
+                    lessonType = LessonType.TUT;
+                    break;
+                }
+                case ("SEMINAR"): {
+                    lessonType = LessonType.SEM;
+                    break;
+                }
+                default:
+                    System.out.println("Error in input. Please try again.");
+            }
+        } while (lessonType == null);
+        System.out.println("Input day of week in all caps: ");
+        String day1 = sc.next();
+        DayOfWeek day = null;
+        do {
+            switch (day1) {
+                case ("MONDAY"): {
+                    day = DayOfWeek.MONDAY;
+                    break;
+                }
+                case ("TUESDAY"): {
+                    day = DayOfWeek.TUESDAY;
+                    break;
+                }
+                case ("WEDNESDAY"): {
+                    day = DayOfWeek.WEDNESDAY;
+                    break;
+                }
+                case ("THURSDAY"): {
+                    day = DayOfWeek.THURSDAY;
+                    break;
+                }
+                case ("FRIDAY"): {
+                    day = DayOfWeek.FRIDAY;
+                    break;
+                }
+                case ("SATURDAY"): {
+                    day = DayOfWeek.SATURDAY;
+                    break;
+                }
+                case ("SUNDAY"): {
+                    day = DayOfWeek.SUNDAY;
+                    break;
+                }
+                default: {
+                    System.out.println("Error in input.");
+                }
+
+            }
+        } while (day == null);
+
+        System.out.println("Input Start time of lesson: (HH:MM) ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH.mm.ss.nnn");
+        String StartD = sc.next();
+        LocalTime StartDate = LocalTime.parse(StartD, formatter);
+        System.out.println("Input End time of lesson: (HH:MM) ");
+        String EndD = sc.next();
+        LocalTime EndDate = LocalTime.parse(EndD, formatter);
+        System.out.println("Input Location of lesson: ");
+        String location = sc.next();
+        System.out.println("Input Weeks of lesson in all caps: ");
+        String weeks1 = sc.next();
+        Week week = null;
+        do {
+            switch (weeks1) {
+                case ("EVEN"): {
+                    week = Week.EVEN;
+                    break;
+                }
+                case ("ODD"): {
+                    week = Week.ODD;
+                    break;
+                }
+                case ("EVERY"): {
+                    week = Week.EVERY;
+                    break;
+                }
+                default: {
+                    System.out.println("Error in input. Please try again.");
+                }
+            }
+        } while (week == null);
+
+        Lesson L = new Lesson(indexNo, lessonType, day, StartDate, EndDate, location, week);
+        lessons.add(L);
     }
 }
