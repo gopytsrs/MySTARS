@@ -1,24 +1,20 @@
 package Entity;
 
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.security.KeyStore;
+import java.io.Serializable;
 
-public class Account {
+public class Account implements Serializable {
     private String username;
     private String password;
     private String accountType;
-    public Account(String username, String password, String accountType){
+
+    public Account(String username, String password, String accountType) {
         setUsername(username);
         setPassword(password);
         setAccountType(accountType);
     }
 
-    public boolean validate(String username, String password){
+    public boolean validate(String username, String password) {
         if (!(username.equals(this.username)))
             return false;
         else if (!(password.equals(this.password)))
@@ -26,6 +22,7 @@ public class Account {
         else
             return true;
     }
+
     public String getUsername() {
         return username;
     }

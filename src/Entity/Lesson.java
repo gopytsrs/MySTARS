@@ -1,10 +1,13 @@
 package Entity;
+
 import Enum.LessonType;
 import Enum.Week;
+
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class Lesson {
+public class Lesson implements Serializable {
     private int indexNo;
     private LessonType lessonType;
     private DayOfWeek day;
@@ -13,9 +16,10 @@ public class Lesson {
     private String location;
     private Week weeks;
 
-    public Lesson(){}
+    public Lesson() {
+    }
 
-    public Lesson(int indexNo, LessonType lessonType, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location, Week weeks){
+    public Lesson(int indexNo, LessonType lessonType, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location, Week weeks) {
         this.lessonType = lessonType;
         this.indexNo = indexNo;
         this.day = day;

@@ -1,11 +1,10 @@
 package Entity;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Deque;
 
-public class Index {
+public class Index implements Serializable {
     private String courseName;
     private String courseCode;
     private int indexNo;
@@ -15,14 +14,17 @@ public class Index {
     public static ArrayList<Student> assignedStudents;
     private ArrayList<Lesson> lessons;
 
-    public Index(){}
-    public Index(String courseName, String courseCode, int indexNo, String groupNo, int vacancy){
+    public Index() {
+    }
+
+    public Index(String courseName, String courseCode, int indexNo, String groupNo, int vacancy) {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.indexNo = indexNo;
         this.groupNo = groupNo;
         this.vacancy = vacancy;
     }
+
     public int getIndexNo() {
         return indexNo;
     }
@@ -47,7 +49,7 @@ public class Index {
         this.vacancy = vacancy;
     }
 
-    public void addToWaitlist(Student student){
+    public void addToWaitlist(Student student) {
 
         waitList.add(student);
     }
@@ -56,7 +58,7 @@ public class Index {
         return waitList;
     }
 
-    public void removeFromWaitlist(Student student){
+    public void removeFromWaitlist(Student student) {
         waitList.remove(student);
     }
 
@@ -79,11 +81,11 @@ public class Index {
         return courseCode;
     }
 
-    public boolean checkClash(Index indexToCheck){
-        for(Lesson lesson: lessons){
-            for(Lesson lesson1: indexToCheck.getLessons()){
-                if(lesson.getWeeks() == lesson1.getWeeks()){
-                    if(lesson.getStartTime().equals(lesson1.getStartTime()) || lesson.getEndTime().isAfter(lesson1.getStartTime()) ){
+    public boolean checkClash(Index indexToCheck) {
+        for (Lesson lesson : lessons) {
+            for (Lesson lesson1 : indexToCheck.getLessons()) {
+                if (lesson.getWeeks() == lesson1.getWeeks()) {
+                    if (lesson.getStartTime().equals(lesson1.getStartTime()) || lesson.getEndTime().isAfter(lesson1.getStartTime())) {
                         return true;
                     }
                 }
