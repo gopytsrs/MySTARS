@@ -3,29 +3,30 @@ package Control;
 import Entity.*;
 
 import java.io.*;
-import java.sql.SQLOutput;
-import java.time.*;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Scanner;
 
 public class AdminControl {
     private int adminID;
 
-    public void AdminControl(){
-
+    public void AdminControl() {
+        
     }
 
     // Method should have no parameters
-    public void editStudentAccessPeriod(Scanner sc){
-    // Check for school inside this method, then get currentaccessdatetime
+    public void editStudentAccessPeriod(Scanner sc) {
+        // Check for school inside this method, then get currentaccessdatetime
         String schoolname;
         System.out.println("Which school to change access period");
         schoolname = sc.next();
         School A = null;
         AccessPeriod schoolAccess = null;
-        try{
+        try {
             File schoolData = new File("school.txt");      //file will be in main page
             Scanner reader = new Scanner(schoolData);
-            while (reader.hasNextLine()){
+            while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 String[] token = line.split(",");       // splitting the string to get schoolname, accessperiod and other information
                 System.out.println(token[0]);
@@ -42,13 +43,12 @@ public class AdminControl {
                     A = new School(token[0],schoolAccess);
                 }*/
             }
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Error in finding file");
             e.printStackTrace();
         }
 
-        if (A == null && schoolAccess == null)
-        {
+        if (A == null && schoolAccess == null) {
             System.out.println("School does not exist.");
             return;
         }
@@ -64,15 +64,15 @@ public class AdminControl {
             }
         while (school < 5);*/
 
-        do{
-            System.out.println("The current access period is " + schoolAccess.getStartDate() + " to "+ schoolAccess.getEndDate());
+        do {
+            System.out.println("The current access period is " + schoolAccess.getStartDate() + " to " + schoolAccess.getEndDate());
             System.out.println("Would you like to change the access period?");
             System.out.println("1. Yes");
             System.out.println("2. No");
             System.out.println("Please enter your choice: ");
             choice = sc.nextInt();
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime = sc.next();
@@ -89,7 +89,7 @@ public class AdminControl {
                     break;
 
                 case 2:
-                    System.out.println("The current access period is " + schoolAccess.getStartDate() + " to "+ schoolAccess.getEndDate());
+                    System.out.println("The current access period is " + schoolAccess.getStartDate() + " to " + schoolAccess.getEndDate());
                     changed = true;
                     break;
 
@@ -97,12 +97,12 @@ public class AdminControl {
                     System.out.println("Please enter a valid number. (1 or 2)");
                     break;
             }
-        }while(!changed);
+        } while (!changed);
 
         return;         //haven't add changing to txt file
     }
 
-    public void addStudent(Student student, Scanner sc){
+    public void addStudent(Student student, Scanner sc) {
         String userName;
         String password;
         boolean confirmed = false;
@@ -126,12 +126,12 @@ public class AdminControl {
                     System.out.println("Created Student Account");
                     File course = new File("student.txt");
                     try (FileWriter fw = new FileWriter("student.txt", true);
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    PrintWriter out = new PrintWriter(bw)) {
-                    out.println(userName + " " + password);
-                } catch (IOException e) {
-                    System.out.println("An error has occurred.");
-                }
+                         BufferedWriter bw = new BufferedWriter(fw);
+                         PrintWriter out = new PrintWriter(bw)) {
+                        out.println(userName + " " + password);
+                    } catch (IOException e) {
+                        System.out.println("An error has occurred.");
+                    }
                     confirmed = true;
                     break;
 
@@ -208,7 +208,7 @@ public class AdminControl {
                             } catch (IOError e) {
                                 System.out.println("An error has occurred.");
                             }
-                    } catch (FileNotFoundException f){
+                    } catch (FileNotFoundException f) {
                         System.out.println("File is not found");
                     }
 
@@ -224,7 +224,7 @@ public class AdminControl {
         } while (choice != 2);
     }
 
-    public void updateCourse(Course course, Scanner sc){
+    public void updateCourse(Course course, Scanner sc) {
         int choice = 0;
 
         do {
@@ -234,7 +234,7 @@ public class AdminControl {
             System.out.println("Enter your choice here: ");
             choice = sc.nextInt();
 
-            switch (choice){
+            switch (choice) {
                 case 1:
                     try {
                         // input the (modified) file content to the StringBuffer "input"
@@ -269,19 +269,19 @@ public class AdminControl {
         } while (choice != 2);
     }
 
-    public void deleteCourse(Course course){
+    public void deleteCourse(Course course) {
 
     }
 
-    public void checkAvailableSlots(Course course){
+    public void checkAvailableSlots(Course course) {
 
     }
 
-    public void printStudentByCourse(Student student, Course course){
+    public void printStudentByCourse(Student student, Course course) {
 
     }
 
-    public void printStudentByIndex(Course course){
+    public void printStudentByIndex(Course course) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter index no:");
         int indexNo = Integer.valueOf(scanner.nextLine());
@@ -290,8 +290,8 @@ public class AdminControl {
         ArrayList<Index> indexes = new ArrayList<Index>();
 
         Index indexToPrint = null;
-        for(Index index: indexes){
-            if(index.getIndexNo() ==  indexNo){
+        for (Index index : indexes) {
+            if (index.getIndexNo() == indexNo) {
                 indexToPrint = index;
             }
         }
@@ -301,18 +301,17 @@ public class AdminControl {
 
         System.out.println(
                 "Name\t" +
-                "School\t"+
-                "Year of Study\t"+
-                "Gender\t"+
-                "Nationality\t"+
-                "Status\t");
-        for(Student student: registeredStudents){
+                        "School\t" +
+                        "Year of Study\t" +
+                        "Gender\t" +
+                        "Nationality\t" +
+                        "Status\t");
+        for (Student student : registeredStudents) {
             System.out.println(student + "Assigned");
         }
-        for(Student student: waitListStudents){
+        for (Student student : waitListStudents) {
             System.out.println(student + "WaitList");
         }
-
 
 
     }
