@@ -74,8 +74,8 @@ public class Index {
         return lessons;
     }
 
-    public void setLessons(ArrayList<Lesson> lessons) {
-        this.lessons = lessons;
+    public void setLessons(Lesson L) {
+        lessons.add(L);
     }
 
     public String getCourseCode() {
