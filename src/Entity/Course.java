@@ -84,7 +84,7 @@ public class Course implements Serializable {
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input the indexNo: ");
-        String indexNo = sc.next();
+        int indexNo = sc.nextInt();
         System.out.println("Input the groupNo: ");
         String groupNo = sc.next();
         System.out.println("Input the vacancy: ");
