@@ -64,6 +64,56 @@ public class makedata {
         c4.addLessonType("Tutorial");
         Index I8 = new Index("BG2144", "Biomaterials", 16777, "B05", 20);
 
+        //Create SCSE Data
+        LocalDateTime startDateSCSE = LocalDateTime.parse("2019-12-11T09:00");
+        LocalDateTime endDateSCSE = LocalDateTime.parse("2019-12-12T09:00");
+        AccessPeriod SCSEAccessPeriod = new AccessPeriod(startDateSCSE,endDateSCSE);
+        School SCSE = new School("SCSE",SCSEAccessPeriod);
+
+        Course course1 = new Course("CZ2001","ALGORTIHMS",3);
+        course1.addLessonType("LEC");
+        course1.addLessonType("TUT");
+        course1.addLessonType("LAB");
+        course1.setOfferingSchool(SCSE);
+        course1.addIndex(new Index("ALGORITHMS","CZ2001",474,"SP1",20));
+        course1.addIndex(new Index("ALGORITHMS","CZ2001",475,"SP2",20));
+        course1.addIndex(new Index("ALGORITHMS","CZ2001",476,"SP3",20));
+        course1.addIndex(new Index("ALGORITHMS","CZ2001",477,"SP4",20));
+        SCSE.setCourseList(course1);
+
+        Course course2 = new Course("CZ2002","OBJECT ORIENTED DESIGN AND PROGRAMMING",3);
+        course1.addLessonType("LEC");
+        course1.addLessonType("TUT");
+        course1.addLessonType("LAB");
+        course1.setOfferingSchool(SCSE);
+        course1.addIndex(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING","CZ2002",342,"SP1",20));
+        course1.addIndex(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING","CZ2002",343,"SP2",20));
+        course1.addIndex(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING","CZ2002",344,"SP3",20));
+        course1.addIndex(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING","CZ2002",345,"SP4",20));
+        SCSE.setCourseList(course2);
+
+        Course course3 = new Course("CZ2005","OPERATING SYSTEMS",3);
+        course1.addLessonType("LEC");
+        course1.addLessonType("TUT");
+        course1.addLessonType("LAB");
+        course1.setOfferingSchool(SCSE);
+        course1.addIndex(new Index("OPERATING SYSTEMS","CZ2005",681,"SP1",20));
+        course1.addIndex(new Index("OPERATING SYSTEMS","CZ2005",682,"SP2",20));
+        course1.addIndex(new Index("OPERATING SYSTEMS","CZ2005",683,"SP3",20));
+        course1.addIndex(new Index("OPERATING SYSTEMS","CZ2005",684,"SP4",20));
+        SCSE.setCourseList(course3);
+
+        Course course4 = new Course("CZ2007","INTRODUCTION TO DATABASES",3);
+        course1.addLessonType("LEC");
+        course1.addLessonType("TUT");
+        course1.addLessonType("LAB");
+        course1.setOfferingSchool(SCSE);
+        course1.addIndex(new Index("INTRODUCTION TO DATABASES","CZ2007",366,"SP6",20));
+        course1.addIndex(new Index("INTRODUCTION TO DATABASES","CZ2007",367,"SP7",20));
+        course1.addIndex(new Index("INTRODUCTION TO DATABASES","CZ2007",368,"SP8",20));
+        course1.addIndex(new Index("INTRODUCTION TO DATABASES","CZ2007",369,"SP9",20));
+        SCSE.setCourseList(course4);
+
     }
    // "Nanyang Business School",NBS,"2019-12-13 09:00","2019-12-14 09:00","AB1201 AB1301 AB1501 AD2101"
 
