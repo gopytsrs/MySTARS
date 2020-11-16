@@ -8,6 +8,11 @@ public class AccessPeriod {
         private LocalDateTime startDate;
         private LocalDateTime endDate;
 
+        public AccessPeriod(LocalDateTime startDate, LocalDateTime endDate)
+        {
+            this.startDate = startDate;
+            this.endDate = endDate;
+        }
         public LocalDateTime getEndDate() {
             return endDate;
         }
@@ -16,14 +21,14 @@ public class AccessPeriod {
             return startDate;
         }
 
-        public void setStartDate() {
+        public void setStartDate(LocalDateTime startDate) {
             System.out.println("Enter start datetime: (Format: yyyy-mm-dd hh:mm)");
             this.startDate = setDateTime();
         }
 
-        public void setEndDate() {
+        public void setEndDate(LocalDateTime endDate) {
             System.out.println("Enter end datetime: (Format: yyyy-mm-dd hh:mm)");
-            this.endDate = setDateTime();
+            this.endDate = endDate;
         }
         private static LocalDateTime setDateTime() {
             Scanner scanner = new Scanner(System.in);

@@ -15,18 +15,48 @@ public class AdminControl {
     }
 
     // Method should have no parameters
-    public LocalDateTime editStudentAccessPeriod(Scanner sc){
+    public void editStudentAccessPeriod(Scanner sc){
     // Check for school inside this method, then get currentaccessdatetime
+        String schoolname;
+        System.out.println("Which school to change access period");
+        schoolname = sc.next();
+        School A = null;
+        AccessPeriod schoolAccess = null;
+        try{
+            File schoolData = new File("school.txt");      //file will be in main page
+            Scanner reader = new Scanner(schoolData);
+            while (reader.hasNextLine()){
+                String line = reader.nextLine();
+                String[] token = line.split(",");       // splitting the string to get schoolname, accessperiod and other information
+                System.out.println(token[0]);
+                System.out.println(token[1]);
+                System.out.println(token[2]);
+                System.out.println(token[3]);
+                System.out.println(token[4]);
+                /*if(token.length!=5){throw new IllegalArgumentException();} //exception is thrown if the line contains anything more or less than a username and password
+                if(token[0].equals(schoolname))
+                {
+                    LocalDateTime startdate = LocalDateTime.parse(token[1]);        //might need to read all variables temporarily
+                    LocalDateTime enddate = LocalDateTime.parse(token[2]);
+                    schoolAccess = new AccessPeriod(startdate,enddate);
+                    A = new School(token[0],schoolAccess);
+                }*/
+            }
+        } catch (FileNotFoundException e){
+            System.out.println("Error in finding file");
+            e.printStackTrace();
+        }
 
-    /*    System.out.println("Which school to change access period");
-        school = sc.next();
+        if (A == null && schoolAccess == null)
+        {
+            System.out.println("School does not exist.");
+            return;
+        }
 
-        AccessPeriod accessPeriod = school.getAccessPeriod();
-        currentDateTime = accessPeriod.getStartDate(); */
 
         int choice = 0;
         boolean changed = false;
-        LocalDateTime currentDateTime = LocalDateTime.now();
+        //LocalDateTime currentDateTime = LocalDateTime.now();
 
         /*do {
             System.out.println("What school do you want to check?");
@@ -35,7 +65,7 @@ public class AdminControl {
         while (school < 5);*/
 
         do{
-            System.out.println("The current access period is " + currentDateTime);
+            System.out.println("The current access period is " + schoolAccess.getStartDate() + " to "+ schoolAccess.getEndDate());
             System.out.println("Would you like to change the access period?");
             System.out.println("1. Yes");
             System.out.println("2. No");
@@ -44,16 +74,22 @@ public class AdminControl {
 
             switch (choice){
                 case 1:
-                    System.out.println("Date time to change access period to? (YYYY-MM-DDTHH:MM)");
+                    System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime = sc.next();
-                    currentDateTime = LocalDateTime.parse(changeDateTime);
-                    System.out.println("The current access period is " + currentDateTime);
+                    LocalDateTime startDate = LocalDateTime.parse(changeDateTime);
+                    schoolAccess.setStartDate(startDate);
+                    System.out.println("The current start access period is " + schoolAccess.getStartDate());
+                    System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
+                    String changeDateTime1 = sc.next();
+                    LocalDateTime EndDate = LocalDateTime.parse(changeDateTime1);
+                    schoolAccess.setStartDate(EndDate);
+                    System.out.println("The current access period is " + schoolAccess.getEndDate());
                     System.out.println("Access Period Changed");
                     changed = true;
                     break;
 
                 case 2:
-                    System.out.println("The current access period is " + currentDateTime);
+                    System.out.println("The current access period is " + schoolAccess.getStartDate() + " to "+ schoolAccess.getEndDate());
                     changed = true;
                     break;
 
@@ -63,7 +99,7 @@ public class AdminControl {
             }
         }while(!changed);
 
-        return currentDateTime;
+        return;         //haven't add changing to txt file
     }
 
     public void addStudent(Student student, Scanner sc){
