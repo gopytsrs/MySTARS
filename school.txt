@@ -1,0 +1,5 @@
+//Schname Schcode accessStart accessEnd coursecodes
+
+"School of Computer Science and Engineering" SCSE "2019-12-11 09:00" "2019-12-12 09:00" "CZ2001 CZ2002 CZ2005 CZ2007"
+
+"School of Mechanical and Aerospace Engineering" MAE "2019-12-12 09:00" "2019-12-13 09:00" "MA2003 MA1001 MA1700 MA2001"
