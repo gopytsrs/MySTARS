@@ -141,10 +141,10 @@ public class makedata {
         Lesson L16TUT = new Lesson(16777, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("09:30"), LocalTime.parse("10.30"), "TR+05", Week.EVERY);
         Index I161 = new Index("BG2144", "Biomaterials", 16778, "B06", 20);
         Lesson L161LEC = new Lesson(16778, LessonType.LEC, DayOfWeek.MONDAY, LocalTime.parse("17.30"), LocalTime.parse("18.30"), "LT19A", Week.EVERY);
-        Lesson L162TUT = new Lesson(16778, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("10.30"), LocalTime.parse("11.30"), "TR+06", Week.EVERY);
+        Lesson L161TUT = new Lesson(16778, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("10.30"), LocalTime.parse("11.30"), "TR+06", Week.EVERY);
         Index I162 = new Index("BG2144", "Biomaterials", 16779, "B07", 20);
         Lesson L162LEC = new Lesson(16779, LessonType.LEC, DayOfWeek.MONDAY, LocalTime.parse("17.30"), LocalTime.parse("18.30"), "LT19A", Week.EVERY);
-        Lesson L163TUT = new Lesson(16779, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("11.30"), LocalTime.parse("12.30"), "TR+07", Week.EVERY);
+        Lesson L162TUT = new Lesson(16779, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("11.30"), LocalTime.parse("12.30"), "TR+07", Week.EVERY);
 
         //Create SCSE Data
         LocalDateTime startDateSCSE = LocalDateTime.parse("2019-12-11T09:00");
