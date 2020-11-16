@@ -10,7 +10,14 @@ public class Course implements Serializable {
     private School offeringSchool;
     private ArrayList<Index> indexList;
 
-    public Course(){}
+    public Course(String courseCode, String courseName, int au)
+    {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.au = au;
+        lessonType = new ArrayList<>();
+        indexList = new ArrayList<>();
+    }
 
     public String getCourseCode() {
         return courseCode;
@@ -59,6 +66,8 @@ public class Course implements Serializable {
     public ArrayList<Index> getIndexList() {
         return indexList;
     }
+
+    public void addIndex(Index I){indexList.add(I);}
 
     @Override
     public String toString() {

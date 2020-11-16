@@ -8,10 +8,11 @@ public class School {
     private AccessPeriod accessperiod;
     private ArrayList<Course> courseList;
 
-    public School(String schoolName, AccessPeriod accessperiod)
+    public School(String schoolName,AccessPeriod accessperiod)
     {
         this.schoolName = schoolName;
         this.accessperiod = accessperiod;
+        this.courseList = new ArrayList<Course>();
     }
 
     public String getSchoolName() {
