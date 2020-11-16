@@ -1,17 +1,18 @@
 package Entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class School {
+public class School implements Serializable {
     private String schoolName;
     private AccessPeriod accessperiod;
     private ArrayList<Course> courseList;
 
-    public School(String schoolName, AccessPeriod accessperiod)
-    {
+    public School(String schoolName, AccessPeriod accessperiod) {
         this.schoolName = schoolName;
         this.accessperiod = accessperiod;
+        this.courseList = new ArrayList<Course>();
     }
 
     public String getSchoolName() {
