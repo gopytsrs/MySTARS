@@ -35,8 +35,37 @@ public class makedata {
         c4.addLessonType("Lectures");
         c4.addLessonType("Tutorial");
 
+
+        LocalDateTime startDate = LocalDateTime.parse("2020-12-06 09:00");
+        LocalDateTime endDate = LocalDateTime.parse("2020-12-07 09:00");
+
+        School SCBE = new School("School of Chemical and Biomedical Engineering", new AccessPeriod(startDate, endDate));
+        Course c5 = new Course("BG2141", "Mechanics of Material", 3);
+        SCBE.setCourseList(c1);
+        c1.addLessonType("Lectures");
+        c1.addLessonType("Tutorial");
+        Index I5 = new Index("BG2141", "Mechanics of Material", 12345, "B22", 20);
+
+        Course c6 = new Course("BG2142", "Electronics for Biomedical Engineering", 3);
+        SCBE.setCourseList(c2);
+        c2.addLessonType("Lectures");
+        c2.addLessonType("Tutorial");
+        Index I6 = new Index("BG2142", "Electronics for Biomedical Engineering", 13692, "B13", 20);
+
+        Course c7 = new Course("BG2143", "Introduction to Computational Thinking", 3);
+        SCBE.setCourseList(c3);
+        c3.addLessonType("Lectures");
+        c3.addLessonType("Tutorial");
+        Index I7 = new Index("BG2143", "Introduction to Computational Thinking", 14855, "B01", 20);
+
+        Course c8 = new Course("BG2144", "Biomaterials", 3);
+        SCBE.setCourseList(c4);
+        c4.addLessonType("Lectures");
+        c4.addLessonType("Tutorial");
+        Index I8 = new Index("BG2144", "Biomaterials", 16777, "B05", 20);
+
     }
-    "Nanyang Business School",NBS,"2019-12-13 09:00","2019-12-14 09:00","AB1201 AB1301 AB1501 AD2101"
+   // "Nanyang Business School",NBS,"2019-12-13 09:00","2019-12-14 09:00","AB1201 AB1301 AB1501 AD2101"
 
 
 }
