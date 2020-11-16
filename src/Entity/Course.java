@@ -1,13 +1,15 @@
 package Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Course implements Serializable {
     private String courseCode;
     private String courseName;
     private int au;
     private ArrayList<String> lessonType;
-    private School offeringSchool;
+    private School offeringSchool;      // comment this out if no need
+                                        // gerpe/ue attribute
     private ArrayList<Index> indexList;
 
     public Course(String courseCode, String courseName, int au)
@@ -51,7 +53,16 @@ public class Course implements Serializable {
         this.lessonType = lessonType;
     }
 
-    public void addLessonType(String lessonType){
+    public void addLessonType()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Input the lessonType: ");
+        String lessonType = sc.next();
+        this.lessonType.add(lessonType);
+    }
+
+    public void addLessonType1(String lessonType)       //use purely for binary
+    {
         this.lessonType.add(lessonType);
     }
 
@@ -67,7 +78,20 @@ public class Course implements Serializable {
         return indexList;
     }
 
-    public void addIndex(Index I){indexList.add(I);}
+    public void setindexlist(Index I){indexList.add(I);}
+
+    public void addIndex()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Input the indexNo: ");
+        String indexNo = sc.next();
+        System.out.println("Input the groupNo: ");
+        String groupNo = sc.next();
+        System.out.println("Input the vacancy: ");
+        int vacancy = sc.nextInt();
+        Index I = new Index(courseCode,courseName,indexNo,groupNo,vacancy);
+        indexList.add(I);
+    }
 
     @Override
     public String toString() {
