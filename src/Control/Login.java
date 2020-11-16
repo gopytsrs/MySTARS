@@ -25,9 +25,20 @@ public class Login {
     public Login()
     {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the domain(student/admin): ");
-        domain = sc.next();
-        AccountsFromDatabase(domain);
+        int domaindata;
+        do {
+            System.out.println("Please enter the domain(student/admin): ");
+            System.out.println("Key in 1 for student");
+            System.out.println("Key in 2 for admin");
+            domaindata = sc.nextInt();
+            if (domaindata == 1)
+                domain = "student";
+            else if (domaindata == 2)
+                domain = "admin";
+            else
+                System.out.println("Your input was invalid. Please try again.");
+        }while(domaindata != 1 && domaindata != 2);
+        AccountsFromDatabase(domain);                   //missing accessperiod check need read student file
         do {
             System.out.println("Please enter your Username: ");
             userName = sc.next();
