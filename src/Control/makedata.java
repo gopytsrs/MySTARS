@@ -1,8 +1,10 @@
 package Control;
 
 import Entity.*;
+import Enum.*;
 
-import java.time.LocalDateTime;
+import java.time.DayOfWeek;
+import java.time.*;
 import java.util.ArrayList;
 
 public class makedata {
@@ -62,6 +64,18 @@ public class makedata {
         c1.addLessonType1("Lectures");
         c1.addLessonType1("Tutorial");
         Index I13 = new Index("BG2141", "Mechanics of Material", 12345, "B22", 20);
+        Lesson L13LEC = new Lesson(12345, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "LT2A", Week.EVERY);
+        Lesson L13TUT = new Lesson(12345, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("08:30"), LocalTime.parse("09.30"), "TR+16", Week.EVERY);
+        //I13.setLessons(I13LEC);
+        c5.setindexlist(I13);
+        Index I131 = new Index("BG2141", "Mechanics of Material", 12346, "B23", 20);
+        Lesson L131LEC = new Lesson(12346, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "LT2A", Week.EVERY);
+        Lesson L131TUT = new Lesson(12346, LessonType.TUT, DayOfWeek.MONDAY, LocalTime.parse("10:30"), LocalTime.parse("11.30"), "TR+04", Week.EVERY);
+        c5.setindexlist(I131);
+        Index I132 = new Index("BG2141", "Mechanics of Material", 12347, "B24", 20);
+        Lesson L132LEC = new Lesson(12347, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "LT2A", Week.EVERY);
+        Lesson L132TUT = new Lesson(12347, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("13.30"), LocalTime.parse("14.30"), "TR+08", Week.EVERY);
+        c5.setindexlist(I132);
 
         Course c6 = new Course("BG2142", "Electronics for Biomedical Engineering", 3);
         SCBE.setCourseList(c2);
