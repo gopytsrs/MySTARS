@@ -274,11 +274,6 @@ public class makedata {
         index203.setLessons(I203Lec);
         index203.setLessons(I203Tut);
         course3.setindexlist(index203);
-
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 681, "SP1", 20));
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 682, "SP2", 20));
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 683, "SP3", 20));
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 684, "SP4", 20));
         SCSE.setCourseList(course3);
 
         Course course4 = new Course("CZ2007", "INTRODUCTION TO DATABASES", 3);
