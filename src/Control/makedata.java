@@ -314,7 +314,7 @@ public class makedata {
         Index index2 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 342, "SP1", 20);
         Lesson lesson2lec = new Lesson(342, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
         Lesson lesson2tut = new Lesson(342, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+01", Week.EVERY);
-        Lesson lesson2lab = new Lesson(342, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.EVEN);
+        Lesson lesson2lab = new Lesson(342, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12:30"), "HWL01", Week.EVEN);
         index2.setLessons(lesson2lec);
         index2.setLessons(lesson2tut);
         index2.setLessons(lesson2lab);
@@ -323,7 +323,7 @@ public class makedata {
         Index index21 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 343, "SP2", 20);
         Lesson lesson21lec = new Lesson(343, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
         Lesson lesson21tut = new Lesson(343, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+02", Week.EVERY);
-        Lesson lesson21lab = new Lesson(343, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.ODD);
+        Lesson lesson21lab = new Lesson(343, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12:30"), "HWL01", Week.ODD);
         index21.setLessons(lesson21lec);
         index21.setLessons(lesson21tut);
         index21.setLessons(lesson21lab);
@@ -332,7 +332,7 @@ public class makedata {
         Index index22 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 344, "SP3", 20);
         Lesson lesson22lec = new Lesson(344, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
         Lesson lesson22tut = new Lesson(344, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+03", Week.EVERY);
-        Lesson lesson22lab = new Lesson(344, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.EVEN);
+        Lesson lesson22lab = new Lesson(344, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12:30"), "SWL01", Week.EVEN);
         index22.setLessons(lesson22lec);
         index22.setLessons(lesson22tut);
         index22.setLessons(lesson22lab);
@@ -341,7 +341,7 @@ public class makedata {
         Index index23 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 345, "SP4", 20);
         Lesson lesson23lec = new Lesson(345, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
         Lesson lesson23tut = new Lesson(345, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+04", Week.EVERY);
-        Lesson lesson23lab = new Lesson(345, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.ODD);
+        Lesson lesson23lab = new Lesson(345, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12:30"), "SWL01", Week.ODD);
         index23.setLessons(lesson23lec);
         index23.setLessons(lesson23tut);
         index23.setLessons(lesson23lab);
@@ -443,7 +443,6 @@ public class makedata {
         schoolList.add(SCBE);
 
         //student0
-<<<<<<< HEAD
 
 
         Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2,"School of Computer Science and Engineering", "Male", "Singaporean");
@@ -453,12 +452,6 @@ public class makedata {
         //student1
         Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
 
-=======
-        Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
-
-        //student1
-        Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
->>>>>>> 5b29debffd1690aff86f89a5a91bd43e36240589
 
         //student2
         Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
@@ -476,8 +469,7 @@ public class makedata {
         CourseRegistration register1 = new CourseRegistration(index13, "CZ2001", "Algorithms", 3, student);
         CourseRegistration register2 = new CourseRegistration(index13, "CZ2001", "Algorithms", 3, student1);
         // set course to student
-        student.addAssignedCourse(register1);
-        student.addAssignedCourse(register2);
+
         // Set student to index
 
 
