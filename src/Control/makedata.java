@@ -210,7 +210,7 @@ public class makedata {
         LocalDateTime startDateSCSE = LocalDateTime.parse("2019-12-11T09:00");
         LocalDateTime endDateSCSE = LocalDateTime.parse("2019-12-12T09:00");
         AccessPeriod SCSEAccessPeriod = new AccessPeriod(startDateSCSE, endDateSCSE);
-        School SCSE = new School("SCSE", SCSEAccessPeriod);
+        School SCSE = new School("School of Computer Science and Engineering", SCSEAccessPeriod);
 
         Course course1 = new Course("CZ2001", "ALGORTIHMS", 3);
         course1.addLessonType1("LEC");
@@ -364,24 +364,23 @@ public class makedata {
         schoolList.add(SCBE);
 
         //student0
-        Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account = new Account("seangoh", "seangohpassword", "student");
-        
+        Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
         //student1
-        Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account1 = new Account("chiawencheng", "chiawenchengpassword", "student");
+        Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
 
         //student2
-        Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account2 = new Account("junhao", "junhaopassword", "student");
+        Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
 
         //student3
-        Student student3 = new Student("Lek Zhi Ying", "U1920004", "lekzhiying@e.ntu.edu.sg", 2, "Female", "Singaporean");
-        Account account3 = new Account("lekzhiying", "lekzhiyingpassword", "student");
+        Student student3 = new Student("Lek Zhi Ying", "U1920004", "lekzhiying@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Female", "Singaporean");
+
 
         //student4
-        Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account4 = new Account("tchenjeewern", "tchenjeewernpassword", "student");
+        Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
 
         //Serialising
         try {

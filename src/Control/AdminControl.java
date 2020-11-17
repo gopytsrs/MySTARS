@@ -19,13 +19,24 @@ public class AdminControl {
 
     public AdminControl() {
 
-        String fileName = "database_school.bin"; //purely for testing, dont touch the actual one
-
+        String schoolFileName = "database_school.bin"; //purely for testing
+        String studentFileName = "database_student.bin";
+        //Deserialise school data
         try {
-            FileInputStream file = new FileInputStream(fileName);
+            FileInputStream file = new FileInputStream(schoolFileName);
             ObjectInputStream in = new ObjectInputStream(file);
             schoolList = (ArrayList) in.readObject();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //Deserialise student data
+        try {
+            FileInputStream file = new FileInputStream(studentFileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+            studentList = (ArrayList) in.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -174,7 +185,12 @@ public class AdminControl {
 
         System.out.println("Enter student's nationality: ");
         nationality = sc.nextLine();
-        Student stud = new Student(name, matricNo, email, year, gender, nationality);
+
+        //Need add schoolname
+        //get school then get the school name
+        //For now im just gonna random put something
+
+        Student stud = new Student(name, matricNo, email, year, "School of Computer Science and Engineering", gender, nationality);
         System.out.println("Student is created");
         this.studentList.add(stud);
         System.out.println("The existing students are: ");
@@ -206,13 +222,22 @@ public class AdminControl {
                     for (int i = 0; i < noOfSchool; i++) {
                         System.out.println((i + 1) + ":" + schoolList.get(i).getSchoolName());
                     }
-                    choice = sc.nextInt();
-                    choice -= 1;
-                    while (choice < 0 || choice > noOfSchool) {
-                        System.out.println("Invalid choice! Select school again: ");
-                        choice = sc.nextInt();
+
+                    choice = -1;
+                    do {
+                        String dummyChoice = sc.next();
+                        boolean check = isInteger(dummyChoice);
+                        if (!check) {
+                            System.out.println("Please enter a valid choice.");
+                            continue;
+                        }
+                        choice = Integer.parseInt(dummyChoice);
                         choice -= 1;
-                    }
+                        if (choice < 0 || choice > noOfSchool) {
+                            System.out.println("Invalid choice! Select school again: ");
+                        }
+                    } while (choice < 0 || choice > noOfSchool);
+
                     School tempsch = schoolList.get(choice);
                     schoolList.get(choice).addCourse();
                     System.out.println("All courses currently: ");
@@ -406,5 +431,30 @@ public class AdminControl {
             return false;
         }
         return true;
+    }
+
+    public void saveData() {
+        String schoolFileName = "database_school.bin";
+        String studentFileName = "database_student.bin";
+        //Serialise School data
+        try {
+            FileOutputStream fileOut = new FileOutputStream(schoolFileName);
+            ObjectOutputStream os = new ObjectOutputStream(fileOut);
+            os.writeObject(schoolList);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Serialise Student data
+        try {
+            FileOutputStream fileOut = new FileOutputStream(studentFileName);
+            ObjectOutputStream os = new ObjectOutputStream(fileOut);
+            os.writeObject(studentList);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
