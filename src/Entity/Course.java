@@ -87,7 +87,7 @@ public class Course implements Serializable {
         int indexNo = sc.nextInt();
         for(Index J: indexList) {
             while (indexNo == J.getIndexNo()) {
-                System.out.println("Index No already exists! Enter Index no. again: ");
+                System.out.println("Index No already exists! ");
                 return;
             }
         }
@@ -95,14 +95,14 @@ public class Course implements Serializable {
         String groupNo = sc.next();
         for(Index I: indexList) {
             while (groupNo.equals(I.getGroupNo())) {
-                System.out.println("Group No already exists! Enter group no. again: ");
+                System.out.println("Group No already exists! ");
                 return;
             }
         }
         System.out.println("Input the vacancy: ");
         int vacancy = sc.nextInt();
         while (vacancy < 0 || vacancy > 30) {
-            System.out.println("Invalid vacancy! Enter indexNo again: ");
+            System.out.println("Invalid vacancy! Enter Vacancy again: ");
             vacancy = sc.nextInt();
         }
         Index I = new Index(courseCode,courseName,indexNo,groupNo,vacancy);
