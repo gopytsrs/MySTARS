@@ -1,10 +1,12 @@
 package Control;
 
-import java.time.LocalDateTime;
-import java.util.Scanner;
-import Entity.*;
+import Entity.Admin;
+import Entity.Course;
+import Entity.Student;
 
-public class AdminUI{
+import java.util.Scanner;
+
+public class AdminUI {
     Admin admin;
     Student student;
     Course course;
@@ -17,41 +19,47 @@ public class AdminUI{
         do {
             System.out.println("1. Edit student access periods");
             System.out.println("2. Add a student");
-            System.out.println("3. Add/Update a course");
-            System.out.println("4. Check available slot for an index number");
-            System.out.println("5. Print student list by index number");
+            System.out.println("3. Add a course");
+            System.out.println("4. Update a course");
+            System.out.println("5. Check available slot for an index number");
             System.out.println("6. Print student list by course");
-            System.out.println("7. Logout");
+            System.out.println("7. Print student list by index");
+            System.out.println("8. Logout");
             System.out.println("Enter your choice here: ");
 
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
-                    acontrol.editStudentAccessPeriod(sc);
+                    acontrol.editStudentAccessPeriod();
                     break;
 
                 case 2:
-                    acontrol.addStudent(student, sc);
+                    acontrol.addStudent();
                     break;
 
                 case 3:
-                    acontrol.addCourse(sc);
+                    acontrol.addCourse();
                     break;
 
                 case 4:
-                    acontrol.deleteCourse(course);
+                    acontrol.updateCourse();
                     break;
 
                 case 5:
-                    acontrol.printStudentByCourse(student, course);
+                    acontrol.checkAvailableSlots();
                     break;
 
                 case 6:
-                    acontrol.printStudentByIndex(course);
+                    acontrol.printStudentByCourse();
                     break;
 
                 case 7:
+                    acontrol.printStudentByIndex();
+                    break;
+
+                case 8:
+                    //Serialise here
                     System.out.println("Logging out...");
                     Login l = new Login();
                     break;
@@ -59,7 +67,7 @@ public class AdminUI{
                 default:
                     System.out.println("Invalid choice. Choices are between 1 to 7.");
             }
-        } while (choice != 7);
+        } while (choice != 8);
     }
 }
 

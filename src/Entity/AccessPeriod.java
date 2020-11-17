@@ -24,19 +24,11 @@ public class AccessPeriod implements Serializable {
     }
 
     public void setStartDate(LocalDateTime startDate) {
-        System.out.println("Enter start datetime: (Format: yyyy-mm-dd hh:mm)");
-        this.startDate = setDateTime();
+        this.startDate = startDate;
     }
 
     public void setEndDate(LocalDateTime endDate) {
-        System.out.println("Enter end datetime: (Format: yyyy-mm-dd hh:mm)");
         this.endDate = endDate;
     }
 
-    private static LocalDateTime setDateTime() {
-        Scanner scanner = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(scanner.nextLine(), formatter);
-        return dateTime;
-    }
 }
