@@ -85,12 +85,29 @@ public class Course implements Serializable {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input the indexNo: ");
         int indexNo = sc.nextInt();
+        for(Index J: indexList) {
+            while (indexNo == J.getIndexNo()) {
+                System.out.println("Index No already exists! Enter Index no. again: ");
+                return;
+            }
+        }
         System.out.println("Input the groupNo: ");
         String groupNo = sc.next();
+        for(Index I: indexList) {
+            while (groupNo.equals(I.getGroupNo())) {
+                System.out.println("Group No already exists! Enter group no. again: ");
+                return;
+            }
+        }
         System.out.println("Input the vacancy: ");
         int vacancy = sc.nextInt();
+        while (vacancy < 0 || vacancy > 30) {
+            System.out.println("Invalid vacancy! Enter indexNo again: ");
+            vacancy = sc.nextInt();
+        }
         Index I = new Index(courseCode,courseName,indexNo,groupNo,vacancy);
         indexList.add(I);
+        System.out.println("Index Added");
     }
 
     @Override

@@ -72,7 +72,24 @@ public class School implements Serializable {
             System.out.println("Invalid AU count! Enter AU again: ");
             au = sc.nextInt();
         }
+
         Course C1 = new Course(courseCode, courseName, au);
         courseList.add(C1);
+
+        int choice;
+        while(true){
+            System.out.println("Key 1 to add index");
+            System.out.println("Key 2 to stop");
+            choice = sc.nextInt();
+            if (choice == 2)
+                break;
+            C1.addIndex();
+        }
+
+
+
+
+
+
     }
 }
