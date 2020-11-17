@@ -40,8 +40,7 @@ public class AdminControl {
         School temp;
         System.out.println("Choose the school to change access period:");
 
-        for (int i = 0; i<schoolList.size();i++)
-        {
+        for (int i = 0; i < schoolList.size(); i++) {
 
             temp = schoolList.get(i);
             System.out.println(i + ":" + temp.getSchoolName());
@@ -81,9 +80,9 @@ public class AdminControl {
                     System.out.println("End Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime1 = sc.next();
 
-                    temp.setAccessPeriod(LocalDateTime.parse(changeDateTime),LocalDateTime.parse(changeDateTime1));
+                    temp.setAccessPeriod(LocalDateTime.parse(changeDateTime), LocalDateTime.parse(changeDateTime1));
                     ap = temp.getAccessperiod();
-                    System.out.println("The current access period is " + ap.getStartDate() +" to "+ ap.getEndDate());
+                    System.out.println("The current access period is " + ap.getStartDate() + " to " + ap.getEndDate());
 
                     System.out.println("Access Period Changed");
                     changed = true;
@@ -111,28 +110,49 @@ public class AdminControl {
         String gender;
         String nationality;
 
+        //List all students after addition
+        // Account for existing student
+        // Need to check for invalid data entry!!
         System.out.println("Enter student's Name: ");
         name = sc.nextLine();
         System.out.println("Enter student's Matriculation Number: ");
         matricNo = sc.nextLine();
+        for (Student s : studentList) {
+            if (matricNo.equals(s.getMatricNo())) {
+                System.out.println("Matriculation Number already exists!");
+                return;
+            }
+        }
+        //Need check that email is valid
         System.out.println("Enter student's email: ");
         email = sc.nextLine();
+
         System.out.println("Enter student's year of study: ");
         year = sc.nextInt();
+        while (year > 4 || year < 1) {
+            System.out.println("Invalid year! Enter again");
+            year = sc.nextInt();
+        }
         sc.nextLine();
-        System.out.println("Enter student's gender: ");
+        System.out.println("Enter student's gender (M/F): ");
         gender = sc.nextLine();
+
         System.out.println("Enter student's nationality: ");
         nationality = sc.nextLine();
         Student stud = new Student(name, matricNo, email, year, gender, nationality);
-        System.out.println("Student is created");
+        System.out.println("Student is created")
         this.studentList.add(stud);
+        System.out.println("The existing students are: ");
+        for (Student s : studentList) {
+            System.out.println(s.getName());
+        }
     }
 
     public void addCourse() {
         int noOfStudent = 0;
         int totalNoOfStudent = 20;
         int choice = 0;
+
 
         do {
             System.out.println("Would you like to");
