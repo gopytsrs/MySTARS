@@ -268,13 +268,16 @@ public class StudentControl {
 
         ArrayList<Index> indexList = new ArrayList<Index>();
 
+        outer:
         while(true) {
             try {
                 System.out.println("Enter desired index no:");
                 desiredIndexNo = Integer.valueOf(scanner.nextLine());
                 break;
+
             } catch (NumberFormatException e){
                 System.out.println("Invalid input. Please enter a index number.");
+
             }
 
             for(Index index: indexList){
@@ -282,23 +285,36 @@ public class StudentControl {
                     indexToAdd = index;
                 }
             }
+
             if(indexToAdd == null){
-                System.out.println(desiredIndexNo + "Index number does not exist");
-            } else break;
+                System.out.printf("Index %d does not exist.%n",desiredIndexNo);
+                continue;
+
+            } else if(indexToAdd.getVacancy()==0){
+                System.out.println("Index %d has no vacancies. Please choose another index.");
+                continue;
+
+            } else {
+
+                for(CourseRegistration assignedCourse: assignedCourses){
+                    if(assignedCourse.getIndex() != indexToDrop){
+                        if(assignedCourse.getIndex().checkClash(indexToAdd)){
+                            //The information of the assigned course
+                            String code = assignedCourse.getCourseCode();
+                            int indexNo = assignedCourse.getIndex().getIndexNo();
+
+                            System.out.printf("Index %d of %s clashes with Index %d of %s! Please choose another index.%n",
+                                    indexToAdd.getCourseCode(),indexToAdd.getIndexNo(),code,indexNo);
+                            continue outer;
+
+                        }
+                    }
+                    //Logic here to process the changing of index.
+                    System.out.printf("Changed from Index %d to Index %d for %s",indexToDrop.getIndexNo(),indexToAdd.getIndexNo(),indexToDrop.getCourseCode());
+                    break outer;
+                }
+            }
         }
-        //Create the Index object based on desiredIndexNo, but we need to know the course
-        //Check if index to change to has vacancies
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public void swapIndex(){
