@@ -394,19 +394,24 @@ public class makedata {
 
         //student0
         Student student = new Student("Sean Goh","U1920001", "seangoh@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account = new Account()
+        Account account = new Account("seangoh", "seangohpassword", "student");
+
         //student1
         Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "Male", "Singaporean");
+        Account account1 = new Account("chiawencheng", "chiawenchengpassword", "student");
 
         //student2
         Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "Male", "Singaporean");
+        Account account2 = new Account("junhao", "junhaopassword", "student");
 
         //student3
         Student student3 = new Student("Lek Zhi Ying", "U1920004", "lekzhiying@e.ntu.edu.sg", 2, "Female", "Singaporean");
+        Account account3 = new Account("lekzhiying", "lekzhiyingpassword", "student");
 
         //student4
         Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account4= new Account()
+        Account account4 = new Account("tchenjeewern", "tchenjeewernpassword", "student");
+
         //Serialising
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName);
