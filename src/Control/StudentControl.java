@@ -2,22 +2,131 @@ package Control;
 
 import Entity.*;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentControl {
-    Student student;
+    private Student student;
+    private ArrayList<Course> courseList = new ArrayList<>();
+
     Scanner scanner = new Scanner(System.in);
 
     //Create StudentControl using this constructor
-    public StudentControl(Student student){
+    public StudentControl(String studentname){
         this.student = student;
+        String schCode = student.getSchoolName();
+
+        ArrayList<School> schoolList = new ArrayList<>();
+        ArrayList<Student> studentList = new ArrayList<>();
+
+        String schoolFileName = "database_school.bin"; //purely for testing
+        String studentFileName = "database_student.bin";
+        //Deserialise school data
+        try {
+            FileInputStream file = new FileInputStream(schoolFileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+            schoolList = (ArrayList) in.readObject();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        //Deserialise student data
+        try {
+            FileInputStream file = new FileInputStream(studentFileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+            studentList = (ArrayList) in.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        for (Student student: studentList){
+            if(student.getName() == studentname){
+                this.student =student;
+                break;
+            }
+        }
+
+        for (School school: schoolList){
+            if (student.getSchoolName() == school.getSchoolName()){
+                this.courseList = school.getCourseList();
+                break;
+            }
+        }
+
     }
 
     public void addCourse(Course course){
         //go to school -> print course
         //ask for course -> show indexes if correct -> ask if want to add the course and index -> register courses
+        String courseName;
+        int indexno;
+        Course courseChosen = null;
+        Index indexChosen = null;
+        boolean indexExists = false;
+        boolean courseExists = false;
+        do{
+            System.out.println("Please enter course code to add course:");
+            for (Course courseL:courseList){
+                System.out.println(courseL.getCourseCode() + ": " + courseL.getCourseName());
+            }
+            courseName = scanner.next();
+            for (int i = 0; i < courseList.size(); i++){
+                if (courseList.get(i).getCourseCode() == courseName) {
+                    courseExists = true;
+                    courseChosen = courseList.get(i);
+                    break;
+                }
+            }
+            if (!courseExists){
+                System.out.println("Please enter valid course code!");
+            }
+        }while(!courseExists);
+
+        ArrayList<Index> indexList = courseChosen.getIndexList();
+
+        do{
+            System.out.println("Please enter index to add:");
+            for (Index indexL:indexList){
+                System.out.println(indexL.getIndexNo());
+            }
+            indexno = scanner.nextInt();
+            for (int i = 0; i < indexList.size(); i++){
+                if (indexList.get(i).getIndexNo() == indexno) {
+                    indexExists = true;
+                    indexChosen = indexList.get(i);
+                    break;
+                }
+            }
+            if (!indexExists){
+                System.out.println("Please enter valid index!");
+            }
+        }while(!indexExists);
+
+        CourseRegistration newCourse = new CourseRegistration(indexChosen, indexChosen.getCourseCode(), courseChosen.getCourseName(), courseChosen.getAu(), student);
+        int choice = 0;
+        do{
+            System.out.println("Confirm to add " + indexChosen.getCourseCode() + " index " +indexChosen.getIndexNo() +"?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            choice = scanner.nextInt();
+            switch(choice){
+                case 1:
+                    student.addCourseRegistration(newCourse);
+                    break;
+                case 2:
+                    System.out.println("Course not added.");
+                    break;
+                default:
+                    break;
+            }
+        }while (choice<1 || choice>2);
     }
 
     public void dropCourse() {
