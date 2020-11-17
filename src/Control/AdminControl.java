@@ -1,9 +1,6 @@
 package Control;
 
-import Entity.AccessPeriod;
-import Entity.Index;
-import Entity.School;
-import Entity.Student;
+import Entity.*;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -181,7 +178,13 @@ public class AdminControl {
                         choice = sc.nextInt();
                         choice -= 1;
                     }
+                    School tempsch = schoolList.get(choice);
                     schoolList.get(choice).addCourse();
+                    System.out.println("All courses currently: ");
+                    ArrayList<Course> tempCourseList = tempsch.getCourseList();
+                    for (Course c : tempCourseList) {
+                        System.out.println(c.getCourseName());
+                    }
                     break;
                 case 2:
                     System.out.println("Exiting...");
