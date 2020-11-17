@@ -16,7 +16,7 @@ public class AdminControl {
 
     static Scanner sc = new Scanner(System.in);
 
-    public void AdminControl() {
+    public AdminControl() {
         String fileName = "database_school_testing.bin"; //purely for testing, dont touch the actual one
         try {
             FileInputStream file = new FileInputStream(fileName);
@@ -36,7 +36,6 @@ public class AdminControl {
         int option;
         School temp;
         System.out.println("Choose the school to change access period:");
-        System.out.println(schoolList.size());
         for (int i = 0; i<schoolList.size();i++)
         {
             temp = schoolList.get(i);
@@ -69,17 +68,17 @@ public class AdminControl {
             System.out.println("2. No");
             System.out.println("Please enter your choice: ");
             choice = sc.nextInt();
-
+            sc.nextLine();
             switch (choice) {
                 case 1:
                     System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime = sc.next();
-                    LocalDateTime startDate = LocalDateTime.parse(changeDateTime);
-                    System.out.println("The current start access period is " + ap.getStartDate());
-                    System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
+
+                    System.out.println("End Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime1 = sc.next();
-                    LocalDateTime EndDate = LocalDateTime.parse(changeDateTime1);
-                    temp.setAccessPeriod(startDate,EndDate);
+
+                    temp.setAccessPeriod(LocalDateTime.parse(changeDateTime),LocalDateTime.parse(changeDateTime1));
+                    ap = temp.getAccessperiod();
                     System.out.println("The current access period is " + ap.getStartDate() +" to "+ ap.getEndDate());
                     System.out.println("Access Period Changed");
                     changed = true;
