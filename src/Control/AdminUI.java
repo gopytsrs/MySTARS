@@ -1,10 +1,12 @@
 package Control;
 
-import java.time.LocalDateTime;
-import java.util.Scanner;
-import Entity.*;
+import Entity.Admin;
+import Entity.Course;
+import Entity.Student;
 
-public class AdminUI{
+import java.util.Scanner;
+
+public class AdminUI {
     Admin admin;
     Student student;
     Course course;
@@ -52,6 +54,7 @@ public class AdminUI{
                     break;
 
                 case 7:
+                    //Serialise here
                     System.out.println("Logging out...");
                     Login l = new Login();
                     break;

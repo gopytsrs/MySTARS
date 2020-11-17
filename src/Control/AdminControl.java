@@ -11,12 +11,22 @@ import java.util.Scanner;
 public class AdminControl {
     private int adminID;
 
-    private ArrayList<School> schoolList;
-    private ArrayList<Student> studentList;
+    private ArrayList<School> schoolList = new ArrayList<School>();
+    private ArrayList<Student> studentList = new ArrayList<Student>();
 
 
     public void AdminControl() {
+        String fileName = "database_school_testing.bin"; //purely for testing, dont touch the actual one
+        try {
+            FileInputStream file = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+            this.schoolList = (ArrayList) in.readObject();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     // Method should have no parameters
