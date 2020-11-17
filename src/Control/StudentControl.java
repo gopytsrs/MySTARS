@@ -50,14 +50,14 @@ public class StudentControl {
         }
 
         for (Student student: studentList){
-            if(student.getName() == studentname){
+            if(student.getName().equals(studentname)){
                 this.student =student;
                 break;
             }
         }
 
         for (School school: schoolList){
-            if (student.getSchoolName() == school.getSchoolName()){
+            if (student.getSchoolName().equals(school.getSchoolName())){
                 this.courseList = school.getCourseList();
                 break;
             }
@@ -79,11 +79,14 @@ public class StudentControl {
             for (Course courseL:courseList){
                 System.out.println(courseL.getCourseCode() + ": " + courseL.getCourseName());
             }
+
             courseName = scanner.next();
-            for (int i = 0; i < courseList.size(); i++){
-                if (courseList.get(i).getCourseCode() == courseName) {
+            if(courseName.isEmpty()) continue;
+
+            for (Course course: courseList){
+                if (course.getCourseCode().equals(courseName)) {
                     courseExists = true;
-                    courseChosen = courseList.get(i);
+                    courseChosen = course;
                     break;
                 }
             }
@@ -100,10 +103,10 @@ public class StudentControl {
                 System.out.println(indexL.getIndexNo());
             }
             indexno = scanner.nextInt();
-            for (int i = 0; i < indexList.size(); i++){
-                if (indexList.get(i).getIndexNo() == indexno) {
+            for (Index index: indexList){
+                if (index.getIndexNo() == indexno) {
                     indexExists = true;
-                    indexChosen = indexList.get(i);
+                    indexChosen = index;
                     break;
                 }
             }
@@ -239,6 +242,7 @@ public class StudentControl {
         int currentIndexNo = 0;
         int desiredIndexNo = 0;
 
+
         while(true) {
             try {
                 System.out.println("Enter current index no:");
@@ -247,19 +251,23 @@ public class StudentControl {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a index number.");
             }
+
+            // Check if index to drop is in the student's assigned courses
+            for(CourseRegistration assignedCourse: assignedCourses) {
+                //Index is in assignedCourses, get the index to drop and get the course
+                if (assignedCourse.getIndex().getIndexNo() == currentIndexNo) {
+                    indexToDrop = assignedCourse.getIndex();
+                    //From here need to get the course to see the other indexes
+                }
+            }
+            if(indexToDrop == null) continue;
+            else break;
+
+
         }
 
-        // Check if index to drop is in the student's assigned courses
-        for(CourseRegistration assignedCourse: assignedCourses) {
-            //Index is in assignedCourses, get the index to drop and get the course
-            if (assignedCourse.getIndex().getIndexNo() == currentIndexNo) {
-                indexToDrop = assignedCourse.getIndex();
-                //From here need to get the course to see the other indexes
-            } else {
-                System.out.println("You are not registered for that Index No.");
-                return;
-            }
-        }
+        ArrayList<Index> indexList = new ArrayList<Index>();
+
         while(true) {
             try {
                 System.out.println("Enter desired index no:");
@@ -268,9 +276,21 @@ public class StudentControl {
             } catch (NumberFormatException e){
                 System.out.println("Invalid input. Please enter a index number.");
             }
+
+            for(Index index: indexList){
+                if(index.getIndexNo() == desiredIndexNo){
+                    indexToAdd = index;
+                }
+            }
+            if(indexToAdd == null){
+                System.out.println(desiredIndexNo + "Index number does not exist");
+            } else break;
         }
         //Create the Index object based on desiredIndexNo, but we need to know the course
         //Check if index to change to has vacancies
+
+
+
 
 
 
