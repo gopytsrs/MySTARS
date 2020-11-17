@@ -75,6 +75,7 @@ public class School implements Serializable {
 
         Course C1 = new Course(courseCode, courseName, au);
         courseList.add(C1);
+<<<<<<< HEAD
 
         int choice;
         while(true){
@@ -91,5 +92,7 @@ public class School implements Serializable {
 
 
 
+=======
+>>>>>>> 5b29debffd1690aff86f89a5a91bd43e36240589
     }
 }

@@ -443,6 +443,7 @@ public class makedata {
         schoolList.add(SCBE);
 
         //student0
+<<<<<<< HEAD
 
 
         Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2,"School of Computer Science and Engineering", "Male", "Singaporean");
@@ -452,6 +453,12 @@ public class makedata {
         //student1
         Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
 
+=======
+        Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
+        //student1
+        Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+>>>>>>> 5b29debffd1690aff86f89a5a91bd43e36240589
 
         //student2
         Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
