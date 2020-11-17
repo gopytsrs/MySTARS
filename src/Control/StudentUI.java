@@ -9,7 +9,7 @@ public class StudentUI{
 
     public void studentMenu() {
         Scanner sc = new Scanner(System.in);
-        StudentControl scontrol = new StudentControl(student);
+        StudentControl scontrol = new StudentControl(student.getName());
         int choice = 0;
 
         do {
@@ -26,7 +26,7 @@ public class StudentUI{
 
             switch (choice) {
                 case 1:
-                    scontrol.addCourse(course);
+                    scontrol.addCourse();
                     break;
 
                 case 2:
