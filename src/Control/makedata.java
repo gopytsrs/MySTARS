@@ -433,10 +433,7 @@ public class makedata {
         index103.setLessons(I103Lec);
         index103.setLessons(I103Tut);
         course4.setindexlist(index103);
-<<<<<<< HEAD
-=======
 
->>>>>>> 7873c737f083752ed63fb90f0499795e53bb7afa
         SCSE.setCourseList(course4);
 
         String fileName = "database_school_testing.bin";
