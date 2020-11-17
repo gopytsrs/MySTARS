@@ -8,20 +8,23 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Scanner;
 
+
 public class AdminControl {
     private int adminID;
 
     private ArrayList<School> schoolList = new ArrayList<>();
-    private ArrayList<Student> studentList = new ArrayList<Student>();
+    private ArrayList<Student> studentList = new ArrayList<>();
 
     static Scanner sc = new Scanner(System.in);
 
     public AdminControl() {
+
         String fileName = "database_school_testing.bin"; //purely for testing, dont touch the actual one
+
         try {
             FileInputStream file = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(file);
-            this.schoolList = (ArrayList) in.readObject();
+            schoolList = (ArrayList) in.readObject();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,18 +39,19 @@ public class AdminControl {
         int option;
         School temp;
         System.out.println("Choose the school to change access period:");
+
         for (int i = 0; i<schoolList.size();i++)
         {
+
             temp = schoolList.get(i);
-            System.out.println(i+":"+temp.getSchoolName());
+            System.out.println(i + ":" + temp.getSchoolName());
         }
-        do{
-             option =sc.nextInt();
-             if (option<0 ||option>schoolList.size())
-             {
-                 System.out.println("Your data is out of range, try again.");
-             }
-        }while (option<0 ||option>schoolList.size());
+        do {
+            option = sc.nextInt();
+            if (option < 0 || option > schoolList.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (option < 0 || option > schoolList.size());
 
         temp = schoolList.get(option);
         AccessPeriod ap = temp.getAccessperiod();
@@ -80,6 +84,7 @@ public class AdminControl {
                     temp.setAccessPeriod(LocalDateTime.parse(changeDateTime),LocalDateTime.parse(changeDateTime1));
                     ap = temp.getAccessperiod();
                     System.out.println("The current access period is " + ap.getStartDate() +" to "+ ap.getEndDate());
+
                     System.out.println("Access Period Changed");
                     changed = true;
                     break;
@@ -106,7 +111,22 @@ public class AdminControl {
         String gender;
         String nationality;
 
-
+        System.out.println("Enter student's Name: ");
+        name = sc.nextLine();
+        System.out.println("Enter student's Matriculation Number: ");
+        matricNo = sc.nextLine();
+        System.out.println("Enter student's email: ");
+        email = sc.nextLine();
+        System.out.println("Enter student's year of study: ");
+        year = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Enter student's gender: ");
+        gender = sc.nextLine();
+        System.out.println("Enter student's nationality: ");
+        nationality = sc.nextLine();
+        Student stud = new Student(name, matricNo, email, year, gender, nationality);
+        System.out.println("Student is created");
+        this.studentList.add(stud);
     }
 
     public void addCourse() {

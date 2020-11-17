@@ -12,7 +12,7 @@ public class Student implements Serializable {
     private String matricNo;
     private String email;
     private int year;
-    private School school;
+    // private School school;
     private String gender;
     private String nationality;
     private Account account;    //created within this class
@@ -21,18 +21,21 @@ public class Student implements Serializable {
     private int noOfAUs = 0;
     private final int MAXAU = 23;
 
-    public Student(String name, String matricNo, String email, int year, School school, String gender,
+    public Student(String name, String matricNo, String email, int year, String gender,
                    String nationality) {    //collect all info from control class
         //Initialise all collected attributes
-        this.name = name;
-        this.matricNo = matricNo;
+        setName(name);
+        setMatricNo(matricNo);
+        setEmail(email);
+        setYear(year);
+        
         this.email = email;
         this.year = year;
-        this.school = school;
         this.gender = gender;
         this.nationality = nationality;
         //Create new account for student with default username and pw
-        //this.account = new Account(username = this.name, password = "password", accountType = "student");    //input
+
+        this.account = new Account(this.name, "password", "student");    //input
     }
 
     public String getName() {
@@ -66,7 +69,7 @@ public class Student implements Serializable {
     public void setYear(int year) {
         this.year = year;
     }
-
+/*
     public School getSchool() {
         return this.school;
     }
@@ -74,6 +77,7 @@ public class Student implements Serializable {
     public void setSchool(School school) {
         this.school = school;
     }
+*/
 
     public String getGender() {
         return this.gender;
@@ -130,9 +134,10 @@ public class Student implements Serializable {
     public void addNoOfAU(int au) {
         this.noOfAUs += au;
     }
-
+/*
     @Override
     public String toString() {
-        return String.format("%s\t%s\t%s\t%s\t%s\t",name,school.getSchoolName(),year,gender,nationality);
+        return String.format("%s\t%s\t%s\t%s\t%s\t", name, school.getSchoolName(), year, gender, nationality);
     }
+*/
 }
