@@ -257,7 +257,7 @@ public class makedata {
 
         SCSE.setCourseList(course4);
 
-        String fileName = "database_school.bin";
+        String fileName = "database_school_testing.bin";
         ArrayList<School> schoolList = new ArrayList<School>();
         schoolList.add(nbs);
         schoolList.add(SCSE);
