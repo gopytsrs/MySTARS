@@ -268,26 +268,7 @@ public class AdminControl {
 
             switch (choice) {
                 case 1:
-                    try {
-                        // input the (modified) file content to the StringBuffer "input"
-                        BufferedReader file = new BufferedReader(new FileReader("courses.txt"));
-                        StringBuffer inputBuffer = new StringBuffer();
-                        String replacement;
 
-                        while ((replacement = file.readLine()) != null) {
-                            replacement = sc.next(); // line replacement done here
-                            inputBuffer.append(replacement);
-                        }
-                        file.close();
-
-                        // write the new string with the replaced line OVER the same file
-                        FileOutputStream fileOut = new FileOutputStream("courses.txt");
-                        fileOut.write(inputBuffer.toString().getBytes());
-                        fileOut.close();
-
-                    } catch (Exception e) {
-                        System.out.println("Problem reading file.");
-                    }
                     break;
 
                 case 2:
