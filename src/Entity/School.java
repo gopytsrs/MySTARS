@@ -74,5 +74,5 @@ public class School implements Serializable {
         }
         Course C1 = new Course(courseCode, courseName, au);
         courseList.add(C1);
-    }                                           //add 1 course to list so not really setting course list
+    }
 }

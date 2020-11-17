@@ -2,6 +2,7 @@ package Control;
 
 import Entity.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -250,7 +251,7 @@ public class StudentControl {
             }
 
         }
-
+        
     }
 
     public void register(){

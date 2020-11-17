@@ -61,6 +61,7 @@ public class AdminUI {
                 case 8:
                     //Serialise here
                     System.out.println("Logging out...");
+                    acontrol.saveData();
                     Login l = new Login();
                     break;
 

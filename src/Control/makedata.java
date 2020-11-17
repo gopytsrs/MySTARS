@@ -258,7 +258,7 @@ public class makedata {
         LocalDateTime startDateSCSE = LocalDateTime.parse("2019-12-11T09:00");
         LocalDateTime endDateSCSE = LocalDateTime.parse("2019-12-12T09:00");
         AccessPeriod SCSEAccessPeriod = new AccessPeriod(startDateSCSE, endDateSCSE);
-        School SCSE = new School("SCSE", SCSEAccessPeriod);
+        School SCSE = new School("School of Computer Science and Engineering", SCSEAccessPeriod);
 
         Course course1 = new Course("CZ2001", "ALGORTIHMS", 3);
         course1.addLessonType1("LEC");
@@ -355,42 +355,41 @@ public class makedata {
         course3.addLessonType1("LAB");
         course3.setOfferingSchool(SCSE);
 
-        Index index3 = new Index("OPERATING SYSTEMS", "CZ2005", 681, "SP1", 20);
-        Lesson lesson3lec = new Lesson(681, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
-        Lesson lesson3tut = new Lesson(681, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+01", Week.EVERY);
-        Lesson lesson3lab = new Lesson(681, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.EVEN);
-        index3.setLessons(lesson3lec);
-        index3.setLessons(lesson3tut);
-        index3.setLessons(lesson3lab);
-        course3.setindexlist(index3);
+        Index index200 = new Index("OPERATING SYSTEMS", "CZ2005", 681, "SP1", 20);
+        Lesson I200Lec = new Lesson(681, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2", Week.EVERY);
+        Lesson I200Tut = new Lesson(681, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("14:30"), LocalTime.parse("15:30"), "TR+17", Week.EVERY);
+        Lesson I200Lab = new Lesson(681, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12:30"), "SWLAB1", Week.EVEN);
+        index200.setLessons(I200Lab);
+        index200.setLessons(I200Lec);
+        index200.setLessons(I200Tut);
+        course3.setindexlist(index200);
 
-        Index index31 = new Index("OPERATING SYSTEMS", "CZ2005", 682, "SP2", 20);
-        Lesson lesson31lec = new Lesson(682, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
-        Lesson lesson31tut = new Lesson(682, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+02", Week.EVERY);
-        Lesson lesson31lab = new Lesson(682, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.ODD);
-        index31.setLessons(lesson31lec);
-        index31.setLessons(lesson31tut);
-        index31.setLessons(lesson31lab);
-        course3.setindexlist(index31);
+        Index index201 = new Index("OPERATING SYSTEMS", "CZ2005", 682, "SP2", 20);
+        Lesson I201Lec = new Lesson(682, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2", Week.EVERY);
+        Lesson I201Tut = new Lesson(682, LessonType.TUT, DayOfWeek.MONDAY, LocalTime.parse("16:30"), LocalTime.parse("17:30"), "TR+16", Week.EVERY);
+        Lesson I201Lab = new Lesson(682, LessonType.LAB, DayOfWeek.MONDAY, LocalTime.parse("10:30"), LocalTime.parse("12:30"), "SWLAB1", Week.ODD);
+        index201.setLessons(I201Lab);
+        index201.setLessons(I201Lec);
+        index201.setLessons(I201Tut);
+        course3.setindexlist(index201);
 
-        Index index32 = new Index("OPERATING SYSTEMS", "CZ2005", 683, "SP3", 20);
-        Lesson lesson32lec = new Lesson(683, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
-        Lesson lesson32tut = new Lesson(683, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+03", Week.EVERY);
-        Lesson lesson32lab = new Lesson(683, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.EVEN);
-        index32.setLessons(lesson32lec);
-        index32.setLessons(lesson32tut);
-        index32.setLessons(lesson32lab);
-        course3.setindexlist(index32);
+        Index index202 = new Index("OPERATING SYSTEMS", "CZ2005", 683, "SP3", 20);
+        Lesson I202Lec = new Lesson(683, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2", Week.EVERY);
+        Lesson I202Tut = new Lesson(683, LessonType.TUT, DayOfWeek.WEDNESDAY,LocalTime.parse("12:30"), LocalTime.parse("13:30"), "TR+17", Week.EVERY);
+        Lesson I202Lab = new Lesson(683, LessonType.LAB, DayOfWeek.THURSDAY, LocalTime.parse("12:30"), LocalTime.parse("14:30"), "SWLAB1", Week.ODD);
+        index202.setLessons(I202Lab);
+        index202.setLessons(I202Lec);
+        index202.setLessons(I202Tut);
+        course3.setindexlist(index202);
 
-        Index index33 = new Index("OPERATING SYSTEMS", "CZ2005", 684, "SP4", 20);
-        Lesson lesson33lec = new Lesson(684, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
-        Lesson lesson33tut = new Lesson(684, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+04", Week.EVERY);
-        Lesson lesson33lab = new Lesson(684, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.ODD);
-        index33.setLessons(lesson33lec);
-        index33.setLessons(lesson33tut);
-        index33.setLessons(lesson33lab);
-        course3.setindexlist(index33);
-
+        Index index203 = new Index("OPERATING SYSTEMS", "CZ2005", 684, "SP4", 20);
+        Lesson I203Lec = new Lesson(684, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2", Week.EVERY);
+        Lesson I203Tut = new Lesson(684, LessonType.TUT, DayOfWeek.TUESDAY,LocalTime.parse("14:30"), LocalTime.parse("15:30"), "LHN-TR+13", Week.EVERY);
+        Lesson I203Lab = new Lesson(684, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "SWLAB1", Week.EVEN);
+        index203.setLessons(I203Lab);
+        index203.setLessons(I203Lec);
+        index203.setLessons(I203Tut);
+        course3.setindexlist(index203);
         SCSE.setCourseList(course3);
 
         Course course4 = new Course("CZ2007", "INTRODUCTION TO DATABASES", 3);
@@ -445,25 +444,36 @@ public class makedata {
 
         //student0
 
-        Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2, "Male", "Singaporean");
+
+        Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2,"School of Computer Science and Engineering", "Male", "Singaporean");
         Account account = new Account("seangoh", "seangohpassword", "student");
-        
+
 
         //student1
-        Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account1 = new Account("chiawencheng", "chiawenchengpassword", "student");
+        Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
 
         //student2
-        Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account2 = new Account("junhao", "junhaopassword", "student");
+        Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
 
         //student3
-        Student student3 = new Student("Lek Zhi Ying", "U1920004", "lekzhiying@e.ntu.edu.sg", 2, "Female", "Singaporean");
-        Account account3 = new Account("lekzhiying", "lekzhiyingpassword", "student");
+        Student student3 = new Student("Lek Zhi Ying", "U1920004", "lekzhiying@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Female", "Singaporean");
+
 
         //student4
-        Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account4 = new Account("tchenjeewern", "tchenjeewernpassword", "student");
+        Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
+
+
+        // Create Course Registration
+        CourseRegistration register1 = new CourseRegistration(index13, "CZ2001", "Algorithms", 3, student);
+        CourseRegistration register2 = new CourseRegistration(index13, "CZ2001", "Algorithms", 3, student1);
+        // set course to student
+        student.addAssignedCourse(register1);
+        student.addAssignedCourse(register2);
+        // Set student to index
+
+
 
         //Serialising
         try {
@@ -497,6 +507,8 @@ public class makedata {
         for (Course course : nbscourse) {
             System.out.println(course);
         }
+
+
     }
 
 

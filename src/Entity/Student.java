@@ -12,7 +12,7 @@ public class Student implements Serializable {
     private String matricNo;
     private String email;
     private int year;
-    // private School school;
+    private String schoolName;
     private String gender;
     private String nationality;
     private Account account;    //created within this class
@@ -21,18 +21,17 @@ public class Student implements Serializable {
     private int noOfAUs = 0;
     private final int MAXAU = 23;
 
-    public Student(String name, String matricNo, String email, int year, String gender,
-                   String nationality) {    //collect all info from control class
+    public Student(String name, String matricNo, String email, int year, String schoolname, String gender,
+                   String nationality) {
+        //collect all info from control class
         //Initialise all collected attributes
         setName(name);
         setMatricNo(matricNo);
         setEmail(email);
         setYear(year);
-        
-        this.email = email;
-        this.year = year;
-        this.gender = gender;
-        this.nationality = nationality;
+        setSchoolName(schoolname);
+        setGender(gender);
+        setNationality(nationality);
         //Create new account for student with default username and pw
 
         this.account = new Account(this.name, "password", "student");    //input
@@ -69,15 +68,15 @@ public class Student implements Serializable {
     public void setYear(int year) {
         this.year = year;
     }
-/*
-    public School getSchool() {
-        return this.school;
+
+    public String getSchoolName() {
+        return this.schoolName;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
-*/
+
 
     public String getGender() {
         return this.gender;
@@ -134,10 +133,5 @@ public class Student implements Serializable {
     public void addNoOfAU(int au) {
         this.noOfAUs += au;
     }
-/*
-    @Override
-    public String toString() {
-        return String.format("%s\t%s\t%s\t%s\t%s\t", name, school.getSchoolName(), year, gender, nationality);
-    }
-*/
+
 }
