@@ -36,17 +36,25 @@ public class AdminControl {
     // Method should have no parameters
     public void editStudentAccessPeriod() {
         // Check for school inside this method, then get currentaccessdatetime
-        int option;
+        int option = -1;
         School temp;
-        System.out.println("Choose the school to change access period:");
+
 
         for (int i = 0; i < schoolList.size(); i++) {
 
             temp = schoolList.get(i);
             System.out.println(i + ":" + temp.getSchoolName());
         }
+        System.out.println("Please key in the number beside the school you select: ");
         do {
-            option = sc.nextInt();
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            option = Integer.parseInt(dummy);
             if (option < 0 || option > schoolList.size()) {
                 System.out.println("Your data is out of range, try again.");
             }
@@ -70,15 +78,40 @@ public class AdminControl {
             System.out.println("1. Yes");
             System.out.println("2. No");
             System.out.println("Please enter your choice: ");
-            choice = sc.nextInt();
-            sc.nextLine();
+            do {
+                String dummy1 = sc.next();
+                boolean check = isInteger(dummy1);
+                if (check == false)
+                {
+                    System.out.println("Input should be an integer.");
+                    continue;
+                }
+                choice = Integer.parseInt(dummy1);
+                if (choice < 1 || choice > 2) {
+                    System.out.println("Your data is out of range, try again.");
+                }
+            } while (choice < 1 || choice > 2);
             switch (choice) {
                 case 1:
-                    System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
-                    String changeDateTime = sc.next();
+                    boolean date= false;
+                    String changeDateTime;
+                    String changeDateTime1;
+                    do{
+                        System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
+                        changeDateTime = sc.next();
+                        date = isdatetime(changeDateTime);
+                        if (!date)
+                            System.out.println("Datetime in wrong format. Please try again.");
+                    }while(!date);
 
-                    System.out.println("End Date time to change access period to? (YYYY-MM-DDTHH:MM)");
-                    String changeDateTime1 = sc.next();
+                    date = false;
+                    do{
+                        System.out.println("End Date time to change access period to? (YYYY-MM-DDTHH:MM)");
+                        changeDateTime1 = sc.next();
+                        date = isdatetime(changeDateTime1);
+                        if (!date)
+                            System.out.println("Datetime in wrong format. Please try again.");
+                    }while(!date);
 
                     temp.setAccessPeriod(LocalDateTime.parse(changeDateTime), LocalDateTime.parse(changeDateTime1));
                     ap = temp.getAccessperiod();
@@ -244,6 +277,77 @@ public class AdminControl {
 
 
     public void checkAvailableSlots() {
+        int option = -1;
+        int choice = -1;
+        ArrayList<Course> C;
+        ArrayList<Index> I;
+        int total;
+        int vacancy;
+        for (int i = 0; i<schoolList.size();i++)
+        {
+            System.out.println(i + ":" + schoolList.get(i).getSchoolName());
+        }
+        System.out.println("Please key in the number beside the school you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            option = Integer.parseInt(dummy);
+            if (option < 0 || option > schoolList.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (option < 0 || option > schoolList.size());
+        C = schoolList.get(option).getCourseList();
+
+        for (int j = 0; j<C.size();j++)
+        {
+            System.out.println(j+" : "+C.get(j).getCourseName()+" , "+C.get(j).getCourseCode());
+        }
+        System.out.println("Please key in the number beside the course you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            choice = Integer.parseInt(dummy);
+            if (choice < 0 || choice > C.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (choice < 0 || choice > C.size());
+        I = C.get(choice).getIndexList();
+        for (int j = 0; j<I.size();j++)
+        {
+            System.out.println(j+" : "+I.get(j).getIndexNo());
+        }
+        choice =-1;
+        System.out.println("Please key in the number beside the index you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            choice = Integer.parseInt(dummy);
+            if (choice < 0 || choice > C.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (choice < 0 || choice > C.size());
+        vacancy =I.get(choice).getVacancy();
+        if (I.get(choice).getAssignedStudents() == null)
+            total = vacancy;
+        else
+            total = I.get(choice).getVacancy()+I.get(choice).getAssignedStudents().size();
+        System.out.println("The vacancy is "+vacancy+"/"+total) ;
+
 
     }
 
@@ -284,5 +388,27 @@ public class AdminControl {
         }
 
 
+    }
+    private boolean isInteger(String str)
+    {
+        try {
+            Integer.parseInt(str);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
+    private boolean isdatetime(String str)
+    {
+        try {
+            LocalDateTime.parse(str);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 }

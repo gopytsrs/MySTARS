@@ -32,7 +32,8 @@ public class Index implements Serializable {
         this.indexNo = indexNo;
         this.groupNo = groupNo;
         this.vacancy = vacancy;
-        lessons = new ArrayList<>();
+        lessons = new ArrayList<Lesson>();
+        assignedStudents = new ArrayList<Student>();
     }
 
     public int getIndexNo() {
