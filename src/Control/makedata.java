@@ -444,9 +444,11 @@ public class makedata {
         schoolList.add(SCBE);
 
         //student0
+
         Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2, "Male", "Singaporean");
         Account account = new Account("seangoh", "seangohpassword", "student");
         
+
         //student1
         Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "Male", "Singaporean");
         Account account1 = new Account("chiawencheng", "chiawenchengpassword", "student");
