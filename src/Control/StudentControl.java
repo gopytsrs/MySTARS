@@ -2,13 +2,9 @@ package Control;
 
 import Entity.*;
 
-<<<<<<< HEAD
 import java.io.IOException;
-=======
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
->>>>>>> 5b29debffd1690aff86f89a5a91bd43e36240589
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -66,7 +62,7 @@ public class StudentControl {
 
     }
 
-    public void addCourse(Course course){
+    public void addCourse(){
         //go to school -> print course
         //ask for course -> show indexes if correct -> ask if want to add the course and index -> register courses
         String courseName;
