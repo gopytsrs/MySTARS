@@ -11,6 +11,10 @@ import java.util.Scanner;
 public class AdminControl {
     private int adminID;
 
+    private ArrayList<School> schoolList;
+    private ArrayList<Student> studentList;
+
+
     public void AdminControl() {
 
     }
