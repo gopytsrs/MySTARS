@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class AdminControl {
     private int adminID;
 
-    private ArrayList<School> schoolList = new ArrayList<School>();
+    private ArrayList<School> schoolList = new ArrayList<>();
     private ArrayList<Student> studentList = new ArrayList<Student>();
 
     static Scanner sc = new Scanner(System.in);
@@ -34,11 +34,13 @@ public class AdminControl {
     public void editStudentAccessPeriod() {
         // Check for school inside this method, then get currentaccessdatetime
         int option;
-        sc = new Scanner(System.in);
+        School temp;
         System.out.println("Choose the school to change access period:");
-        for (int i; i<schoolList.size();i++)
+        System.out.println(schoolList.size());
+        for (int i = 0; i<schoolList.size();i++)
         {
-            System.out.println(i+":"+schoolList.get(i).getSchoolName());
+            temp = schoolList.get(i);
+            System.out.println(i+":"+temp.getSchoolName());
         }
         do{
              option =sc.nextInt();
@@ -48,7 +50,8 @@ public class AdminControl {
              }
         }while (option<0 ||option>schoolList.size());
 
-        School temp = schoolList.get(option);
+        temp = schoolList.get(option);
+        AccessPeriod ap = temp.getAccessperiod();
         int choice = 0;
         boolean changed = false;
         //LocalDateTime currentDateTime = LocalDateTime.now();
@@ -60,7 +63,7 @@ public class AdminControl {
         while (school < 5);*/
 
         do {
-            System.out.println("The current access period is " + schoolAccess.getStartDate() + " to " + schoolAccess.getEndDate());
+            System.out.println("The current access period is " + ap.getStartDate() + " to " + ap.getEndDate());
             System.out.println("Would you like to change the access period?");
             System.out.println("1. Yes");
             System.out.println("2. No");
@@ -72,19 +75,18 @@ public class AdminControl {
                     System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime = sc.next();
                     LocalDateTime startDate = LocalDateTime.parse(changeDateTime);
-                    schoolAccess.setStartDate(startDate);
-                    System.out.println("The current start access period is " + schoolAccess.getStartDate());
+                    System.out.println("The current start access period is " + ap.getStartDate());
                     System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime1 = sc.next();
                     LocalDateTime EndDate = LocalDateTime.parse(changeDateTime1);
-                    schoolAccess.setStartDate(EndDate);
-                    System.out.println("The current access period is " + schoolAccess.getEndDate());
+                    temp.setAccessPeriod(startDate,EndDate);
+                    System.out.println("The current access period is " + ap.getStartDate() +" to "+ ap.getEndDate());
                     System.out.println("Access Period Changed");
                     changed = true;
                     break;
 
                 case 2:
-                    System.out.println("The current access period is " + schoolAccess.getStartDate() + " to " + schoolAccess.getEndDate());
+                    System.out.println("The current access period is " + ap.getStartDate() + " to " + ap.getEndDate());
                     changed = true;
                     break;
 
