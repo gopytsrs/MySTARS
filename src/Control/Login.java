@@ -54,7 +54,7 @@ public class Login {
                 System.out.println("Invalid username/password. Please try again.");
         }while(valid != true);
     }
-    private void AccountsFromDatabase(String domain){
+    private void AccountsFromDatabase(String domain){                                       // change to binary file
         String filename = domain+".txt";                //filename will be student.txt or admin.txt
         Accountlist = new ArrayList<Account>();
         try{
