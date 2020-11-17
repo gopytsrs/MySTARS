@@ -464,6 +464,16 @@ public class makedata {
         Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "Male", "Singaporean");
         Account account4 = new Account("tchenjeewern", "tchenjeewernpassword", "student");
 
+        // Create Course Registration
+        CourseRegistration register1 = new CourseRegistration(index13, "CZ2001", "Algorithms", 3, student);
+        CourseRegistration register2 = new CourseRegistration(index13, "CZ2001", "Algorithms", 3, student1);
+        // set course to student
+        student.addAssignedCourse(register1);
+        student.addAssignedCourse(register2);
+        // Set student to index
+
+
+
         //Serialising
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName);

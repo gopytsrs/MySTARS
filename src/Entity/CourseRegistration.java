@@ -9,6 +9,14 @@ public class CourseRegistration implements Serializable {
     private int au;
     private Student student;
 
+    public CourseRegistration(Index index, String courseCode, String courseName, int au, Student student){
+        this.index = index;
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.au = au;
+        this.student = student;
+    }
+
     public Index getIndex() {
         return index;
     }
