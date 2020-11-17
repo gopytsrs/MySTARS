@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class AdminControl {
     private int adminID;
 
-    private ArrayList<School> schoolList = new ArrayList<School>();
+    private ArrayList<School> schoolList = new ArrayList<>();
     private ArrayList<Student> studentList = new ArrayList<Student>();
 
     static Scanner sc = new Scanner(System.in);
@@ -36,42 +36,25 @@ public class AdminControl {
     // Method should have no parameters
     public void editStudentAccessPeriod() {
         // Check for school inside this method, then get currentaccessdatetime
-        String schoolname;
-        System.out.println("Which school to change access period");
-        schoolname = sc.next();
-        School A = null;
-        AccessPeriod schoolAccess = null;
-        try {
-            File schoolData = new File("school.txt");      //file will be in main page
-            Scanner reader = new Scanner(schoolData);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                String[] token = line.split(",");       // splitting the string to get schoolname, accessperiod and other information
-                System.out.println(token[0]);
-                System.out.println(token[1]);
-                System.out.println(token[2]);
-                System.out.println(token[3]);
-                System.out.println(token[4]);
-                /*if(token.length!=5){throw new IllegalArgumentException();} //exception is thrown if the line contains anything more or less than a username and password
-                if(token[0].equals(schoolname))
-                {
-                    LocalDateTime startdate = LocalDateTime.parse(token[1]);        //might need to read all variables temporarily
-                    LocalDateTime enddate = LocalDateTime.parse(token[2]);
-                    schoolAccess = new AccessPeriod(startdate,enddate);
-                    A = new School(token[0],schoolAccess);
-                }*/
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error in finding file");
-            e.printStackTrace();
+        int option;
+        School temp;
+        System.out.println("Choose the school to change access period:");
+        System.out.println(schoolList.size());
+        for (int i = 0; i<schoolList.size();i++)
+        {
+            temp = schoolList.get(i);
+            System.out.println(i+":"+temp.getSchoolName());
         }
+        do{
+             option =sc.nextInt();
+             if (option<0 ||option>schoolList.size())
+             {
+                 System.out.println("Your data is out of range, try again.");
+             }
+        }while (option<0 ||option>schoolList.size());
 
-        if (A == null && schoolAccess == null) {
-            System.out.println("School does not exist.");
-            return;
-        }
-
-
+        temp = schoolList.get(option);
+        AccessPeriod ap = temp.getAccessperiod();
         int choice = 0;
         boolean changed = false;
         //LocalDateTime currentDateTime = LocalDateTime.now();
@@ -83,7 +66,7 @@ public class AdminControl {
         while (school < 5);*/
 
         do {
-            System.out.println("The current access period is " + schoolAccess.getStartDate() + " to " + schoolAccess.getEndDate());
+            System.out.println("The current access period is " + ap.getStartDate() + " to " + ap.getEndDate());
             System.out.println("Would you like to change the access period?");
             System.out.println("1. Yes");
             System.out.println("2. No");
@@ -95,19 +78,18 @@ public class AdminControl {
                     System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime = sc.next();
                     LocalDateTime startDate = LocalDateTime.parse(changeDateTime);
-                    schoolAccess.setStartDate(startDate);
-                    System.out.println("The current start access period is " + schoolAccess.getStartDate());
+                    System.out.println("The current start access period is " + ap.getStartDate());
                     System.out.println("Start Date time to change access period to? (YYYY-MM-DDTHH:MM)");
                     String changeDateTime1 = sc.next();
                     LocalDateTime EndDate = LocalDateTime.parse(changeDateTime1);
-                    schoolAccess.setStartDate(EndDate);
-                    System.out.println("The current access period is " + schoolAccess.getEndDate());
+                    temp.setAccessPeriod(startDate,EndDate);
+                    System.out.println("The current access period is " + ap.getStartDate() +" to "+ ap.getEndDate());
                     System.out.println("Access Period Changed");
                     changed = true;
                     break;
 
                 case 2:
-                    System.out.println("The current access period is " + schoolAccess.getStartDate() + " to " + schoolAccess.getEndDate());
+                    System.out.println("The current access period is " + ap.getStartDate() + " to " + ap.getEndDate());
                     changed = true;
                     break;
 
