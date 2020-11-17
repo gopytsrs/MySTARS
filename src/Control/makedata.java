@@ -448,7 +448,6 @@ public class makedata {
         //student1
         Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
 
-
         //student2
         Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "School of Computer Science and Engineering", "Male", "Singaporean");
 
