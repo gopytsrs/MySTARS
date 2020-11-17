@@ -47,6 +47,7 @@ public class makedata {
         Course c2 = new Course("AB1301", "Business Law", 3);
         c2.addLessonType1("Lectures");
         c2.addLessonType1("Tutorial");
+        c2.setOfferingSchool(nbs);
 
         Index I4 = new Index("AB1301", "Business Law", 10004, "BCG1", 20);
         Lesson L4LEC = new Lesson(10004, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("16:30"), LocalTime.parse("17:30"), "LT26", Week.EVERY);
