@@ -50,8 +50,22 @@ public class School implements Serializable {
         int au;
         System.out.println("Enter the Course Code (ALL CAPITALISED): ");
         courseCode = sc.nextLine();
+        for (Course c : this.courseList) {
+            if (courseCode.equals(c.getCourseCode())) {
+                System.out.println("Course Code already exists!"); //Exits
+                return;
+            }
+        }
         System.out.println("Enter the course name");
         courseName = sc.nextLine();
+        //Should capitalise in order to check
+        for (Course c : this.courseList) {
+            while (courseName.equals(c.getCourseName())) {
+                System.out.println("Course Name already exists! Enter course name again: ");
+                courseName = sc.nextLine();
+            }
+        }
+
         System.out.print("Enter number of AU for this course: ");
         au = sc.nextInt();
         while (au < 1 || au > 10) {
