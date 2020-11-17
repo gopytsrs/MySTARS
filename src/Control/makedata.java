@@ -217,21 +217,88 @@ public class makedata {
         course1.addLessonType1("TUT");
         course1.addLessonType1("LAB");
         course1.setOfferingSchool(SCSE);
-        course1.setindexlist(new Index("ALGORITHMS", "CZ2001", 474, "SP1", 20));
-        course1.setindexlist(new Index("ALGORITHMS", "CZ2001", 475, "SP2", 20));
-        course1.setindexlist(new Index("ALGORITHMS", "CZ2001", 476, "SP3", 20));
-        course1.setindexlist(new Index("ALGORITHMS", "CZ2001", 477, "SP4", 20));
+
+        Index index1 = new Index("ALGORITHMS", "CZ2001", 474, "SP1", 20);
+        Lesson lesson1lec = new Lesson(474, LessonType.LEC, DayOfWeek.MONDAY, LocalTime.parse("10:30"), LocalTime.parse("11:30"), "LT2A", Week.EVERY);
+        Lesson lesson1tut = new Lesson(474, LessonType.TUT, DayOfWeek.MONDAY, LocalTime.parse("11:30"), LocalTime.parse("12:30"), "TR+01", Week.EVERY);
+        Lesson lesson1lab = new Lesson(474, LessonType.LAB, DayOfWeek.MONDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "HWL01", Week.EVEN);
+        index1.setLessons(lesson1lec);
+        index1.setLessons(lesson1tut);
+        index1.setLessons(lesson1lab);
+        course1.setindexlist(index1);
+
+        Index index11 = new Index("ALGORITHMS", "CZ2001", 475, "SP2", 20);
+        Lesson lesson11lec = new Lesson(475, LessonType.LEC, DayOfWeek.MONDAY, LocalTime.parse("10:30"), LocalTime.parse("11:30"), "LT2A", Week.EVERY);
+        Lesson lesson11tut = new Lesson(475, LessonType.TUT, DayOfWeek.MONDAY, LocalTime.parse("11:30"), LocalTime.parse("12:30"), "TR+02", Week.EVERY);
+        Lesson lesson11lab = new Lesson(475, LessonType.LAB, DayOfWeek.MONDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "HWL01", Week.ODD);
+        index11.setLessons(lesson11lec);
+        index11.setLessons(lesson11tut);
+        index11.setLessons(lesson11lab);
+        course1.setindexlist(index11);
+
+        Index index12 = new Index("ALGORITHMS", "CZ2001", 476, "SP3", 20);
+        Lesson lesson12lec = new Lesson(476, LessonType.LEC, DayOfWeek.MONDAY, LocalTime.parse("10:30"), LocalTime.parse("11:30"), "LT2A", Week.EVERY);
+        Lesson lesson12tut = new Lesson(476, LessonType.TUT, DayOfWeek.MONDAY, LocalTime.parse("11:30"), LocalTime.parse("12:30"), "TR+03", Week.EVERY);
+        Lesson lesson12lab = new Lesson(476, LessonType.LAB, DayOfWeek.MONDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "SWL01", Week.EVEN);
+        index12.setLessons(lesson12lec);
+        index12.setLessons(lesson12tut);
+        index12.setLessons(lesson12lab);
+        course1.setindexlist(index12);
+
+        Index index13 = new Index("ALGORITHMS", "CZ2001", 477, "SP4", 20);
+        Lesson lesson13lec = new Lesson(477, LessonType.LEC, DayOfWeek.MONDAY, LocalTime.parse("10:30"), LocalTime.parse("11:30"), "LT2A", Week.EVERY);
+        Lesson lesson13tut = new Lesson(477, LessonType.TUT, DayOfWeek.MONDAY, LocalTime.parse("11:30"), LocalTime.parse("12:30"), "TR+04", Week.EVERY);
+        Lesson lesson13lab = new Lesson(477, LessonType.LAB, DayOfWeek.MONDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "SWL01", Week.ODD);
+        index13.setLessons(lesson13lec);
+        index13.setLessons(lesson13tut);
+        index13.setLessons(lesson13lab);
+        course1.setindexlist(index13);
+
         SCSE.setCourseList(course1);
+
 
         Course course2 = new Course("CZ2002", "OBJECT ORIENTED DESIGN AND PROGRAMMING", 3);
         course2.addLessonType1("LEC");
         course2.addLessonType1("TUT");
         course2.addLessonType1("LAB");
         course2.setOfferingSchool(SCSE);
-        course2.setindexlist(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 342, "SP1", 20));
-        course2.setindexlist(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 343, "SP2", 20));
-        course2.setindexlist(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 344, "SP3", 20));
-        course2.setindexlist(new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 345, "SP4", 20));
+
+        Index index2 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 342, "SP1", 20);
+        Lesson lesson2lec = new Lesson(342, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson2tut = new Lesson(342, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+01", Week.EVERY);
+        Lesson lesson2lab = new Lesson(342, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.EVEN);
+        index2.setLessons(lesson2lec);
+        index2.setLessons(lesson2tut);
+        index2.setLessons(lesson2lab);
+        course2.setindexlist(index2);
+
+        Index index21 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 343, "SP2", 20);
+        Lesson lesson21lec = new Lesson(343, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson21tut = new Lesson(343, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+02", Week.EVERY);
+        Lesson lesson21lab = new Lesson(343, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.ODD);
+        index21.setLessons(lesson21lec);
+        index21.setLessons(lesson21tut);
+        index21.setLessons(lesson21lab);
+        course2.setindexlist(index21);
+
+        Index index22 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 344, "SP3", 20);
+        Lesson lesson22lec = new Lesson(344, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson22tut = new Lesson(344, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+03", Week.EVERY);
+        Lesson lesson22lab = new Lesson(344, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.EVEN);
+        index22.setLessons(lesson22lec);
+        index22.setLessons(lesson22tut);
+        index22.setLessons(lesson22lab);
+        course2.setindexlist(index22);
+
+        Index index23 = new Index("OBJECT ORIENTED DESIGN AND PROGRAMMING", "CZ2002", 345, "SP4", 20);
+        Lesson lesson23lec = new Lesson(345, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson23tut = new Lesson(345, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+04", Week.EVERY);
+        Lesson lesson23lab = new Lesson(345, LessonType.LAB, DayOfWeek.TUESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.ODD);
+        index23.setLessons(lesson23lec);
+        index23.setLessons(lesson23tut);
+        index23.setLessons(lesson23lab);
+        course2.setindexlist(index23);
+
         SCSE.setCourseList(course2);
 
         Course course3 = new Course("CZ2005", "OPERATING SYSTEMS", 3);
@@ -239,10 +306,43 @@ public class makedata {
         course3.addLessonType1("TUT");
         course3.addLessonType1("LAB");
         course3.setOfferingSchool(SCSE);
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 681, "SP1", 20));
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 682, "SP2", 20));
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 683, "SP3", 20));
-        course3.setindexlist(new Index("OPERATING SYSTEMS", "CZ2005", 684, "SP4", 20));
+
+        Index index3 = new Index("OPERATING SYSTEMS", "CZ2005", 681, "SP1", 20);
+        Lesson lesson3lec = new Lesson(681, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson3tut = new Lesson(681, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+01", Week.EVERY);
+        Lesson lesson3lab = new Lesson(681, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.EVEN);
+        index3.setLessons(lesson3lec);
+        index3.setLessons(lesson3tut);
+        index3.setLessons(lesson3lab);
+        course3.setindexlist(index3);
+
+        Index index31 = new Index("OPERATING SYSTEMS", "CZ2005", 682, "SP2", 20);
+        Lesson lesson31lec = new Lesson(682, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson31tut = new Lesson(682, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+02", Week.EVERY);
+        Lesson lesson31lab = new Lesson(682, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "HWL01", Week.ODD);
+        index31.setLessons(lesson31lec);
+        index31.setLessons(lesson31tut);
+        index31.setLessons(lesson31lab);
+        course3.setindexlist(index31);
+
+        Index index32 = new Index("OPERATING SYSTEMS", "CZ2005", 683, "SP3", 20);
+        Lesson lesson32lec = new Lesson(683, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson32tut = new Lesson(683, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+03", Week.EVERY);
+        Lesson lesson32lab = new Lesson(683, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.EVEN);
+        index32.setLessons(lesson32lec);
+        index32.setLessons(lesson32tut);
+        index32.setLessons(lesson32lab);
+        course3.setindexlist(index32);
+
+        Index index33 = new Index("OPERATING SYSTEMS", "CZ2005", 684, "SP4", 20);
+        Lesson lesson33lec = new Lesson(684, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "LT2A", Week.EVERY);
+        Lesson lesson33tut = new Lesson(684, LessonType.TUT, DayOfWeek.WEDNESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "TR+04", Week.EVERY);
+        Lesson lesson33lab = new Lesson(684, LessonType.LAB, DayOfWeek.WEDNESDAY, LocalTime.parse("10:30"), LocalTime.parse("12.30"), "SWL01", Week.ODD);
+        index33.setLessons(lesson33lec);
+        index33.setLessons(lesson33tut);
+        index33.setLessons(lesson33lab);
+        course3.setindexlist(index33);
+
         SCSE.setCourseList(course3);
 
         Course course4 = new Course("CZ2007", "INTRODUCTION TO DATABASES", 3);
@@ -262,6 +362,22 @@ public class makedata {
         schoolList.add(nbs);
         schoolList.add(SCSE);
         schoolList.add(SCBE);
+
+        //student0
+        Student student = new Student("Sean Goh","U1920001", "seangoh@e.ntu.edu.sg", 2, "Male", "Singaporean");
+        Account account = new Account()
+        //student1
+        Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "Male", "Singaporean");
+
+        //student2
+        Student student2 = new Student("Jun Hao", "U1920003", "junhao@e.ntu.edu.sg", 2, "Male", "Singaporean");
+
+        //student3
+        Student student3 = new Student("Lek Zhi Ying", "U1920004", "lekzhiying@e.ntu.edu.sg", 2, "Female", "Singaporean");
+
+        //student4
+        Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "Male", "Singaporean");
+
         //Serialising
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName);
