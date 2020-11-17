@@ -14,6 +14,7 @@ public class AdminControl {
     private ArrayList<School> schoolList = new ArrayList<School>();
     private ArrayList<Student> studentList = new ArrayList<Student>();
 
+    static Scanner sc = new Scanner(System.in);
 
     public void AdminControl() {
         String fileName = "database_school_testing.bin"; //purely for testing, dont touch the actual one
@@ -30,7 +31,7 @@ public class AdminControl {
     }
 
     // Method should have no parameters
-    public void editStudentAccessPeriod(Scanner sc) {
+    public void editStudentAccessPeriod() {
         // Check for school inside this method, then get currentaccessdatetime
         String schoolname;
         System.out.println("Which school to change access period");
@@ -116,58 +117,18 @@ public class AdminControl {
         return;         //haven't add changing to txt file
     }
 
-    public void addStudent(Student student, Scanner sc) {
-        String userName;
-        String password;
-        boolean confirmed = false;
-        int choice = 0;
+    public void addStudent(Student student) {
+        String name;
+        String matricNo;
+        String email;
+        int year;
+        String gender;
+        String nationality;
 
-        System.out.println("Username: ");
-        userName = sc.next();
-        System.out.println("Password: ");
-        password = sc.next();
 
-        while (!confirmed) {
-            System.out.println("Would you like to confirm that username is " + userName + " and password is " + password + ".");
-            System.out.println("1. Yes");
-            System.out.println("2. No");
-            System.out.println("Please enter your choice: ");
-            choice = sc.nextInt();
-
-            switch (choice) {
-                case 1:
-                    //create new username and password
-                    System.out.println("Created Student Account");
-                    File course = new File("student.txt");
-                    try (FileWriter fw = new FileWriter("student.txt", true);
-                         BufferedWriter bw = new BufferedWriter(fw);
-                         PrintWriter out = new PrintWriter(bw)) {
-                        out.println(userName + " " + password);
-                    } catch (IOException e) {
-                        System.out.println("An error has occurred.");
-                    }
-                    confirmed = true;
-                    break;
-
-                case 2:
-                    //let the loop run 1 more time
-                    System.out.println("Please re-enter the username and password");
-                    System.out.println("Username: ");
-                    userName = sc.next();
-                    System.out.println("Password: ");
-                    password = sc.next();
-
-                    break;
-
-                default:
-                    System.out.println("Please enter a valid number. (1 or 2)");
-                    sc.next();
-                    break;
-            }
-        }
     }
 
-    public void addCourse(Scanner sc) {
+    public void addCourse() {
         int noOfStudent = 0;
         int totalNoOfStudent = 20;
         int choice = 0;
@@ -238,7 +199,7 @@ public class AdminControl {
         } while (choice != 2);
     }
 
-    public void updateCourse(Course course, Scanner sc) {
+    public void updateCourse(Course course) {
         int choice = 0;
 
         do {
