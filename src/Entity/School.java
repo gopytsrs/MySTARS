@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class School implements Serializable {
 
-
+    static Scanner sc = new Scanner(System.in);
     private String schoolName;
     private AccessPeriod accessperiod;
     private ArrayList<Course> courseList;
@@ -45,13 +45,19 @@ public class School implements Serializable {
     }        //purely to generate data in binary file
 
     public void addCourse() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Input the course code: ");
-        String courseCode = sc.next();
-        System.out.println("Input the course name: ");
-        String courseName = sc.next();
-        System.out.println("Input the no. of AUs: ");
-        int au = sc.nextInt();
+        String courseCode;
+        String courseName;
+        int au;
+        System.out.println("Enter the Course Code (ALL CAPITALISED): ");
+        courseCode = sc.nextLine();
+        System.out.println("Enter the course name");
+        courseName = sc.nextLine();
+        System.out.print("Enter number of AU for this course: ");
+        au = sc.nextInt();
+        while (au < 1 || au > 10) {
+            System.out.println("Invalid AU count! Enter AU again: ");
+            au = sc.nextInt();
+        }
         Course C1 = new Course(courseCode, courseName, au);
         courseList.add(C1);
     }                                           //add 1 course to list so not really setting course list

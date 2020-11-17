@@ -1,6 +1,9 @@
 package Control;
 
-import Entity.*;
+import Entity.AccessPeriod;
+import Entity.Index;
+import Entity.School;
+import Entity.Student;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -19,7 +22,7 @@ public class AdminControl {
 
     public AdminControl() {
 
-        String fileName = "database_school_testing.bin"; //purely for testing, dont touch the actual one
+        String fileName = "database_school.bin"; //purely for testing, dont touch the actual one
 
         try {
             FileInputStream file = new FileInputStream(fileName);
@@ -140,7 +143,7 @@ public class AdminControl {
         System.out.println("Enter student's nationality: ");
         nationality = sc.nextLine();
         Student stud = new Student(name, matricNo, email, year, gender, nationality);
-        System.out.println("Student is created")
+        System.out.println("Student is created");
         this.studentList.add(stud);
         System.out.println("The existing students are: ");
         for (Student s : studentList) {
@@ -153,61 +156,32 @@ public class AdminControl {
         int totalNoOfStudent = 20;
         int choice = 0;
 
+        //Listing of all course after addition
+        //Add an existing course
 
         do {
             System.out.println("Would you like to");
             System.out.println("1. Add a course");
             System.out.println("2. Exit");
-            System.out.println("Enter your choice here: ");
+            System.out.println("Enter your choice: ");
             choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Course Code (ALL CAPITALISED): ");
-                    String courseCode = sc.next();
-
-                    try {
-                        System.out.println("This is fine!");
-                        File course = new File("courses.txt");
-                        BufferedReader br = new BufferedReader(new FileReader(course));
-                        String readCourse;
-                        boolean courseExist = false;
-
-                        try {
-                            while ((readCourse = br.readLine()) != null) { //Read until the end
-                                if (readCourse.equals(courseCode)) {    //Check whether the course exist
-                                    System.out.println("Course Already Exist");
-                                    System.out.println("This is fine!");
-                                    courseExist = true;
-                                    break;
-                                } else {
-                                    continue;
-                                }
-                            }
-                        } catch (IOException e) {
-                            System.out.println("An error has occurred.");
-                        }
-
-                        if (courseExist == false)
-                            try {
-                                System.out.println("This is fine!");
-                                System.out.println("Course Created: " + courseCode);
-                                try (FileWriter fw = new FileWriter("courses.txt", true);
-                                     BufferedWriter bw = new BufferedWriter(fw);
-                                     PrintWriter out = new PrintWriter(bw)) {
-                                    out.println("\n" + courseCode);
-                                    out.println(noOfStudent + "/" + totalNoOfStudent);
-                                    break;
-                                } catch (IOException e) {
-                                    System.out.println("An error has occurred.");
-                                }
-                            } catch (IOError e) {
-                                System.out.println("An error has occurred.");
-                            }
-                    } catch (FileNotFoundException f) {
-                        System.out.println("File is not found");
+                    //Add created course into school
+                    System.out.println("Which school does the course belong to?");
+                    int noOfSchool = schoolList.size();
+                    for (int i = 0; i < noOfSchool; i++) {
+                        System.out.println((i + 1) + ":" + schoolList.get(i).getSchoolName());
                     }
-
+                    choice = sc.nextInt();
+                    choice -= 1;
+                    while (choice < 0 || choice > noOfSchool) {
+                        System.out.println("Invalid choice! Select school again: ");
+                        choice = sc.nextInt();
+                        choice -= 1;
+                    }
+                    schoolList.get(choice).addCourse();
                     break;
                 case 2:
                     System.out.println("Exiting...");
