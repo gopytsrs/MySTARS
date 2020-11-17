@@ -17,7 +17,7 @@ public class AdminControl {
     static Scanner sc = new Scanner(System.in);
 
     public void AdminControl() {
-        String fileName = "database_school_testing.bin"; //purely for testing, dont touch the actual one
+        String fileName = "database_school.bin"; //purely for testing, dont touch the actual one
         try {
             FileInputStream file = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(file);
@@ -27,6 +27,9 @@ public class AdminControl {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+        for (School school : schoolList) {
+            System.out.println(school.getSchoolName());
         }
     }
 
@@ -125,6 +128,19 @@ public class AdminControl {
         String gender;
         String nationality;
 
+        System.out.println("Enter student's Name: ");
+        name = sc.nextLine();
+        System.out.println("Enter student's Matriculation Number: ");
+        matricNo = sc.nextLine();
+        System.out.println("Enter student's email: ");
+        email = sc.nextLine();
+        System.out.println("Enter student's year of study: ");
+        year = sc.nextInt();
+        System.out.println("Enter student's gender: ");
+        gender = sc.nextLine();
+        System.out.println("Enter student's nationality: ");
+        nationality = sc.nextLine();
+        Student stud = new Student(name, matricNo, email, year, gender, nationality);
 
     }
 

@@ -30,15 +30,15 @@ public class AdminUI {
 
             switch (choice) {
                 case 1:
-                    acontrol.editStudentAccessPeriod(sc);
+                    acontrol.editStudentAccessPeriod();
                     break;
 
                 case 2:
-                    acontrol.addStudent(student, sc);
+                    acontrol.addStudent(student);
                     break;
 
                 case 3:
-                    acontrol.addCourse(sc);
+                    acontrol.addCourse();
                     break;
 
                 case 4:
