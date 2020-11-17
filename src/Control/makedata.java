@@ -365,7 +365,7 @@ public class makedata {
 
         //student0
         Student student = new Student("Sean Goh","U1920001", "seangoh@e.ntu.edu.sg", 2, "Male", "Singaporean");
-        Account account = new Account()
+        //Account account = new Account();
         //student1
         Student student1 = new Student("Chia Wen Cheng", "U1920002", "chiawencheng@e.ntu.edu.sg", 2, "Male", "Singaporean");
 

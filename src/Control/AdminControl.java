@@ -337,10 +337,10 @@ public class AdminControl {
                 continue;
             }
             choice = Integer.parseInt(dummy);
-            if (choice < 0 || choice > C.size()) {
+            if (choice < 0 || choice > I.size()) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (choice < 0 || choice > C.size());
+        } while (choice < 0 || choice > I.size());
         vacancy =I.get(choice).getVacancy();
         if (I.get(choice).getAssignedStudents() == null)
             total = vacancy;
@@ -352,41 +352,155 @@ public class AdminControl {
     }
 
     public void printStudentByCourse() {
+        int option = -1;
+        int choice = -1;
+        ArrayList<Course> C;
+        ArrayList<Index> I;
+        for (int i = 0; i<schoolList.size();i++)
+        {
+            System.out.println(i + ":" + schoolList.get(i).getSchoolName());
+        }
+        System.out.println("Please key in the number beside the school you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            option = Integer.parseInt(dummy);
+            if (option < 0 || option > schoolList.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (option < 0 || option > schoolList.size());
+        C = schoolList.get(option).getCourseList();
+
+        for (int j = 0; j<C.size();j++)
+        {
+            System.out.println(j+" : "+C.get(j).getCourseName()+" , "+C.get(j).getCourseCode());
+        }
+        System.out.println("Please key in the number beside the course you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            choice = Integer.parseInt(dummy);
+            if (choice < 0 || choice > C.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (choice < 0 || choice > C.size());
+        I = C.get(choice).getIndexList();
+        System.out.println(
+                    "Name\t" +
+                            "School\t" +
+                            "Year of Study\t" +
+                            "Gender\t" +
+                            "Nationality\t" +
+                            "Status\t");
+        for (Index index: I)
+        {
+            if (index.getAssignedStudents() == null)
+            {
+                System.out.println("There are no students in this index "+index.getIndexNo());
+                continue;
+            }
+            else
+            {
+                for (Student student : index.getAssignedStudents()) {
+                    System.out.println(student + "Assigned");
+                }
+            }
+
+        }
+
 
     }
 
     public void printStudentByIndex() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter index no:");
-        int indexNo = Integer.valueOf(scanner.nextLine());
+        int option = -1;
+        int choice = -1;
+        ArrayList<Course> C;
+        ArrayList<Index> I;
+        int total;
+        int vacancy;
+        for (int i = 0; i<schoolList.size();i++)
+        {
+            System.out.println(i + ":" + schoolList.get(i).getSchoolName());
+        }
+        System.out.println("Please key in the number beside the school you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            option = Integer.parseInt(dummy);
+            if (option < 0 || option > schoolList.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (option < 0 || option > schoolList.size());
+        C = schoolList.get(option).getCourseList();
 
-        //Load the index arraylist here to find the corresponding index
-        ArrayList<Index> indexes = new ArrayList<Index>();
-
-        Index indexToPrint = null;
-        for (Index index : indexes) {
-            if (index.getIndexNo() == indexNo) {
-                indexToPrint = index;
+        for (int j = 0; j<C.size();j++)
+        {
+            System.out.println(j+" : "+C.get(j).getCourseName()+" , "+C.get(j).getCourseCode());
+        }
+        System.out.println("Please key in the number beside the course you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            choice = Integer.parseInt(dummy);
+            if (choice < 0 || choice > C.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (choice < 0 || choice > C.size());
+        I = C.get(choice).getIndexList();
+        for (int j = 0; j<I.size();j++)
+        {
+            System.out.println(j+" : "+I.get(j).getIndexNo());
+        }
+        choice =-1;
+        System.out.println("Please key in the number beside the index you select: ");
+        do {
+            String dummy = sc.next();
+            boolean check = isInteger(dummy);
+            if (check == false)
+            {
+                System.out.println("Input should be an integer.");
+                continue;
+            }
+            choice = Integer.parseInt(dummy);
+            if (choice < 0 || choice > I.size()) {
+                System.out.println("Your data is out of range, try again.");
+            }
+        } while (choice < 0 || choice > I.size());
+        if (I.get(choice).getAssignedStudents()==null)
+            System.out.println("There are no Students in this index");
+        else
+        {
+            System.out.println(
+                    "Name\t" +
+                            "School\t" +
+                            "Year of Study\t" +
+                            "Gender\t" +
+                            "Nationality\t" +
+                            "Status\t");
+            for (Student student : I.get(choice).getAssignedStudents()) {
+                System.out.println(student + "Assigned");
             }
         }
-
-        ArrayList<Student> registeredStudents = indexToPrint.getAssignedStudents();
-        Deque<Student> waitListStudents = indexToPrint.getWaitList();
-
-        System.out.println(
-                "Name\t" +
-                        "School\t" +
-                        "Year of Study\t" +
-                        "Gender\t" +
-                        "Nationality\t" +
-                        "Status\t");
-        for (Student student : registeredStudents) {
-            System.out.println(student + "Assigned");
-        }
-        for (Student student : waitListStudents) {
-            System.out.println(student + "WaitList");
-        }
-
 
     }
     private boolean isInteger(String str)
