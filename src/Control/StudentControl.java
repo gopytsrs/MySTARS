@@ -261,6 +261,8 @@ public class StudentControl {
     private void checkTimeClash(){
         int checkindex = 0;
         boolean indexExist = false;
+        boolean clashAssigned = false;
+        boolean clashRegistered = false;
         //Load in Index list
         ArrayList<Index> indexlist = new ArrayList<Index>();
         Index indextoCheck = null;
@@ -294,6 +296,7 @@ public class StudentControl {
         for (CourseRegistration courseA: assignedcourse){
             if (courseA.getIndex().checkClash(indextoCheck)){
                 System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseA.getIndex().getIndexNo());
+                clashAssigned = true;
             }
         }
 
@@ -301,7 +304,18 @@ public class StudentControl {
         for(CourseRegistration courseR: registeredcourse){
             if (courseR.getIndex().checkClash(indextoCheck)){
                 System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseR.getIndex().getIndexNo());
+                clashRegistered = true;
             }
+        }
+
+        if (!clashAssigned & !clashRegistered){
+            System.out.println("Index does not clash with current timetable.");
+        }
+        else if (clashAssigned){
+            System.out.println("Index clash with assigned timetable.");
+        }
+        else if(clashRegistered){
+            System.out.println("Index clash with registered timetable.");
         }
 
     }
