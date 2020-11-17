@@ -406,7 +406,7 @@ public class makedata {
 
         //student4
         Student student4 = new Student("Tchen Jee Wern", "U1920005", "tchenjeewern@e.ntu.edu.sg", 2, "Male", "Singaporean");
-
+        Account account4= new Account()
         //Serialising
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName);
