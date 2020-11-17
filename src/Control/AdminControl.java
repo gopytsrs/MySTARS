@@ -102,7 +102,7 @@ public class AdminControl {
         return;         //haven't add changing to txt file
     }
 
-    public void addStudent(Student student) {
+    public void addStudent() {
         String name;
         String matricNo;
         String email;
@@ -220,7 +220,7 @@ public class AdminControl {
         } while (choice != 2);
     }
 
-    public void updateCourse(Course course) {
+    public void updateCourse() {
         int choice = 0;
 
         do {
@@ -265,19 +265,16 @@ public class AdminControl {
         } while (choice != 2);
     }
 
-    public void deleteCourse(Course course) {
+
+    public void checkAvailableSlots() {
 
     }
 
-    public void checkAvailableSlots(Course course) {
+    public void printStudentByCourse() {
 
     }
 
-    public void printStudentByCourse(Student student, Course course) {
-
-    }
-
-    public void printStudentByIndex(Course course) {
+    public void printStudentByIndex() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter index no:");
         int indexNo = Integer.valueOf(scanner.nextLine());
