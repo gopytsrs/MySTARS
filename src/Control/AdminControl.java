@@ -607,8 +607,6 @@ public class AdminControl {
         int choice = -1;
         ArrayList<Course> C;
         ArrayList<Index> I;
-        int total;
-        int vacancy;
         for (int i = 0; i < schoolList.size(); i++) {
             System.out.println(i + ":" + schoolList.get(i).getSchoolName());
         }
