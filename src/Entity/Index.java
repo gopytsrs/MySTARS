@@ -102,7 +102,7 @@ public class Index implements Serializable {
             for (Lesson lesson1 : indexToCheck.getLessons()) {
                 if (lesson.getWeeks() == lesson1.getWeeks()) {
                     //Datetime logic needed for range
-                    if (lesson.getStartTime().isAfter(lesson1.getStartTime()) && lesson.getStartTime().isBefore(lesson1.getEndTime()) || lesson.getEndTime().isAfter(lesson1.getStartTime())&& lesson.getEndTime().isBefore(lesson1.getEndTime())) {
+                    if ((lesson.getStartTime().isAfter(lesson1.getStartTime()) && lesson.getStartTime().isBefore(lesson1.getEndTime())) || (lesson.getEndTime().isAfter(lesson1.getStartTime())&& lesson.getEndTime().isBefore(lesson1.getEndTime()))) {
                         return true;
                     }
                 }
