@@ -74,6 +74,8 @@ public class StudentControl {
         int indexno;
         Course courseChosen = null;
         Index indexChosen = null;
+        ArrayList<CourseRegistration> registeredCourse = student.getAssignedCourse();
+        ArrayList<CourseRegistration> waitListCourse = student.getWaitList();
         boolean indexExists = false;
         boolean courseExists = false;
         do{
@@ -92,9 +94,25 @@ public class StudentControl {
                     break;
                 }
             }
+
+            for (CourseRegistration aboutToRegisterCourse: registeredCourse){
+                if (courseChosen.equals(aboutToRegisterCourse)){
+                    System.out.print("Already registered the course. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                    break;
+                }
+            }
+
+            for (CourseRegistration aboutToRegisterCourse: waitListCourse){
+                if (courseChosen.equals(aboutToRegisterCourse)){
+                    System.out.println("Already added this course to the waitlist. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                    break;
+                }
+            }
+
             if (!courseExists){
                 System.out.println("Please enter valid course code!");
             }
+
         }while(!courseExists);
 
         ArrayList<Index> indexList = courseChosen.getIndexList();
@@ -138,8 +156,6 @@ public class StudentControl {
     }
 
     public void dropCourse() {
-
-
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
         CourseRegistration courseToDrop = null;
@@ -165,7 +181,6 @@ public class StudentControl {
         }
 
         for (CourseRegistration waitlistCourse : waitlistCourses) {
-
             if (waitlistCourse.getCourseCode().equals(courseToDrop.getCourseCode())) {
                 Index index = waitlistCourse.getIndex();
                 int vacancies = index.getVacancy();
@@ -188,8 +203,6 @@ public class StudentControl {
                 }
                 break;
             }
-
-
         }
     }
     public void printRegisteredCourses(){
@@ -206,7 +219,6 @@ public class StudentControl {
         } else {
             for (CourseRegistration course : assignedCourses) {
                 System.out.print(course);
-                //system.out.println(" registered ")
             }
         }
 
@@ -221,7 +233,6 @@ public class StudentControl {
     }
 
     public void checkAvailableSlots(){
-
         int indexNo = 0;
         while (true) {
             try {
@@ -230,7 +241,6 @@ public class StudentControl {
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a index number.");
-
             }
         }
         ArrayList<Course> courses = new ArrayList<Course>();
@@ -240,6 +250,10 @@ public class StudentControl {
             for(Index index: indexes){
                 //Index exists, print out the vacancies and exit the method
                 if(index.getIndexNo() == indexNo){
+
+
+                    System.out.printf("The number of available slots in Index %d of %s is %d",index.getIndexNo(),index.getCourseCode(),index.getVacancy());
+
                     int total;
                     if(index.getAssignedStudents() == null){
                        total = index.getVacancy();
@@ -247,6 +261,7 @@ public class StudentControl {
                         total = index.getVacancy() + index.getAssignedStudents().size();
                     }
                     System.out.printf("The number of available slots in Index %d of %s is %d/%d",index.getIndexNo(),index.getCourseCode(),index.getVacancy(),total);
+
                     return;
 
                 }
@@ -478,7 +493,7 @@ public class StudentControl {
             }
         }while (choice != 1|| choice!= 2);
 
-        
     }
+
 
 }

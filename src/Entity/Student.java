@@ -7,7 +7,6 @@ import java.util.ArrayList;
 //Account is created in this class, to update the values passed into account constructor
 //Entity should pass all attributes into the constructor of student class
 public class Student implements Serializable {
-
     private String name;
     private String matricNo;
     private String email;
