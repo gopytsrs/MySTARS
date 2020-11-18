@@ -236,6 +236,7 @@ public class StudentControl {
 
     public void changeIndex(){
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
+        ArrayList<CourseRegistration> registeredCourses = student.getCourseRegistrationList();
         Course course = null;
         Index indexToDrop = null;
         Index indexToAdd = null;
@@ -260,7 +261,10 @@ public class StudentControl {
                     //From here need to get the course to see the other indexes
                 }
             }
-            if(indexToDrop == null) continue;
+            if(indexToDrop == null) {
+                System.out.printf("You are not registered for Index %d. Please enter a valid Index no.",currentIndexNo);
+                continue;
+            }
             else break;
 
 
@@ -296,12 +300,12 @@ public class StudentControl {
 
             } else {
 
-                for(CourseRegistration assignedCourse: assignedCourses){
-                    if(assignedCourse.getIndex() != indexToDrop){
-                        if(assignedCourse.getIndex().checkClash(indexToAdd)){
+                for(CourseRegistration registeredCourse: registeredCourses){
+                    if(registeredCourse.getIndex() != indexToDrop){
+                        if(registeredCourse.getIndex().checkClash(indexToAdd)){
                             //The information of the assigned course
-                            String code = assignedCourse.getCourseCode();
-                            int indexNo = assignedCourse.getIndex().getIndexNo();
+                            String code = registeredCourse.getCourseCode();
+                            int indexNo = registeredCourse.getIndex().getIndexNo();
 
                             System.out.printf("Index %d of %s clashes with Index %d of %s! Please choose another index.%n",
                                     indexToAdd.getCourseCode(),indexToAdd.getIndexNo(),code,indexNo);
