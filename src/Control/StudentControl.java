@@ -387,6 +387,8 @@ public class StudentControl {
         boolean hisindexFound= false;
         int indextoSwapH;
         int indextoSwapM;
+        Index myindex = null;
+        Index hisIndex = null;
         ArrayList<CourseRegistration> assignedCourseSwap = studenttoswap.getAssignedCourse();
         ArrayList<CourseRegistration> assignedCourse = student.getAssignedCourse();
         CourseRegistration mycourseSwap = null;
@@ -406,6 +408,7 @@ public class StudentControl {
             for (CourseRegistration course : assignedCourseSwap) {
                 if (course.getIndex().getIndexNo() == indextoSwapH) {
                     hiscourseSwap = course;
+                    hisIndex = course.getIndex();
                     courseSwaptome = new CourseRegistration(course.getIndex(), course.getCourseCode(), course.getCourseName(), course.getAu(), student);
                     hisindexFound = true;
                     break;
@@ -430,6 +433,7 @@ public class StudentControl {
             for (CourseRegistration course : assignedCourse) {
                 if (course.getIndex().getIndexNo() == indextoSwapM) {
                     mycourseSwap = course;
+                    myindex = course.getIndex();
                     courseSwaptohim = new CourseRegistration(course.getIndex(), course.getCourseCode(), course.getCourseName(), course.getAu(), studenttoswap);
                     myindexFound = true;
                     break;
@@ -442,6 +446,7 @@ public class StudentControl {
         }
 
         int choice = 0;
+        boolean canSwap= false;
         do{
             System.out.println("Confirm to swap course?");
             System.out.println("1. Yes");
@@ -449,11 +454,20 @@ public class StudentControl {
             choice = scanner.nextInt();
             switch(choice) {
                 case 1:
-                    student.removeAssignedCourse(mycourseSwap);
-                    studenttoswap.removeAssignedCourse(hiscourseSwap);
-                    student.addAssignedCourse(courseSwaptome);
-                    studenttoswap.addAssignedCourse(courseSwaptohim);
-                    System.out.println("Index swap successfully.")
+                    int checkmyclash = student.checkTimeClash(hisIndex);
+                    int checkhisclash = studenttoswap.checkTimeClash(myindex);
+                    if (checkmyclash == 0 & checkhisclash ==0){
+                        canSwap = true;
+                    }
+                    if (canSwap){
+                        student.removeAssignedCourse(mycourseSwap);
+                        studenttoswap.removeAssignedCourse(hiscourseSwap);
+                        student.addAssignedCourse(courseSwaptome);
+                        studenttoswap.addAssignedCourse(courseSwaptohim);
+                        System.out.println("Index swap successfully.");
+                    } else{
+                        System.out.println("Timetable clashes for account");
+                    }
                     break;
                 case 2:
                     System.out.println("Index not swapped!");
@@ -464,100 +478,7 @@ public class StudentControl {
             }
         }while (choice != 1|| choice!= 2);
 
-
-        }
         
     }
-
-    public void register(){
-
-    }
-
-    private void checkTimeClash(String indexno){
-        boolean coursefound = false;
-        ArrayList<Index> indexlist = null;
-
-        while(!coursefound) {
-            System.out.println("Enter course code :");
-            String coursecode = scanner.next();
-
-            // Get list of index for course
-            for (Course course : courseList) {
-                if (course.getCourseCode() == coursecode) {
-                    indexlist = course.getIndexList();
-                    System.out.println("List of indexes in " + coursecode + " are:");
-                    for (Index index : indexlist) {
-                        System.out.println(index.getIndexNo());
-                    }
-                    coursefound = true;
-                    break;
-                }
-            }
-            if (!coursefound) {
-                System.out.println("Enter a valid course.");
-            }
-
-        }
-
-        int checkindex = 0;
-        boolean indexExist = false;
-        boolean clashAssigned = false;
-        boolean clashRegistered = false;
-
-        Index indextoCheck = null;
-        ArrayList<CourseRegistration> assignedcourse = student.getAssignedCourse();
-        ArrayList<CourseRegistration> registeredcourse = student.getWaitList();
-
-        while(!indexExist) {
-            while (true) {
-                try {
-                    System.out.println("Enter Index number to check:");
-                    checkindex = scanner.nextInt();
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a index number.");
-                }
-            }
-
-            for (Index index : indexlist) {
-                if (index.getIndexNo() == checkindex) {
-                    indextoCheck = index;
-                    indexExist = true;
-                    break;
-                }
-            }
-            if (!indexExist){
-                System.out.println("Index does not exists");
-            }
-        }
-
-        // Check clash in assigned course
-        for (CourseRegistration courseA: assignedcourse){
-            if (courseA.getIndex().checkClash(indextoCheck)){
-                System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseA.getIndex().getIndexNo());
-                clashAssigned = true;
-            }
-        }
-
-        // Check clash in registered course
-        for(CourseRegistration courseR: registeredcourse){
-            if (courseR.getIndex().checkClash(indextoCheck)){
-                System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseR.getIndex().getIndexNo());
-                clashRegistered = true;
-            }
-        }
-
-        if (!clashAssigned & !clashRegistered){
-            System.out.println("Index does not clash with current timetable.");
-        }
-        else if (clashAssigned){
-            System.out.println("Index clash with assigned timetable.");
-        }
-        else if(clashRegistered){
-            System.out.println("Index clash with registered timetable.");
-        }
-
-    }
-
 
 }

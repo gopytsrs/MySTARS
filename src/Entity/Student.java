@@ -134,4 +134,48 @@ public class Student implements Serializable {
         this.noOfAUs += au;
     }
 
+    public int checkTimeClash(Index index) {
+        int noclash = 0;
+        int clashA = 1;
+        int clashW = 2;
+
+        int checkindex = 0;
+        boolean clashAssigned = false;
+        boolean clashRegistered = false;
+
+        Index indextoCheck = null;
+        ArrayList<CourseRegistration> assignedcourse = this.getAssignedCourse();
+        ArrayList<CourseRegistration> registeredcourse = this.getWaitList();
+
+
+        // Check clash in assigned course
+        for (CourseRegistration courseA : assignedcourse) {
+            if (courseA.getIndex().checkClash(indextoCheck)) {
+                System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseA.getIndex().getIndexNo());
+                clashAssigned = true;
+            }
+        }
+
+        // Check clash in registered course
+        for (CourseRegistration courseR : registeredcourse) {
+            if (courseR.getIndex().checkClash(indextoCheck)) {
+                System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseR.getIndex().getIndexNo());
+                clashRegistered = true;
+            }
+        }
+
+        if (!clashAssigned & !clashRegistered) {
+            System.out.println("Index does not clash with current timetable.");
+            return noclash;
+        } else if (clashAssigned) {
+            System.out.println("Index clash with assigned timetable.");
+            return clashA;
+        } else if (clashRegistered) {
+            System.out.println("Index clash with waitlist timetable.");
+            return clashW;
+        } else{
+            return clashA;
+        }
+    }
+
 }
