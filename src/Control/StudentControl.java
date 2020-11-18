@@ -204,6 +204,13 @@ public class StudentControl {
                 break;
             }
         }
+
+        if (courseToDrop.getIndex().getWaitList() != null && courseToDrop.getIndex().getVacancy() != 0)
+        {
+            Student Firstinlist = courseToDrop.getIndex().getWaitList().remove();
+            courseToDrop.getIndex().assignStudent(Firstinlist);
+            notificationControl n = new notificationControl(Firstinlist,courseToDrop);
+        }
     }
     public void printRegisteredCourses(){
 
