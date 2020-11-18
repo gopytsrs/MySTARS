@@ -42,7 +42,7 @@ public class Login {
         AccountsFromDatabase(domain);                   //missing accessperiod check need read student file
         do {
             System.out.println("Please enter your Username: ");
-            userName = sc.next();
+            userName = sc.nextLine();
             System.out.println("Please enter your Password: ");
             password = sc.next();
             valid = Authenticatepassword();
