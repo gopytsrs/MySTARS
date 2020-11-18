@@ -73,9 +73,13 @@ public class Index implements Serializable {
         waitList.remove(student);
     }
 
-    public void assignStudent(Student student){
-        this.assignedStudents.add(student);
-        this.vacancy -= 1;
+    public boolean assignStudent(Student student){
+        if (vacancy != 0) {
+            this.assignedStudents.add(student);
+            this.vacancy -= 1;
+            return true;
+        }
+        else{return false;}
 
     }
 

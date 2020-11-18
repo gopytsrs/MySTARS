@@ -150,12 +150,13 @@ public class StudentControl {
                         canAdd = true;
                     }
                     if (canAdd){
-                        if (student.addAssignedCourse(newCourse)){
-                            indexChosen.assignStudent(student);
+                        if (student.addAssignedCourse(newCourse) & indexChosen.assignStudent(student)){
+                            System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index "+ indexChosen.getIndexNo());
                         }
                         else{
                             student.addWaitList(newCourse);
                             indexChosen.addToWaitlist(student);
+                            System.out.println("Added to waitlist");
                         }
                     }
                     break;
