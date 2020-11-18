@@ -96,6 +96,7 @@ public class Index implements Serializable {
         for (Lesson lesson : lessons) {
             for (Lesson lesson1 : indexToCheck.getLessons()) {
                 if (lesson.getWeeks() == lesson1.getWeeks()) {
+                    //Datetime logic needed for range
                     if (lesson.getStartTime().equals(lesson1.getStartTime()) || lesson.getEndTime().isAfter(lesson1.getStartTime())) {
                         return true;
                     }
@@ -210,5 +211,9 @@ public class Index implements Serializable {
 
         Lesson L = new Lesson(indexNo, lessonType, day, StartDate, EndDate, location, week);
         lessons.add(L);
+    }
+
+    public void removeStudentFromAssigned(){
+
     }
 }

@@ -124,7 +124,7 @@ public class StudentControl {
             choice = scanner.nextInt();
             switch(choice){
                 case 1:
-                    student.addCourseRegistration(newCourse);
+                    student.addWaitList(newCourse);
                     break;
                 case 2:
                     System.out.println("Course not added.");
@@ -136,25 +136,29 @@ public class StudentControl {
     }
 
     public void dropCourse() {
+        System.out.println("Enter course code you want to drop:");
         String courseCode = scanner.nextLine();
         CourseRegistration courseToDrop = null;
 
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
-        ArrayList<CourseRegistration> registeredCourses = student.getCourseRegistrationList();
+        ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
 
+        boolean courseFound = false;
         //Check if course is registered, exits method if course is not registered
-        for(CourseRegistration course: registeredCourses){
+        for(CourseRegistration course: waitlistCourses){
             if(course.getCourseCode().equals(courseCode)){
                 courseToDrop = course;
+                courseFound = true;
+                break;
             }
-            else{
-                System.out.println("You are not registered for " + courseCode);
-                return;
-            }
+        }
+        if(!courseFound) {
+            System.out.println("You are not registered for " + courseCode);
+            return;
         }
 
 
-        for (CourseRegistration courseRegistered : registeredCourses) {
+        for (CourseRegistration courseRegistered : waitlistCourses) {
 
             if (courseRegistered.getCourseCode().equals(courseToDrop.getCourseCode())) {
                 Index index = courseRegistered.getIndex();
@@ -162,18 +166,17 @@ public class StudentControl {
 
                 //Branch to check if course is registered only or assigned.
                 //Case 1: Course is registered, but not assigned, we need to remove the course from registeredList
-                if (registeredCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
-                    student.removeCourseRegistration(courseToDrop);
+                if (waitlistCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
                     index.removeFromWaitlist(student);
                     System.out.printf("Removed %s from waitlist",courseToDrop.getCourseCode());
                     return;
 
                     //Case 2: Course is registered and assigned, we need to remove course from registeredList
                     //        assignedList and we need to update vacancy as well
-                } else if (registeredCourses.contains(courseToDrop) && assignedCourses.contains(courseToDrop)) {
-                    vacancies -= 1;
+                } else if (waitlistCourses.contains(courseToDrop) && assignedCourses.contains(courseToDrop)) {
+                    vacancies += 1;
                     index.setVacancy(vacancies);
-                    student.removeCourseRegistration(courseToDrop);
+                    //Remove student from index
                     student.removeAssignedCourse(courseToDrop);
                     System.out.printf("Dropped %s from assigned courses",courseToDrop.getCourseCode());
                     return;
@@ -186,22 +189,21 @@ public class StudentControl {
     }
     public void printRegisteredCourses(){
 
-        ArrayList<CourseRegistration>registeredCourses = student.getCourseRegistrationList();
+        ArrayList<CourseRegistration>waitListCourses = student.getWaitList();
         ArrayList<CourseRegistration>assignedCourses = student.getAssignedCourse();
 
         System.out.println("Course Code:\tCourse Name:\tIndex:\tAU:\tStatus");
 
         //Go through all the courses, each course is printed on a new line
-        for(CourseRegistration course: registeredCourses){
+        for(CourseRegistration course:assignedCourses){
             System.out.print(course);
-            if(assignedCourses.contains(course)){
-                System.out.printf("Assigned");
-            } else {
-                System.out.printf("On wait list");
-            }
-            System.out.println("");
-        }
+            System.out.println("Assigned");
 
+        }
+        for(CourseRegistration course: waitListCourses){
+            System.out.println(course);
+            System.out.println("Waitlist");
+        }
     }
 
     public void checkAvailableSlots(){
@@ -224,8 +226,15 @@ public class StudentControl {
             for(Index index: indexes){
                 //Index exists, print out the vacancies and exit the method
                 if(index.getIndexNo() == indexNo){
-                    System.out.printf("The number of available slots in Index %d of %s is %d",index.getIndexNo(),index.getCourseCode(),index.getVacancy());
+                    int total;
+                    if(index.getAssignedStudents() == null){
+                       total = index.getVacancy();
+                    } else {
+                        total = index.getVacancy() + index.getAssignedStudents().size();
+                    }
+                    System.out.printf("The number of available slots in Index %d of %s is %d/%d",index.getIndexNo(),index.getCourseCode(),index.getVacancy(),total);
                     return;
+
                 }
             }
         }
@@ -236,13 +245,12 @@ public class StudentControl {
 
     public void changeIndex(){
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
-        ArrayList<CourseRegistration> registeredCourses = student.getCourseRegistrationList();
-        Course course = null;
+        ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
+        CourseRegistration course = null;
         Index indexToDrop = null;
         Index indexToAdd = null;
         int currentIndexNo = 0;
         int desiredIndexNo = 0;
-
 
         while(true) {
             try {
@@ -258,6 +266,7 @@ public class StudentControl {
                 //Index is in assignedCourses, get the index to drop and get the course
                 if (assignedCourse.getIndex().getIndexNo() == currentIndexNo) {
                     indexToDrop = assignedCourse.getIndex();
+                    course = assignedCourse;
                     //From here need to get the course to see the other indexes
                 }
             }
@@ -270,12 +279,13 @@ public class StudentControl {
 
         }
 
+        //Load the index list of the course
         ArrayList<Index> indexList = new ArrayList<Index>();
 
         outer:
         while(true) {
             try {
-                System.out.println("Enter desired index no:");
+                System.out.println("Enter index no. to change to:");
                 desiredIndexNo = Integer.valueOf(scanner.nextLine());
                 break;
 
@@ -299,13 +309,14 @@ public class StudentControl {
                 continue;
 
             } else {
-
-                for(CourseRegistration registeredCourse: registeredCourses){
-                    if(registeredCourse.getIndex() != indexToDrop){
-                        if(registeredCourse.getIndex().checkClash(indexToAdd)){
+            //Change registeredCourse to waitlist
+                //Check for assignedCourse clash here, need to check for waitlistCourse clash.
+                for(CourseRegistration assignedCourse: assignedCourses){
+                    if(assignedCourse.getIndex() != indexToDrop){
+                        if(assignedCourse.getIndex().checkClash(indexToAdd)){
                             //The information of the assigned course
-                            String code = registeredCourse.getCourseCode();
-                            int indexNo = registeredCourse.getIndex().getIndexNo();
+                            String code = assignedCourse.getCourseCode();
+                            int indexNo = assignedCourse.getIndex().getIndexNo();
 
                             System.out.printf("Index %d of %s clashes with Index %d of %s! Please choose another index.%n",
                                     indexToAdd.getCourseCode(),indexToAdd.getIndexNo(),code,indexNo);
@@ -451,7 +462,7 @@ public class StudentControl {
 
         Index indextoCheck = null;
         ArrayList<CourseRegistration> assignedcourse = student.getAssignedCourse();
-        ArrayList<CourseRegistration> registeredcourse = student.getCourseRegistrationList();
+        ArrayList<CourseRegistration> registeredcourse = student.getWaitList();
 
         while(!indexExist) {
             while (true) {
