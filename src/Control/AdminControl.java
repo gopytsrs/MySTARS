@@ -320,27 +320,28 @@ public class AdminControl {
                         {
                             case(1):
                             {
-                                boolean schoolexist = false;
-                                System.out.println("Please key in new schoolname: ");
-                                String newschool = sc.next();
-                                for (School sch: schoolList)
-                                {
-                                    if (newschool.equals(sch.getSchoolName()))
-                                    {
-                                        schoolexist = true;
-                                        break;
+                                int option3=-1;
+                                for (int i = 0; i < schoolList.size(); i++) {
+                                    System.out.println(i + ":" + schoolList.get(i).getSchoolName());
+                                }
+                                System.out.println("Please key in the number beside the school you select: ");
+                                do {
+                                    String dummy = sc.next();
+                                    boolean check = isInteger(dummy);
+                                    if (check == false) {
+                                        System.out.println("Input should be an integer.");
+                                        continue;
                                     }
-                                }
-                                if (!schoolexist)
-                                {
-                                    System.out.println("The school does not exists.");
-                                    break;
-                                }
-                                else
-                                {
-                                    C.remove(option1);
-                                    System.out.println("School has been updated");      //not done
-                                }
+                                    option3 = Integer.parseInt(dummy);
+                                    if (option3 < 0 || option3 > schoolList.size()) {
+                                        System.out.println("Your data is out of range, try again.");
+                                    }
+                                } while (option3 < 0 || option3 > schoolList.size());
+                                schoolList.get(option3).getCourseList().add(C.get(option1));
+                                C.remove(option1);
+                                System.out.println("School has been updated");      //not done
+                                break;
+
                             }
                             case(2):
                             {
@@ -440,7 +441,7 @@ public class AdminControl {
                             }
                             case(5):
                             {
-                                System.out.println("Logout");
+                                System.out.println("End");
                                 break;
                             }
                             default:
