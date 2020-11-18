@@ -17,9 +17,9 @@ public class Student implements Serializable {
     private String nationality;
     private Account account;    //created within this class
     private ArrayList<CourseRegistration> assignedCourse;
-    private ArrayList<CourseRegistration> courseRegistrationList;
+    private ArrayList<CourseRegistration> waitList;
     private int noOfAUs = 0;
-    private final int MAXAU = 23;
+    private final int MAXAU = 21;
 
     public Student(String name, String matricNo, String email, int year, String schoolname, String gender,
                    String nationality) {
@@ -114,16 +114,16 @@ public class Student implements Serializable {
         this.assignedCourse.remove(course);
     }
 
-    public ArrayList<CourseRegistration> getCourseRegistrationList() {
-        return this.courseRegistrationList;
+    public ArrayList<CourseRegistration> getWaitList() {
+        return this.waitList;
     }
 
-    public void addCourseRegistration(CourseRegistration course) {
-        this.courseRegistrationList.add(course);
+    public void addWaitList(CourseRegistration course) {
+        this.waitList.add(course);
     }
 
-    public void removeCourseRegistration(CourseRegistration course) {
-        this.courseRegistrationList.remove(course);
+    public void removeWaitList(CourseRegistration course) {
+        this.waitList.remove(course);
     }
 
     public int getNoOfAU() {
