@@ -3,22 +3,24 @@ package Entity;
 import java.io.Serializable;
 
 public class Admin implements Serializable {
-    private int adminID;
+    private String adminName;
     private Account account;
 
-    public int getAdminID() {
-        return adminID;
+    public Admin(String adminName) {
+        setAdminName(adminName);
+        this.account = new Account(this.adminName, "password1", "admin");
     }
 
-    public void setAdminID(int adminID) {
-        this.adminID = adminID;
+    public String getAdminID() {
+        return this.adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public Account getAccount() {
-        return account;
+        return this.account;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
 }

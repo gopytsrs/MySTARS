@@ -190,7 +190,7 @@ public class AdminControl {
         //get school then get the school name
         //For now im just gonna random put something
         ArrayList<School> schoolList = new ArrayList<School>();//Placeholder: This line should Load schools from DB
-        outer:
+        /*outer:
         while(true){
             System.out.println("Enter the school:");
             schoolName = sc.nextLine();
@@ -208,7 +208,7 @@ public class AdminControl {
                     }
                 }
             }
-        }
+        }*/
 
         Student stud = new Student(name, matricNo, email, year, "School of Computer Science and Engineering", gender, nationality);
         System.out.println("Student is created");
@@ -289,7 +289,7 @@ public class AdminControl {
 
             switch (choice) {
                 case 1: {
-                    int option=-1;
+                    int option = -1;
                     ArrayList<Course> C;
                     for (int i = 0; i < schoolList.size(); i++) {
                         System.out.println(i + ":" + schoolList.get(i).getSchoolName());
@@ -328,8 +328,7 @@ public class AdminControl {
                     } while (option1 < 0 || option1 > C.size());
 
                     int pick = 0;
-                    while(pick!=5)
-                    {
+                    while (pick != 5) {
                         System.out.println("1. Update school");
                         System.out.println("2. Update Course code");
                         System.out.println("3. Update index Number");
@@ -337,11 +336,9 @@ public class AdminControl {
                         System.out.println("5. End");
                         System.out.println("Key in the option you would like to use below.");
                         pick = sc.nextInt();
-                        switch (pick)
-                        {
-                            case(1):
-                            {
-                                int option3=-1;
+                        switch (pick) {
+                            case (1): {
+                                int option3 = -1;
                                 for (int i = 0; i < schoolList.size(); i++) {
                                     System.out.println(i + ":" + schoolList.get(i).getSchoolName());
                                 }
@@ -364,33 +361,28 @@ public class AdminControl {
                                 break;
 
                             }
-                            case(2):
-                            {
+                            case (2): {
                                 boolean courseexist = false;
                                 System.out.println("Please key in new course code: ");
                                 String newcoursecode = sc.next();
-                                for (Course updatecourse: C)
-                                {
-                                    if (newcoursecode.equals(updatecourse.getCourseCode()))
-                                    {
+                                for (Course updatecourse : C) {
+                                    if (newcoursecode.equals(updatecourse.getCourseCode())) {
                                         courseexist = true;
                                         System.out.println("The course code already exists.");
                                         break;
                                     }
                                 }
-                                if (!courseexist)
-                                {
+                                if (!courseexist) {
                                     C.get(option1).setCourseCode(newcoursecode);
                                     System.out.println("Course Code has been updated");
                                 }
                                 break;
                             }
-                            case(3):
-                            {
-                                ArrayList <Index> SelectedIndex = new ArrayList<>();
+                            case (3): {
+                                ArrayList<Index> SelectedIndex = new ArrayList<>();
                                 SelectedIndex = C.get(option1).getIndexList();
                                 for (int j = 0; j < SelectedIndex.size(); j++) {
-                                    System.out.println(j + " : " + SelectedIndex.get(j).getIndexNo() );
+                                    System.out.println(j + " : " + SelectedIndex.get(j).getIndexNo());
                                 }
                                 System.out.println("Please key in the number beside the index you select: ");
                                 int option2 = -1;
@@ -409,28 +401,24 @@ public class AdminControl {
                                 boolean indexexist = false;
                                 System.out.println("Please key in new indexNo: ");
                                 int newIndex = sc.nextInt();
-                                for (Index I: SelectedIndex)
-                                {
-                                    if (newIndex == I.getIndexNo())
-                                    {
+                                for (Index I : SelectedIndex) {
+                                    if (newIndex == I.getIndexNo()) {
                                         indexexist = true;
                                         System.out.println("The indexNo already exists.");
                                         break;
                                     }
                                 }
-                                if (!indexexist)
-                                {
+                                if (!indexexist) {
                                     SelectedIndex.get(option2).setIndexNo(newIndex);
                                     System.out.println("indexNo has been updated");
                                 }
                                 break;
                             }
-                            case(4):
-                            {
-                                ArrayList <Index> SelectedIndex = new ArrayList<>();
+                            case (4): {
+                                ArrayList<Index> SelectedIndex = new ArrayList<>();
                                 SelectedIndex = C.get(option1).getIndexList();
                                 for (int j = 0; j < SelectedIndex.size(); j++) {
-                                    System.out.println(j + " : " + SelectedIndex.get(j).getIndexNo() );
+                                    System.out.println(j + " : " + SelectedIndex.get(j).getIndexNo());
                                 }
                                 System.out.println("Please key in the number beside the index you select: ");
                                 int option2 = -1;
@@ -448,31 +436,24 @@ public class AdminControl {
                                 } while (option2 < 0 || option2 > SelectedIndex.size());
                                 System.out.println("Please key in new Vacancy: ");
                                 int newVacancy = sc.nextInt();
-                                if (newVacancy<0 || newVacancy>30)
-                                {
+                                if (newVacancy < 0 || newVacancy > 30) {
                                     System.out.println("The vacancy is out of range.");
                                     break;
-                                }
-                                else
-                                {
+                                } else {
                                     SelectedIndex.get(option2).setVacancy(newVacancy);
                                     System.out.println("Vacancy has been updated");
                                 }
                                 break;
                             }
-                            case(5):
-                            {
+                            case (5): {
                                 System.out.println("End");
                                 break;
                             }
-                            default:
-                            {
+                            default: {
                                 System.out.println("Input is out of range");
                             }
                         }
                     }
-
-
 
 
                     break;
