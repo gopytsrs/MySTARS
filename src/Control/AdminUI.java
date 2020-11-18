@@ -8,12 +8,15 @@ import java.util.Scanner;
 
 public class AdminUI {
     Admin admin;
-    Student student;
     Course course;
+
+    public AdminUI(Admin admin){
+        this.admin = admin;
+    }
 
     public void adminMenu() {
         Scanner sc = new Scanner(System.in);
-        AdminControl acontrol = new AdminControl();
+        AdminControl acontrol = new AdminControl(admin);
         int choice = 0;
 
         do {

@@ -19,7 +19,7 @@ public class testmain {
             //open the display for admin
             //System.out.println("admin");
             Admin admin = Log.getAdmin();
-            AdminUI aUI = new AdminUI();
+            AdminUI aUI = new AdminUI(admin);
             System.out.println("Hello, " + Log.getUserName() + ". What would you like to do today?");
             aUI.adminMenu();
         }

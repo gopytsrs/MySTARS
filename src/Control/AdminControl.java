@@ -10,14 +10,13 @@ import java.util.Scanner;
 
 public class AdminControl {
     private int adminID;
-
+    private Admin admin;
     private ArrayList<School> schoolList = new ArrayList<>();
     private ArrayList<Student> studentList = new ArrayList<>();
 
     static Scanner sc = new Scanner(System.in);
 
-    public AdminControl() {
-
+    public AdminControl(Admin admin) {
         String schoolFileName = "database_school.bin"; //purely for testing
         String studentFileName = "database_student.bin";
         //Deserialise school data
