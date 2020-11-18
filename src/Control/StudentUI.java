@@ -1,15 +1,21 @@
 package Control;
 
-import java.util.Scanner;
-import Entity.*;
+import Entity.Course;
+import Entity.Student;
 
-public class StudentUI{
+import java.util.Scanner;
+
+public class StudentUI {
     Student student;
     Course course;
 
+    public StudentUI(Student s) {
+        this.student = s;
+    }
+
     public void studentMenu() {
         Scanner sc = new Scanner(System.in);
-        StudentControl scontrol = new StudentControl(student.getName());
+        StudentControl scontrol = new StudentControl(this.student);
         int choice = 0;
 
         do {
@@ -19,6 +25,7 @@ public class StudentUI{
             System.out.println("4. Check vacancies available");
             System.out.println("5. Change index number of course");
             System.out.println("6. Swap index number with another student");
+            //change pw
             System.out.println("7. Logout");
             System.out.println("Enter your choice here: ");
 
