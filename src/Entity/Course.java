@@ -110,6 +110,18 @@ public class Course implements Serializable {
         System.out.println("Index Added");
     }
 
+    public void printIndexList(){
+        if(this.indexList == null){
+            System.out.println("No indexes");
+        } else {
+            System.out.println(courseCode + "\t" + courseName + "\t" + au + "AU");
+            System.out.println("Indexes:\tVacancies");
+            for(Index index: indexList){
+                System.out.printf("%d\t%d",index.getIndexNo(),index.getVacancy());
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return courseCode +

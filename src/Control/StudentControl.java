@@ -74,6 +74,8 @@ public class StudentControl {
         int indexno;
         Course courseChosen = null;
         Index indexChosen = null;
+        ArrayList<CourseRegistration> registeredCourse = student.getAssignedCourse();
+        ArrayList<CourseRegistration> waitListCourse = student.getWaitList();
         boolean indexExists = false;
         boolean courseExists = false;
         do{
@@ -92,9 +94,25 @@ public class StudentControl {
                     break;
                 }
             }
+
+            for (CourseRegistration aboutToRegisterCourse: registeredCourse){
+                if (courseChosen.equals(aboutToRegisterCourse)){
+                    System.out.print("Already registered the course. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                    break;
+                }
+            }
+
+            for (CourseRegistration aboutToRegisterCourse: waitListCourse){
+                if (courseChosen.equals(aboutToRegisterCourse)){
+                    System.out.println("Already added this course to the waitlist. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                    break;
+                }
+            }
+
             if (!courseExists){
                 System.out.println("Please enter valid course code!");
             }
+
         }while(!courseExists);
 
         ArrayList<Index> indexList = courseChosen.getIndexList();
@@ -138,8 +156,6 @@ public class StudentControl {
     }
 
     public void dropCourse() {
-
-
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
         CourseRegistration courseToDrop = null;
@@ -165,7 +181,6 @@ public class StudentControl {
         }
 
         for (CourseRegistration waitlistCourse : waitlistCourses) {
-
             if (waitlistCourse.getCourseCode().equals(courseToDrop.getCourseCode())) {
                 Index index = waitlistCourse.getIndex();
                 int vacancies = index.getVacancy();
@@ -188,8 +203,6 @@ public class StudentControl {
                 }
                 break;
             }
-
-
         }
     }
     public void printRegisteredCourses(){
@@ -206,7 +219,6 @@ public class StudentControl {
         } else {
             for (CourseRegistration course : assignedCourses) {
                 System.out.print(course);
-                //system.out.println(" registered ")
             }
         }
 
@@ -221,7 +233,6 @@ public class StudentControl {
     }
 
     public void checkAvailableSlots(){
-
         int indexNo = 0;
         while (true) {
             try {
@@ -230,7 +241,6 @@ public class StudentControl {
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a index number.");
-
             }
         }
         ArrayList<Course> courses = new ArrayList<Course>();
@@ -263,93 +273,91 @@ public class StudentControl {
     }
 
     public void changeIndex(){
-        ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
-        ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
-        CourseRegistration course = null;
-        Index indexToDrop = null;
-        Index indexToAdd = null;
+        ArrayList<CourseRegistration> assigned = student.getAssignedCourse();
+        ArrayList<CourseRegistration> waitlist = student.getWaitList();
+
+        CourseRegistration courseR = null;
+        Index currentIndex = null;
+        Index desiredIndex = null;
         int currentIndexNo = 0;
         int desiredIndexNo = 0;
+        boolean validIndex = false;
 
-        while(true) {
-            try {
-                System.out.println("Enter current index no:");
+        while(!validIndex){
+            try{
+                printRegisteredCourses();
+                System.out.println("Enter index no. you want to change");
                 currentIndexNo = Integer.valueOf(scanner.nextLine());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input! Please enter a index number.");
+            } catch (NumberFormatException e){
+                System.out.println("Invalid input! Enter an index number.");
             }
-
-            // Check if index to drop is in the student's assigned courses
-            for(CourseRegistration assignedCourse: assignedCourses) {
-                //Index is in assignedCourses, get the index to drop and get the course
-                if (assignedCourse.getIndex().getIndexNo() == currentIndexNo) {
-                    indexToDrop = assignedCourse.getIndex();
-                    course = assignedCourse;
-                    //From here need to get the course to see the other indexes
+            for(CourseRegistration assignedCourse: assigned){
+                if(assignedCourse.getIndex().getIndexNo() == currentIndexNo){
+                    currentIndex = assignedCourse.getIndex();
+                    courseR = assignedCourse;
+                    validIndex = true;
                 }
             }
-            if(indexToDrop == null) {
-                System.out.printf("You are not registered for Index %d. Please enter a valid Index no.",currentIndexNo);
-                continue;
+            if(!validIndex)
+                System.out.println("You are not registered for that index! Enter a valid index number.");
+        }
+        ArrayList<Index> indexList = null;
+        ArrayList<Course> courses =  new ArrayList<Course>(); //This line should load all course from database
+        Course course = null;
+        for(Course c: courses){
+            if(c.getCourseCode().equals(courseR.getCourseCode())){
+                indexList = c.getIndexList();
+                course = c;
             }
-            else break;
-
-
         }
 
-        //Load the index list of the course
-        ArrayList<Index> indexList = new ArrayList<Index>();
+        validIndex = false;
 
-        outer:
-        while(true) {
-            try {
-                System.out.println("Enter index no. to change to:");
+        while(!validIndex){
+            try{
+                course.printIndexList();
+                System.out.println("Enter index no. to change to.");
                 desiredIndexNo = Integer.valueOf(scanner.nextLine());
-                break;
-
             } catch (NumberFormatException e){
-                System.out.println("Invalid input. Please enter a index number.");
-
+                System.out.println("Invalid index number!");
             }
 
             for(Index index: indexList){
                 if(index.getIndexNo() == desiredIndexNo){
-                    indexToAdd = index;
+                    desiredIndex = index;
+                    validIndex = true;
                 }
             }
-
-            if(indexToAdd == null){
-                System.out.printf("Index %d does not exist.%n",desiredIndexNo);
-                continue;
-
-            } else if(indexToAdd.getVacancy()==0){
-                System.out.println("Index %d has no vacancies. Please choose another index.");
-                continue;
-
+            if(!validIndex){
+                System.out.println("That index number does not exist!");
+            } else if (desiredIndex.getVacancy() == 0){
+                System.out.printf("Index %d has no vacancies",desiredIndex.getIndexNo());
+                validIndex = false;
             } else {
-            //Change registeredCourse to waitlist
-                //Check for assignedCourse clash here, need to check for waitlistCourse clash.
-                for(CourseRegistration assignedCourse: assignedCourses){
-                    if(assignedCourse.getIndex() != indexToDrop){
-                        if(assignedCourse.getIndex().checkClash(indexToAdd)){
-                            //The information of the assigned course
-                            String code = assignedCourse.getCourseCode();
-                            int indexNo = assignedCourse.getIndex().getIndexNo();
-
-                            System.out.printf("Index %d of %s clashes with Index %d of %s! Please choose another index.%n",
-                                    indexToAdd.getCourseCode(),indexToAdd.getIndexNo(),code,indexNo);
-                            continue outer;
-
-                        }
+                for(CourseRegistration c1: assigned){
+                    if(c1.getIndex()==desiredIndex){
+                        System.out.println("Already registered for index " + desiredIndex.getIndexNo());
+                        validIndex = false;
+                        break;
+                    } else if(c1.getIndex().checkClash(desiredIndex)){
+                        int indexNo = c1.getIndex().getIndexNo();
+                        String courseCode = c1.getCourseCode();
+                        System.out.printf("Clash found! %d of %s clashes with new index %d of %s.%n",indexNo,courseCode,desiredIndex.getIndexNo(),desiredIndex.getCourseCode());
+                        validIndex = false;
+                        break;
                     }
-                    //Logic here to process the changing of index.
-                    System.out.printf("Changed from Index %d to Index %d for %s",indexToDrop.getIndexNo(),indexToAdd.getIndexNo(),indexToDrop.getCourseCode());
-                    break outer;
                 }
+
+            }
+            if(validIndex) {
+                desiredIndex.assignStudent(student);
+                System.out.println(desiredIndex.getCourseCode());
+                System.out.printf("Changed from Index %d to Index %d", currentIndexNo, desiredIndexNo);
             }
         }
     }
+
+
 
     public void swapIndex(){
         // Enter peer's index to swap
@@ -392,6 +400,8 @@ public class StudentControl {
         boolean hisindexFound= false;
         int indextoSwapH;
         int indextoSwapM;
+        Index myindex = null;
+        Index hisIndex = null;
         ArrayList<CourseRegistration> assignedCourseSwap = studenttoswap.getAssignedCourse();
         ArrayList<CourseRegistration> assignedCourse = student.getAssignedCourse();
         CourseRegistration mycourseSwap = null;
@@ -411,6 +421,7 @@ public class StudentControl {
             for (CourseRegistration course : assignedCourseSwap) {
                 if (course.getIndex().getIndexNo() == indextoSwapH) {
                     hiscourseSwap = course;
+                    hisIndex = course.getIndex();
                     courseSwaptome = new CourseRegistration(course.getIndex(), course.getCourseCode(), course.getCourseName(), course.getAu(), student);
                     hisindexFound = true;
                     break;
@@ -435,6 +446,7 @@ public class StudentControl {
             for (CourseRegistration course : assignedCourse) {
                 if (course.getIndex().getIndexNo() == indextoSwapM) {
                     mycourseSwap = course;
+                    myindex = course.getIndex();
                     courseSwaptohim = new CourseRegistration(course.getIndex(), course.getCourseCode(), course.getCourseName(), course.getAu(), studenttoswap);
                     myindexFound = true;
                     break;
@@ -447,6 +459,7 @@ public class StudentControl {
         }
 
         int choice = 0;
+        boolean canSwap= false;
         do{
             System.out.println("Confirm to swap course?");
             System.out.println("1. Yes");
@@ -454,11 +467,20 @@ public class StudentControl {
             choice = scanner.nextInt();
             switch(choice) {
                 case 1:
-                    student.removeAssignedCourse(mycourseSwap);
-                    studenttoswap.removeAssignedCourse(hiscourseSwap);
-                    student.addAssignedCourse(courseSwaptome);
-                    studenttoswap.addAssignedCourse(courseSwaptohim);
-                    System.out.println("Index swap successfully.");
+                    int checkmyclash = student.checkTimeClash(hisIndex);
+                    int checkhisclash = studenttoswap.checkTimeClash(myindex);
+                    if (checkmyclash == 0 & checkhisclash ==0){
+                        canSwap = true;
+                    }
+                    if (canSwap){
+                        student.removeAssignedCourse(mycourseSwap);
+                        studenttoswap.removeAssignedCourse(hiscourseSwap);
+                        student.addAssignedCourse(courseSwaptome);
+                        studenttoswap.addAssignedCourse(courseSwaptohim);
+                        System.out.println("Index swap successfully.");
+                    } else{
+                        System.out.println("Timetable clashes for account");
+                    }
                     break;
                 case 2:
                     System.out.println("Index not swapped!");
@@ -468,99 +490,6 @@ public class StudentControl {
                     break;
             }
         }while (choice != 1|| choice!= 2);
-
-
-    }
-        
-
-
-    public void register(){
-
-    }
-
-    private void checkTimeClash(String indexno){
-        boolean coursefound = false;
-        ArrayList<Index> indexlist = null;
-
-        while(!coursefound) {
-            System.out.println("Enter course code :");
-            String coursecode = scanner.next();
-
-            // Get list of index for course
-            for (Course course : courseList) {
-                if (course.getCourseCode() == coursecode) {
-                    indexlist = course.getIndexList();
-                    System.out.println("List of indexes in " + coursecode + " are:");
-                    for (Index index : indexlist) {
-                        System.out.println(index.getIndexNo());
-                    }
-                    coursefound = true;
-                    break;
-                }
-            }
-            if (!coursefound) {
-                System.out.println("Enter a valid course.");
-            }
-
-        }
-
-        int checkindex = 0;
-        boolean indexExist = false;
-        boolean clashAssigned = false;
-        boolean clashRegistered = false;
-
-        Index indextoCheck = null;
-        ArrayList<CourseRegistration> assignedcourse = student.getAssignedCourse();
-        ArrayList<CourseRegistration> registeredcourse = student.getWaitList();
-
-        while(!indexExist) {
-            while (true) {
-                try {
-                    System.out.println("Enter Index number to check:");
-                    checkindex = scanner.nextInt();
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a index number.");
-                }
-            }
-
-            for (Index index : indexlist) {
-                if (index.getIndexNo() == checkindex) {
-                    indextoCheck = index;
-                    indexExist = true;
-                    break;
-                }
-            }
-            if (!indexExist){
-                System.out.println("Index does not exists");
-            }
-        }
-
-        // Check clash in assigned course
-        for (CourseRegistration courseA: assignedcourse){
-            if (courseA.getIndex().checkClash(indextoCheck)){
-                System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseA.getIndex().getIndexNo());
-                clashAssigned = true;
-            }
-        }
-
-        // Check clash in registered course
-        for(CourseRegistration courseR: registeredcourse){
-            if (courseR.getIndex().checkClash(indextoCheck)){
-                System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseR.getIndex().getIndexNo());
-                clashRegistered = true;
-            }
-        }
-
-        if (!clashAssigned & !clashRegistered){
-            System.out.println("Index does not clash with current timetable.");
-        }
-        else if (clashAssigned){
-            System.out.println("Index clash with assigned timetable.");
-        }
-        else if(clashRegistered){
-            System.out.println("Index clash with registered timetable.");
-        }
 
     }
 
