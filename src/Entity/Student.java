@@ -105,12 +105,21 @@ public class Student implements Serializable {
         return this.assignedCourse;
     }
 
-    public void addAssignedCourse(CourseRegistration course) {
-        this.assignedCourse.add(course);
+    public boolean addAssignedCourse(CourseRegistration course) {
+        int newau = this.noOfAUs + course.getAu();
+        if (newau<=MAXAU) {
+            this.assignedCourse.add(course);
+            this.noOfAUs += course.getAu();
+            return true;
+        } else{
+            System.out.println("Exceeded maximum AU allowable.");
+            return false;
+        }
     }
 
     public void removeAssignedCourse(CourseRegistration course) {
         this.assignedCourse.remove(course);
+        this.noOfAUs -= course.getAu();
     }
 
     public ArrayList<CourseRegistration> getWaitList() {
@@ -140,7 +149,7 @@ public class Student implements Serializable {
 
         int checkindex = 0;
         boolean clashAssigned = false;
-        boolean clashRegistered = false;
+        boolean clashWait= false;
 
         Index indextoCheck = null;
         ArrayList<CourseRegistration> assignedcourse = this.getAssignedCourse();
@@ -159,17 +168,17 @@ public class Student implements Serializable {
         for (CourseRegistration courseR : registeredcourse) {
             if (courseR.getIndex().checkClash(indextoCheck)) {
                 System.out.println(indextoCheck.getIndexNo() + " clashes with " + courseR.getIndex().getIndexNo());
-                clashRegistered = true;
+                clashWait = true;
             }
         }
 
-        if (!clashAssigned & !clashRegistered) {
+        if (!clashAssigned & !clashWait) {
             System.out.println("Index does not clash with current timetable.");
             return noclash;
         } else if (clashAssigned) {
             System.out.println("Index clash with assigned timetable.");
             return clashA;
-        } else if (clashRegistered) {
+        } else if (clashWait) {
             System.out.println("Index clash with waitlist timetable.");
             return clashW;
         } else{

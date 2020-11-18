@@ -137,6 +137,7 @@ public class StudentControl {
 
         CourseRegistration newCourse = new CourseRegistration(indexChosen, indexChosen.getCourseCode(), courseChosen.getCourseName(), courseChosen.getAu(), student);
         int choice = 0;
+        boolean canAdd = false;
         do{
             System.out.println("Confirm to add " + indexChosen.getCourseCode() + " index " +indexChosen.getIndexNo() +"?");
             System.out.println("1. Yes");
@@ -144,7 +145,19 @@ public class StudentControl {
             choice = scanner.nextInt();
             switch(choice){
                 case 1:
-                    student.addWaitList(newCourse);
+                    int checkclash = student.checkTimeClash(newCourse.getIndex());
+                    if (checkclash == 0){
+                        canAdd = true;
+                    }
+                    if (canAdd){
+                        if (student.addAssignedCourse(newCourse)){
+                            indexChosen.assignStudent(student);
+                        }
+                        else{
+                            student.addWaitList(newCourse);
+                            indexChosen.addToWaitlist(student);
+                        }
+                    }
                     break;
                 case 2:
                     System.out.println("Course not added.");
