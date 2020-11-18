@@ -211,6 +211,7 @@ public class StudentControl {
 
                 if (waitlistCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
                     index.removeFromWaitlist(student);
+                    student.removeWaitList(courseToDrop);
                     System.out.printf("Removed %s from waitlist",courseToDrop.getCourseCode());
                     return;
 
@@ -227,10 +228,12 @@ public class StudentControl {
             }
         }
 
-        if (courseToDrop.getIndex().getWaitList() != null && courseToDrop.getIndex().getVacancy() != 0)
+        if (courseToDrop.getIndex().getWaitList() != null && courseToDrop.getIndex().getVacancy() > 0)
         {
             Student Firstinlist = courseToDrop.getIndex().getWaitList().remove();
             courseToDrop.getIndex().assignStudent(Firstinlist);
+            Firstinlist.addAssignedCourse(courseToDrop);
+            Firstinlist.removeWaitList(courseToDrop);
             notificationControl n = new notificationControl(Firstinlist,courseToDrop);
         }
     }
@@ -279,10 +282,6 @@ public class StudentControl {
             for(Index index: indexes){
                 //Index exists, print out the vacancies and exit the method
                 if(index.getIndexNo() == indexNo){
-
-
-                    System.out.printf("The number of available slots in Index %d of %s is %d",index.getIndexNo(),index.getCourseCode(),index.getVacancy());
-
                     int total;
                     if(index.getAssignedStudents() == null){
                        total = index.getVacancy();
@@ -319,7 +318,7 @@ public class StudentControl {
         while(!validIndex){
             try{
                 printRegisteredCourses();
-                System.out.println("Enter index no. you want to change");
+                System.out.println("Enter current index no. you have");
                 currentIndexNo = Integer.valueOf(scanner.nextLine());
             } catch (NumberFormatException e){
                 System.out.println("Invalid input! Enter an index number.");
@@ -335,9 +334,9 @@ public class StudentControl {
                 System.out.println("You are not registered for that index! Enter a valid index number.");
         }
         ArrayList<Index> indexList = null;
-        ArrayList<Course> courses =  new ArrayList<Course>(); //This line should load all course from database
+
         Course course = null;
-        for(Course c: courses){
+        for(Course c: courseList){
             if(c.getCourseCode().equals(courseR.getCourseCode())){
                 indexList = c.getIndexList();
                 course = c;
