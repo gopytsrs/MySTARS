@@ -150,6 +150,7 @@ public class AdminControl {
         int year;
         String gender;
         String nationality;
+        String schoolName;
 
         //List all students after addition
         // Account for existing student
@@ -188,6 +189,26 @@ public class AdminControl {
         //Need add schoolname
         //get school then get the school name
         //For now im just gonna random put something
+        ArrayList<School> schoolList = new ArrayList<School>();//Placeholder: This line should Load schools from DB
+        outer:
+        while(true){
+            System.out.println("Enter the school:");
+            schoolName = sc.nextLine();
+            if(schoolName.isEmpty()){
+                System.out.println("School name cannot be empty!");
+                continue;
+            }
+            if(!schoolName.isEmpty()){
+                for(School school: schoolList){
+                    if(schoolName == school.getSchoolName()){
+                        break outer;
+                    } else {
+                        System.out.println(schoolName + "is not a valid school! Please re-enter.");
+                        continue outer;
+                    }
+                }
+            }
+        }
 
         Student stud = new Student(name, matricNo, email, year, "School of Computer Science and Engineering", gender, nationality);
         System.out.println("Student is created");
