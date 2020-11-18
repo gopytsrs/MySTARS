@@ -295,6 +295,9 @@ public class StudentControl {
     public void changeIndex(){
         ArrayList<CourseRegistration> assigned = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlist = student.getWaitList();
+        ArrayList<CourseRegistration> all = new ArrayList<>();
+        all.addAll(assigned);
+        all.addAll(waitlist);
 
         CourseRegistration courseR = null;
         Index currentIndex = null;
@@ -311,10 +314,10 @@ public class StudentControl {
             } catch (NumberFormatException e){
                 System.out.println("Invalid input! Enter an index number.");
             }
-            for(CourseRegistration assignedCourse: assigned){
-                if(assignedCourse.getIndex().getIndexNo() == currentIndexNo){
-                    currentIndex = assignedCourse.getIndex();
-                    courseR = assignedCourse;
+            for(CourseRegistration courseRegistration: all){
+                if(courseRegistration.getIndex().getIndexNo() == currentIndexNo){
+                    currentIndex = courseRegistration.getIndex();
+                    courseR = courseRegistration;
                     validIndex = true;
                 }
             }
@@ -373,6 +376,11 @@ public class StudentControl {
                 desiredIndex.assignStudent(student);
                 System.out.println(desiredIndex.getCourseCode());
                 System.out.printf("Changed from Index %d to Index %d", currentIndexNo, desiredIndexNo);
+                if(currentIndex.getAssignedStudents().contains(student)){
+                    currentIndex.removeStudentFromAssigned(student);
+                } else if (currentIndex.getWaitList().contains(student)){
+                    currentIndex.removeFromWaitlist(student);
+                }
             }
         }
     }
