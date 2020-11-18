@@ -73,6 +73,11 @@ public class Index implements Serializable {
         waitList.remove(student);
     }
 
+    public void assignStudent(Student student){
+        this.assignedStudents.add(student);
+        this.vacancy -= 1;
+    }
+
 //    public LocalDateTime[] getLessonTime(Lesson lessons){
 //        return new LocalDateTime[3];
 //    }
