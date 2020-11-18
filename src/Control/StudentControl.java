@@ -224,7 +224,8 @@ public class StudentControl {
             for(Index index: indexes){
                 //Index exists, print out the vacancies and exit the method
                 if(index.getIndexNo() == indexNo){
-                    System.out.printf("The number of available slots in Index %d of %s is %d",index.getIndexNo(),index.getCourseCode(),index.getVacancy());
+
+                    System.out.printf("The number of available slots in Index %d of %s is %d",index.getIndexNo(),index.getCourseCode(),index.getVacancy()+"/"+);
                     return;
                 }
             }
