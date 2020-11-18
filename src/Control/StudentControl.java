@@ -295,6 +295,7 @@ public class StudentControl {
     public void changeIndex(){
         ArrayList<CourseRegistration> assigned = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlist = student.getWaitList();
+        //Join two together so easier to check clash -> only need one for loop
         ArrayList<CourseRegistration> all = new ArrayList<>();
         all.addAll(assigned);
         all.addAll(waitlist);
@@ -357,7 +358,7 @@ public class StudentControl {
                 System.out.printf("Index %d has no vacancies",desiredIndex.getIndexNo());
                 validIndex = false;
             } else {
-                for(CourseRegistration c1: assigned){
+                for(CourseRegistration c1: all){
                     if(c1.getIndex()==desiredIndex){
                         System.out.println("Already registered for index " + desiredIndex.getIndexNo());
                         validIndex = false;
