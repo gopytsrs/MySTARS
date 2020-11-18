@@ -169,6 +169,10 @@ public class StudentControl {
     public void dropCourse() {
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
+        ArrayList<CourseRegistration> all = new ArrayList<CourseRegistration>();
+        all.addAll(assignedCourses);
+        all.addAll(waitlistCourses);
+
         CourseRegistration courseToDrop = null;
         boolean courseFound = false;
 
@@ -178,7 +182,7 @@ public class StudentControl {
             System.out.println("Enter course code you want to drop:");
             String courseCode = scanner.nextLine();
 
-            for (CourseRegistration course : waitlistCourses) {
+            for (CourseRegistration course : all) {
                 if (course.getCourseCode().equals(courseCode)) {
                     courseToDrop = course;
                     courseFound = true;
@@ -191,9 +195,9 @@ public class StudentControl {
             }
         }
 
-        for (CourseRegistration waitlistCourse : waitlistCourses) {
-            if (waitlistCourse.getCourseCode().equals(courseToDrop.getCourseCode())) {
-                Index index = waitlistCourse.getIndex();
+        for (CourseRegistration course : all) {
+            if (course.getCourseCode().equals(courseToDrop.getCourseCode())) {
+                Index index = course.getIndex();
                 int vacancies = index.getVacancy();
 
                 //Branch to check if course is registered only or assigned.
