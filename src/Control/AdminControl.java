@@ -305,15 +305,16 @@ public class AdminControl {
                             System.out.println("Your data is out of range, try again.");
                         }
                     } while (option1 < 0 || option1 > C.size());
-                    System.out.println("Key in the option you would like to use below.");
-                    System.out.println("1. Update school");
-                    System.out.println("2. Update Course code");
-                    System.out.println("3. Update index Number");
-                    System.out.println("4. Update vacancy");
-                    System.out.println("5. End");
+
                     int pick = 0;
                     while(pick!=5)
                     {
+                        System.out.println("1. Update school");
+                        System.out.println("2. Update Course code");
+                        System.out.println("3. Update index Number");
+                        System.out.println("4. Update vacancy");
+                        System.out.println("5. End");
+                        System.out.println("Key in the option you would like to use below.");
                         pick = sc.nextInt();
                         switch (pick)
                         {
@@ -338,7 +339,7 @@ public class AdminControl {
                                 else
                                 {
                                     C.remove(option1);
-
+                                    System.out.println("School has been updated");      //not done
                                 }
                             }
                             case(2):
@@ -358,7 +359,7 @@ public class AdminControl {
                                 if (!courseexist)
                                 {
                                     C.get(option1).setCourseCode(newcoursecode);
-
+                                    System.out.println("Course Code has been updated");
                                 }
                                 break;
                             }
@@ -385,10 +386,10 @@ public class AdminControl {
                                 } while (option2 < 0 || option2 > SelectedIndex.size());
                                 boolean indexexist = false;
                                 System.out.println("Please key in new indexNo: ");
-                                String newIndex = sc.next();
+                                int newIndex = sc.nextInt();
                                 for (Index I: SelectedIndex)
                                 {
-                                    if (newIndex.equals(I.getIndexNo()))
+                                    if (newIndex == I.getIndexNo())
                                     {
                                         indexexist = true;
                                         System.out.println("The indexNo already exists.");
@@ -398,6 +399,7 @@ public class AdminControl {
                                 if (!indexexist)
                                 {
                                     SelectedIndex.get(option2).setIndexNo(newIndex);
+                                    System.out.println("indexNo has been updated");
                                 }
                                 break;
                             }
@@ -422,24 +424,29 @@ public class AdminControl {
                                         System.out.println("Your data is out of range, try again.");
                                     }
                                 } while (option2 < 0 || option2 > SelectedIndex.size());
-                                System.out.println("Please key in new indexNo: ");
-                                String newIndex = sc.next();
-                                for (Index I: SelectedIndex)
+                                System.out.println("Please key in new Vacancy: ");
+                                int newVacancy = sc.nextInt();
+                                if (newVacancy<0 || newVacancy>30)
                                 {
-                                    if (newIndex.equals(I.getIndexNo()))
-                                    {
-                                        indexexist = true;
-                                        System.out.println("The indexNo already exists.");
-                                        break;
-                                    }
+                                    System.out.println("The vacancy is out of range.");
+                                    break;
                                 }
-                                if (!indexexist)
+                                else
                                 {
-                                    SelectedIndex.get(option2).setIndexNo(newIndex);
+                                    SelectedIndex.get(option2).setVacancy(newVacancy);
+                                    System.out.println("Vacancy has been updated");
                                 }
                                 break;
                             }
                             case(5):
+                            {
+                                System.out.println("Logout");
+                                break;
+                            }
+                            default:
+                            {
+                                System.out.println("Input is out of range");
+                            }
                         }
                     }
 
