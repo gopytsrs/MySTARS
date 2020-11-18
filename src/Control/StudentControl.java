@@ -192,17 +192,26 @@ public class StudentControl {
         ArrayList<CourseRegistration>waitListCourses = student.getWaitList();
         ArrayList<CourseRegistration>assignedCourses = student.getAssignedCourse();
 
-        System.out.println("Course Code:\tCourse Name:\tIndex:\tAU:\tStatus");
+        System.out.println("Course Code:\tCourse Name:\tIndex:\tAU:");
 
         //Go through all the courses, each course is printed on a new line
-        for(CourseRegistration course:assignedCourses){
-            System.out.print(course);
-            System.out.println("Assigned");
-
+        System.out.println("Assigned Courses: ");
+        if (assignedCourses == null){
+            System.out.println("No courses registered.");
+        } else {
+            for (CourseRegistration course : assignedCourses) {
+                System.out.print(course);
+                //system.out.println(" registered ")
+            }
         }
-        for(CourseRegistration course: waitListCourses){
-            System.out.println(course);
-            System.out.println("Waitlist");
+
+        System.out.println("Waitlist Courses: ");
+        if (waitListCourses == null){
+            System.out.println("No courses in the waitlist.");
+        } else {
+            for (CourseRegistration course : waitListCourses) {
+                System.out.println(course);
+            }
         }
     }
 
