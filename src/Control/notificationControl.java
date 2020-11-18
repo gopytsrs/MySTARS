@@ -1,7 +1,8 @@
 package Control;
 
+import Entity.CourseRegistration;
 import java.util.Properties;
-
+import Entity.Student;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -11,7 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class notificationControl {
-    public static void main (String args[])
+    public notificationControl(Student S, CourseRegistration C)
     {
         final String username = "cz2002testemail@gmail.com"; // to be added
         final String password = "ilovebcg2"; // to be added
@@ -32,16 +33,16 @@ public class notificationControl {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("epiclol1998@gmail.com"));
+            message.setFrom(new InternetAddress("cz2002testemail@gmail.com.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("jtchen002@e.ntu.edu.sg")); // to be added an email addr
-            message.setSubject("Testing Subject");
-            message.setText("Dear Jee Wern,"
-                    + "\n\n hello from the test mail!");
+                    InternetAddress.parse(S.getEmail())); // to be added an email addr
+            message.setSubject("Assigning of course");
+            message.setText("Dear "+S.getName()+","
+                    + "\n\n Congratulations, you have attained a spot in "+ C.getCourseName() +","+C.getCourseCode()+","+C.getIndex());
 
             Transport.send(message);
 
-            System.out.println("Done");
+            //System.out.println("Done");
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
