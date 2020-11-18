@@ -213,7 +213,8 @@ public class Index implements Serializable {
         lessons.add(L);
     }
 
-    public void removeStudentFromAssigned(){
-
+    public void removeStudentFromAssigned(Student student){
+        this.getAssignedStudents().remove(student);
+        this.vacancy += 1;
     }
 }

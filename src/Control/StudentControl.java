@@ -136,47 +136,50 @@ public class StudentControl {
     }
 
     public void dropCourse() {
-        System.out.println("Enter course code you want to drop:");
-        String courseCode = scanner.nextLine();
-        CourseRegistration courseToDrop = null;
+
 
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
-
+        CourseRegistration courseToDrop = null;
         boolean courseFound = false;
+
+
         //Check if course is registered, exits method if course is not registered
-        for(CourseRegistration course: waitlistCourses){
-            if(course.getCourseCode().equals(courseCode)){
-                courseToDrop = course;
-                courseFound = true;
-                break;
+        while(!courseFound) {
+            System.out.println("Enter course code you want to drop:");
+            String courseCode = scanner.nextLine();
+
+            for (CourseRegistration course : waitlistCourses) {
+                if (course.getCourseCode().equals(courseCode)) {
+                    courseToDrop = course;
+                    courseFound = true;
+                    break;
+                }
+            }
+            if (!courseFound) {
+                System.out.println("You are not registered for " + courseCode);
+                return;
             }
         }
-        if(!courseFound) {
-            System.out.println("You are not registered for " + courseCode);
-            return;
-        }
 
+        for (CourseRegistration waitlistCourse : waitlistCourses) {
 
-        for (CourseRegistration courseRegistered : waitlistCourses) {
-
-            if (courseRegistered.getCourseCode().equals(courseToDrop.getCourseCode())) {
-                Index index = courseRegistered.getIndex();
+            if (waitlistCourse.getCourseCode().equals(courseToDrop.getCourseCode())) {
+                Index index = waitlistCourse.getIndex();
                 int vacancies = index.getVacancy();
 
                 //Branch to check if course is registered only or assigned.
-                //Case 1: Course is registered, but not assigned, we need to remove the course from registeredList
+
                 if (waitlistCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
                     index.removeFromWaitlist(student);
                     System.out.printf("Removed %s from waitlist",courseToDrop.getCourseCode());
                     return;
 
-                    //Case 2: Course is registered and assigned, we need to remove course from registeredList
-                    //        assignedList and we need to update vacancy as well
-                } else if (waitlistCourses.contains(courseToDrop) && assignedCourses.contains(courseToDrop)) {
+                } else if (assignedCourses.contains(courseToDrop)) {
                     vacancies += 1;
                     index.setVacancy(vacancies);
                     //Remove student from index
+                    index.removeStudentFromAssigned(student);
                     student.removeAssignedCourse(courseToDrop);
                     System.out.printf("Dropped %s from assigned courses",courseToDrop.getCourseCode());
                     return;
