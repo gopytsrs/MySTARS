@@ -13,8 +13,8 @@ import javax.mail.internet.MimeMessage;
 public class notificationControl {
     public static void main (String args[])
     {
-        final String username = "epiclol1998@gmail.com"; // to be added
-        final String password = "mrshark1998"; // to be added
+        final String username = "cz2002testemail@gmail.com"; // to be added
+        final String password = "ilovebcg2"; // to be added
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -37,7 +37,7 @@ public class notificationControl {
                     InternetAddress.parse("jtchen002@e.ntu.edu.sg")); // to be added an email addr
             message.setSubject("Testing Subject");
             message.setText("Dear Jee Wern,"
-                    + "\n\n Imma SneK Snek dat ass!");
+                    + "\n\n hello from the test mail!");
 
             Transport.send(message);
 
