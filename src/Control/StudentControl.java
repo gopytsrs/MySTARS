@@ -198,7 +198,6 @@ public class StudentControl {
         for (CourseRegistration course : all) {
             if (course.getCourseCode().equals(courseToDrop.getCourseCode())) {
                 Index index = course.getIndex();
-                int vacancies = index.getVacancy();
 
                 //Branch to check if course is registered only or assigned.
 
@@ -211,8 +210,6 @@ public class StudentControl {
                     return;
 
                 } else if (assignedCourses.contains(courseToDrop)) {
-                    vacancies += 1;
-                    index.setVacancy(vacancies);
                     //Remove student from index
                     index.removeStudentFromAssigned(student);
                     student.removeAssignedCourse(courseToDrop);
