@@ -222,7 +222,7 @@ public class AdminControl {
                         System.out.println((i + 1) + ":" + schoolList.get(i).getSchoolName());
                     }
 
-                    choice = -1;
+                    int option = -1;
                     do {
                         String dummyChoice = sc.next();
                         boolean check = isInteger(dummyChoice);
@@ -230,15 +230,15 @@ public class AdminControl {
                             System.out.println("Please enter a valid choice.");
                             continue;
                         }
-                        choice = Integer.parseInt(dummyChoice);
-                        choice -= 1;
-                        if (choice < 0 || choice > noOfSchool) {
+                        option = Integer.parseInt(dummyChoice);
+                        option -= 1;
+                        if (option < 0 || option > noOfSchool) {
                             System.out.println("Invalid choice! Select school again: ");
                         }
-                    } while (choice < 0 || choice > noOfSchool);
+                    } while (option < 0 || option > noOfSchool);
 
-                    School tempsch = schoolList.get(choice);
-                    schoolList.get(choice).addCourse();
+                    School tempsch = schoolList.get(option);
+                    schoolList.get(option).addCourse();
                     System.out.println("All courses currently: ");
                     ArrayList<Course> tempCourseList = tempsch.getCourseList();
                     for (Course c : tempCourseList) {
@@ -267,10 +267,187 @@ public class AdminControl {
             choice = sc.nextInt();
 
             switch (choice) {
-                case 1:
+                case 1: {
+                    int option=-1;
+                    ArrayList<Course> C;
+                    for (int i = 0; i < schoolList.size(); i++) {
+                        System.out.println(i + ":" + schoolList.get(i).getSchoolName());
+                    }
+                    System.out.println("Please key in the number beside the school you select: ");
+                    do {
+                        String dummy = sc.next();
+                        boolean check = isInteger(dummy);
+                        if (check == false) {
+                            System.out.println("Input should be an integer.");
+                            continue;
+                        }
+                        option = Integer.parseInt(dummy);
+                        if (option < 0 || option > schoolList.size()) {
+                            System.out.println("Your data is out of range, try again.");
+                        }
+                    } while (option < 0 || option > schoolList.size());
+                    C = schoolList.get(option).getCourseList();
+
+                    for (int j = 0; j < C.size(); j++) {
+                        System.out.println(j + " : " + C.get(j).getCourseName() + " , " + C.get(j).getCourseCode());
+                    }
+                    System.out.println("Please key in the number beside the course you select: ");
+                    int option1 = -1;
+                    do {
+                        String dummy = sc.next();
+                        boolean check = isInteger(dummy);
+                        if (check == false) {
+                            System.out.println("Input should be an integer.");
+                            continue;
+                        }
+                        option1 = Integer.parseInt(dummy);
+                        if (option1 < 0 || option1 > C.size()) {
+                            System.out.println("Your data is out of range, try again.");
+                        }
+                    } while (option1 < 0 || option1 > C.size());
+                    System.out.println("Key in the option you would like to use below.");
+                    System.out.println("1. Update school");
+                    System.out.println("2. Update Course code");
+                    System.out.println("3. Update index Number");
+                    System.out.println("4. Update vacancy");
+                    System.out.println("5. End");
+                    int pick = 0;
+                    while(pick!=5)
+                    {
+                        pick = sc.nextInt();
+                        switch (pick)
+                        {
+                            case(1):
+                            {
+                                boolean schoolexist = false;
+                                System.out.println("Please key in new schoolname: ");
+                                String newschool = sc.next();
+                                for (School sch: schoolList)
+                                {
+                                    if (newschool.equals(sch.getSchoolName()))
+                                    {
+                                        schoolexist = true;
+                                        break;
+                                    }
+                                }
+                                if (!schoolexist)
+                                {
+                                    System.out.println("The school does not exists.");
+                                    break;
+                                }
+                                else
+                                {
+                                    C.remove(option1);
+
+                                }
+                            }
+                            case(2):
+                            {
+                                boolean courseexist = false;
+                                System.out.println("Please key in new course code: ");
+                                String newcoursecode = sc.next();
+                                for (Course updatecourse: C)
+                                {
+                                    if (newcoursecode.equals(updatecourse.getCourseCode()))
+                                    {
+                                        courseexist = true;
+                                        System.out.println("The course code already exists.");
+                                        break;
+                                    }
+                                }
+                                if (!courseexist)
+                                {
+                                    C.get(option1).setCourseCode(newcoursecode);
+
+                                }
+                                break;
+                            }
+                            case(3):
+                            {
+                                ArrayList <Index> SelectedIndex = new ArrayList<>();
+                                SelectedIndex = C.get(option1).getIndexList();
+                                for (int j = 0; j < SelectedIndex.size(); j++) {
+                                    System.out.println(j + " : " + SelectedIndex.get(j).getIndexNo() );
+                                }
+                                System.out.println("Please key in the number beside the index you select: ");
+                                int option2 = -1;
+                                do {
+                                    String dummy = sc.next();
+                                    boolean check = isInteger(dummy);
+                                    if (check == false) {
+                                        System.out.println("Input should be an integer.");
+                                        continue;
+                                    }
+                                    option2 = Integer.parseInt(dummy);
+                                    if (option2 < 0 || option2 > SelectedIndex.size()) {
+                                        System.out.println("Your data is out of range, try again.");
+                                    }
+                                } while (option2 < 0 || option2 > SelectedIndex.size());
+                                boolean indexexist = false;
+                                System.out.println("Please key in new indexNo: ");
+                                String newIndex = sc.next();
+                                for (Index I: SelectedIndex)
+                                {
+                                    if (newIndex.equals(I.getIndexNo()))
+                                    {
+                                        indexexist = true;
+                                        System.out.println("The indexNo already exists.");
+                                        break;
+                                    }
+                                }
+                                if (!indexexist)
+                                {
+                                    SelectedIndex.get(option2).setIndexNo(newIndex);
+                                }
+                                break;
+                            }
+                            case(4):
+                            {
+                                ArrayList <Index> SelectedIndex = new ArrayList<>();
+                                SelectedIndex = C.get(option1).getIndexList();
+                                for (int j = 0; j < SelectedIndex.size(); j++) {
+                                    System.out.println(j + " : " + SelectedIndex.get(j).getIndexNo() );
+                                }
+                                System.out.println("Please key in the number beside the index you select: ");
+                                int option2 = -1;
+                                do {
+                                    String dummy = sc.next();
+                                    boolean check = isInteger(dummy);
+                                    if (check == false) {
+                                        System.out.println("Input should be an integer.");
+                                        continue;
+                                    }
+                                    option2 = Integer.parseInt(dummy);
+                                    if (option2 < 0 || option2 > SelectedIndex.size()) {
+                                        System.out.println("Your data is out of range, try again.");
+                                    }
+                                } while (option2 < 0 || option2 > SelectedIndex.size());
+                                System.out.println("Please key in new indexNo: ");
+                                String newIndex = sc.next();
+                                for (Index I: SelectedIndex)
+                                {
+                                    if (newIndex.equals(I.getIndexNo()))
+                                    {
+                                        indexexist = true;
+                                        System.out.println("The indexNo already exists.");
+                                        break;
+                                    }
+                                }
+                                if (!indexexist)
+                                {
+                                    SelectedIndex.get(option2).setIndexNo(newIndex);
+                                }
+                                break;
+                            }
+                            case(5):
+                        }
+                    }
+
+
+
 
                     break;
-
+                }
                 case 2:
                     System.out.println("Exiting...");
                     break;
