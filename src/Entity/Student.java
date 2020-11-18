@@ -186,4 +186,8 @@ public class Student implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s\t%s\t%d\t%s\t%s\t",name,schoolName,year,gender,nationality);
+    }
 }
