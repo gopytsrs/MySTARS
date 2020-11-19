@@ -186,49 +186,28 @@ public class AdminControl {
         System.out.println("Enter student's nationality: ");
         nationality = sc.nextLine();
 
-        //Need add schoolname
-        //get school then get the school name
-        //For now im just gonna random put something
-        ArrayList<School> schoolList = new ArrayList<School>();//Placeholder: This line should Load schools from DB
-        /*outer:
-        while(true){
-            System.out.println("Enter the school:");
-            schoolName = sc.nextLine();
-            if(schoolName.isEmpty()){
-                System.out.println("School name cannot be empty!");
+
+        System.out.println("Which school will they attend? ");
+        for (int p = 0; p < schoolList.size(); p++)
+        {
+            System.out.println(p+" . "+schoolList.get(p).getSchoolName());
+        }
+        System.out.println("Enter your choice here: ");
+
+        choice = -1;
+        do{
+            String dummy = sc.next();
+            boolean test = isInteger(dummy);
+            if (test == false) {
+                System.out.println("Input should be an integer.");
                 continue;
             }
-            if(!schoolName.isEmpty()){
-                for(School school: schoolList){
-                    if(schoolName == school.getSchoolName()){
-                        break outer;
-                    } else {
-                        System.out.println(schoolName + "is not a valid school! Please re-enter.");
-                        continue outer;
-                    }
-                }
-            }
-        }*/
-        do {
-            System.out.println("Which school will they attend? ");
-            System.out.println("1. School of Computer Science and Engineering");
-            System.out.println("2. Nanyang Business School");
-            System.out.println("3. School of Chemical and Biomedical Engineering");
-            System.out.println("Enter your choice here: ");
-            choice = sc.nextInt();
+            choice = Integer.parseInt(dummy);
+            if(choice<0 || choice>schoolList.size())
+                System.out.println("The input is out of range. Please try again.");
+        }while(choice<0||choice>schoolList.size());
 
-            if (choice == 1) {
-                schoolName = "School of Computer Science and Engineering";
-            } else if (choice == 2) {
-                schoolName = "Nanyang Business School";
-            } else if (choice == 3) {
-                schoolName = "School of Chemical and Biomedical Engineering";
-            } else {
-                System.out.println("Please enter a valid number. (1 to 3)");
-            }
-        } while (choice < 0 || choice > 3);
-
-        Student stud = new Student(name, matricNo, email, year, schoolName, gender, nationality);
+        Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
         System.out.println("Student is created");
         this.studentList.add(stud);
         System.out.println("The existing students are: ");
