@@ -174,7 +174,7 @@ public class AdminControl {
                 matricNo = sc.nextLine();
                 for (Student s : studentList) {
                     if (matricNo.equals(s.getMatricNo())) {
-                        System.out.println("Matric Number already exists!");
+                        System.out.println("Matriculation Number already exists!");
                         return;
                     }
                 }
