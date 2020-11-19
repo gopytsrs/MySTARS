@@ -241,22 +241,7 @@ public class AdminControl {
                     System.out.println(s.getName());
                 }
             }
-<<<<<<< HEAD
-            choice = Integer.parseInt(dummy);
-            if(choice<0 || choice>schoolList.size())
-                System.out.println("The input is out of range. Please try again.");
-        }while(choice<0||choice>schoolList.size());
-
-        Student stud = new Student(name, matricNo, email, year, schoolList.get(choice-1).getSchoolName(), gender, nationality);
-        System.out.println("Student is created");
-        this.studentList.add(stud);
-        System.out.println("The existing students are: ");
-        for (Student s : studentList) {
-            System.out.println(s.getName());
-        }
-=======
         } while (studentChoice != 2) ;
->>>>>>> refs/remotes/origin/main
     }
 
     public void addCourse() {
