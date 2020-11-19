@@ -142,70 +142,106 @@ public class AdminControl {
         return;         //haven't add changing to txt file
     }
 
-    public void addStudent(){
-        String name;
-        String matricNo;
-        String email;
-        int year;
-        String gender;
-        String nationality;
+    public void addStudent() {
+        String name = "";
+        String matricNo = "";
+        String email = "";
+        String finalEmail = "";
+        int year = 0;
+        String gender = "";
+        String nationality = "";
         String schoolName = "";
-        int choice;
+        int choice = 0;
+        int studentChoice = 1;
+        int studentAdded = 0;
+        boolean addAnotherStudent = true;
 
         //List all students after addition
         // Account for existing student
         // Need to check for invalid data entry!!
-        System.out.println("Enter student's Name: ");
-        name = sc.nextLine();
-        System.out.println("Enter student's Matriculation Number: ");
-        matricNo = sc.nextLine();
-        for (Student s : studentList) {
-            if (matricNo.equals(s.getMatricNo())) {
-                System.out.println("Matriculation Number already exists!");
-                return;
+
+        do {
+            System.out.println("Do you want to add a student?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            studentChoice = sc.nextInt();
+            if (studentChoice == 1) {
+                System.out.print(studentAdded + " student to add! \n");
+                System.out.println("Enter student's name: ");
+                sc.nextLine();
+                name = sc.nextLine();
+                System.out.println("Enter student's Matriculation Number: ");
+                matricNo = sc.nextLine();
+                for (Student s : studentList) {
+                    if (matricNo.equals(s.getMatricNo())) {
+                        System.out.println("Matriculation Number already exists!");
+                        return;
+                    }
+                }
+                //Checked that email is valid
+                System.out.println("Enter student's email (Use NTU domain \"@e.ntu.edu.sg\"): ");
+                email = sc.nextLine();
+                //finalEmail = email.concat("@e.ntu.edu.sg")
+                while (!email.contains("@e.ntu.edu.sg")) {
+                    System.out.println("Invalid Email! Enter email address: ");
+                    email = sc.nextLine();
+                }
+
+                System.out.println("Enter student's year of study: ");
+                year = sc.nextInt();
+                while (year > 4 || year < 1) {
+                    System.out.println("Invalid year! Enter again");
+                    year = sc.nextInt();
+                }
+                sc.nextLine();
+                System.out.println("Enter student's gender (M/F): ");
+                gender = sc.nextLine();
+                while (!gender.equals("M") && !gender.equals("F")) {
+                    System.out.println("Invalid gender! Enter again");
+                    gender = sc.nextLine();
+                }
+
+                System.out.println("Enter student's nationality: ");
+                nationality = sc.nextLine();
+
+
+                System.out.println("Which school will they attend? ");
+                for (int p = 0; p < schoolList.size(); p++) {
+                    System.out.println((p) + " . " + schoolList.get(p).getSchoolName());
+                }
+                System.out.println("Enter your choice here: ");
+
+                choice = -1;
+                do {
+                    String dummy = sc.next();
+                    boolean test = isInteger(dummy);
+                    if (test == false) {
+                        System.out.println("Input should be an integer.");
+                        continue;
+                    }
+                    choice = Integer.parseInt(dummy);
+                    if (choice < 0 || choice > schoolList.size())
+                        System.out.println("The input is out of range. Please try again.");
+                } while (choice < 0 || choice > schoolList.size());
+
+                Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
+                System.out.println("Student is created");
+                studentAdded++;
+                this.studentList.add(stud);
+                System.out.println("The existing students are: ");
+                for (Student s : studentList) {
+                    System.out.println(s.getName());
+                }
+            } else {
+                Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
+                System.out.println("Student is created");
+                this.studentList.add(stud);
+                System.out.println("The existing students are: ");
+                for (Student s : studentList) {
+                    System.out.println(s.getName());
+                }
             }
-        }
-        //Checked that email is valid
-        System.out.println("Enter student's email (Use NTU domain \"@e.ntu.edu.sg\"): ");
-        email = sc.nextLine();
-        while (!email.contains("@e.ntu.edu.sg")) {
-            System.out.println("Invalid Email! Enter email address: ");
-            email = sc.nextLine();
-        }
-
-        System.out.println("Enter student's year of study: ");
-        year = sc.nextInt();
-        while (year > 4 || year < 1) {
-            System.out.println("Invalid year! Enter again");
-            year = sc.nextInt();
-        }
-        sc.nextLine();
-        System.out.println("Enter student's gender (M/F): ");
-        gender = sc.nextLine();
-        while (!gender.equals("M") && !gender.equals("F")) {
-            System.out.println("Invalid gender! Enter again");
-            gender = sc.nextLine();
-        }
-
-        System.out.println("Enter student's nationality: ");
-        nationality = sc.nextLine();
-
-
-        System.out.println("Which school will they attend? ");
-        for (int p = 0; p < schoolList.size(); p++)
-        {
-            System.out.println((p + 1) +" . "+schoolList.get(p).getSchoolName());
-        }
-        System.out.println("Enter your choice here: ");
-
-        choice = -1;
-        do{
-            String dummy = sc.next();
-            boolean test = isInteger(dummy);
-            if (test == false) {
-                System.out.println("Input should be an integer.");
-                continue;
-            }
+<<<<<<< HEAD
             choice = Integer.parseInt(dummy);
             if(choice<0 || choice>schoolList.size())
                 System.out.println("The input is out of range. Please try again.");
@@ -218,6 +254,9 @@ public class AdminControl {
         for (Student s : studentList) {
             System.out.println(s.getName());
         }
+=======
+        } while (studentChoice != 2) ;
+>>>>>>> refs/remotes/origin/main
     }
 
     public void addCourse() {
