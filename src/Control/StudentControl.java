@@ -423,7 +423,7 @@ public class StudentControl {
                     System.out.printf("Changed waitlist from Index %d to Index %d %n", currentIndexNo, desiredIndex);
                     currentIndex.removeFromWaitlist(student);
                     desiredIndex.addToWaitlist(student);
-                    student.updateIndex(desiredIndex,currentIndex,false);
+                    student.updateIndex(currentIndex,desiredIndex,false);
 
                 //From assigned in old to waitList in new, not allowed
                 } else {
