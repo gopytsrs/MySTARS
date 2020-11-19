@@ -152,7 +152,7 @@ public class StudentControl {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1: {
-                    if (waitListCourse != null || registeredCourse != null) {
+                    if (!waitListCourse.isEmpty() || !registeredCourse.isEmpty()) {
                         int checkclash = student.checkTimeClash(newCourse.getIndex());
                         if (checkclash == 0) {
                             canAdd = true;
@@ -169,7 +169,7 @@ public class StudentControl {
                             }
                         }
                     }
-                    if (student.addAssignedCourse(newCourse) && indexChosen.assignStudent(student)) {
+                    else if (student.addAssignedCourse(newCourse) && indexChosen.assignStudent(student)) {
                         System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
                         break;
                     }

@@ -20,7 +20,7 @@ public class Index implements Serializable {
     private String groupNo;
     private int vacancy;
     public static Deque<Student> waitList;
-    public static ArrayList<Student> assignedStudents;
+    public ArrayList<Student> assignedStudents;
     private ArrayList<Lesson> lessons;
 
     public Index() {
@@ -33,7 +33,7 @@ public class Index implements Serializable {
         this.groupNo = groupNo;
         this.vacancy = vacancy;
         lessons = new ArrayList<Lesson>();
-        assignedStudents = new ArrayList<Student>();
+        this.assignedStudents = new ArrayList<Student>();
     }
 
     public int getIndexNo() {
@@ -75,7 +75,7 @@ public class Index implements Serializable {
 
     public boolean assignStudent(Student student){
         if (vacancy != 0) {
-            this.assignedStudents.add(student);
+            assignedStudents.add(student);
             this.vacancy -= 1;
             return true;
         }
@@ -107,7 +107,7 @@ public class Index implements Serializable {
             for (Lesson lesson1 : indexToCheck.getLessons()) {
                 if (lesson.getWeeks() == lesson1.getWeeks()) {
                     //Datetime logic needed for range
-                    if ((lesson.getStartTime().isAfter(lesson1.getStartTime()) && lesson.getStartTime().isBefore(lesson1.getEndTime())) || (lesson.getEndTime().isAfter(lesson1.getStartTime())&& lesson.getEndTime().isBefore(lesson1.getEndTime()))) {
+                    if ((lesson.getStartTime().isAfter(lesson1.getStartTime()) && lesson.getStartTime().isBefore(lesson1.getEndTime())) || (lesson.getEndTime().isAfter(lesson1.getStartTime()) && lesson.getEndTime().isBefore(lesson1.getEndTime()))) {
                         return true;
                     }
                 }
@@ -116,8 +116,8 @@ public class Index implements Serializable {
         return false;
     }
 
-    public static ArrayList<Student> getAssignedStudents() {
-        return assignedStudents;
+    public ArrayList<Student> getAssignedStudents() {
+        return this.assignedStudents;
     }
 
     public void addLesson() {
