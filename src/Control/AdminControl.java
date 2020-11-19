@@ -17,7 +17,7 @@ public class AdminControl {
     static Scanner sc = new Scanner(System.in);
 
     public AdminControl(Admin admin) {
-        String schoolFileName = "database_school.bin"; //purely for testing
+        String schoolFileName = "database_school_testing.bin"; //purely for testing
         String studentFileName = "database_student.bin";
         //Deserialise school data
         try {
@@ -156,6 +156,7 @@ public class AdminControl {
         // Account for existing student
         // Need to check for invalid data entry!!
         System.out.println("Enter student's Name: ");
+        sc.nextLine();
         name = sc.nextLine();
         System.out.println("Enter student's Matriculation Number: ");
         matricNo = sc.nextLine();
@@ -190,7 +191,7 @@ public class AdminControl {
         System.out.println("Which school will they attend? ");
         for (int p = 0; p < schoolList.size(); p++)
         {
-            System.out.println(p+" . "+schoolList.get(p).getSchoolName());
+            System.out.println((p + 1) +" . "+schoolList.get(p).getSchoolName());
         }
         System.out.println("Enter your choice here: ");
 
