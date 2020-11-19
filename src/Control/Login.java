@@ -1,12 +1,11 @@
 package Control;
 
-import Entity.Account;
-import Entity.Admin;
-import Entity.Student;
+import Entity.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,8 +17,10 @@ public class Login {
     private ArrayList<Student> studentList;
     private ArrayList<Admin> adminList;
     private boolean valid;
+    private boolean validap;
     private Student s;
     private Admin a;
+    private AccessPeriod AP = null;
 
     Scanner sc = new Scanner(System.in);
 
@@ -49,7 +50,16 @@ public class Login {
             valid = Authenticatepassword();
             if (valid == false)
                 System.out.println("Invalid username/password. Please try again.");
-        } while (valid != true);
+            if (domain == "student")
+            {
+                validap = false;
+                validap = check_access_period(s.getSchoolName());
+            }
+            if (!validap)
+            {
+                System.out.println("The access period is"+AP.getStartDate()+" to "+AP.getEndDate()+". Current time is "+LocalDateTime.now());
+            }
+        } while (valid != true && validap != true);
     }
 
     private void collectDomain() {
@@ -127,5 +137,35 @@ public class Login {
 
     public Admin getAdmin() {
         return this.a;
+    }
+
+    public boolean check_access_period(String schoolname)
+    {
+        ArrayList<School> schoolList = new ArrayList<>();
+        String schoolFileName = "database_school.bin"; //purely for testing
+        try {
+            FileInputStream file = new FileInputStream(schoolFileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+            schoolList = (ArrayList) in.readObject();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (School sch:schoolList)
+        {
+            if (schoolname.equals(sch.getSchoolName()))
+            {
+                AP = sch.getAccessperiod();
+                break;
+            }
+        }
+        if (AP == null)
+            return false;
+        else if (LocalDateTime.now().isAfter(AP.getEndDate())||LocalDateTime.now().isBefore(AP.getStartDate()))
+            return false;
+        else
+            return true;
     }
 }

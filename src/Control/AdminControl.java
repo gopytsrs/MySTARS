@@ -209,26 +209,26 @@ public class AdminControl {
                 }
             }
         }*/
-        do {
-            System.out.println("Which school will they attend? ");
-            System.out.println("1. School of Computer Science and Engineering");
-            System.out.println("2. Nanyang Business School");
-            System.out.println("3. School of Chemical and Biomedical Engineering");
-            System.out.println("Enter your choice here: ");
-            choice = sc.nextInt();
+        System.out.println("Which school will they attend? ");
+        for (int i = 0; i<schoolList.size();i++)
+        {
+            System.out.println(i+" . "+schoolList.get(i).getSchoolName());
+        }
+        System.out.println("Enter your choice here: ");
 
-            if (choice == 1) {
-                schoolName = "School of Computer Science and Engineering";
-            } else if (choice == 2) {
-                schoolName = "Nanyang Business School";
-            } else if (choice == 3) {
-                schoolName = "School of Chemical and Biomedical Engineering";
-            } else {
-                System.out.println("Please enter a valid number. (1 to 3)");
+        do{
+            String dummy = sc.next();
+            boolean test = isInteger(dummy);
+            if (test == false) {
+                System.out.println("Input should be an integer.");
+                continue;
             }
-        } while (choice < 0 || choice > 3);
+            choice = Integer.parseInt(dummy);
+            if(choice<0 || choice>schoolList.size())
+                System.out.println("The input is out of range. Please try again.");
+        }while(choice<0||choice>schoolList.size());
 
-        Student stud = new Student(name, matricNo, email, year, schoolName, gender, nationality);
+        Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
         System.out.println("Student is created");
         this.studentList.add(stud);
         System.out.println("The existing students are: ");
