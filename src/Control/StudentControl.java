@@ -170,6 +170,8 @@ public class StudentControl {
                         System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
                         break;
                     }
+
+                    break;
                 }
 
                 case 2:
