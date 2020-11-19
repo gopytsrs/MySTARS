@@ -149,7 +149,8 @@ public class AdminControl {
         int year;
         String gender;
         String nationality;
-        String schoolName;
+        String schoolName = "";
+        int choice;
 
         //List all students after addition
         // Account for existing student
@@ -208,8 +209,26 @@ public class AdminControl {
                 }
             }
         }*/
+        do {
+            System.out.println("Which school will they attend? ");
+            System.out.println("1. School of Computer Science and Engineering");
+            System.out.println("2. Nanyang Business School");
+            System.out.println("3. School of Chemical and Biomedical Engineering");
+            System.out.println("Enter your choice here: ");
+            choice = sc.nextInt();
 
-        Student stud = new Student(name, matricNo, email, year, "School of Computer Science and Engineering", gender, nationality);
+            if (choice == 1) {
+                schoolName = "School of Computer Science and Engineering";
+            } else if (choice == 2) {
+                schoolName = "Nanyang Business School";
+            } else if (choice == 3) {
+                schoolName = "School of Chemical and Biomedical Engineering";
+            } else {
+                System.out.println("Please enter a valid number. (1 to 3)");
+            }
+        } while (choice < 0 || choice > 3);
+
+        Student stud = new Student(name, matricNo, email, year, schoolName, gender, nationality);
         System.out.println("Student is created");
         this.studentList.add(stud);
         System.out.println("The existing students are: ");
