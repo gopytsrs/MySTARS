@@ -104,17 +104,23 @@ public class Student implements Serializable {
         return this.assignedCourse;
     }
 
-    public boolean addAssignedCourse(CourseRegistration course) {
+    public boolean checkAU(CourseRegistration course) {
         int newau = this.noOfAUs + course.getAu();
         if (newau<=MAXAU) {
-            this.assignedCourse.add(course);
-            this.noOfAUs += course.getAu();
+
             return true;
         } else{
             System.out.println("Exceeded maximum AU allowable.");
             return false;
         }
     }
+    public void addAssignedCourse(CourseRegistration course){
+
+        this.assignedCourse.add(course);
+        this.noOfAUs += course.getAu();
+    }
+
+
 
     public void removeAssignedCourse(CourseRegistration course) {
         this.assignedCourse.remove(course);

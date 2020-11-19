@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 
@@ -19,7 +20,7 @@ public class Index implements Serializable {
     private int indexNo;
     private String groupNo;
     private int vacancy;
-    public static Deque<Student> waitList;
+    public static Deque<Student> waitList = new LinkedList<Student>();
     public ArrayList<Student> assignedStudents = new ArrayList<>();
     private ArrayList<Lesson> lessons;
 
@@ -104,9 +105,15 @@ public class Index implements Serializable {
     public boolean checkClash(Index indexToCheck) {
         for (Lesson lesson : lessons) {
             for (Lesson lesson1 : indexToCheck.getLessons()) {
-                if (lesson.getWeeks() == lesson1.getWeeks()) {
+                if ((lesson.getWeeks() == lesson1.getWeeks()
+                        || (lesson.getWeeks() == Week.EVERY && (lesson1.getWeeks() == Week.ODD || lesson1.getWeeks() == Week.EVEN))
+                        || (lesson1.getWeeks() == Week.EVERY && (lesson.getWeeks() == Week.ODD || lesson.getWeeks() == Week.EVEN )))
+                    && lesson.getDay() == lesson1.getDay()) {
                     //Datetime logic needed for range
-                    if ((lesson.getStartTime().isAfter(lesson1.getStartTime()) && lesson.getStartTime().isBefore(lesson1.getEndTime())) || (lesson.getEndTime().isAfter(lesson1.getStartTime()) && lesson.getEndTime().isBefore(lesson1.getEndTime()))) {
+                    if (((lesson.getStartTime().isAfter(lesson1.getStartTime()) || lesson.getStartTime().equals(lesson1.getStartTime()))&&
+                            lesson.getStartTime().isBefore(lesson1.getEndTime()))
+                            || (lesson.getEndTime().isAfter(lesson1.getStartTime()) &&
+                            (lesson.getEndTime().isBefore(lesson1.getEndTime()) || lesson.getEndTime().equals(lesson1.getEndTime())))) {
                         return true;
                     }
                 }

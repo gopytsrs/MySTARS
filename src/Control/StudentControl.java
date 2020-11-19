@@ -154,21 +154,25 @@ public class StudentControl {
                             canAdd = true;
                         }
                         if (canAdd) {
-                            if (student.addAssignedCourse(newCourse) && indexChosen.assignStudent(student)) {
+                            if (student.checkAU(newCourse) && indexChosen.assignStudent(student)) {
+                                student.addAssignedCourse(newCourse);
                                 System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
-                            } else if (!student.addAssignedCourse(newCourse)) {
+                                return;
+                            } else if (!student.checkAU(newCourse)) {
                                 break;
                             } else {
                                 student.addWaitList(newCourse);
                                 indexChosen.addToWaitlist(student);
                                 System.out.println("Added to waitlist");
+                                return;
 
                             }
                         }
                     }
-                    else if (student.addAssignedCourse(newCourse) && indexChosen.assignStudent(student)) {
+                    else if (student.checkAU(newCourse) && indexChosen.assignStudent(student)) {
+                        student.addAssignedCourse(newCourse);
                         System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
-                        break;
+                        return;
                     }
 
                     break;
