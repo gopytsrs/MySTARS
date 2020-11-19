@@ -436,7 +436,7 @@ public class makedata {
 
         SCSE.setCourseList(course4);
 
-        String fileName = "database_school_testing.bin";
+        String fileName = "database_school.bin";
         ArrayList<School> schoolList = new ArrayList<School>();
         schoolList.add(nbs);
         schoolList.add(SCSE);
@@ -467,6 +467,7 @@ public class makedata {
         // set course to student
 
         // Set student to index
+
 
 
 

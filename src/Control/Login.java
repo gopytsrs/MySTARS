@@ -41,7 +41,9 @@ public class Login {
     public Login() {
         collectDomain();
         AccountsFromDatabase(domain);                   //missing accessperiod check need read student file
+        validap = true;
         do {
+
             System.out.println("Please enter your Username: ");
             sc.nextLine();
             userName = sc.nextLine();
@@ -52,14 +54,13 @@ public class Login {
                 System.out.println("Invalid username/password. Please try again.");
             if (domain == "student")
             {
-                validap = false;
                 validap = check_access_period(s.getSchoolName());
             }
             if (!validap)
             {
                 System.out.println("The access period is"+AP.getStartDate()+" to "+AP.getEndDate()+". Current time is "+LocalDateTime.now());
             }
-        } while (valid != true && validap != true);
+        } while (valid != true || validap != true);
     }
 
     private void collectDomain() {
