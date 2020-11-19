@@ -32,7 +32,8 @@ public class Student implements Serializable {
         setGender(gender);
         setNationality(nationality);
         //Create new account for student with default username and pw
-
+        assignedCourse = new ArrayList<>();
+        waitList = new ArrayList<>();
         this.account = new Account(this.name, "password", "student");    //input
     }
 

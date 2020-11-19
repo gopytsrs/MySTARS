@@ -91,23 +91,34 @@ public class StudentControl {
                 }
             }
 
-            for (CourseRegistration aboutToRegisterCourse : registeredCourse) {
-                if (courseChosen.equals(aboutToRegisterCourse)) {
-                    System.out.print("Already registered the course. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
-                    break;
-                }
-            }
-
-            for (CourseRegistration aboutToRegisterCourse : waitListCourse) {
-                if (courseChosen.equals(aboutToRegisterCourse)) {
-                    System.out.println("Already added this course to the waitlist. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
-                    break;
-                }
-            }
-
             if (!courseExists) {
                 System.out.println("Please enter valid course code!");
+                continue;
             }
+
+            if (registeredCourse != null)
+            {
+                for (CourseRegistration aboutToRegisterCourse : registeredCourse) {
+                    if (courseChosen.equals(aboutToRegisterCourse)) {
+                        System.out.print("Already registered the course. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                        break;
+                    }
+                }
+            }
+
+            if (waitListCourse != null)
+            {
+                for (CourseRegistration aboutToRegisterCourse : waitListCourse) {
+                    if (courseChosen == null)
+                        break;
+                    else if (courseChosen.equals(aboutToRegisterCourse)) {
+                        System.out.println("Already added this course to the waitlist. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                        break;
+                    }
+                }
+
+            }
+
 
         } while (!courseExists);
 
@@ -140,31 +151,38 @@ public class StudentControl {
             System.out.println("2. No");
             choice = scanner.nextInt();
             switch (choice) {
-                case 1:
-                    int checkclash = student.checkTimeClash(newCourse.getIndex());
-                    if (checkclash == 0) {
-                        canAdd = true;
-                    }
-                    if (canAdd) {
-                        if (student.addAssignedCourse(newCourse) && indexChosen.assignStudent(student)) {
-                            System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
-                        } else if (!student.addAssignedCourse(newCourse)) {
-                            break;
-                        } else {
-                            student.addWaitList(newCourse);
-                            indexChosen.addToWaitlist(student);
-                            System.out.println("Added to waitlist");
+                case 1: {
+                    if (waitListCourse != null || registeredCourse != null) {
+                        int checkclash = student.checkTimeClash(newCourse.getIndex());
+                        if (checkclash == 0) {
+                            canAdd = true;
+                        }
+                        if (canAdd) {
+                            if (student.addAssignedCourse(newCourse) && indexChosen.assignStudent(student)) {
+                                System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
+                            } else if (!student.addAssignedCourse(newCourse)) {
+                                break;
+                            } else {
+                                student.addWaitList(newCourse);
+                                indexChosen.addToWaitlist(student);
+                                System.out.println("Added to waitlist");
+                            }
                         }
                     }
-                    break;
+                    if (student.addAssignedCourse(newCourse) && indexChosen.assignStudent(student)) {
+                        System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
+                        break;
+                    }
+                }
+
                 case 2:
                     System.out.println("Course not added.");
                     break;
                 default:
                     break;
             }
-        } while (choice < 1 || choice > 2);
-    }
+        }while (choice < 1 || choice > 2);
+        }
 
     public void dropCourse() {
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();

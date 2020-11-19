@@ -234,14 +234,6 @@ public class AdminControl {
                 for (Student s : studentList) {
                     System.out.println(s.getName());
                 }
-            } else {
-                Student stud = new Student(name, matricNo, finalEmail, year, schoolList.get(choice).getSchoolName(), gender, nationality);
-                System.out.println("Student is created");
-                this.studentList.add(stud);
-                System.out.println("The existing students are: ");
-                for (Student s : studentList) {
-                    System.out.println(s.getName());
-                }
             }
         } while (studentChoice != 2) ;
     }
