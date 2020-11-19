@@ -15,6 +15,7 @@ public class testmain {
             StudentUI sUI = new StudentUI(stud);
             System.out.println("Hello, " + Log.getUserName() + ". What would you like to do today?");
             sUI.studentMenu();
+
         } else if (domain.equals("admin")) {
             //open the display for admin
             //System.out.println("admin");
