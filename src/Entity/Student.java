@@ -150,7 +150,7 @@ public class Student implements Serializable {
         boolean clashAssigned = false;
         boolean clashWait= false;
 
-        Index indextoCheck = null;
+        Index indextoCheck = index;
         ArrayList<CourseRegistration> assignedcourse = this.getAssignedCourse();
         ArrayList<CourseRegistration> registeredcourse = this.getWaitList();
 
