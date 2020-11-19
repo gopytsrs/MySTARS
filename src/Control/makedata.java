@@ -436,7 +436,7 @@ public class makedata {
 
         SCSE.setCourseList(course4);
 
-<<<<<<< HEAD
+
         //end of SCSE
 
         //create MAE data
@@ -471,10 +471,8 @@ public class makedata {
         c21.setindexlist(I100);
         //end of MAE
 
-        String fileName = "database_school_testing.bin";
-=======
+
         String fileName = "database_school.bin";
->>>>>>> refs/remotes/origin/main
         ArrayList<School> schoolList = new ArrayList<School>();
         schoolList.add(nbs);
         schoolList.add(SCSE);

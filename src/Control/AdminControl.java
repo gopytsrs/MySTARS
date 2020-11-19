@@ -142,7 +142,7 @@ public class AdminControl {
         return;         //haven't add changing to txt file
     }
 
-    public void addStudent() {
+    public void addStudent(){
         String name;
         String matricNo;
         String email;
