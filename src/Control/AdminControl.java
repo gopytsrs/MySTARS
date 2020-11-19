@@ -188,7 +188,6 @@ public class AdminControl {
 
 
         System.out.println("Which school will they attend? ");
-        System.out.println(schoolList);
         for (int p = 0; p < schoolList.size(); p++)
         {
             System.out.println(p+" . "+schoolList.get(p).getSchoolName());
