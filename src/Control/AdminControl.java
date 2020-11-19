@@ -155,6 +155,7 @@ public class AdminControl {
         //List all students after addition
         // Account for existing student
         // Need to check for invalid data entry!!
+        sc.nextLine();
         System.out.println("Enter student's Name: ");
         name = sc.nextLine();
         System.out.println("Enter student's Matriculation Number: ");
