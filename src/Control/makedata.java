@@ -436,7 +436,6 @@ public class makedata {
 
         SCSE.setCourseList(course4);
 
-
         //end of SCSE
 
         //create MAE data
@@ -470,7 +469,6 @@ public class makedata {
         I100.setLessons(L100TUT);
         c21.setindexlist(I100);
         //end of MAE
-
 
         String fileName = "database_school.bin";
         ArrayList<School> schoolList = new ArrayList<School>();
@@ -533,6 +531,7 @@ public class makedata {
         System.out.println(demoSchoolDeserialise.get(0).getSchoolName());
         System.out.println(demoSchoolDeserialise.get(1).getSchoolName());
         System.out.println(demoSchoolDeserialise.get(2).getSchoolName());
+        System.out.println(demoSchoolDeserialise.get(3).getSchoolName());
 
         School NBS = demoSchoolDeserialise.get(0);
         ArrayList<Course> nbscourse = nbs.getCourseList();
