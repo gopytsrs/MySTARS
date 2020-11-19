@@ -1,6 +1,6 @@
 package Entity;
 
-
+import Entity.encrypt;
 import java.io.Serializable;
 
 public class Account implements Serializable {
@@ -10,19 +10,26 @@ public class Account implements Serializable {
 
     public Account(String username, String password, String accountType) {
         setUsername(username);
-        setPassword(password);
+        try{
+            String hashed = encrypt.getSaltedHash(password);
+            setPassword(hashed);
+        }catch(Exception E)
+        {
+            System.out.println("password setting error");
+            return;
+        }
         setAccountType(accountType);
     }
 
-    public boolean validate(String username, String password) {
+    public boolean validate(String username, String password){
+
         if (!(username.equals(this.username)))
             return false;
-        else if (!(password.equals(this.password)))
+        else if (!encrypt.check(password,this.password))
             return false;
         else
             return true;
     }
-
     public String getUsername() {
         return username;
     }

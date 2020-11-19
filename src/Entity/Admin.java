@@ -8,7 +8,7 @@ public class Admin implements Serializable {
 
     public Admin(String adminName) {
         setAdminName(adminName);
-        this.account = new Account(this.adminName, "password1", "admin");
+        this.account = new Account(this.adminName,"password1", "admin");
     }
 
     public String getAdminID() {

@@ -14,7 +14,7 @@ public class AdminUI {
         this.admin = admin;
     }
 
-    public void adminMenu() {
+    public void adminMenu(){
         Scanner sc = new Scanner(System.in);
         AdminControl acontrol = new AdminControl(admin);
         int choice = 0;
