@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 
+
 public class Index implements Serializable {
 
     private String courseName;
