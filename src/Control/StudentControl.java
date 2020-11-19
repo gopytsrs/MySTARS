@@ -226,7 +226,7 @@ public class StudentControl {
                     index.removeFromWaitlist(student);
 
                     student.removeWaitList(courseToDrop);
-                    System.out.printf("Removed %s from waitlist",courseToDrop.getCourseCode());
+                    System.out.printf("Removed %s from waitlist%n",courseToDrop.getCourseCode());
 
                     return;
 
@@ -234,7 +234,7 @@ public class StudentControl {
                     //Remove student from index
                     index.removeStudentFromAssigned(student);
                     student.removeAssignedCourse(courseToDrop);
-                    System.out.printf("Dropped %s from assigned courses", courseToDrop.getCourseCode());
+                    System.out.printf("Dropped %s from assigned courses%n", courseToDrop.getCourseCode());
                     return;
                 }
                 break;
@@ -260,7 +260,7 @@ public class StudentControl {
 
         //Go through all the courses, each course is printed on a new line
         System.out.println("Assigned Courses: ");
-        if (assignedCourses == null) {
+        if (assignedCourses.isEmpty()) {
             System.out.println("No courses registered.");
         } else {
             for (CourseRegistration course : assignedCourses) {
@@ -268,7 +268,7 @@ public class StudentControl {
             }
         }
         System.out.println("Waitlist Courses: ");
-        if (waitListCourses == null) {
+        if (waitListCourses.isEmpty()) {
             System.out.println("No courses in the waitlist.");
         } else {
             for (CourseRegistration course : waitListCourses) {
