@@ -20,7 +20,7 @@ public class Index implements Serializable {
     private String groupNo;
     private int vacancy;
     public static Deque<Student> waitList;
-    public ArrayList<Student> assignedStudents;
+    public ArrayList<Student> assignedStudents = new ArrayList<>();
     private ArrayList<Lesson> lessons;
 
     public Index() {
@@ -33,7 +33,6 @@ public class Index implements Serializable {
         this.groupNo = groupNo;
         this.vacancy = vacancy;
         lessons = new ArrayList<Lesson>();
-        this.assignedStudents = new ArrayList<Student>();
     }
 
     public int getIndexNo() {
@@ -117,7 +116,7 @@ public class Index implements Serializable {
     }
 
     public ArrayList<Student> getAssignedStudents() {
-        return this.assignedStudents;
+        return assignedStudents;
     }
 
     public void addLesson() {

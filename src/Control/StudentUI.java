@@ -58,6 +58,7 @@ public class StudentUI {
 
                 case 7:
                     System.out.println("Logging out...");
+                    scontrol.saveData();
                     Login l = new Login();
                     break;
 

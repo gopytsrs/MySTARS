@@ -2,9 +2,7 @@ package Control;
 
 import Entity.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,6 +10,7 @@ public class StudentControl {
     private Student student;
     private ArrayList<Student> studentList = new ArrayList<>();
     private ArrayList<Course> courseList = new ArrayList<>();
+    private ArrayList<School> schoolList = new ArrayList<>();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -20,7 +19,6 @@ public class StudentControl {
         this.student = student;
         String schCode = student.getSchoolName();
 
-        ArrayList<School> schoolList = new ArrayList<>();
 
         String schoolFileName = "database_school.bin"; //purely for testing
         String studentFileName = "database_student.bin";
@@ -261,10 +259,9 @@ public class StudentControl {
             System.out.println("No courses registered.");
         } else {
             for (CourseRegistration course : assignedCourses) {
-                System.out.print(course);
+                System.out.println(course);
             }
         }
-
         System.out.println("Waitlist Courses: ");
         if (waitListCourses == null) {
             System.out.println("No courses in the waitlist.");
@@ -286,9 +283,8 @@ public class StudentControl {
                 System.out.println("Invalid input! Please enter a index number.");
             }
         }
-        ArrayList<Course> courses = new ArrayList<Course>();
         //Loop through indexList of each course to find if the index exists
-        for (Course course : courses) {
+        for (Course course : courseList) {
             ArrayList<Index> indexes = course.getIndexList();
             for (Index index : indexes) {
                 //Index exists, print out the vacancies and exit the method
@@ -302,6 +298,7 @@ public class StudentControl {
                         total = index.getVacancy() + index.getAssignedStudents().size();
                     }
                     System.out.printf("The number of available slots in Index %d of %s is %d/%d", index.getIndexNo(), index.getCourseCode(), index.getVacancy(), total);
+                    System.out.println();
 
                     return;
 
@@ -542,6 +539,30 @@ public class StudentControl {
             }
         } while (choice != 1 || choice != 2);
 
+    }
+    public void saveData() {
+        String schoolFileName = "database_school.bin";
+        String studentFileName = "database_student.bin";
+        //Serialise School data
+        try {
+            FileOutputStream fileOut = new FileOutputStream(schoolFileName);
+            ObjectOutputStream os = new ObjectOutputStream(fileOut);
+            os.writeObject(schoolList);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Serialise Student data
+        try {
+            FileOutputStream fileOut = new FileOutputStream(studentFileName);
+            ObjectOutputStream os = new ObjectOutputStream(fileOut);
+            os.writeObject(studentList);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

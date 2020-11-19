@@ -17,7 +17,7 @@ public class AdminControl {
     static Scanner sc = new Scanner(System.in);
 
     public AdminControl(Admin admin) {
-        String schoolFileName = "database_school_testing.bin"; //purely for testing
+        String schoolFileName = "database_school.bin"; //purely for testing
         String studentFileName = "database_student.bin";
         //Deserialise school data
         try {
