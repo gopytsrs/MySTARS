@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class makedata {
     public static void main(String args[]) {
-        LocalDateTime dateTime = LocalDateTime.parse("2019-12-13T09:00");
-        LocalDateTime dateTime1 = LocalDateTime.parse("2019-12-14T09:00");
+        LocalDateTime dateTime = LocalDateTime.parse("2021-12-13T09:00");
+        LocalDateTime dateTime1 = LocalDateTime.parse("2021-12-14T09:00");
         School nbs = new School("Nanyang Business School", new AccessPeriod(dateTime, dateTime1));
 
         Course c1 = new Course("AB1202", "Statistic", 3);
