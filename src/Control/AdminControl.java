@@ -173,10 +173,9 @@ public class AdminControl {
                 System.out.println("Enter student's Matriculation Number: ");
                 matricNo = sc.nextLine();
                 for (Student s : studentList) {
-                    while (matricNo.equals(s.getMatricNo())) {
+                    if (matricNo.equals(s.getMatricNo())) {
                         System.out.println("Matriculation Number already exists!");
-                        System.out.println("Enter student's Matriculation Number: ");
-                        matricNo = sc.nextLine();
+                        return;
                     }
                 }
                 //Checked that email is valid
@@ -185,11 +184,9 @@ public class AdminControl {
                 finalEmail = email.concat("@e.ntu.edu.sg");
 
                 for (int i = 0; i < studentList.size(); i++){
-                    while (studentList.get(i).getEmail().equals(finalEmail)){
+                   if (studentList.get(i).getEmail().equals(finalEmail)){
                         System.out.println("Already created that email.");
-                        System.out.println("Enter student's email (NTU domain \"@e.ntu.edu.sg\" already added): ");
-                        email = sc.nextLine();
-                        finalEmail = email.concat("@e.ntu.edu.sg");
+                        return;
                     }
                 }
 
