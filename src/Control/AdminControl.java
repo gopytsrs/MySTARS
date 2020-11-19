@@ -155,9 +155,7 @@ public class AdminControl {
         //List all students after addition
         // Account for existing student
         // Need to check for invalid data entry!!
-        sc.nextLine();
         System.out.println("Enter student's Name: ");
-        sc.nextLine();
         name = sc.nextLine();
         System.out.println("Enter student's Matriculation Number: ");
         matricNo = sc.nextLine();
@@ -184,6 +182,10 @@ public class AdminControl {
         sc.nextLine();
         System.out.println("Enter student's gender (M/F): ");
         gender = sc.nextLine();
+        while (!gender.equals("M") && !gender.equals("F")) {
+            System.out.println("Invalid gender! Enter again");
+            gender = sc.nextLine();
+        }
 
         System.out.println("Enter student's nationality: ");
         nationality = sc.nextLine();
@@ -209,7 +211,7 @@ public class AdminControl {
                 System.out.println("The input is out of range. Please try again.");
         }while(choice<0||choice>schoolList.size());
 
-        Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
+        Student stud = new Student(name, matricNo, email, year, schoolList.get(choice-1).getSchoolName(), gender, nationality);
         System.out.println("Student is created");
         this.studentList.add(stud);
         System.out.println("The existing students are: ");
@@ -690,9 +692,7 @@ public class AdminControl {
     private boolean isdatetime(String str) {
         try {
             LocalDateTime.parse(str);
-        } catch (NumberFormatException e) {
-            return false;
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             return false;
         }
         return true;

@@ -50,26 +50,34 @@ public class Login {
             System.out.println("Please enter your Password: ");
             password = sc.next();
             valid = Authenticatepassword();
-            if (valid == false)
+            if (valid == false) {
                 System.out.println("Invalid username/password. Please try again.");
+                continue;
+            }
             if (domain == "student")
             {
                 validap = check_access_period(s.getSchoolName());
             }
             if (!validap)
             {
-                System.out.println("The access period is"+AP.getStartDate()+" to "+AP.getEndDate()+". Current time is "+LocalDateTime.now());
+                System.out.println("The access period is "+AP.getStartDate()+" to "+AP.getEndDate()+". Current time is "+LocalDateTime.now());
             }
         } while (valid != true || validap != true);
     }
 
     private void collectDomain() {
-        int domaindata;
+        int domaindata = -1;
         do {
             System.out.println("Please enter the domain(student/admin): ");
             System.out.println("Key in 1 for student");
             System.out.println("Key in 2 for admin");
-            domaindata = sc.nextInt();
+            try{
+                String dummy = sc.next();
+                domaindata = Integer.parseInt(dummy);
+            }catch(Exception E){
+                System.out.println("Please key in integer");
+                continue;
+            }
             if (domaindata == 1)
                 domain = "student";
             else if (domaindata == 2)
