@@ -59,9 +59,7 @@ public class StudentUI {
                 case 7:
                     System.out.println("Logging out...");
                     scontrol.saveData();
-                    Login l = new Login();
                     break;
-
                 default:
                     System.out.println("Invalid choice. Choices are between 1 to 7.");
             }

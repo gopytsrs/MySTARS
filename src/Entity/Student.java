@@ -15,8 +15,8 @@ public class Student implements Serializable {
     private String gender;
     private String nationality;
     private Account account;    //created within this class
-    private ArrayList<CourseRegistration> assignedCourse;
-    private ArrayList<CourseRegistration> waitList;
+    private ArrayList<CourseRegistration> assignedCourse  = new ArrayList<>();
+    private ArrayList<CourseRegistration> waitList  = new ArrayList<>();
     private int noOfAUs = 0;
     private final int MAXAU = 21;
 
@@ -32,8 +32,6 @@ public class Student implements Serializable {
         setGender(gender);
         setNationality(nationality);
         //Create new account for student with default username and pw
-        assignedCourse = new ArrayList<>();
-        waitList = new ArrayList<>();
         this.account = new Account(this.name, "password", "student");    //input
     }
 

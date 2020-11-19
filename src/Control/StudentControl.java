@@ -16,7 +16,6 @@ public class StudentControl {
 
     //Create StudentControl using this constructor
     public StudentControl(Student student) {
-        this.student = student;
         String schCode = student.getSchoolName();
 
 
@@ -46,17 +45,18 @@ public class StudentControl {
 
         for (Student student1 : studentList) {
             if (student1.getName().equals(student.getName())) {
-                this.student = student;
+                this.student = student1;
                 break;
             }
         }
-
+        //studentList.remove(student);
         for (School school : schoolList) {
             if (student.getSchoolName().equals(school.getSchoolName())) {
                 this.courseList = school.getCourseList();
                 break;
             }
         }
+
 
     }
 
@@ -94,24 +94,22 @@ public class StudentControl {
                 continue;
             }
 
-            if (registeredCourse != null)
+            if (!registeredCourse.isEmpty())
             {
                 for (CourseRegistration aboutToRegisterCourse : registeredCourse) {
-                    if (courseChosen.equals(aboutToRegisterCourse)) {
-                        System.out.print("Already registered the course. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
-                        break;
+                    if (courseChosen.getCourseCode().equals(aboutToRegisterCourse.getCourseCode())) {
+                        System.out.println("Already registered the course. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                        return;
                     }
                 }
             }
 
-            if (waitListCourse != null)
+            if (!waitListCourse.isEmpty())
             {
                 for (CourseRegistration aboutToRegisterCourse : waitListCourse) {
-                    if (courseChosen == null)
-                        break;
-                    else if (courseChosen.equals(aboutToRegisterCourse)) {
+                    if (courseChosen.getCourseCode().equals(aboutToRegisterCourse.getCourseCode())) {
                         System.out.println("Already added this course to the waitlist. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
-                        break;
+                        return;
                     }
                 }
 
@@ -164,6 +162,7 @@ public class StudentControl {
                                 student.addWaitList(newCourse);
                                 indexChosen.addToWaitlist(student);
                                 System.out.println("Added to waitlist");
+
                             }
                         }
                     }
@@ -555,6 +554,7 @@ public class StudentControl {
         }
         //Serialise Student data
         try {
+            //studentList.add(student);
             FileOutputStream fileOut = new FileOutputStream(studentFileName);
             ObjectOutputStream os = new ObjectOutputStream(fileOut);
             os.writeObject(studentList);
