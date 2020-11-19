@@ -172,18 +172,24 @@ public class AdminControl {
                 System.out.println("Enter student's Matriculation Number: ");
                 matricNo = sc.nextLine();
                 for (Student s : studentList) {
-                    if (matricNo.equals(s.getMatricNo())) {
+                    while (matricNo.equals(s.getMatricNo())) {
                         System.out.println("Matriculation Number already exists!");
-                        return;
+                        System.out.println("Enter student's Matriculation Number: ");
+                        matricNo = sc.nextLine();
                     }
                 }
                 //Checked that email is valid
-                System.out.println("Enter student's email (Use NTU domain \"@e.ntu.edu.sg\"): ");
+                System.out.println("Enter student's email (NTU domain \"@e.ntu.edu.sg\" already added): ");
                 email = sc.nextLine();
-                //finalEmail = email.concat("@e.ntu.edu.sg")
-                while (!email.contains("@e.ntu.edu.sg")) {
-                    System.out.println("Invalid Email! Enter email address: ");
-                    email = sc.nextLine();
+                finalEmail = email.concat("@e.ntu.edu.sg");
+
+                for (int i = 0; i < studentList.size(); i++){
+                    while (studentList.get(i).getEmail().equals(finalEmail)){
+                        System.out.println("Already created that email.");
+                        System.out.println("Enter student's email (NTU domain \"@e.ntu.edu.sg\" already added): ");
+                        email = sc.nextLine();
+                        finalEmail = email.concat("@e.ntu.edu.sg");
+                    }
                 }
 
                 System.out.println("Enter student's year of study: ");
@@ -219,7 +225,7 @@ public class AdminControl {
                         System.out.println("The input is out of range. Please try again.");
                 } while (choice < 0 || choice > schoolList.size());
 
-                Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
+                Student stud = new Student(name, matricNo, finalEmail, year, schoolList.get(choice).getSchoolName(), gender, nationality);
                 System.out.println("Student is created");
                 studentAdded++;
                 this.studentList.add(stud);
@@ -228,7 +234,7 @@ public class AdminControl {
                     System.out.println(s.getName());
                 }
             } else {
-                Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
+                Student stud = new Student(name, matricNo, finalEmail, year, schoolList.get(choice).getSchoolName(), gender, nationality);
                 System.out.println("Student is created");
                 this.studentList.add(stud);
                 System.out.println("The existing students are: ");
