@@ -125,7 +125,7 @@ public class Course implements Serializable {
             System.out.println(courseCode + "\t" + courseName + "\t" + au + "AU");
             System.out.println("Indexes:\tVacancies");
             for(Index index: indexList){
-                System.out.printf("%d\t%d",index.getIndexNo(),index.getVacancy());
+                System.out.printf("%d\t%d%n",index.getIndexNo(),index.getVacancy());
             }
         }
     }
