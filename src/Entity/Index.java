@@ -7,9 +7,7 @@ import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Index implements Serializable {
