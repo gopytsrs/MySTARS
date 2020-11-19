@@ -226,7 +226,7 @@ public class AdminControl {
                     if (choice < 1 || choice > schoolList.size())
                         System.out.println("The input is out of range. Please try again.");
                 } while (choice < 1 || choice > schoolList.size());
-                Student stud = new Student(name, matricNo, finalEmail, year, schoolList.get(choice).getSchoolName(), gender, nationality);
+                Student stud = new Student(name, matricNo, finalEmail, year, schoolList.get(choice-1).getSchoolName(), gender, nationality);
                 System.out.println("Student is created");
                 studentAdded++;
                 this.studentList.add(stud);
