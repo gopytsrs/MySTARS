@@ -303,7 +303,7 @@ public class StudentControl {
                         total = index.getVacancy() + index.getAssignedStudents().size();
                     }
                     System.out.printf("The number of available slots in Index %d of %s is %d/%d", index.getIndexNo(), index.getCourseCode(), index.getVacancy(), total);
-                    System.out.println();
+                    System.out.println("\n");
 
                     return;
 
@@ -354,7 +354,6 @@ public class StudentControl {
         Course course = null;
         for(Course c: courseList){
             if(c.getCourseCode().equals(courseR.getCourseCode())){
-
                 indexList = c.getIndexList();
                 course = c;
             }
@@ -365,6 +364,7 @@ public class StudentControl {
         while (!validIndex) {
             try {
                 course.printIndexList();
+                System.out.println("\n");
                 System.out.println("Enter index no. to change to.");
                 desiredIndexNo = Integer.valueOf(scanner.nextLine());
             } catch (NumberFormatException e) {
@@ -379,16 +379,18 @@ public class StudentControl {
             }
             if (!validIndex) {
                 System.out.println("That index number does not exist!");
-            } else if (desiredIndex.getVacancy() == 0) {
-                System.out.printf("Index %d has no vacancies", desiredIndex.getIndexNo());
-                validIndex = false;
-            } else {
+            }
+//            else if (desiredIndex.getVacancy() == 0) {
+//                System.out.printf("Index %d has no vacancies", desiredIndex.getIndexNo());
+//                validIndex = false;
+//            }
+          else {
                 for (CourseRegistration c1 : all) {
                     if (c1.getIndex() == desiredIndex) {
                         System.out.println("Already registered for index " + desiredIndex.getIndexNo());
                         validIndex = false;
                         break;
-                    } else if (c1.getIndex().checkClash(desiredIndex)) {
+                    } else if (c1.getIndex().checkClash(desiredIndex) && !(c1.getCourseCode().equals(desiredIndex.getCourseCode()))) {
                         int indexNo = c1.getIndex().getIndexNo();
                         String courseCode = c1.getCourseCode();
                         System.out.printf("Clash found! %d of %s clashes with new index %d of %s.%n", indexNo, courseCode, desiredIndex.getIndexNo(), desiredIndex.getCourseCode());
@@ -399,14 +401,30 @@ public class StudentControl {
 
             }
             if (validIndex) {
-                desiredIndex.assignStudent(student);
-                System.out.println(desiredIndex.getCourseCode());
-                System.out.printf("Changed from Index %d to Index %d", currentIndexNo, desiredIndexNo);
-                if (currentIndex.getAssignedStudents().contains(student)) {
+                if (currentIndex.getAssignedStudents().contains(student) && desiredIndex.getVacancy() > 0) {
+                    System.out.println(desiredIndex.getCourseCode());
+                    System.out.printf("Changed from Index %d to Index %d %n", currentIndexNo, desiredIndexNo);
                     currentIndex.removeStudentFromAssigned(student);
-                } else if (currentIndex.getWaitList().contains(student)) {
+                    desiredIndex.assignStudent(student);
+
+                    //swapping from 1 waitlist to another
+                } else if (currentIndex.getWaitList().contains(student) && desiredIndex.getVacancy() > 0){
+                    System.out.println(desiredIndex.getCourseCode());
+                    System.out.printf("Changed from Index %d to Index %d %n", currentIndexNo, desiredIndexNo);
                     currentIndex.removeFromWaitlist(student);
+                    desiredIndex.assignStudent(student);
+
+                } else if (currentIndex.getWaitList().contains(student) && desiredIndex.getVacancy() == 0) {
+                    System.out.println(desiredIndex.getCourseCode());
+                    System.out.printf("Changed waitlist from Index %d to Index %d %n", currentIndexNo, desiredIndex);
+                    currentIndex.removeFromWaitlist(student);
+                    desiredIndex.addToWaitlist(student);
+
+                    //not allowed: swapping an index you registered to the waitlist from another
+                } else {
+                    System.out.println("Not allowed!");
                 }
+                saveData();
             }
         }
     }
