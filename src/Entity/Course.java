@@ -84,7 +84,15 @@ public class Course implements Serializable {
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input the indexNo: ");
-        int indexNo = sc.nextInt();
+        int indexNo;
+        try{
+            String dummy = sc.next();
+            indexNo = Integer.parseInt(dummy);
+        }catch(Exception e)
+        {
+            System.out.println("Please enter an integer");
+            return;
+        }
         for(Index J: indexList) {
             while (indexNo == J.getIndexNo()) {
                 System.out.println("Index No already exists! ");
