@@ -401,30 +401,34 @@ public class StudentControl {
 
             }
             if (validIndex) {
+                //From assigned in old to assigned in new
                 if (currentIndex.getAssignedStudents().contains(student) && desiredIndex.getVacancy() > 0) {
                     System.out.println(desiredIndex.getCourseCode());
                     System.out.printf("Changed from Index %d to Index %d %n", currentIndexNo, desiredIndexNo);
                     currentIndex.removeStudentFromAssigned(student);
                     desiredIndex.assignStudent(student);
+                    student.updateIndex(currentIndex,desiredIndex,false);
 
-                    //swapping from 1 waitlist to another
+                //From waitList in old to assigned in new
                 } else if (currentIndex.getWaitList().contains(student) && desiredIndex.getVacancy() > 0){
                     System.out.println(desiredIndex.getCourseCode());
                     System.out.printf("Changed from Index %d to Index %d %n", currentIndexNo, desiredIndexNo);
                     currentIndex.removeFromWaitlist(student);
                     desiredIndex.assignStudent(student);
+                    student.updateIndex(currentIndex,desiredIndex,true);
 
+                //From waitlist in old to waitlist in new
                 } else if (currentIndex.getWaitList().contains(student) && desiredIndex.getVacancy() == 0) {
                     System.out.println(desiredIndex.getCourseCode());
                     System.out.printf("Changed waitlist from Index %d to Index %d %n", currentIndexNo, desiredIndex);
                     currentIndex.removeFromWaitlist(student);
                     desiredIndex.addToWaitlist(student);
+                    student.updateIndex(desiredIndex,currentIndex,false);
 
-                    //not allowed: swapping an index you registered to the waitlist from another
+                //From assigned in old to waitList in new, not allowed
                 } else {
                     System.out.println("Not allowed!");
                 }
-                saveData();
             }
         }
     }

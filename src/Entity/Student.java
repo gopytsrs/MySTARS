@@ -120,7 +120,32 @@ public class Student implements Serializable {
         this.noOfAUs += course.getAu();
     }
 
+    public void updateIndex(Index currentIndex, Index desiredIndex, boolean waitListToAssigned){
+        if(waitListToAssigned){
+            for(CourseRegistration course: waitList){
+                if(course.getIndex().equals(currentIndex)){
+                    waitList.remove(course);
+                    course.setIndex(desiredIndex);
+                    assignedCourse.add(course);
+                    return;
+                }
+            }
+        }
 
+        for(CourseRegistration course: assignedCourse){
+            if(course.getIndex().equals(currentIndex)){
+                course.setIndex(desiredIndex);
+                return;
+            }
+        }
+
+        for(CourseRegistration course: waitList){
+            if(course.getIndex().equals(currentIndex)){
+                course.setIndex(desiredIndex);
+            }
+        }
+
+    }
 
     public void removeAssignedCourse(CourseRegistration course) {
         this.assignedCourse.remove(course);
