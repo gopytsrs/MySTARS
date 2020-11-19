@@ -436,11 +436,46 @@ public class makedata {
 
         SCSE.setCourseList(course4);
 
+        //end of SCSE
+
+        //create MAE data
+
+        LocalDateTime startDateMAE = LocalDateTime.parse("2020-12-15T09:00");
+        LocalDateTime endDateMAE = LocalDateTime.parse("2020-12-16T09:00");
+        AccessPeriod accessPeriodMAE = new AccessPeriod(startDateMAE, endDateMAE);
+        School MAE = new School("School of Mechanical and Aerospace Engineering", accessPeriodMAE);
+
+        Course c20 = new Course("MA2002", "Theory of Mechanism", 3);
+        c20.addLessonType1("LEC");
+        c20.addLessonType1("TUT");
+        c20.setOfferingSchool(MAE);
+
+        Index I99 = new Index("Theory of Mechanism", "MA2002", 99, "MAE01", 20);
+        Lesson L99LEC = new Lesson(99, LessonType.LEC, DayOfWeek.TUESDAY, LocalTime.parse("09:30"), LocalTime.parse("10:30"), "LT2A", Week.EVERY);
+        Lesson L99TUT = new Lesson(99, LessonType.TUT, DayOfWeek.TUESDAY, LocalTime.parse("11:30"), LocalTime.parse("12:30"), "TR+19", Week.EVERY);
+        I99.setLessons(L99LEC);
+        I99.setLessons(L99TUT);
+        c20.setindexlist(I99);
+
+        Course c21 = new Course("MA3001", "Machine Element Design", 3);
+        c21.addLessonType1("LEC");
+        c21.addLessonType1("TUT");
+        c21.setOfferingSchool(MAE);
+
+        Index I100 = new Index("Machine Element Design", "MA3001", 100, "MAE02", 20);
+        Lesson L100LEC = new Lesson(100, LessonType.LEC, DayOfWeek.FRIDAY, LocalTime.parse("14:30"), LocalTime.parse("15:30"), "LT19A", Week.EVERY);
+        Lesson L100TUT = new Lesson(100, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("15:30"), LocalTime.parse("16:30"), "TR+07", Week.EVERY);
+        I100.setLessons(L100LEC);
+        I100.setLessons(L100TUT);
+        c21.setindexlist(I100);
+        //end of MAE
+
         String fileName = "database_school_testing.bin";
         ArrayList<School> schoolList = new ArrayList<School>();
         schoolList.add(nbs);
         schoolList.add(SCSE);
         schoolList.add(SCBE);
+        schoolList.add(MAE);
 
         //student0
         Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2,"School of Computer Science and Engineering", "Male", "Singaporean");
