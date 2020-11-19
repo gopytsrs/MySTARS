@@ -207,7 +207,7 @@ public class AdminControl {
 
                 System.out.println("Which school will they attend? ");
                 for (int p = 0; p < schoolList.size(); p++) {
-                    System.out.println((p) + " . " + schoolList.get(p).getSchoolName());
+                    System.out.println((p+1) + " . " + schoolList.get(p).getSchoolName());
                 }
                 System.out.println("Enter your choice here: ");
 
@@ -220,11 +220,11 @@ public class AdminControl {
                         continue;
                     }
                     choice = Integer.parseInt(dummy);
-                    if (choice < 0 || choice > schoolList.size())
+                    if (choice < 1 || choice > schoolList.size())
                         System.out.println("The input is out of range. Please try again.");
-                } while (choice < 0 || choice > schoolList.size());
+                } while (choice < 1 || choice > schoolList.size());
 
-                Student stud = new Student(name, matricNo, email, year, schoolList.get(choice).getSchoolName(), gender, nationality);
+                Student stud = new Student(name, matricNo, email, year, schoolList.get(choice-1).getSchoolName(), gender, nationality);
                 System.out.println("Student is created");
                 studentAdded++;
                 this.studentList.add(stud);
@@ -328,10 +328,10 @@ public class AdminControl {
                             continue;
                         }
                         option = Integer.parseInt(dummy);
-                        if (option < 0 || option > schoolList.size()) {
+                        if (option < 0 || option > schoolList.size()-1) {
                             System.out.println("Your data is out of range, try again.");
                         }
-                    } while (option < 0 || option > schoolList.size());
+                    } while (option < 0 || option > schoolList.size()-1);
                     C = schoolList.get(option).getCourseList();
 
                     for (int j = 0; j < C.size(); j++) {
@@ -347,10 +347,10 @@ public class AdminControl {
                             continue;
                         }
                         option1 = Integer.parseInt(dummy);
-                        if (option1 < 0 || option1 > C.size()) {
+                        if (option1 < 0 || option1 > C.size()-1) {
                             System.out.println("Your data is out of range, try again.");
                         }
-                    } while (option1 < 0 || option1 > C.size());
+                    } while (option1 < 0 || option1 > C.size()-1);
 
                     int pick = 0;
                     while (pick != 5) {
@@ -376,10 +376,10 @@ public class AdminControl {
                                         continue;
                                     }
                                     option3 = Integer.parseInt(dummy);
-                                    if (option3 < 0 || option3 > schoolList.size()) {
+                                    if (option3 < 0 || option3 > schoolList.size()-1) {
                                         System.out.println("Your data is out of range, try again.");
                                     }
-                                } while (option3 < 0 || option3 > schoolList.size());
+                                } while (option3 < 0 || option3 > schoolList.size()-1);
                                 schoolList.get(option3).getCourseList().add(C.get(option1));
                                 C.remove(option1);
                                 System.out.println("School has been updated");      //not done
@@ -419,10 +419,10 @@ public class AdminControl {
                                         continue;
                                     }
                                     option2 = Integer.parseInt(dummy);
-                                    if (option2 < 0 || option2 > SelectedIndex.size()) {
+                                    if (option2 < 0 || option2 > SelectedIndex.size()-1) {
                                         System.out.println("Your data is out of range, try again.");
                                     }
-                                } while (option2 < 0 || option2 > SelectedIndex.size());
+                                } while (option2 < 0 || option2 > SelectedIndex.size()-1);
                                 boolean indexexist = false;
                                 System.out.println("Please key in new indexNo: ");
                                 int newIndex = sc.nextInt();
@@ -455,10 +455,10 @@ public class AdminControl {
                                         continue;
                                     }
                                     option2 = Integer.parseInt(dummy);
-                                    if (option2 < 0 || option2 > SelectedIndex.size()) {
+                                    if (option2 < 0 || option2 > SelectedIndex.size()-1) {
                                         System.out.println("Your data is out of range, try again.");
                                     }
-                                } while (option2 < 0 || option2 > SelectedIndex.size());
+                                } while (option2 < 0 || option2 > SelectedIndex.size()-1);
                                 System.out.println("Please key in new Vacancy: ");
                                 int newVacancy = sc.nextInt();
                                 if (newVacancy < 0 || newVacancy > 30) {
@@ -514,10 +514,10 @@ public class AdminControl {
                 continue;
             }
             option = Integer.parseInt(dummy);
-            if (option < 0 || option > schoolList.size()) {
+            if (option < 0 || option > schoolList.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (option < 0 || option > schoolList.size());
+        } while (option < 0 || option > schoolList.size()-1);
         C = schoolList.get(option).getCourseList();
 
         for (int j = 0; j < C.size(); j++) {
@@ -532,10 +532,10 @@ public class AdminControl {
                 continue;
             }
             choice = Integer.parseInt(dummy);
-            if (choice < 0 || choice > C.size()) {
+            if (choice < 0 || choice > C.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (choice < 0 || choice > C.size());
+        } while (choice < 0 || choice > C.size()-1);
         I = C.get(choice).getIndexList();
         for (int j = 0; j < I.size(); j++) {
             System.out.println(j + " : " + I.get(j).getIndexNo());
@@ -550,11 +550,11 @@ public class AdminControl {
                 continue;
             }
             choice = Integer.parseInt(dummy);
-            if (choice < 0 || choice > I.size()) {
+            if (choice < 0 || choice > I.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
 
-        } while (choice < 0 || choice > I.size());
+        } while (choice < 0 || choice > I.size()-1);
         vacancy = I.get(choice).getVacancy();
 
         if (I.get(choice).getAssignedStudents() == null)
@@ -583,10 +583,10 @@ public class AdminControl {
                 continue;
             }
             option = Integer.parseInt(dummy);
-            if (option < 0 || option > schoolList.size()) {
+            if (option < 0 || option > schoolList.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (option < 0 || option > schoolList.size());
+        } while (option < 0 || option > schoolList.size()-1);
         C = schoolList.get(option).getCourseList();
 
         for (int j = 0; j < C.size(); j++) {
@@ -601,10 +601,10 @@ public class AdminControl {
                 continue;
             }
             choice = Integer.parseInt(dummy);
-            if (choice < 0 || choice > C.size()) {
+            if (choice < 0 || choice > C.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (choice < 0 || choice > C.size());
+        } while (choice < 0 || choice > C.size()-1);
         I = C.get(choice).getIndexList();
         System.out.println(
                 "Name\t" +
@@ -645,10 +645,10 @@ public class AdminControl {
                 continue;
             }
             option = Integer.parseInt(dummy);
-            if (option < 0 || option > schoolList.size()) {
+            if (option < 0 || option > schoolList.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (option < 0 || option > schoolList.size());
+        } while (option < 0 || option > schoolList.size()-1);
         C = schoolList.get(option).getCourseList();
 
         for (int j = 0; j < C.size(); j++) {
@@ -663,10 +663,10 @@ public class AdminControl {
                 continue;
             }
             choice = Integer.parseInt(dummy);
-            if (choice < 0 || choice > C.size()) {
+            if (choice < 0 || choice > C.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (choice < 0 || choice > C.size());
+        } while (choice < 0 || choice > C.size()-1);
         I = C.get(choice).getIndexList();
         for (int j = 0; j < I.size(); j++) {
             System.out.println(j + " : " + I.get(j).getIndexNo());
@@ -681,10 +681,10 @@ public class AdminControl {
                 continue;
             }
             choice = Integer.parseInt(dummy);
-            if (choice < 0 || choice > I.size()) {
+            if (choice < 0 || choice > I.size()-1) {
                 System.out.println("Your data is out of range, try again.");
             }
-        } while (choice < 0 || choice > I.size());
+        } while (choice < 0 || choice > I.size()-1);
         if (I.get(choice).getAssignedStudents() == null)
             System.out.println("There are no Students in this index");
         else {
