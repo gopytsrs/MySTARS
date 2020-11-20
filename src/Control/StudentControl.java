@@ -241,7 +241,7 @@ public class StudentControl {
             }
         }
 
-        if (courseToDrop.getIndex().getWaitList() != null && courseToDrop.getIndex().getVacancy() > 0) //edit
+        if (courseToDrop.getIndex().getWaitList() != null && courseToDrop.getIndex().getVacancy() > 0) //edit is empty
         {
             Student Firstinlist = courseToDrop.getIndex().getWaitList().remove();
             courseToDrop.getIndex().assignStudent(Firstinlist);

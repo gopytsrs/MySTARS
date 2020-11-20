@@ -613,7 +613,7 @@ public class AdminControl {
                 continue;
             } else {
                 for (Student student : index.getAssignedStudents()) {
-                    System.out.println(student + "Assigned");
+                    System.out.println(student + "Assigned");       //edit use to string
                 }
             }
 
@@ -690,7 +690,7 @@ public class AdminControl {
                             "Nationality\t" +
                             "Status\t");
             for (Student student : I.get(choice).getAssignedStudents()) {
-                System.out.println(student + "Assigned");
+                System.out.println(student + "Assigned");       //edit use to string
             }
         }
 
