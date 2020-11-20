@@ -253,10 +253,8 @@ public class StudentControl {
             System.out.printf("Dropped %s from assigned courses%n", courseToDrop.getCourseCode());
         }
 
-
-        if (!courseToDrop.getIndex().getWaitList().isEmpty() && courseToDrop.getIndex().getVacancy() > 0) {
-            Student Firstinlist = courseToDrop.getIndex().getWaitList().remove();
-            I1.removeFromWaitlist(Firstinlist);
+        if (!I1.getWaitList().isEmpty() && I1.getVacancy() > 0) {
+            Student Firstinlist = I1.getWaitList().remove(0);
             I1.assignStudent(Firstinlist);
             if(Firstinlist == null){
                 System.out.println('a');

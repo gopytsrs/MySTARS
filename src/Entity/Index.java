@@ -21,7 +21,7 @@ public class Index implements Serializable {
     private int indexNo;
     private String groupNo;
     private int vacancy;
-    public static Deque<Student> waitList = new LinkedList<Student>();
+    public ArrayList<Student> waitList = new ArrayList<>();
     public ArrayList<Student> assignedStudents = new ArrayList<>();
     private ArrayList<Lesson> lessons;
 
@@ -79,12 +79,18 @@ public class Index implements Serializable {
         waitList.add(student);
     }
 
-    public static Deque<Student> getWaitList() {
+    public ArrayList<Student> getWaitList() {
         return waitList;
     }
 
     public void removeFromWaitlist(Student student) {
-        waitList.remove(student);
+        for (int i = 0; i<waitList.size();i++)
+        {
+            if ( waitList.get(i).getEmail().equals(student.getEmail()) )
+            {
+                waitList.remove(i);
+            }
+        }
     }
 
     public boolean assignStudent(Student student){
@@ -242,7 +248,7 @@ public class Index implements Serializable {
     public void removeStudentFromAssigned(Student student){
         for (int i = 0; i<assignedStudents.size();i++)
         {
-            if ( assignedStudents.get(i).getEmail() == student.getEmail())
+            if ( assignedStudents.get(i).getEmail().equals(student.getEmail()) )
             {
                 assignedStudents.remove(i);
             }
