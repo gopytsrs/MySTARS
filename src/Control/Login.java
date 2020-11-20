@@ -61,6 +61,7 @@ public class Login {
             if (!validap)
             {
                 System.out.println("The access period is "+AP.getStartDate()+" to "+AP.getEndDate()+". Current time is "+LocalDateTime.now());
+                collectDomain();
             }
         } while (valid != true || validap != true);
     }
