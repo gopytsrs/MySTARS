@@ -13,6 +13,7 @@ public class StudentControl {
     private ArrayList<School> schoolList = new ArrayList<>();
 
     Scanner scanner = new Scanner(System.in);
+    Console console = System.console();
 
     //Create StudentControl using this constructor
     public StudentControl(Student student) {
@@ -504,8 +505,10 @@ public class StudentControl {
                 continue;
             }
             do {
-                System.out.println("Please enter password of student to swap index with: ");
-                studentpassSwap = scanner.next();
+//                char [] pw= console.readPassword("Please enter password of student to swap index with:\n");
+//                studentpassSwap = String.valueOf(pw);
+                System.out.println("Please enter password of student to swap index with:");
+                studentpassSwap = scanner.nextLine();
                 boolean check = studenttoswap.getAccount().validate(studentnameSwap, studentpassSwap);
                 if (check) {
                     passwordcheck = true;

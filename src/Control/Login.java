@@ -2,6 +2,7 @@ package Control;
 
 import Entity.*;
 
+import java.io.Console;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,6 +23,7 @@ public class Login {
     private Admin a;
     private AccessPeriod AP = null;
 
+    Console console = System.console();
     Scanner sc = new Scanner(System.in);
 
     public String getUserName() {
@@ -47,8 +49,10 @@ public class Login {
             System.out.println("Please enter your Username: ");
             sc.nextLine();
             userName = sc.nextLine();
-            System.out.println("Please enter your Password: ");
-            password = sc.next();
+//            char [] pw = console.readPassword("Please enter your password:\n");
+//            password = new String(pw);
+            System.out.println("Enter your password");
+            password = sc.nextLine();
             valid = Authenticatepassword();
             if (valid == false) {
                 System.out.println("Invalid username/password. Please try again.");
