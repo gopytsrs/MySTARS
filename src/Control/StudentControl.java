@@ -219,53 +219,60 @@ public class StudentControl {
                 return;
             }
         }
+        Index I1 = new Index();
+        boolean waitlistcheck = false;
+        boolean assignedlistcheck = false;
+        for (Course courses : courseList) {
+            if (courses.getCourseCode().equals(courseToDrop.getCourseCode())) {
+                for (Index I : courses.getIndexList()) {
+                    if (I.getIndexNo() == courseToDrop.getIndex().getIndexNo()) {
+                        I1 = I;
+                        if (waitlistCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
+                            waitlistcheck = true; //edit
+                            break;
 
-        for (CourseRegistration course : all) {
-            if (course.getCourseCode().equals(courseToDrop.getCourseCode())) {
-                Index index = course.getIndex();
-
-                //Branch to check if course is registered only or assigned.
-
-                if (waitlistCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
-                    index.removeFromWaitlist(student);
-
-                    student.removeWaitList(courseToDrop);
-                    System.out.printf("Removed %s from waitlist%n",courseToDrop.getCourseCode());
-
-                    break;     //edit
-
-                } else if (assignedCourses.contains(courseToDrop)) {
-                    //Remove student from index
-                    index.removeStudentFromAssigned(student);
-                    student.removeAssignedCourse(courseToDrop);
-                    System.out.printf("Dropped %s from assigned courses%n", courseToDrop.getCourseCode());
-                    break;     //edit
-                }
-                     //edit
-            }
-        }
-
-        if (!courseToDrop.getIndex().getWaitList().isEmpty() && courseToDrop.getIndex().getVacancy() > 0) {
-            Student Firstinlist = null;
-            for (Course course : courseList) {
-                for(Index index: course.getIndexList()) {
-                    if (courseToDrop.getIndex().getIndexNo() == index.getIndexNo()) {
-                        Firstinlist = courseToDrop.getIndex().getWaitList().pop();
-                        index.removeFromWaitlist(Firstinlist);
-                        index.assignStudent(Firstinlist);
-                        courseToDrop.setStudent(Firstinlist);
+                        } else if (assignedCourses.contains(courseToDrop)) {
+                            //Remove student from index
+                            assignedlistcheck = true;
+                            break;     //edit
+                        }
                     }
                 }
+
             }
+        }
+        if (waitlistcheck){
+            I1.removeFromWaitlist(student);
+            student.removeWaitList(courseToDrop);
+            System.out.printf("Removed %s from waitlist%n", courseToDrop.getCourseCode());
+        }
+        else if (assignedlistcheck)
+        {
+            I1.removeStudentFromAssigned(student);
+            student.removeAssignedCourse(courseToDrop);
+            System.out.printf("Dropped %s from assigned courses%n", courseToDrop.getCourseCode());
+        }
+
+
+        if (!courseToDrop.getIndex().getWaitList().isEmpty() && courseToDrop.getIndex().getVacancy() > 0) {
+            Student Firstinlist = courseToDrop.getIndex().getWaitList().remove();
+            I1.removeFromWaitlist(Firstinlist);
+            I1.assignStudent(Firstinlist);
             if(Firstinlist == null){
                 System.out.println('a');
                 return;
             }
+            Student student1 = null;
             for(Student student: studentList){
                 if(student.getEmail().equals(Firstinlist.getEmail())){
-                    student.addAssignedCourse(courseToDrop);
-                    student.removeWaitList(courseToDrop);
+                    student1 = student;
+
                 }
+            }
+            if (student1 != null)
+            {
+                student1.addAssignedCourse(courseToDrop);
+                student1.removeWaitList(courseToDrop);
             }
             notificationControl n = new notificationControl(Firstinlist, courseToDrop);
         }

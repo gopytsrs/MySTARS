@@ -240,7 +240,14 @@ public class Index implements Serializable {
     }
 
     public void removeStudentFromAssigned(Student student){
-        this.getAssignedStudents().remove(student);
+        for (int i = 0; i<assignedStudents.size();i++)
+        {
+            if ( assignedStudents.get(i).getEmail() == student.getEmail())
+            {
+                assignedStudents.remove(i);
+            }
+        }
+        //this.assignedStudents.remove(student);
         this.vacancy += 1;
     }
 }
