@@ -346,6 +346,10 @@ public class AdminControl {
                         }
                     } while (option1 < 0 || option1 > C.size()-1);
 
+                    String oldCourseCode = C.get(option1).getCourseCode();
+                    String oldCourseName = C.get(option1).getCourseName();
+
+
                     int pick = 0;
                     while (pick != 5) {
                         System.out.println("1. Update school");
@@ -392,7 +396,25 @@ public class AdminControl {
                                     }
                                 }
                                 if (!courseexist) {
-                                    C.get(option1).setCourseCode(newcoursecode);
+                                    Course oldCourse = C.get(option1);
+                                    oldCourse.setCourseCode(newcoursecode);
+
+                                    for(Index index: oldCourse.getIndexList()){
+                                        index.setCourseCode(newcoursecode);
+                                    }
+
+                                    for(Student student: studentList){
+                                        for(CourseRegistration course: student.getAssignedCourse()){
+                                            if(course.getCourseCode().equals(oldCourseCode))
+                                                course.setCourseCode(newcoursecode);
+                                                course.getIndex().setCourseCode(newcoursecode);
+                                        }
+                                        for(CourseRegistration course: student.getWaitList()){
+                                            if(course.getCourseCode().equals(oldCourseCode))
+                                                course.setCourseCode(newcoursecode);
+                                                course.getIndex().setCourseCode(newcoursecode);
+                                        }
+                                    }
                                     System.out.println("Course Code has been updated");
                                 }
                                 break;
