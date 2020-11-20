@@ -37,6 +37,19 @@ public class Index implements Serializable {
         lessons = new ArrayList<Lesson>();
     }
 
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getCourseCode(){return courseCode;}
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
     public int getIndexNo() {
         return indexNo;
     }
@@ -97,10 +110,6 @@ public class Index implements Serializable {
 
     public void setLessons(Lesson L) {
         lessons.add(L);
-    }
-
-    public String getCourseCode() {
-        return courseCode;
     }
 
     public boolean checkClash(Index indexToCheck) {

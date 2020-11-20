@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class StudentUI {
     Student student;
-    Course course;
+    //Course course;
 
     public StudentUI(Student s) {
         this.student = s;

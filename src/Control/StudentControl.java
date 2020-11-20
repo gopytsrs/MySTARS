@@ -173,6 +173,10 @@ public class StudentControl {
                         student.addAssignedCourse(newCourse);
                         System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
                         return;
+                    } else if(student.checkAU(newCourse) && !indexChosen.assignStudent(student)){
+                        student.addWaitList(newCourse);
+                        indexChosen.addToWaitlist(student);
+                        System.out.printf("Added %d of %s to waitlist.%n",indexChosen.getIndexNo(),newCourse.getCourseCode());
                     }
 
                     break;
