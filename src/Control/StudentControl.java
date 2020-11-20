@@ -390,7 +390,7 @@ public class StudentControl {
                         System.out.println("Already registered for index " + desiredIndex.getIndexNo());
                         validIndex = false;
                         break;
-                    } else if (c1.getIndex().checkClash(desiredIndex) && !(c1.getCourseCode().equals(desiredIndex.getCourseCode()))) {  //edit
+                    } else if (c1.getIndex().checkClash(desiredIndex) && !(c1.getCourseCode().equals(desiredIndex.getCourseCode()))) {
                         int indexNo = c1.getIndex().getIndexNo();
                         String courseCode = c1.getCourseCode();
                         System.out.printf("Clash found! %d of %s clashes with new index %d of %s.%n", indexNo, courseCode, desiredIndex.getIndexNo(), desiredIndex.getCourseCode());
