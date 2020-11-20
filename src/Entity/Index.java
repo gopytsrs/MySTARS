@@ -103,6 +103,14 @@ public class Index implements Serializable {
         return courseCode;
     }
 
+    public void setCourseCode(String courseCode){
+        this.courseCode = courseCode;
+    }
+
+    public void setCourseName(String courseName){
+        this.courseName = courseName;
+    }
+
     public boolean checkClash(Index indexToCheck) {
         for (Lesson lesson : lessons) {
             for (Lesson lesson1 : indexToCheck.getLessons()) {
