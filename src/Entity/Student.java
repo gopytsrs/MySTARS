@@ -161,7 +161,13 @@ public class Student implements Serializable {
     }
 
     public void removeWaitList(CourseRegistration course) {
-        this.waitList.remove(course);
+        for (int i = 0; i<waitList.size();i++)
+        {
+            if (waitList.get(i).getIndex().getIndexNo()== course.getIndex().getIndexNo())
+            {
+                this.waitList.remove(i);
+            }
+        }
     }
 
     public int getNoOfAU() {
