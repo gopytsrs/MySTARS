@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class AdminUI {
     Admin admin;
-    Course course;
+    //Course course;
 
     public AdminUI(Admin admin){
         this.admin = admin;
