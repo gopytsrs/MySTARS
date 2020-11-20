@@ -232,26 +232,42 @@ public class StudentControl {
                     student.removeWaitList(courseToDrop);
                     System.out.printf("Removed %s from waitlist%n",courseToDrop.getCourseCode());
 
-                    return;     //edit
+                    break;     //edit
 
                 } else if (assignedCourses.contains(courseToDrop)) {
                     //Remove student from index
                     index.removeStudentFromAssigned(student);
                     student.removeAssignedCourse(courseToDrop);
                     System.out.printf("Dropped %s from assigned courses%n", courseToDrop.getCourseCode());
-                    return;     //edit
+                    break;     //edit
                 }
-                break;      //edit
+                     //edit
             }
         }
 
-        if (courseToDrop.getIndex().getWaitList() != null && courseToDrop.getIndex().getVacancy() > 0) //edit is empty
-        {
-            Student Firstinlist = courseToDrop.getIndex().getWaitList().remove();
-            courseToDrop.getIndex().assignStudent(Firstinlist);
-            Firstinlist.addAssignedCourse(courseToDrop);
-            Firstinlist.removeWaitList(courseToDrop);
-            notificationControl n = new notificationControl(Firstinlist,courseToDrop);
+        if (!courseToDrop.getIndex().getWaitList().isEmpty() && courseToDrop.getIndex().getVacancy() > 0) {
+            Student Firstinlist = null;
+            for (Course course : courseList) {
+                for(Index index: course.getIndexList()) {
+                    if (courseToDrop.getIndex().getIndexNo() == index.getIndexNo()) {
+                        Firstinlist = courseToDrop.getIndex().getWaitList().pop();
+                        index.removeFromWaitlist(Firstinlist);
+                        index.assignStudent(Firstinlist);
+                        courseToDrop.setStudent(Firstinlist);
+                    }
+                }
+            }
+            if(Firstinlist == null){
+                System.out.println('a');
+                return;
+            }
+            for(Student student: studentList){
+                if(student.getEmail().equals(Firstinlist.getEmail())){
+                    student.addAssignedCourse(courseToDrop);
+                    student.removeWaitList(courseToDrop);
+                }
+            }
+            notificationControl n = new notificationControl(Firstinlist, courseToDrop);
         }
     }
 
@@ -552,9 +568,13 @@ public class StudentControl {
                         canSwap = true;
                     }
                     if (canSwap) {
-                        student.removeAssignedCourse(mycourseSwap);
                         studenttoswap.removeAssignedCourse(hiscourseSwap);
+                        hisIndex.removeStudentFromAssigned(studenttoswap);
+                        myindex.assignStudent(studenttoswap);
+
+                        myindex.removeStudentFromAssigned(student);
                         student.addAssignedCourse(courseSwaptome);
+                        hisIndex.assignStudent(student);
                         studenttoswap.addAssignedCourse(courseSwaptohim);
                         System.out.println("Index swap successfully.");             //add changes in student to index
                     } else {

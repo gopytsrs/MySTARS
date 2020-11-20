@@ -12,8 +12,14 @@ import java.util.ArrayList;
 public class makeStudent {
     public static void main(String args[]) throws Exception {
         ArrayList<Student> S = new ArrayList<>();
-        Student student = new Student("Sean Goh", "U1920001", "seangoh@e.ntu.edu.sg", 2,"School of Computer Science and Engineering", "Male", "Singaporean");
+        Student student = new Student("Sean Goh", "U1920001A", "sgoh046@e.ntu.edu.sg", 2,"School of Computer Science and Engineering", "M", "Singaporean");
+        Student student1 = new Student("James","U1920002K","james046@e.ntu.edu.sg",2,"School of Chemical and Biomedical Engineering","M","Singaporean");
+        Student student2 = new Student("Jee Wern","U1920003C","jtchen002@e.ntu.edu.sg",2,"School of Chemical and Biomedical Engineering","M","Singaporean");
+
         S.add(student);
+        S.add(student1);
+        S.add(student2);
+
         String fileName = "database_student.bin";
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName);

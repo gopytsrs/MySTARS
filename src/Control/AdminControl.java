@@ -428,7 +428,7 @@ public class AdminControl {
                                 System.out.println("Please key in the number beside the index you select: ");
                                 int option2 = -1;
                                 do {
-                                    String dummy = sc.next();
+                                    String dummy = sc.nextLine();
                                     boolean check = isInteger(dummy);
                                     if (check == false) {
                                         System.out.println("Input should be an integer.");
@@ -464,7 +464,7 @@ public class AdminControl {
                                 System.out.println("Please key in the number beside the index you select: ");
                                 int option2 = -1;
                                 do {
-                                    String dummy = sc.next();
+                                    String dummy = sc.nextLine();
                                     boolean check = isInteger(dummy);
                                     if (check == false) {
                                         System.out.println("Input should be an integer.");

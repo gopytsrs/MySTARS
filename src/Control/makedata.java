@@ -130,7 +130,7 @@ public class makedata {
 
 
         //make SCBE
-        LocalDateTime startDate = LocalDateTime.parse("2020-12-06T09:00");
+        LocalDateTime startDate = LocalDateTime.parse("2020-11-06T09:00");
         LocalDateTime endDate = LocalDateTime.parse("2020-12-07T09:00");
         School SCBE = new School("School of Chemical and Biomedical Engineering", new AccessPeriod(startDate, endDate));
 

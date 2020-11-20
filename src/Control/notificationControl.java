@@ -38,7 +38,7 @@ public class notificationControl {
                     InternetAddress.parse(S.getEmail())); // to be added an email addr
             message.setSubject("Assigning of course");
             message.setText("Dear "+S.getName()+","
-                    + "\n\n Congratulations, you have attained a spot in "+ C.getCourseName() +","+C.getCourseCode()+","+C.getIndex());
+                    + "\n\n Congratulations, you have attained a spot in "+ C.getCourseName() +","+C.getCourseCode()+","+C.getIndex().getIndexNo());
 
             Transport.send(message);
 

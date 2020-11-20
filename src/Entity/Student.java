@@ -32,7 +32,7 @@ public class Student implements Serializable {
         setGender(gender);
         setNationality(nationality);
         //Create new account for student with default username and pw
-        this.account = new Account(this.name, "password", "student");    //input
+        this.account = new Account(email.replace("@e.ntu.edu.sg",""), "password", "student");    //input
     }
 
     public String getName() {
