@@ -552,7 +552,7 @@ public class StudentControl {
                         studenttoswap.removeAssignedCourse(hiscourseSwap);
                         student.addAssignedCourse(courseSwaptome);
                         studenttoswap.addAssignedCourse(courseSwaptohim);
-                        System.out.println("Index swap successfully.");
+                        System.out.println("Index swap successfully.");             //add changes in student to index
                     } else {
                         System.out.println("Timetable clashes for account");
                     }
