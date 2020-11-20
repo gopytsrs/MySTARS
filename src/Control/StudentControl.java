@@ -562,23 +562,32 @@ public class StudentControl {
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
+                    student.removeAssignedCourse(mycourseSwap);
+                    studenttoswap.removeAssignedCourse(hiscourseSwap);
+
                     int checkmyclash = student.checkTimeClash(hisIndex);
                     int checkhisclash = studenttoswap.checkTimeClash(myindex);
                     if (checkmyclash == 0 & checkhisclash == 0) {
                         canSwap = true;
                     }
                     if (canSwap) {
-                        studenttoswap.removeAssignedCourse(hiscourseSwap);
                         hisIndex.removeStudentFromAssigned(studenttoswap);
-                        myindex.assignStudent(studenttoswap);
-
                         myindex.removeStudentFromAssigned(student);
-                        student.addAssignedCourse(courseSwaptome);
+
+                        myindex.assignStudent(studenttoswap); //not working
                         hisIndex.assignStudent(student);
-                        studenttoswap.addAssignedCourse(courseSwaptohim);
+
+                        student.addAssignedCourse(courseSwaptome);
+                        studenttoswap.addAssignedCourse(courseSwaptohim); //working fine
+
+                        student.updateIndex(myindex, hisIndex, false);
+                        studenttoswap.updateIndex(hisIndex, myindex, false);
+
                         System.out.println("Index swap successfully.");             //add changes in student to index
                     } else {
                         System.out.println("Timetable clashes for account");
+                        student.addAssignedCourse(mycourseSwap);
+                        studenttoswap.addAssignedCourse(hiscourseSwap);
                     }
                     break;
                 case 2:
@@ -588,7 +597,7 @@ public class StudentControl {
                     System.out.println("Please enter a valid option.");
                     break;
             }
-        } while (choice != 1 || choice != 2);
+        } while (choice != 1 && choice !=2);
 
     }
     public void saveData() {
