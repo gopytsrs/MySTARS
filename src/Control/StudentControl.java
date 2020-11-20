@@ -576,11 +576,34 @@ public class StudentControl {
                         canSwap = true;
                     }
                     if (canSwap) {
+                        // Editing student data
                         hisIndex.removeStudentFromAssigned(studenttoswap);
                         myindex.removeStudentFromAssigned(student);
 
-                        myindex.assignStudent(studenttoswap); //not working
+                        myindex.assignStudent(studenttoswap);
                         hisIndex.assignStudent(student);
+
+                        // Editing school data
+                        boolean assignedM = false;
+                        boolean assignedH = false;
+                        for (Course c: courseList){
+                            if (c.getCourseCode().equals(myindex.getCourseCode())){
+                                for (Index i: c.getIndexList()){
+                                    if (i.getIndexNo() == myindex.getIndexNo()){
+                                        i.removeStudentFromAssigned(student);
+                                        assignedM = i.assignStudent(studenttoswap);
+                                    }
+                                    else if (i.getIndexNo() == hisIndex.getIndexNo()){
+                                        i.removeStudentFromAssigned(studenttoswap);
+                                        assignedH = i.assignStudent(student);
+                                    }
+
+                                    if(assignedM && assignedH){
+                                        break;
+                                    }
+                                }
+                            }
+                        }
 
                         student.addAssignedCourse(courseSwaptome);
                         studenttoswap.addAssignedCourse(courseSwaptohim); //working fine
