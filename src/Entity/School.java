@@ -1,6 +1,6 @@
 package Entity;
 
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -56,7 +56,7 @@ public class School implements Serializable {
                 return;
             }
         }
-        System.out.println("Enter the course name");
+        System.out.println("Enter the course name: ");
         courseName = sc.nextLine();
         //Should capitalise in order to check
         for (Course c : this.courseList) {
@@ -76,15 +76,51 @@ public class School implements Serializable {
         Course C1 = new Course(courseCode, courseName, au);
         courseList.add(C1);
 
-        int choice;
+        boolean doesIndexExist = false;
         while(true){
-            System.out.println("Key 1 to add index");
-            System.out.println("Key 2 to stop");
-            choice = sc.nextInt();
-            if (choice == 2)
-                break;
-            C1.addIndex();
-        }
+            if (!doesIndexExist){
+                C1.addIndex();
+                doesIndexExist = true;
+            }
+            System.out.println("1. Add More Index");
+            System.out.println("2. Stop");
+            if (doesIndexExist) {
+                int option = -1;
+                do {
+                    System.out.println("Please enter your choice: ");
+                    String dummyChoice = sc.next();
+                    boolean check = isInteger(dummyChoice);
+                    if (!check) {
+                        System.out.println("Please enter a valid choice.");
+                        continue;
+                    }
+                    option = Integer.parseInt(dummyChoice);
+                    if (option < 0 || option > 2) {
+                        System.out.println("Invalid choice! Select school again: ");
+                    }
+                } while (option < 0 || option > 2);
 
+                if (option == 1)
+                    C1.addIndex();
+
+                else if (option == 2)
+                    break;
+            }
+        }
+    }
+
+    public String getCourseCode(int i){
+        return courseList.get(i).getCourseCode();
+    }
+
+    private boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 }

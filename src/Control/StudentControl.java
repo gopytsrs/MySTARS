@@ -64,7 +64,7 @@ public class StudentControl {
         //go to school -> print course
         //ask for course -> show indexes if correct -> ask if want to add the course and index -> register courses
         // Add to assigned courses if no clash and has vacancy and AU < 21
-        String courseName;
+        int courseName = 0;
         int indexno;
         Course courseChosen = null;
         Index indexChosen = null;
@@ -72,33 +72,54 @@ public class StudentControl {
         ArrayList<CourseRegistration> waitListCourse = student.getWaitList();
         boolean indexExists = false;
         boolean courseExists = false;
+
         do {
+            int i = 0;
             System.out.println("Please enter course code to add course:");
             for (Course courseL : courseList) {
-                System.out.println(courseL.getCourseCode() + ": " + courseL.getCourseName());
+                System.out.println((i + 1) + ": " + courseL.getCourseCode() + " - " + courseL.getCourseName());
+                i++; //1, 2, 3, 4
             }
-
-            courseName = scanner.next();
-            if (courseName.isEmpty()) continue;
-
-            for (Course course : courseList) {
-                if (course.getCourseCode().equals(courseName)) {
-                    courseExists = true;
-                    courseChosen = course;
-                    break;
+            do {
+                try {
+                    System.out.println("Enter your choice here: ");
+                    String dummy = scanner.next();
+                    boolean check = isInteger(dummy);
+                    if (check == false) {
+                        System.out.println("Input should be an integer.");
+                        continue;
+                    }
+                    courseName = Integer.parseInt(dummy);
+                    courseName -= 1;
+                    if (courseName > 0 || courseName < i) { //if courseName is 0, 1, 2, 3
+                        courseExists = true;
+                        courseChosen = courseList.get(courseName);
+                    } else { //if not, it comes here
+                        System.out.println("Your data is out of range, try again.");
+                    }
+                } catch (IndexOutOfBoundsException e){
+                    System.out.println("Your data is out of range, try again.");
                 }
-            }
+            } while (courseName < 0 || courseName >= i);
 
-            if (!courseExists) {
-                System.out.println("Please enter valid course code!");
-                continue;
-            }
+//            for (Course course : courseList) {
+//                if (course.getCourseCode().equals(courseName)) {
+//                    courseExists = true;
+//                    courseChosen = course;
+//                    break;
+//                }
+//            }
+
+//            if (!courseExists) {
+//                System.out.println("Please enter valid course code!");
+//                continue;
+//            }
 
             if (!registeredCourse.isEmpty())
             {
-                for (CourseRegistration aboutToRegisterCourse : registeredCourse) {
-                    if (courseChosen.getCourseCode().equals(aboutToRegisterCourse.getCourseCode())) {
-                        System.out.println("Already registered the course. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
+                for (CourseRegistration alreadyRegisteredCourse : registeredCourse) {
+                    if (courseChosen.getCourseCode().equals(alreadyRegisteredCourse.getCourseCode())) {
+                        System.out.println("Already registered the course. Index: " + alreadyRegisteredCourse.getIndex().getIndexNo());
                         return;
                     }
                 }
@@ -112,7 +133,6 @@ public class StudentControl {
                         return;
                     }
                 }
-
             }
 
 
@@ -654,5 +674,14 @@ public class StudentControl {
         }
     }
 
-
+    private boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
 }
