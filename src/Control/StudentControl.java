@@ -83,24 +83,28 @@ public class StudentControl {
             }
             do {
                 try {
-                    System.out.println("Enter your choice here: ");
-                    String dummy = scanner.next();
-                    boolean check = isInteger(dummy);
-                    if (check == false) {
-                        System.out.println("Input should be an integer.");
-                        continue;
+                    try {
+                        System.out.println("Enter your choice here: ");
+                        String dummy = scanner.next();
+                        boolean check = isInteger(dummy);
+                        if (check == false) {
+                            System.out.println("Input should be an integer.");
+                            continue;
+                        }
+                        courseName = Integer.parseInt(dummy);
+                        courseName -= 1;
+                        if (courseName > 0 || courseName < i) { //if courseName is 0, 1, 2, 3
+                            courseExists = true;
+                            courseChosen = courseList.get(courseName);
+                        } else { //if not, it comes here
+                            System.out.println("Choice is out of range, try again.");
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Choice is out of range, try again.");
                     }
-                    courseName = Integer.parseInt(dummy);
-                    courseName -= 1;
-                    if (courseName > 0 || courseName < i) { //if courseName is 0, 1, 2, 3
-                        courseExists = true;
-                        courseChosen = courseList.get(courseName);
-                    } else { //if not, it comes here
-                        System.out.println("Your data is out of range, try again.");
-                    }
-                } catch (IndexOutOfBoundsException e){
-                    System.out.println("Your data is out of range, try again.");
-                }
+            }catch (NullPointerException e){
+                System.out.println("Input should be an integer.");
+            }
             } while (courseName < 0 || courseName >= i);
 
 //            for (Course course : courseList) {
@@ -142,21 +146,51 @@ public class StudentControl {
         ArrayList<Index> indexList = courseChosen.getIndexList();
 
         do {
-            System.out.println("Please enter index to add:");
+            int j = 0;
+            int indexName = 0;
+
             for (Index indexL : indexList) {
-                System.out.println(indexL.getIndexNo());
+                j++;
+                System.out.println(j + ": " + indexL.getIndexNo());
             }
-            indexno = scanner.nextInt();
-            for (Index index : indexList) {
-                if (index.getIndexNo() == indexno) {
-                    indexExists = true;
-                    indexChosen = index;
-                    break;
+
+            do {
+                try {
+                    try {
+                        System.out.println("Please enter index to add: ");
+                        String dummy = scanner.next();
+                        boolean check = isInteger(dummy);
+                        if (check == false) {
+                            System.out.println("Input should be an integer.");
+                            continue;
+                        }
+                        indexName = Integer.parseInt(dummy);
+                        indexName -= 1;
+                        if (indexName > 0 || indexName < j) {
+                            indexExists = true;
+                            indexChosen = indexList.get(indexName);
+                        } else { //if not, it comes here
+                            System.out.println("Choice is out of range, try again.");
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Choice is out of range, try again.");
+                    }
+                } catch (NullPointerException e) {
+                    System.out.println("Input should be an integer.");
                 }
-            }
-            if (!indexExists) {
-                System.out.println("Please enter valid index!");
-            }
+            } while (indexName < 0 || indexName >= j);
+
+//            indexno = scanner.nextInt();
+//            for (Index index : indexList) {
+//                if (index.getIndexNo() == indexno) {
+//                    indexExists = true;
+//                    indexChosen = index;
+//                    break;
+//                }
+//            }
+//            if (!indexExists) {
+//                System.out.println("Please enter valid index!");
+//            }
         } while (!indexExists);
 
         CourseRegistration newCourse = new CourseRegistration(indexChosen, indexChosen.getCourseCode(), courseChosen.getCourseName(), courseChosen.getAu(), student);
@@ -222,80 +256,122 @@ public class StudentControl {
         CourseRegistration courseToDrop = null;
         boolean courseFound = false;
 
+        int droppingCourse = 0;
+        int lastChoice = 0;
+        int lastChoice2 = 0;
+        int i = 0;
 
         //Check if course is registered, exits method if course is not registered
-        while (!courseFound) {
-            System.out.println("Enter course code you want to drop:");
-            String courseCode = scanner.nextLine();
-
-            for (CourseRegistration course : all) {
-                if (course.getCourseCode().equals(courseCode)) {
-                    courseToDrop = course;
-                    courseFound = true;
-                    break;
-                }
-            }
-            if (!courseFound) {
-                System.out.println("You are not registered for " + courseCode);
-                return;
-            }
+        for (i = 0; i < student.getAssignedCourse().size(); i++) {
+            System.out.println((i + 1) + ": " + student.getAssignedCourse().get(i)); //0, 1, 2 = 1, 2, 3
+            lastChoice = i; //2
         }
-        Index I1 = new Index();
-        boolean waitlistcheck = false;
-        boolean assignedlistcheck = false;
-        for (Course courses : courseList) {
-            if (courses.getCourseCode().equals(courseToDrop.getCourseCode())) {
-                for (Index I : courses.getIndexList()) {
-                    if (I.getIndexNo() == courseToDrop.getIndex().getIndexNo()) {
-                        I1 = I;
-                        if (waitlistCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
-                            waitlistcheck = true; //edit
-                            break;
 
-                        } else if (assignedCourses.contains(courseToDrop)) {
-                            //Remove student from index
-                            assignedlistcheck = true;
-                            break;     //edit
+        //i = 3, ...
+        for (i = lastChoice + 1; i < lastChoice + student.getWaitList().size() + 1; i++){
+            System.out.println((i + 1) + ": " + student.getWaitList().get(i-lastChoice-1));
+            lastChoice2 = i;
+        }
+
+        try {
+            try {
+                while (!courseFound) {
+                    System.out.println("Enter the choice of the course you want to drop: ");
+                    String dummy = scanner.next();
+                    boolean check = isInteger(dummy);
+                    if (check == false) {
+                        System.out.println("Input should be an integer.");
+                        continue;
+                    }
+                    droppingCourse = Integer.parseInt(dummy);
+                    droppingCourse -= 1;       //assuming you pick 3, droppingCourse = 2, lastChoice = 2
+                    if (droppingCourse > 0 && droppingCourse < lastChoice + 1) {
+                        courseFound = true;
+                        courseToDrop = student.getAssignedCourse().get(droppingCourse);
+
+                        // droppingCourse = 3, last choice = 2   droppingCourse = 3, 2 + 1 + 1
+                    } else if (droppingCourse > lastChoice && droppingCourse < lastChoice + student.getWaitList().size() + 1) {
+                        courseFound = true;                      //assuming you choose 4, droppingCourse = 3, lastChoice = 2,
+                        courseToDrop = student.getWaitList().get(droppingCourse - lastChoice - 1);
+                    } else {
+                        System.out.println("Choice is out of range, please try again.");
+                    }
+
+                    Index I1 = new Index();
+                    boolean waitlistcheck = false;
+                    boolean assignedlistcheck = false;
+                    for (Course courses : courseList) {
+                        if (courses.getCourseCode().equals(courseToDrop.getCourseCode())) {
+                            for (Index I : courses.getIndexList()) {
+                                if (I.getIndexNo() == courseToDrop.getIndex().getIndexNo()) {
+                                    I1 = I;
+                                    if (waitlistCourses.contains(courseToDrop) && (!assignedCourses.contains(courseToDrop))) {
+                                        waitlistcheck = true; //edit
+                                        break;
+
+                                    } else if (assignedCourses.contains(courseToDrop)) {
+                                        //Remove student from index
+                                        assignedlistcheck = true;
+                                        break;     //edit
+                                    }
+                                }
+                            }
+
                         }
                     }
+
+                    if (waitlistcheck) {
+                        I1.removeFromWaitlist(student);
+                        student.removeWaitList(courseToDrop);
+                        System.out.printf("Removed %s from waitlist%n", courseToDrop.getCourseCode());
+                    } else if (assignedlistcheck) {
+                        I1.removeStudentFromAssigned(student);
+                        student.removeAssignedCourse(courseToDrop);
+                        System.out.printf("Dropped %s from assigned courses%n", courseToDrop.getCourseCode());
+                    }
+
+                    if (!I1.getWaitList().isEmpty() && I1.getVacancy() > 0) {
+                        Student Firstinlist = I1.getWaitList().remove(0);
+                        I1.assignStudent(Firstinlist);
+                        if (Firstinlist == null) {
+                            System.out.println('a');
+                            return;
+                        }
+                        Student student1 = null;
+                        for (Student student : studentList) {
+                            if (student.getEmail().equals(Firstinlist.getEmail())) {
+                                student1 = student;
+
+                            }
+                        }
+                        if (student1 != null) {
+                            student1.addAssignedCourse(courseToDrop);
+                            student1.removeWaitList(courseToDrop);
+                        }
+                        notificationControl n = new notificationControl(Firstinlist, courseToDrop);
+                    }
                 }
-
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Choice is out of range.");
             }
-        }
-        if (waitlistcheck){
-            I1.removeFromWaitlist(student);
-            student.removeWaitList(courseToDrop);
-            System.out.printf("Removed %s from waitlist%n", courseToDrop.getCourseCode());
-        }
-        else if (assignedlistcheck)
-        {
-            I1.removeStudentFromAssigned(student);
-            student.removeAssignedCourse(courseToDrop);
-            System.out.printf("Dropped %s from assigned courses%n", courseToDrop.getCourseCode());
-        }
-
-        if (!I1.getWaitList().isEmpty() && I1.getVacancy() > 0) {
-            Student Firstinlist = I1.getWaitList().remove(0);
-            I1.assignStudent(Firstinlist);
-            if(Firstinlist == null){
-                System.out.println('a');
-                return;
-            }
-            Student student1 = null;
-            for(Student student: studentList){
-                if(student.getEmail().equals(Firstinlist.getEmail())){
-                    student1 = student;
-
-                }
-            }
-            if (student1 != null)
-            {
-                student1.addAssignedCourse(courseToDrop);
-                student1.removeWaitList(courseToDrop);
-            }
-            notificationControl n = new notificationControl(Firstinlist, courseToDrop);
+        } catch (NullPointerException e) {
+            System.out.println("Input should be an integer.");
         }
     }
+
+//                String courseCode = scanner.nextLine();
+//
+//                for (CourseRegistration course : all) {
+//                    if (course.getCourseCode().equals(courseCode)) {
+//                        courseToDrop = course;
+//                        courseFound = true;
+//                        break;
+//                    }
+//                }
+//                if (!courseFound) {
+//                    System.out.println("You are not registered for " + courseCode);
+//                    return;
+//                }
 
     public void printRegisteredCourses() {
 
@@ -341,7 +417,6 @@ public class StudentControl {
                 //Index exists, print out the vacancies and exit the method
 
                 if(index.getIndexNo() == indexNo){
-
                     int total;
                     if (index.getAssignedStudents() == null) {
                         total = index.getVacancy();
@@ -352,7 +427,6 @@ public class StudentControl {
                     System.out.println("\n");
 
                     return;
-
                 }
             }
         }
