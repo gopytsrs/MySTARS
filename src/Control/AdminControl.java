@@ -511,7 +511,7 @@ public class AdminControl {
                                     if (newVacancy > 0 && !SelectedIndex.get(option2).getWaitList().isEmpty())
                                     {
                                         Index indextochange = SelectedIndex.get(option2);
-                                        while (!indextochange.getWaitList().isEmpty() || indextochange.getVacancy() >0)
+                                        while (!indextochange.getWaitList().isEmpty() && indextochange.getVacancy() > 0)
                                         {
                                             Student FirstInlist = indextochange.getWaitList().remove(0);
                                             SelectedIndex.get(option2).assignStudent(FirstInlist);
