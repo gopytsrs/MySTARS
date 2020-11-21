@@ -91,10 +91,11 @@ public class StudentControl {
                 }
                 courseName = Integer.parseInt(dummy);
                 courseName -= 1;
-                if (courseName > 0 || courseName < i) { //if courseName is 0, 1, 2, 3
+                if (courseName >= 0 && courseName < i-1) { //if courseName is 0, 1, 2, 3
                     courseExists = true;
                     courseChosen = courseList.get(courseName);
-                } else { //if not, it comes here
+                }
+                else { //if not, it comes here
                     System.out.println("Choice is out of range, try again.");
                 }
             } while (courseName < 0 || courseName >= i);
@@ -145,30 +146,22 @@ public class StudentControl {
                 j++;
                 System.out.println(j + ": " + indexL.getIndexNo());
             }
-
+            indexName = -1;
             do {
-                try {
-                    try {
-                        System.out.println("Please enter index to add: ");
-                        String dummy = scanner.next();
-                        boolean check = isInteger(dummy);
-                        if (check == false) {
-                            System.out.println("Input should be an integer.");
-                            continue;
-                        }
-                        indexName = Integer.parseInt(dummy);
-                        indexName -= 1;
-                        if (indexName > 0 || indexName < j) {
-                            indexExists = true;
-                            indexChosen = indexList.get(indexName);
-                        } else { //if not, it comes here
-                            System.out.println("Choice is out of range, try again.");
-                        }
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Choice is out of range, try again.");
-                    }
-                } catch (NullPointerException e) {
+                System.out.println("Please enter index to add: ");
+                String dummy = scanner.next();
+                boolean check = isInteger(dummy);
+                if (check == false) {
                     System.out.println("Input should be an integer.");
+                    continue;
+                }
+                indexName = Integer.parseInt(dummy);
+                indexName -= 1;
+                if (indexName >= 0 && indexName < j-1) {
+                    indexExists = true;
+                    indexChosen = indexList.get(indexName);
+                } else { //if not, it comes here
+                    System.out.println("Choice is out of range, try again.");
                 }
             } while (indexName < 0 || indexName >= j);
 
