@@ -28,6 +28,15 @@ public class makeStudent {
         S.add(student);
         S.add(student1);
         S.add(student2);
+        S.add(student3);
+        S.add(student4);
+        S.add(student5);
+        S.add(student6);
+        S.add(student7);
+        S.add(student8);
+        S.add(student9);
+        S.add(student10);
+        S.add(student11);
 
         String fileName = "database_student.bin";
         try {
