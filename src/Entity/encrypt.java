@@ -6,14 +6,25 @@ import java.security.SecureRandom;
 import org.apache.commons.codec.binary.Base64;
 
 public class encrypt {
+    /**
+     * Fixed number of iterations
+     */
     private static final int iterations = 20*1000;
+    /**
+     * number of random bytes for salt len
+     */
     private static final int saltLen = 32;
+    /**
+     * desired key length
+     */
     private static final int desiredKeyLen = 256;
 
 
-    /** Computes a salted PBKDF2 hash of given plaintext password
-     suitable for storing in a database.
-     Empty passwords are not supported. */
+    /**
+     * method which pulls in password for hashing
+     * @param password
+     * @return
+     */
     public static String getSaltedHash(String password){
         try {
             byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
@@ -22,8 +33,12 @@ public class encrypt {
         }catch(Exception E){System.out.println("Error in hashing");return"fail";}
     }
 
-    /** Checks whether given plaintext password corresponds
-     to a stored salted hash of the password. */
+    /**
+     * This method checks the password
+     * @param password
+     * @param stored
+     * @return
+     */
     public static boolean check(String password, String stored){
         String[] saltAndHash = stored.split("\\$");
         if (saltAndHash.length != 2) {
@@ -34,8 +49,12 @@ public class encrypt {
         return hashOfInput.equals(saltAndHash[1]);
     }
 
-    // using PBKDF2 from Sun, an alternative is https://github.com/wg/scrypt
-    // cf. http://www.unlimitednovelty.com/2012/03/dont-use-bcrypt.html
+    /**
+     * This method hashes the password
+     * @param password
+     * @param salt
+     * @return
+     */
     private static String hash(String password, byte[] salt) {
         try{
             if (password == null || password.length() == 0)
