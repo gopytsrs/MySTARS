@@ -601,7 +601,7 @@ public class AdminControl {
         } while (choice < 0 || choice > C.size()-1);
         I = C.get(choice).getIndexList();
         for (int j = 0; j < I.size(); j++) {
-            System.out.println(j + " : " + I.get(j).getIndexNo());
+            System.out.println((j + 1) + " : " + I.get(j).getIndexNo());
         }
         choice = -1;
         System.out.println("Please key in the number beside the index you select: ");
