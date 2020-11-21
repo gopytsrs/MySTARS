@@ -511,24 +511,27 @@ public class AdminControl {
                                     if (newVacancy > 0 && !SelectedIndex.get(option2).getWaitList().isEmpty())
                                     {
                                         Index indextochange = SelectedIndex.get(option2);
-                                        Student FirstInlist = indextochange.getWaitList().remove(0);
-                                        SelectedIndex.get(option2).assignStudent(FirstInlist);
-                                        if (FirstInlist == null) {
-                                            System.out.println("Error");
-                                            return;
-                                        }
-                                        Student student1 = null;
-                                        for (Student student : studentList) {
-                                            if (student.getEmail().equals(FirstInlist.getEmail())) {
-                                                student1 = student;
+                                        while (!indextochange.getWaitList().isEmpty() || indextochange.getVacancy() >0)
+                                        {
+                                            Student FirstInlist = indextochange.getWaitList().remove(0);
+                                            SelectedIndex.get(option2).assignStudent(FirstInlist);
+                                            if (FirstInlist == null) {
+                                                System.out.println("Error");
+                                                return;
                                             }
+                                            Student student1 = null;
+                                            for (Student student : studentList) {
+                                                if (student.getEmail().equals(FirstInlist.getEmail())) {
+                                                    student1 = student;
+                                                }
+                                            }
+                                            CourseRegistration courseToDrop = new CourseRegistration(indextochange,indextochange.getCourseCode(),indextochange.getCourseName(),C.get(option1).getAu(),student1);
+                                            if (student1 != null) {
+                                                student1.addAssignedCourse(courseToDrop);
+                                                student1.removeWaitList(courseToDrop);
+                                            }
+                                            notificationControl n = new notificationControl(FirstInlist, courseToDrop);
                                         }
-                                        CourseRegistration courseToDrop = new CourseRegistration(indextochange,indextochange.getCourseCode(),indextochange.getCourseName(),C.get(option1).getAu(),student1);
-                                        if (student1 != null) {
-                                            student1.addAssignedCourse(courseToDrop);
-                                            student1.removeWaitList(courseToDrop);
-                                        }
-                                        notificationControl n = new notificationControl(FirstInlist, courseToDrop);
                                     }
                                 }
                                 break;
