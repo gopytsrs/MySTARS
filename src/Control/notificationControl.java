@@ -11,8 +11,20 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * This class represents notifications sent by email
+ */
 public class notificationControl implements notification{
+    /**
+     * Creates a notification
+     */
     public notificationControl(){}
+
+    /**
+     * This method sends a notification to the student who got assigned into a course
+     * @param S
+     * @param C
+     */
     public void sendnotification(Student S, CourseRegistration C)
     {
         final String username = "cz2002testemail@gmail.com"; // to be added
