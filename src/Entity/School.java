@@ -5,13 +5,31 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a school that students belong to. A school can have many students.
+ * A school can have many courses that belong to it.
+ */
 public class School implements Serializable {
 
     static Scanner sc = new Scanner(System.in);
+    /**
+     * The name of the school.
+     */
     private String schoolName;
+    /**
+     * The access period of the school for accessing the system.
+     */
     private AccessPeriod accessperiod;
+    /**
+     * The list of courses that the school has.
+     */
     private ArrayList<Course> courseList;
 
+    /**
+     * Creates a new School with the given name, access period, and initialises an empty list of courses.
+     * @param schoolName The name of the school.
+     * @param accessperiod The accessperiod of the school.
+     */
     public School(String schoolName, AccessPeriod accessperiod) {
         this.schoolName = schoolName;
         this.accessperiod = accessperiod;
@@ -19,31 +37,59 @@ public class School implements Serializable {
 
     }
 
+    /**
+     * Gets the name of the school.
+     * @return The name of the school.
+     */
     public String getSchoolName() {
         return schoolName;
     }
 
+    /**
+     * The Gets the access period of the school.
+     * @return The access period of the school, returns an AccessPeriod object.
+     */
     public AccessPeriod getAccessperiod() {
         return accessperiod;
     }
 
+    /**
+     * Gets the list of courses that the school has.
+     * @return The list of courses that the school has.
+     */
     public ArrayList<Course> getCourseList() {
         return courseList;
     }                                               //1 course or whole list?
 
+    /**
+     * Sets the access period of the school based on the start and end date time.
+     * @param startDate The start datetime of the access period.
+     * @param endDate The end datetime of the access period.
+     */
     public void setAccessPeriod(LocalDateTime startDate, LocalDateTime endDate) {
         this.accessperiod.setStartDate(startDate);
         this.accessperiod.setEndDate(endDate);
     }                                               //is this really how to set the class access period?
 
+    /**
+     * Sets the name of the school.
+     * @param schoolName The name to set.
+     */
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
     }
 
+    /**
+     * Adds a course to the school's course list.
+     * @param C The course to add. Should be a Course object.
+     */
     public void setCourseList(Course C) {
         courseList.add(C);
     }        //purely to generate data in binary file
 
+    /**
+     * Adds a course to the school. Is used by the AdminControl class to add a new course.
+     */
     public void addCourse() {
         String courseCode;
         String courseName;
@@ -109,10 +155,21 @@ public class School implements Serializable {
         }
     }
 
+    /**
+     * Gets the course code of a course in the school's course list.
+     * @param i The index of the course in the school's course list.
+     * @return The course code of the course at index i in the school's course list.
+     */
     public String getCourseCode(int i){
         return courseList.get(i).getCourseCode();
     }
 
+    /**
+     * Checks whether the given string can be parsed to an integer. A helper method to verify input in
+     * the addCourse method.
+     * @param str The string to parse.
+     * @return true or false depending on whether the given String can be parsed to an integer.
+     */
     private boolean isInteger(String str) {
         try {
             Integer.parseInt(str);

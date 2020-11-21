@@ -12,22 +12,59 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-
+/**
+ * Represents an Index of a course. A course can have many indexes.
+ * Each index belongs to one course.
+ */
 
 public class Index implements Serializable {
-
+    /**
+     * The name of the course the Index belongs to.
+     */
     private String courseName;
+    /**
+     * The course code of the course the Index belongs to.
+     */
     private String courseCode;
+    /**
+     * The index number of this Index.
+     */
     private int indexNo;
+    /**
+     * The group number of this Index.
+     */
     private String groupNo;
+    /**
+     * The current vacancy of this Index.
+     */
     private int vacancy;
+    /**
+     * The list of Students on the waitlist for this Index.
+     */
     public ArrayList<Student> waitList = new ArrayList<>();
+    /**
+     * The list of Students assigned to this Index.
+     */
     public ArrayList<Student> assignedStudents = new ArrayList<>();
+    /**
+     * The list of lessons that this Index has.
+     */
     private ArrayList<Lesson> lessons;
 
+    /**
+     * Creates a new Index object.
+     */
     public Index() {
     }
 
+    /**
+     * Creates a new Index object based on the given course name, course code, index number, group number and vacancy.
+     * @param courseName The name of the course.
+     * @param courseCode The course code of the course.
+     * @param indexNo The index number of this Index.
+     * @param groupNo The group number of this Index.
+     * @param vacancy The vacancy of this Index.
+     */
     public Index(String courseName, String courseCode, int indexNo, String groupNo, int vacancy) {
         this.courseName = courseName;
         this.courseCode = courseCode;
@@ -37,52 +74,105 @@ public class Index implements Serializable {
         lessons = new ArrayList<Lesson>();
     }
 
+    /**
+     * Gets the course name of the course of this Index.
+     * @return The course name of the course of this Index.
+     */
     public String getCourseName() {
         return courseName;
     }
 
+    /**
+     * Sets the course name of the course of this Index.
+     * @param courseName The course name of the course of this Index.
+     */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
+    /**
+     * Gets the course code of the course of this Index.
+     * @return The course code of the course of this Index.
+     */
     public String getCourseCode(){return courseCode;}
 
+    /**
+     * Sets the course code of the course of this Index.
+     * @param courseCode The course code of the course of this Index.
+     */
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
+
+    /**
+     * Gets the index number of this Index.
+     * @return The index number of this Index.
+     */
     public int getIndexNo() {
         return indexNo;
     }
 
+    /**
+     * Sets the index number of this Index.
+     * @param indexNo The index number of this Index.
+     */
     public void setIndexNo(int indexNo) {
         this.indexNo = indexNo;
     }
 
+    /**
+     * Gets the group number of this Index.
+     * @return The group number of this Index.
+     */
     public String getGroupNo() {
         return groupNo;
     }
 
+    /**
+     * Sets the group number of this Index.
+     * @param groupNo The group number of this Index.
+     */
     public void setGroupNo(String groupNo) {
         this.groupNo = groupNo;
     }
 
+    /**
+     * Gets the current vacancy of this Index.
+     * @return The current vacancy of this Index.
+     */
     public int getVacancy() {
         return vacancy;
     }
 
+    /**
+     * Sets the current vacancy of this Index.
+     * @param vacancy The current vacancy of this Index.
+     */
     public void setVacancy(int vacancy) {
         this.vacancy = vacancy;
     }
 
+    /**
+     * Adds a Student to the waitlist of this Index.
+     * @param student The Student to add.
+     */
     public void addToWaitlist(Student student) {
 
         waitList.add(student);
     }
 
+    /**
+     * Gets the list of Students on the waitlist of this Index.
+     * @return The list of Students on the waitlist of this Index.
+     */
     public ArrayList<Student> getWaitList() {
         return waitList;
     }
 
+    /**
+     * Removes a student from the list of Students on the waitlist of this Index.
+     * @param student A Student to remove.
+     */
     public void removeFromWaitlist(Student student) {
         for (int i = 0; i<waitList.size();i++)
         {
@@ -93,6 +183,11 @@ public class Index implements Serializable {
         }
     }
 
+    /**
+     * Adds a student the list of Students on the assigned list of this Index if there is vacancies.
+     * @param student A Student to add.
+     * @return true or false depending on whether the student can be added.
+     */
     public boolean assignStudent(Student student){
         if (vacancy != 0) {
             assignedStudents.add(student);
@@ -103,21 +198,27 @@ public class Index implements Serializable {
 
     }
 
-//    public LocalDateTime[] getLessonTime(Lesson lessons){
-//        return new LocalDateTime[3];
-//    }
-//
-//    public void setLessonTime(Lesson lessons){}
-
-
+    /**
+     * Gets the list of lessons of this Index.
+     * @return The list of lessons of this Index.
+     */
     public ArrayList<Lesson> getLessons() {
         return lessons;
     }
 
+    /**
+     * Sets the list of lessons of this Index.
+     * @param L The list of lessons of this Index.
+     */
     public void setLessons(Lesson L) {
         lessons.add(L);
     }
 
+    /**
+     * Checks whether this Index clashes with another Index. It compares the lessons, days and weeks of the indexes.
+     * @param indexToCheck The Index to check with.
+     * @return true or false depending on whether there is a clash.
+     */
     public boolean checkClash(Index indexToCheck) {
         for (Lesson lesson : lessons) {
             for (Lesson lesson1 : indexToCheck.getLessons()) {
@@ -138,10 +239,17 @@ public class Index implements Serializable {
         return false;
     }
 
+    /**
+     * Gets the list of Students on the assigned list of this Index.
+     * @return The list of Students on the assigned list of this Index.
+     */
     public ArrayList<Student> getAssignedStudents() {
         return assignedStudents;
     }
 
+    /**
+     * Adds a lesson to this index.
+     */
     public void addLesson() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input Lesson Type in all caps: ");
@@ -245,6 +353,10 @@ public class Index implements Serializable {
         lessons.add(L);
     }
 
+    /**
+     * Removes a student from the list of Students on the assigned list of this Index.
+     * @param student A Student to remove.
+     */
     public void removeStudentFromAssigned(Student student){
         for (int i = 0; i<assignedStudents.size();i++)
         {
