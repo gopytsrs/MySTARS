@@ -262,9 +262,16 @@ public class StudentControl {
 
         //i = 3, ...
         System.out.println("WaitList Courses");
-        for (i = lastChoice+1; i < lastChoice + 1 + student.getWaitList().size(); i++){
-            System.out.println((i + 1) + ": " + student.getWaitList().get(i-lastChoice-1));
-            lastChoice2 = i;
+        if (student.getAssignedCourse().isEmpty()) {
+            for (i = lastChoice + 1; i < lastChoice + 1 + student.getWaitList().size(); i++){
+                System.out.println((i) + ": " + student.getWaitList().get(i-lastChoice-1));
+                lastChoice2 = i;
+            }
+        } else {
+            for (i = lastChoice + 1; i < lastChoice + 1 + student.getWaitList().size(); i++) {
+                System.out.println((i + 1) + ": " + student.getWaitList().get(i - lastChoice - 1));
+                lastChoice2 = i;
+            }
         }
 
         try {
