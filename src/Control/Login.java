@@ -94,7 +94,6 @@ public class Login {
         validap = true;
         do {
             System.out.println("Please enter your Username: ");
-            sc.nextLine();
             userName = sc.nextLine();
 //            char [] pw = console.readPassword("Please enter your password:\n");
 //            password = new String(pw);
@@ -127,7 +126,7 @@ public class Login {
             System.out.println("Key in 1 for student");
             System.out.println("Key in 2 for admin");
             try{
-                String dummy = sc.next();
+                String dummy = sc.nextLine();
                 domaindata = Integer.parseInt(dummy);
             }catch(Exception E){
                 System.out.println("Please key in integer");
