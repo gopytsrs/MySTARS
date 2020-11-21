@@ -73,7 +73,7 @@ public class StudentControl {
         ArrayList<CourseRegistration> waitListCourse = student.getWaitList();
         boolean indexExists = false;
         boolean courseExists = false;
-
+        courseName = -1;
         do {
             int i = 0;
             System.out.println("Please enter course code to add course:");
@@ -82,29 +82,21 @@ public class StudentControl {
                 i++; //1, 2, 3, 4
             }
             do {
-                try {
-                    try {
-                        System.out.println("Enter your choice here: ");
-                        String dummy = scanner.next();
-                        boolean check = isInteger(dummy);
-                        if (check == false) {
-                            System.out.println("Input should be an integer.");
-                            continue;
-                        }
-                        courseName = Integer.parseInt(dummy);
-                        courseName -= 1;
-                        if (courseName > 0 || courseName < i) { //if courseName is 0, 1, 2, 3
-                            courseExists = true;
-                            courseChosen = courseList.get(courseName);
-                        } else { //if not, it comes here
-                            System.out.println("Choice is out of range, try again.");
-                        }
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Choice is out of range, try again.");
-                    }
-            }catch (NullPointerException e){
-                System.out.println("Input should be an integer.");
-            }
+                System.out.println("Enter your choice here: ");
+                String dummy = scanner.next();
+                boolean check = isInteger(dummy);
+                if (check == false) {
+                    System.out.println("Input should be an integer.");
+                    continue;
+                }
+                courseName = Integer.parseInt(dummy);
+                courseName -= 1;
+                if (courseName > 0 || courseName < i) { //if courseName is 0, 1, 2, 3
+                    courseExists = true;
+                    courseChosen = courseList.get(courseName);
+                } else { //if not, it comes here
+                    System.out.println("Choice is out of range, try again.");
+                }
             } while (courseName < 0 || courseName >= i);
 
 //            for (Course course : courseList) {
@@ -287,14 +279,14 @@ public class StudentControl {
                     }
                     droppingCourse = Integer.parseInt(dummy);
                     droppingCourse -= 1;       //assuming you pick 3, droppingCourse = 2, lastChoice = 2
-                    if (droppingCourse > 0 && droppingCourse < lastChoice + 1) {
+                    if (droppingCourse >= 0 && droppingCourse < student.getAssignedCourse().size()) {   //start from 0 to index
                         courseFound = true;
                         courseToDrop = student.getAssignedCourse().get(droppingCourse);
 
                         // droppingCourse = 3, last choice = 2   droppingCourse = 3, 2 + 1 + 1
-                    } else if (droppingCourse > lastChoice && droppingCourse < lastChoice + student.getWaitList().size() + 1) {
+                    } else if (droppingCourse >= student.getAssignedCourse().size() && droppingCourse < student.getAssignedCourse().size()+student.getWaitList().size()) {
                         courseFound = true;                      //assuming you choose 4, droppingCourse = 3, lastChoice = 2,
-                        courseToDrop = student.getWaitList().get(droppingCourse - lastChoice - 1);
+                        courseToDrop = student.getWaitList().get(droppingCourse - student.getAssignedCourse().size());
                     } else {
                         System.out.println("Choice is out of range, please try again.");
                     }
