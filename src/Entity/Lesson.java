@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
+/**
+ * This class represent the class
+ */
 public class Lesson implements Serializable {
     private int indexNo;
     private LessonType lessonType;
