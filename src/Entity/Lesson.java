@@ -8,53 +8,53 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 /**
- * Represents a Lesson that belongs to an Index.
+ * This class represent the lessons that can be taken
  */
 public class Lesson implements Serializable {
     /**
-     * The index number which the lesson belongs to.
+     * This is the index no of the lesson
      */
     private int indexNo;
     /**
-     * The type of lesson.
+     * This is the type of lessons which can be seminar, lectures or tutorials
      */
     private LessonType lessonType;
     /**
-     * The day when the lesson is held.
+     * This is the day in the week which can be monday, tuesday, wednesday, thursday, friday, saturday, sunday
      */
     private DayOfWeek day;
     /**
-     * The start time of the lesson in LocalTime format.
+     * This is the start time of the lesson
      */
     private LocalTime startTime;
     /**
-     * The end time of the lesson in LocalTime format.
+     * This is the end time of the lesson
      */
     private LocalTime endTime;
     /**
-     * The location where the lesson is held.
+     * This is the location of the lesson
      */
     private String location;
     /**
-     * The weeks in which the lesson are held.
+     * This is the week of the lesson, it can be every, even or odd
      */
     private Week weeks;
 
     /**
-     * Creates a new Lesson object.
+     * Creates a lesson
      */
     public Lesson() {
     }
 
     /**
-     * Creates a new Lesson object based on the given index no, lesson type, day of week, start time, end time, location and weeks.
-     * @param indexNo The index number the lesson belongs to.
-     * @param lessonType The type of lesson.
-     * @param day The day the lesson is held.
-     * @param startTime The start time of the lesson.
-     * @param endTime The end time of the lesson.
-     * @param location The location the lesson is held.
-     * @param weeks The week(s) the lesson is held.
+     * Creates a lesson with indexNo, lessonType, day,start time, end time, location and week
+     * @param indexNo
+     * @param lessonType
+     * @param day
+     * @param startTime
+     * @param endTime
+     * @param location
+     * @param weeks
      */
     public Lesson(int indexNo, LessonType lessonType, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location, Week weeks) {
         this.lessonType = lessonType;
@@ -67,112 +67,112 @@ public class Lesson implements Serializable {
     }
 
     /**
-     * Gets the index number the lesson belongs to.
-     * @return The index number the lesson belongs to.
+     * Get IndexNo
+     * @return
      */
     public int getIndexNo() {
         return indexNo;
     }
 
     /**
-     * Sets the index number the lesson belongs to.
-     * @param indexNo The index number to set.
+     * Changes IndexNo
+     * @param indexNo
      */
     public void setIndexNo(int indexNo) {
         this.indexNo = indexNo;
     }
 
     /**
-     * Gets the type of the lesson.
-     * @return A LessonType enum that represents the type of the lesson.
+     * Get lessonType, it can be seminars, lectures or tutorials
+     * @return
      */
     public LessonType getLessonType() {
         return lessonType;
     }
 
     /**
-     * Sets the type of the lesson.
-     * @param lessonType A LessonType enum to set the type of lesson.
+     * Changes lessonType, it can be seminars, lectures or tutorials
+     * @param lessonType
      */
     public void setLessonType(LessonType lessonType) {
         this.lessonType = lessonType;
     }
 
     /**
-     * Gets the day of week the lesson is held.
-     * @return A DayOfWeek enum of when the lesson is held.
+     * Get Day in week for lesson, it can be monday, tuesday, wednesday, thursday, friday, saturday, sunday
+     * @return
      */
     public DayOfWeek getDay() {
         return day;
     }
 
     /**
-     * Sets the day of week the lesson is held.
-     * @param day A DayOfWeek enum of when the lesson is held.
+     * Change the day in week for the lesson, it can be monday, tuesday, wednesday, thursday, friday, saturday, sunday
+     * @param day
      */
     public void setDay(DayOfWeek day) {
         this.day = day;
     }
 
     /**
-     * Gets the start time of the lesson.
-     * @return A LocalTime object that represents the start time of the lesson.
+     * Get start time of the lesson
+     * @return
      */
     public LocalTime getStartTime() {
         return startTime;
     }
 
     /**
-     * Sets the start time of the lesson.
-     * @param startTime A LocalTime object that represents the start time of the lesson.
+     * Changes Start time of lesson
+     * @param startTime
      */
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
     /**
-     * Gets the end time of the lesson.
-     * @return A LocalTime object that represents the end time of the lesson.
+     * Get End time of lesson
+     * @return
      */
     public LocalTime getEndTime() {
         return endTime;
     }
 
     /**
-     * Sets the end time of the lesson.
-     * @param endTime A LocalTime object that represents the end time of the lesson.
+     * Change the End time of lesson
+     * @param endTime
      */
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
     /**
-     * Gets the location where the lesson is held.
-     * @return The location where the lesson is held.
+     * Get location of lesson
+     * @return
      */
     public String getLocation() {
         return location;
     }
 
     /**
-     * Sets the location where the lesson is held.
-     * @param location The location where the lesson is held.
+     * Change location of lesson
+     * @param location
      */
     public void setLocation(String location) {
         this.location = location;
     }
 
     /**
-     * Gets the week(s) the lesson is held on.
-     * @return A Week enum that represents the week(s) the lesson is held on.
+     * Get the weeks of the lesson, it can be every,odd or even
+     * @return
      */
     public Week getWeeks() {
         return weeks;
     }
 
     /**
-     * Gets the week(s) the lesson is held on.
-     * @param weeks A Week enum that represents the week(s) the lesson is held on.
+     * Changes the weeks of the lesson, it can be even,odd or every
+     * @param weeks
      */
     public void setWeeks(Week weeks) {
         this.weeks = weeks;

@@ -7,19 +7,33 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentControl {
+    /**
+     * An object of a student.
+     */
     private Student student;
+    /**
+     * An arraylist/collection of all the students.
+     */
     private ArrayList<Student> studentList = new ArrayList<>();
+    /**
+     * An arraylist/collection of all the courses.
+     */
     private ArrayList<Course> courseList = new ArrayList<>();
+    /**
+     * An arraylist/collection of all the schools.
+     */
     private ArrayList<School> schoolList = new ArrayList<>();
 
     Scanner scanner = new Scanner(System.in);
     Console console = System.console();
 
+    /**
+     * Creates a new student controller.
+     * @param student is an object of a student.
+     */
     //Create StudentControl using this constructor
     public StudentControl(Student student) {
         String schCode = student.getSchoolName();
-
-
         String schoolFileName = "database_school.bin"; //purely for testing
         String studentFileName = "database_student.bin";
         //Deserialise school data
@@ -61,6 +75,9 @@ public class StudentControl {
 
     }
 
+    /**
+     * A method that allows the student to add a specific course and index to their registered/waitlist courses.
+     */
     public void addCourse() {
         //go to school -> print course
         //ask for course -> show indexes if correct -> ask if want to add the course and index -> register courses
@@ -231,6 +248,9 @@ public class StudentControl {
         }while (choice < 1 || choice > 2);
         }
 
+    /**
+     * A method that allows the student to drop a specific course and index.
+     */
     public void dropCourse() {
         ArrayList<CourseRegistration> assignedCourses = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlistCourses = student.getWaitList();
@@ -368,6 +388,9 @@ public class StudentControl {
 //                    return;
 //                }
 
+    /**
+     * A method that allows the student to print out all their registered courses and waitlist courses.
+     */
     public void printRegisteredCourses() {
 
         ArrayList<CourseRegistration> waitListCourses = student.getWaitList();
@@ -394,6 +417,9 @@ public class StudentControl {
         }
     }
 
+    /**
+     * A method that allows a student to check the available slots for courses and indexes of his school.
+     */
     public void checkAvailableSlots() {
         int indexNo = 0;
         while (true) {
@@ -430,6 +456,9 @@ public class StudentControl {
         System.out.println("That index number does not exist");
     }
 
+    /**
+     * A method that allows the student to change their index for a course they are registered/put on the waitlist.
+     */
     public void changeIndex() {
         ArrayList<CourseRegistration> assigned = student.getAssignedCourse();
         ArrayList<CourseRegistration> waitlist = student.getWaitList();
@@ -548,7 +577,9 @@ public class StudentControl {
         }
     }
 
-
+    /**
+     * A method that allows the student to swap indexes with another student, for the same course. Both have to be registered.
+     */
     public void swapIndex() {
         // Enter peer's index to swap
         //Check student name to swap, from assigned courses check if index exists
@@ -718,8 +749,11 @@ public class StudentControl {
                     break;
             }
         } while (choice != 1 && choice !=2);
-
     }
+
+    /**
+     * A method that saves the data to binary files.
+     */
     public void saveData() {
         String schoolFileName = "database_school.bin";
         String studentFileName = "database_student.bin";
@@ -746,6 +780,11 @@ public class StudentControl {
         }
     }
 
+    /**
+     * A boolean method to check whether an input is an integer.
+     * @param str is a string.
+     * @return true if it is an integer, false if it is not an integer.
+     */
     private boolean isInteger(String str) {
         try {
             Integer.parseInt(str);

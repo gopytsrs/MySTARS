@@ -6,13 +6,23 @@ import Entity.Student;
 import java.util.Scanner;
 
 public class StudentUI {
+    /**
+     * A student object.
+     */
     Student student;
     //Course course;
 
+    /**
+    @param s This is the student object
+     */
     public StudentUI(Student s) {
         this.student = s;
     }
 
+    /**
+     * A method that is a studentMenu.
+     * It allows the student to pick what they wants to do, of the 7.
+     */
     public void studentMenu() {
         Scanner sc = new Scanner(System.in);
         StudentControl scontrol = new StudentControl(this.student);

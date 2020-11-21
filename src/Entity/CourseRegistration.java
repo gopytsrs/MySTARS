@@ -28,7 +28,7 @@ public class CourseRegistration implements Serializable {
     private Student student;
 
     /**
-     *This is the constructor for the class
+     *Create a courseRegistration with index,courseCode,courseName,AUs and student
      * @param index
      * @param courseCode
      * @param courseName
@@ -44,7 +44,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method returns the index of the course registered
+     * Get Index
      * @return
      */
     public Index getIndex() {
@@ -52,7 +52,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method returns the course code of the course reigstered
+     * Get Course code
      * @return
      */
     public String getCourseCode() {
@@ -60,7 +60,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method returns the course name of the course registered
+     * Get course name
      * @return
      */
     public String getCourseName() {
@@ -68,7 +68,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method returns the student who registered for the course
+     * Get student
      * @return
      */
     public Student getStudent() {
@@ -76,7 +76,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method allows you to set the course code of the course registered
+     * This method allows you to change the course code of the course registered
      * @param courseCode
      */
     public void setCourseCode(String courseCode) {
@@ -84,7 +84,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method allows you to set the course name of the course registered
+     * This method allows you to change the course name of the course registered
      * @param courseName
      */
     public void setCourseName(String courseName) {
@@ -92,7 +92,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method allows you to set the index of the course registered
+     * This method allows you to change the index of the course registered
      * @param index
      */
     public void setIndex(Index index) {
@@ -100,7 +100,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method allows you to set the student of the course registered
+     * This method allows you to change the student of the course registered
      * @param student
      */
     public void setStudent(Student student) {
@@ -116,7 +116,7 @@ public class CourseRegistration implements Serializable {
     }
 
     /**
-     * This method allows you to set the AUs of the course registered
+     * This method allows you to change the AUs of the course registered
      * @param au
      */
     public void setAu(int au) {

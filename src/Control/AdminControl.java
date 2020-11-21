@@ -9,13 +9,29 @@ import java.util.Scanner;
 
 
 public class AdminControl {
+    /**
+     * ID of an admin.
+     */
     private int adminID;
+    /**
+     * Object of an admin.
+     */
     private Admin admin;
+    /**
+     * An arraylist/collection of all the schools.
+     */
     private ArrayList<School> schoolList = new ArrayList<>();
+    /**
+     * An arraylist/collection of all the students.
+     */
     private ArrayList<Student> studentList = new ArrayList<>();
 
     static Scanner sc = new Scanner(System.in);
 
+    /**
+     * Creates a new admin controller.
+     * @param admin is an object of an admin.
+     */
     public AdminControl(Admin admin) {
         String schoolFileName = "database_school.bin"; //purely for testing
         String studentFileName = "database_student.bin";
@@ -42,6 +58,9 @@ public class AdminControl {
         }
     }
 
+    /**
+     * A method that changes the student access period for each school.
+     */
     // Method should have no parameters
     public void editStudentAccessPeriod() {
         // Check for school inside this method, then get currentaccessdatetime
@@ -149,6 +168,9 @@ public class AdminControl {
         return;         //haven't add changing to txt file
     }
 
+    /**
+     * A method that allows the admin to add a student.
+     */
     public void addStudent() {
         String name = "";
         String matricNo = "";
@@ -245,6 +267,9 @@ public class AdminControl {
         } while (studentChoice != 2) ;
     }
 
+    /**
+     * A method that allows the admin to add a new course.
+     */
     public void addCourse() {
         int noOfStudent = 0;
         int totalNoOfStudent = 20;
@@ -304,6 +329,9 @@ public class AdminControl {
         } while (choice != 2);
     }
 
+    /**
+     * A method that allows the admin to update an already made course.
+     */
     public void updateCourse() {
         int choice = 0;
 
@@ -559,7 +587,9 @@ public class AdminControl {
         } while (choice != 2);
     }
 
-
+    /**
+     * A method that allows the admin to check the vacancy, and admin has access to all courses.
+     */
     public void checkAvailableSlots() {
         int option = -1;
         int choice = -1;
@@ -634,6 +664,10 @@ public class AdminControl {
 
     }
 
+    /**
+     * A method that allows the admin to print the student's Name, School, Year of Study, Gender, and Nationality.
+     * It allows the admin to print it based on the course that the student has registered for.
+     */
     public void printStudentByCourse() {
         int option = -1;
         int choice = -1;
@@ -694,10 +728,12 @@ public class AdminControl {
             }
 
         }
-
-
     }
 
+    /**
+     * A method that allows the admin to print the student's Name, School, Year of Study, Gender, and Nationality.
+     * It allows the admin to print it based on the index of a course, that the student has registered for.
+     */
     public void printStudentByIndex() {
         int option = -1;
         int choice = -1;
@@ -772,9 +808,13 @@ public class AdminControl {
                 System.out.println(student + "Assigned");
             }
         }
-
     }
 
+    /**
+     * A boolean method to check whether an input is an integer.
+     * @param str is a string.
+     * @return true if it is an integer, false if it is not an integer.
+     */
     private boolean isInteger(String str) {
         try {
             Integer.parseInt(str);
@@ -786,6 +826,11 @@ public class AdminControl {
         return true;
     }
 
+    /**
+     * A boolean method to check whether the string is in the correct LocalDateTime format.
+     * @param str is a string.
+     * @return true if it is in the correct LocalDateTime format, false if it is not in the correct LocalDateTime format.
+     */
     private boolean isdatetime(String str) {
         try {
             LocalDateTime.parse(str);
@@ -795,6 +840,9 @@ public class AdminControl {
         return true;
     }
 
+    /**
+     * A method that saves the data to binary files.
+     */
     public void saveData() {
         String schoolFileName = "database_school.bin";
         String studentFileName = "database_student.bin";
