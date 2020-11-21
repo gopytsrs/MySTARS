@@ -8,13 +8,28 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 /**
- * This class represent the class
+ * This class represent the lessons that can be taken
  */
 public class Lesson implements Serializable {
+    /**
+     * This is the index no of the lesson
+     */
     private int indexNo;
+    /**
+     * This is the type of lessons which can be seminar, lectures or tutorials
+     */
     private LessonType lessonType;
+    /**
+     * This is the day in the week which can be monday, tuesday, wednesday, thursday, friday, saturday, sunday
+     */
     private DayOfWeek day;
+    /**
+     * This is the start time of the lesson
+     */
     private LocalTime startTime;
+    /**
+     * This is the end time of the lesson
+     */
     private LocalTime endTime;
     private String location;
     private Week weeks;
