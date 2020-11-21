@@ -91,7 +91,7 @@ public class StudentControl {
                 }
                 courseName = Integer.parseInt(dummy);
                 courseName -= 1;
-                if (courseName >= 0 && courseName < i-1) { //if courseName is 0, 1, 2, 3
+                if (courseName >= 0 && courseName < i) { //if courseName is 0, 1, 2, 3
                     courseExists = true;
                     courseChosen = courseList.get(courseName);
                 }
@@ -157,7 +157,7 @@ public class StudentControl {
                 }
                 indexName = Integer.parseInt(dummy);
                 indexName -= 1;
-                if (indexName >= 0 && indexName < j-1) {
+                if (indexName >= 0 && indexName < j) {
                     indexExists = true;
                     indexChosen = indexList.get(indexName);
                 } else { //if not, it comes here
