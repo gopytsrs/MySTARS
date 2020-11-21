@@ -343,7 +343,7 @@ public class StudentControl {
                             student1.removeWaitList(courseToDrop);
                         }
                         notificationControl n = new notificationControl();
-                        n.sendemail(Firstinlist, courseToDrop);
+                        n.sendnotification(Firstinlist, courseToDrop);
                     }
                 }
             } catch (IndexOutOfBoundsException e) {
