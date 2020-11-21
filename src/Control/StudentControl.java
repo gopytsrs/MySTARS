@@ -342,7 +342,7 @@ public class StudentControl {
                             student1.addAssignedCourse(courseToDrop);
                             student1.removeWaitList(courseToDrop);
                         }
-                        notificationControl n = new notificationControl();
+                        notification n = new notificationControl();
                         n.sendnotification(Firstinlist, courseToDrop);
                     }
                 }

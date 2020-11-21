@@ -11,7 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class notificationControl {
+public class notificationControl implements notification{
     public notificationControl(){}
     public void sendnotification(Student S, CourseRegistration C)
     {
