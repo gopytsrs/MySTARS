@@ -262,12 +262,14 @@ public class StudentControl {
         int i = 0;
 
         //Check if course is registered, exits method if course is not registered
+        System.out.println("Assigned Courses");
         for (i = 0; i < student.getAssignedCourse().size(); i++) {
             System.out.println((i + 1) + ": " + student.getAssignedCourse().get(i)); //0, 1, 2 = 1, 2, 3
             lastChoice = i; //2
         }
 
         //i = 3, ...
+        System.out.println("WaitList Courses");
         for (i = lastChoice + 1; i < lastChoice + student.getWaitList().size() + 1; i++){
             System.out.println((i + 1) + ": " + student.getWaitList().get(i-lastChoice-1));
             lastChoice2 = i;
