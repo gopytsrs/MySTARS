@@ -11,41 +11,88 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Login {
+    /**
+     * Username of the user.
+     */
     private String userName;
+    /**
+     * Password of the user.
+     */
     private String password;
+    /**
+     * Domain of the user.
+     */
     private String domain;
+    /**
+     * An arraylist/collection of all the accounts.
+     */
     private ArrayList<Account> Accountlist;
+    /**
+     * An arraylist/collection of all the students.
+     */
     private ArrayList<Student> studentList;
+    /**
+     * An arraylist/collection of all the admins.
+     */
     private ArrayList<Admin> adminList;
+    /**
+     * A boolean variable that is true only when username and password is matching and correct. Otherwise, it is false.
+     */
     private boolean valid;
+    /**
+     * A boolean variable that is true only when the DateTime now is within the access period.
+     */
     private boolean validap;
+    /**
+     * An object of a student.
+     */
     private Student s;
+    /**
+     * An object of an admin.
+     */
     private Admin a;
+    /**
+     * The access period given to the students.
+     */
     private AccessPeriod AP = null;
 
     Console console = System.console();
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Gets the username of this user.
+     * @return the username.
+     */
     public String getUserName() {
 
         return userName;
     }
 
+    /**
+     * Gets the password of this user.
+     * @return the password.
+     */
     public String getPassword() {
 
         return password;
     }
 
+    /**
+     * Get the domain of this user.
+     * @return the domain.
+     */
     public String getDomain() {
         return domain;
     }
 
+    /**
+     * A constructor for the class login.
+     */
     public Login() {
         collectDomain();
         AccountsFromDatabase(domain);                   //missing accessperiod check need read student file
         validap = true;
         do {
-
             System.out.println("Please enter your Username: ");
             sc.nextLine();
             userName = sc.nextLine();
@@ -70,6 +117,9 @@ public class Login {
         } while (valid != true || validap != true);
     }
 
+    /**
+     * A method that splits the user into admin or student login page, based on what they have chosen.
+     */
     private void collectDomain() {
         int domaindata = -1;
         do {
@@ -92,6 +142,10 @@ public class Login {
         } while (domaindata != 1 && domaindata != 2);
     }
 
+    /**
+     * A method that gets the accounts from the specific binary file.
+     * @param domain Domain to get the accounts.
+     */
     private void AccountsFromDatabase(String domain) {                                       // change to binary file
         String filename = "database_" + domain + ".bin";
         Accountlist = new ArrayList<Account>();
@@ -127,6 +181,10 @@ public class Login {
         }
     }
 
+    /**
+     * A boolean method that authenticates the password.
+     * @return true if the username and password matches and is correct.
+     */
     private boolean Authenticatepassword() {
         int size = Accountlist.size();
         for (int i = 0; i < size; i++) {
@@ -145,14 +203,27 @@ public class Login {
         return false;
     }
 
+    /**
+     * Gets the student object if the user is a student.
+     * @return the student object.
+     */
     public Student getStudent() {
         return this.s;
     }
 
+    /**
+     * Gets the admin object if the user is an admin.
+     * @return the admin object.
+     */
     public Admin getAdmin() {
         return this.a;
     }
 
+    /**
+     * A method to check the access period.
+     * @param schoolname The school name of the user.
+     * @return true if the current date time is within the access period.
+     */
     public boolean check_access_period(String schoolname)
     {
         ArrayList<School> schoolList = new ArrayList<>();

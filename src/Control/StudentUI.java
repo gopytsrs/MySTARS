@@ -13,6 +13,7 @@ public class StudentUI {
     //Course course;
 
     /**
+     * Creates the StudentUI.
     @param s This is the student object
      */
     public StudentUI(Student s) {

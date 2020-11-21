@@ -14,7 +14,7 @@ public class AdminControl {
      */
     private int adminID;
     /**
-     * Object of an admin.
+     * An object of an admin.
      */
     private Admin admin;
     /**

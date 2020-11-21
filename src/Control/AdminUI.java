@@ -7,13 +7,23 @@ import Entity.Student;
 import java.util.Scanner;
 
 public class AdminUI {
+    /**
+     * An object of an admin.
+     */
     Admin admin;
     //Course course;
 
+    /**
+     * Creates the AdminUI.
+     * @param admin is an object of admin.
+     */
     public AdminUI(Admin admin){
         this.admin = admin;
     }
 
+    /**
+     * A method that allows an admin to select what to do, of the 8.
+     */
     public void adminMenu(){
         Scanner sc = new Scanner(System.in);
         AdminControl acontrol = new AdminControl(admin);
