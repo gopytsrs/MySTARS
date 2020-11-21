@@ -12,7 +12,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class notificationControl {
-    public notificationControl(Student S, CourseRegistration C)
+    public notificationControl(){}
+    public void sendemail(Student S, CourseRegistration C)
     {
         final String username = "cz2002testemail@gmail.com"; // to be added
         final String password = "ilovebcg2"; // to be added

@@ -342,7 +342,8 @@ public class StudentControl {
                             student1.addAssignedCourse(courseToDrop);
                             student1.removeWaitList(courseToDrop);
                         }
-                        notificationControl n = new notificationControl(Firstinlist, courseToDrop);
+                        notificationControl n = new notificationControl();
+                        n.sendemail(Firstinlist, courseToDrop);
                     }
                 }
             } catch (IndexOutOfBoundsException e) {
