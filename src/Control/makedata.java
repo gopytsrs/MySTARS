@@ -140,7 +140,7 @@ public class makedata {
         c5.addLessonType1("Tutorial");
         c5.setOfferingSchool(SCBE);
 
-        Index I13 = new Index("Mechanics of Material", "BG2141", 12345, "B22", 20);
+        Index I13 = new Index("Mechanics of Material", "BG2141", 12345, "B22", 1);
         Lesson L13LEC = new Lesson(12345, LessonType.LEC, DayOfWeek.WEDNESDAY, LocalTime.parse("14:30"), LocalTime.parse("16:30"), "LT2A", Week.EVERY);
         Lesson L13TUT = new Lesson(12345, LessonType.TUT, DayOfWeek.FRIDAY, LocalTime.parse("08:30"), LocalTime.parse("09:30"), "TR+16", Week.EVERY);
         I13.setLessons(L13LEC);
