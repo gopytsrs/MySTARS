@@ -505,7 +505,7 @@ public class makedata {
         System.out.println(demoSchoolDeserialise.get(0).getSchoolName());
         System.out.println(demoSchoolDeserialise.get(1).getSchoolName());
         System.out.println(demoSchoolDeserialise.get(2).getSchoolName());
-        System.out.println(demoSchoolDeserialise.get(3).getSchoolName());
+//        System.out.println(demoSchoolDeserialise.get(3).getSchoolName());
 
         School NBS = demoSchoolDeserialise.get(0);
         ArrayList<Course> nbscourse = nbs.getCourseList();
