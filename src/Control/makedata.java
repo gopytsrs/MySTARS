@@ -130,8 +130,8 @@ public class makedata {
 
 
         //make SCBE
-        LocalDateTime startDate = LocalDateTime.parse("2020-11-06T09:00");
-        LocalDateTime endDate = LocalDateTime.parse("2020-12-07T09:00");
+        LocalDateTime startDate = LocalDateTime.parse("2020-10-08T09:00");
+        LocalDateTime endDate = LocalDateTime.parse("2020-10-09T09:00");
         School SCBE = new School("School of Chemical and Biomedical Engineering", new AccessPeriod(startDate, endDate));
 
         //beginning of c5
@@ -255,8 +255,8 @@ public class makedata {
         //end of c8
 
         //Create SCSE Data
-        LocalDateTime startDateSCSE = LocalDateTime.parse("2019-12-11T09:00");
-        LocalDateTime endDateSCSE = LocalDateTime.parse("2019-12-12T09:00");
+        LocalDateTime startDateSCSE = LocalDateTime.parse("2020-11-06T09:00");
+        LocalDateTime endDateSCSE = LocalDateTime.parse("2020-12-30T09:00");
         AccessPeriod SCSEAccessPeriod = new AccessPeriod(startDateSCSE, endDateSCSE);
         School SCSE = new School("School of Computer Science and Engineering", SCSEAccessPeriod);
 
