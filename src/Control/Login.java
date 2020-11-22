@@ -89,10 +89,13 @@ public class Login {
      * A constructor for the class login.
      */
     public Login() {
+        AccountsFromDatabase();
         collectDomain();
-        AccountsFromDatabase(domain);                   //missing accessperiod check need read student file
+
+        //missing accessperiod check need read student file
         validap = true;
         do {
+            if(domain=="admin") validap = true;
             System.out.println("Please enter your Username: ");
             userName = sc.nextLine();
 //            char [] pw = console.readPassword("Please enter your password:\n");
@@ -145,39 +148,38 @@ public class Login {
      * A method that gets the accounts from the specific binary file.
      * @param domain Domain to get the accounts.
      */
-    private void AccountsFromDatabase(String domain) {                                       // change to binary file
-        String filename = "database_" + domain + ".bin";
+    private void AccountsFromDatabase() {                                       // change to binary file
+        String filename = "database_student.bin";
         Accountlist = new ArrayList<Account>();
 
-        if (domain.equals("student")) {
-            studentList = new ArrayList<Student>();
-            try {
-                FileInputStream file = new FileInputStream(filename);
-                ObjectInputStream in = new ObjectInputStream(file);
-                studentList = (ArrayList) in.readObject();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            for (Student s : studentList) {
-                Accountlist.add(s.getAccount());
-            }
-        } else {
-            adminList = new ArrayList<>();
-            try {
-                FileInputStream file = new FileInputStream(filename);
-                ObjectInputStream in = new ObjectInputStream(file);
-                adminList = (ArrayList) in.readObject();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            for (Admin a : adminList) {
-                Accountlist.add(a.getAccount());
-            }
+        studentList = new ArrayList<Student>();
+        try {
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+            studentList = (ArrayList) in.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        for (Student s : studentList) {
+            Accountlist.add(s.getAccount());
+        }
+        adminList = new ArrayList<>();
+        filename = "database_admin.bin";
+        try {
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+            adminList = (ArrayList) in.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (Admin a : adminList) {
+            Accountlist.add(a.getAccount());
+        }
+
     }
 
     /**
@@ -193,7 +195,7 @@ public class Login {
                 if (domain.equals("student")) {
                     this.s = studentList.get(i);
                 } else {
-                    this.a = adminList.get(i);
+                    this.a = adminList.get(0);
                 }
                 return true;
             }

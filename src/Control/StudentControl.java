@@ -700,11 +700,11 @@ public class StudentControl {
                     }
                     if (canSwap) {
                         // Editing student data
-                        hisIndex.removeStudentFromAssigned(studenttoswap);
-                        myindex.removeStudentFromAssigned(student);
-
-                        myindex.assignStudent(studenttoswap);
-                        hisIndex.assignStudent(student);
+//                        hisIndex.removeStudentFromAssigned(studenttoswap);
+//                        myindex.removeStudentFromAssigned(student);
+//
+//                        myindex.assignStudent(studenttoswap);
+//                        hisIndex.assignStudent(student);
 
                         // Editing school data
                         boolean assignedM = false;
