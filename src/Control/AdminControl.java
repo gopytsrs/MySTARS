@@ -129,7 +129,7 @@ public class AdminControl {
                         System.out.println("Start Time to change access period to? (HH:MM)");
                         String startTime = sc.next();
                         changeDateTime = startDate.concat("T").concat(startTime);
-                        date = isdatetime(changeDateTime);
+                        date = isDateTime(changeDateTime);
                         if (!date)
                             System.out.println("Datetime in wrong format. Please try again.");
                     } while (!date);
@@ -141,7 +141,7 @@ public class AdminControl {
                         System.out.println("End Time to change access period to? (HH:MM)");
                         String endTime = sc.next();
                         changeDateTime1 = endDate.concat("T").concat(endTime);
-                        date = isdatetime(changeDateTime1);
+                        date = isDateTime(changeDateTime1);
                         if (!date)
                             System.out.println("Datetime in wrong format. Please try again.");
                     } while (!date);
@@ -831,7 +831,7 @@ public class AdminControl {
      * @param str is a string.
      * @return true if it is in the correct LocalDateTime format, false if it is not in the correct LocalDateTime format.
      */
-    private boolean isdatetime(String str) {
+    private boolean isDateTime(String str) {
         try {
             LocalDateTime.parse(str);
         } catch (Exception e) {
