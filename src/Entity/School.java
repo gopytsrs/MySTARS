@@ -19,7 +19,7 @@ public class School implements Serializable {
     /**
      * The access period of the school for accessing the system.
      */
-    private AccessPeriod accessperiod;
+    private AccessPeriod accessPeriod;
     /**
      * The list of courses that the school has.
      */
@@ -28,11 +28,11 @@ public class School implements Serializable {
     /**
      * Creates a new School with the given name, access period, and initialises an empty list of courses.
      * @param schoolName The name of the school.
-     * @param accessperiod The accessperiod of the school.
+     * @param accessPeriod The accessperiod of the school.
      */
-    public School(String schoolName, AccessPeriod accessperiod) {
+    public School(String schoolName, AccessPeriod accessPeriod) {
         this.schoolName = schoolName;
-        this.accessperiod = accessperiod;
+        this.accessPeriod = accessPeriod;
         this.courseList = new ArrayList<Course>();
 
     }
@@ -50,7 +50,7 @@ public class School implements Serializable {
      * @return The access period of the school, returns an AccessPeriod object.
      */
     public AccessPeriod getAccessperiod() {
-        return accessperiod;
+        return accessPeriod;
     }
 
     /**
@@ -67,8 +67,8 @@ public class School implements Serializable {
      * @param endDate The end datetime of the access period.
      */
     public void setAccessPeriod(LocalDateTime startDate, LocalDateTime endDate) {
-        this.accessperiod.setStartDate(startDate);
-        this.accessperiod.setEndDate(endDate);
+        this.accessPeriod.setStartDate(startDate);
+        this.accessPeriod.setEndDate(endDate);
     }                                               //is this really how to set the class access period?
 
     /**
