@@ -102,7 +102,7 @@ public class Login {
 //            password = new String(pw);
             System.out.println("Enter your password");
             password = sc.nextLine();
-            valid = authenticatepassword();
+            valid = authenticatePassword();
             if (valid == false) {
                 System.out.println("Invalid username/password. Please try again.");
                 continue;
@@ -186,7 +186,7 @@ public class Login {
      * A boolean method that authenticates the password.
      * @return true if the username and password matches and is correct.
      */
-    private boolean authenticatepassword() {
+    private boolean authenticatePassword() {
         int size = accountList.size();
         for (int i = 0; i < size; i++) {
             Account B = accountList.get(i);
