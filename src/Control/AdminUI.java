@@ -10,7 +10,7 @@ public class AdminUI {
     /**
      * An object of an admin.
      */
-    Admin admin;
+    private Admin admin;
     //Course course;
 
     /**
