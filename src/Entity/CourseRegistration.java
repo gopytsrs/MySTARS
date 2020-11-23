@@ -29,11 +29,11 @@ public class CourseRegistration implements Serializable {
 
     /**
      *Create a courseRegistration with index,courseCode,courseName,AUs and student
-     * @param index
-     * @param courseCode
-     * @param courseName
-     * @param au
-     * @param student
+     * @param index The index of the course registered
+     * @param courseCode The course code of the course registered
+     * @param courseName The course name of the course registered
+     * @param au The number of AUs of the course registered
+     * @param student The student who registered of the course
      */
     public CourseRegistration(Index index, String courseCode, String courseName, int au, Student student){
         this.index = index;
@@ -45,7 +45,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * Get Index
-     * @return
+     * @return The index of the course registered
      */
     public Index getIndex() {
         return index;
@@ -53,7 +53,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * Get Course code
-     * @return
+     * @return The course code of course registered
      */
     public String getCourseCode() {
         return courseCode;
@@ -61,7 +61,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * Get course name
-     * @return
+     * @return The course name of course registered
      */
     public String getCourseName() {
         return courseName;
@@ -69,7 +69,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * Get student
-     * @return
+     * @return The student who registered for the course
      */
     public Student getStudent() {
         return student;
@@ -77,7 +77,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * This method allows you to change the course code of the course registered
-     * @param courseCode
+     * @param courseCode The name of course registered
      */
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
@@ -85,7 +85,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * This method allows you to change the course name of the course registered
-     * @param courseName
+     * @param courseName The course name of the course registered
      */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
@@ -93,7 +93,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * This method allows you to change the index of the course registered
-     * @param index
+     * @param index The index of the course registered
      */
     public void setIndex(Index index) {
         this.index = index;
@@ -101,7 +101,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * This method allows you to change the student of the course registered
-     * @param student
+     * @param student The student who registered for the course
      */
     public void setStudent(Student student) {
         this.student = student;
@@ -109,7 +109,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * This method allows you to get the AUs of the course registered
-     * @return
+     * @return The number of AUs for course registered
      */
     public int getAu() {
         return au;
@@ -117,7 +117,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * This method allows you to change the AUs of the course registered
-     * @param au
+     * @param au The number of AUs for course registered
      */
     public void setAu(int au) {
         this.au = au;
@@ -125,7 +125,7 @@ public class CourseRegistration implements Serializable {
 
     /**
      * This method allow you to get a string in the format of courseCode, courseName, IndexNo, au
-     * @return
+     * @return String that is formatted in specified format
      */
     @Override
     public String toString() {

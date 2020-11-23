@@ -48,13 +48,13 @@ public class Lesson implements Serializable {
 
     /**
      * Creates a lesson with indexNo, lessonType, day,start time, end time, location and week
-     * @param indexNo
-     * @param lessonType
-     * @param day
-     * @param startTime
-     * @param endTime
-     * @param location
-     * @param weeks
+     * @param indexNo The index no. of the lesson
+     * @param lessonType The type of lesson
+     * @param day The day of the lesson
+     * @param startTime The start time of the lesson
+     * @param endTime The end time of the lesson
+     * @param location The location of the lesson
+     * @param weeks The week of the lesson is held
      */
     public Lesson(int indexNo, LessonType lessonType, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location, Week weeks) {
         this.lessonType = lessonType;
@@ -68,7 +68,7 @@ public class Lesson implements Serializable {
 
     /**
      * Get IndexNo
-     * @return
+     * @return The index no. of the lesson
      */
     public int getIndexNo() {
         return indexNo;
@@ -76,7 +76,7 @@ public class Lesson implements Serializable {
 
     /**
      * Changes IndexNo
-     * @param indexNo
+     * @param indexNo The index no. of the lesson
      */
     public void setIndexNo(int indexNo) {
         this.indexNo = indexNo;
@@ -84,7 +84,7 @@ public class Lesson implements Serializable {
 
     /**
      * Get lessonType, it can be seminars, lectures or tutorials
-     * @return
+     * @return The type of lesson
      */
     public LessonType getLessonType() {
         return lessonType;
@@ -92,7 +92,7 @@ public class Lesson implements Serializable {
 
     /**
      * Changes lessonType, it can be seminars, lectures or tutorials
-     * @param lessonType
+     * @param lessonType The type of lesson
      */
     public void setLessonType(LessonType lessonType) {
         this.lessonType = lessonType;
@@ -100,7 +100,7 @@ public class Lesson implements Serializable {
 
     /**
      * Get Day in week for lesson, it can be monday, tuesday, wednesday, thursday, friday, saturday, sunday
-     * @return
+     * @return The day of the lesson
      */
     public DayOfWeek getDay() {
         return day;
@@ -108,7 +108,7 @@ public class Lesson implements Serializable {
 
     /**
      * Change the day in week for the lesson, it can be monday, tuesday, wednesday, thursday, friday, saturday, sunday
-     * @param day
+     * @param day The day of the lesson
      */
     public void setDay(DayOfWeek day) {
         this.day = day;
@@ -116,7 +116,7 @@ public class Lesson implements Serializable {
 
     /**
      * Get start time of the lesson
-     * @return
+     * @return The start time of the lesson
      */
     public LocalTime getStartTime() {
         return startTime;
@@ -124,7 +124,7 @@ public class Lesson implements Serializable {
 
     /**
      * Changes Start time of lesson
-     * @param startTime
+     * @param startTime The start time of the lesson
      */
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
@@ -132,7 +132,7 @@ public class Lesson implements Serializable {
 
     /**
      * Get End time of lesson
-     * @return
+     * @return The end time of the lesson
      */
     public LocalTime getEndTime() {
         return endTime;
@@ -140,7 +140,7 @@ public class Lesson implements Serializable {
 
     /**
      * Change the End time of lesson
-     * @param endTime
+     * @param endTime The end time of the lesson
      */
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
@@ -148,7 +148,7 @@ public class Lesson implements Serializable {
 
     /**
      * Get location of lesson
-     * @return
+     * @return The location of the lesson
      */
     public String getLocation() {
         return location;
@@ -156,7 +156,7 @@ public class Lesson implements Serializable {
 
     /**
      * Change location of lesson
-     * @param location
+     * @param location The location of the lesson
      */
     public void setLocation(String location) {
         this.location = location;
@@ -164,7 +164,7 @@ public class Lesson implements Serializable {
 
     /**
      * Get the weeks of the lesson, it can be every,odd or even
-     * @return
+     * @return The week of the lesson is held
      */
     public Week getWeeks() {
         return weeks;
@@ -172,7 +172,7 @@ public class Lesson implements Serializable {
 
     /**
      * Changes the weeks of the lesson, it can be even,odd or every
-     * @param weeks
+     * @param weeks The week of the lesson is held
      */
     public void setWeeks(Week weeks) {
         this.weeks = weeks;

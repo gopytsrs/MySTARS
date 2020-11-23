@@ -66,11 +66,11 @@ public class Student implements Serializable {
      * @param matricNo This student's matriculation number.
      * @param email This student's email address.
      * @param year The year of study of this student.
-     * @param schoolname The name of the school that this student belongs to.
+     * @param schoolName The name of the school that this student belongs to.
      * @param gender The gender of this student.
      * @param nationality The nationality of this student.
      */
-    public Student(String name, String matricNo, String email, int year, String schoolname, String gender,
+    public Student(String name, String matricNo, String email, int year, String schoolName, String gender,
                    String nationality) {
         //collect all info from control class
         //Initialise all collected attributes
@@ -78,7 +78,7 @@ public class Student implements Serializable {
         setMatricNo(matricNo);
         setEmail(email);
         setYear(year);
-        setSchoolName(schoolname);
+        setSchoolName(schoolName);
         setGender(gender);
         setNationality(nationality);
         //Create new account for student with default username and pw
@@ -111,10 +111,10 @@ public class Student implements Serializable {
 
     /**
      * Sets the matriculation number of the student.
-     * @param matric The matriculation number to set.
+     * @param matricNo The matriculation number to set.
      */
-    public void setMatricNo(String matric) {
-        this.matricNo = matric;
+    public void setMatricNo(String matricNo) {
+        this.matricNo = matricNo;
     }
 
     /**
