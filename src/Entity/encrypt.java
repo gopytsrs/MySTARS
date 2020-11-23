@@ -22,7 +22,7 @@ public class encrypt {
 
     /**
      * method which pulls in password for hashing
-     * @param password
+     * @param password The password
      * @return
      */
     public static String getSaltedHash(String password){
@@ -35,8 +35,8 @@ public class encrypt {
 
     /**
      * This method checks the password
-     * @param password
-     * @param stored
+     * @param password  The password you enter
+     * @param stored    The hashed password stored in the database
      * @return
      */
     public static boolean check(String password, String stored){
@@ -51,8 +51,8 @@ public class encrypt {
 
     /**
      * This method hashes the password
-     * @param password
-     * @param salt
+     * @param password  The password you enter
+     * @param salt  The number of random bytes for hashing
      * @return
      */
     private static String hash(String password, byte[] salt) {

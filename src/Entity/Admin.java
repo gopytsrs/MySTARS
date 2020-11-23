@@ -17,7 +17,7 @@ public class Admin implements Serializable {
 
     /**
      * Creates an admin with a name
-     * @param adminName
+     * @param adminName The name of the admin
      */
     public Admin(String adminName) {
         setAdminName(adminName);
@@ -26,7 +26,7 @@ public class Admin implements Serializable {
 
     /**
      * Get Admin name
-     * @return
+     * @return  The name of the admin
      */
     public String getAdminName() {
         return this.adminName;
@@ -34,7 +34,7 @@ public class Admin implements Serializable {
 
     /**
      * Change the admin name
-     * @param adminName
+     * @param adminName The name of the admin
      */
     public void setAdminName(String adminName) {
         this.adminName = adminName;
@@ -42,7 +42,7 @@ public class Admin implements Serializable {
 
     /**
      * Get admin account
-     * @return
+     * @return  The account of the admin
      */
     public Account getAccount() {
         return this.account;

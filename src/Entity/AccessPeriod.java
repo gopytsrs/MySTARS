@@ -20,8 +20,8 @@ public class AccessPeriod implements Serializable {
 
     /**
      * Creates a new Access period, must be in localdatetime for startDate and endDate
-     * @param startDate
-     * @param endDate
+     * @param startDate start date of lesson
+     * @param endDate end date of lesson
      */
     public AccessPeriod(LocalDateTime startDate, LocalDateTime endDate) {
         this.startDate = startDate;
@@ -30,7 +30,7 @@ public class AccessPeriod implements Serializable {
 
     /**
      * Get the endDate
-     * @return
+     * @return end date of lesson
      */
     public LocalDateTime getEndDate() {
         return endDate;
@@ -38,7 +38,7 @@ public class AccessPeriod implements Serializable {
 
     /**
      * Get the startDate
-     * @return
+     * @return start date of lesson
      */
     public LocalDateTime getStartDate() {
         return startDate;
@@ -46,7 +46,7 @@ public class AccessPeriod implements Serializable {
 
     /**
      * Changes the startDate
-     * @param startDate
+     * @param startDate start date of lesson
      */
     public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
@@ -54,7 +54,7 @@ public class AccessPeriod implements Serializable {
 
     /**
      * Changes the endDate
-     * @param endDate
+     * @param endDate end date of lesson
      */
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;

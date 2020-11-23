@@ -22,9 +22,9 @@ public class Account implements Serializable {
 
     /**
      * Creates an account using username, password, accountType
-     * @param username
-     * @param password
-     * @param accountType
+     * @param username The username of the account
+     * @param password The password of the account
+     * @param accountType The account type which can be student or admin
      */
     public Account(String username, String password, String accountType) {
         setUsername(username);
@@ -41,8 +41,8 @@ public class Account implements Serializable {
 
     /**
      * Checks the username and password is valid
-     * @param username
-     * @param password
+     * @param username  The username you enter
+     * @param password  The password you enter
      * @return
      */
     public boolean validate(String username, String password){
@@ -57,7 +57,7 @@ public class Account implements Serializable {
 
     /**
      * Get username
-     * @return
+     * @return  The username of account
      */
     public String getUsername() {
         return username;
@@ -65,7 +65,7 @@ public class Account implements Serializable {
 
     /**
      * Get password
-     * @return
+     * @return  The password of account
      */
     public String getPassword() {
         return password;
@@ -73,7 +73,7 @@ public class Account implements Serializable {
 
     /**
      * Get accountType, either student or admin
-     * @return
+     * @return  The account type of this account
      */
     public String getAccountType() {
         return accountType;
@@ -81,7 +81,7 @@ public class Account implements Serializable {
 
     /**
      * Changes username of an account
-     * @param username
+     * @param username  The username of account
      */
     public void setUsername(String username) {
         this.username = username;
@@ -89,7 +89,7 @@ public class Account implements Serializable {
 
     /**
      * Changes the password of an account
-     * @param password
+     * @param password  The password of this account
      */
     public void setPassword(String password) {
         this.password = password;
@@ -97,7 +97,7 @@ public class Account implements Serializable {
 
     /**
      * Changes the accountType of an account
-     * @param accountType
+     * @param accountType   The account type of this account
      */
     public void setAccountType(String accountType) {
         this.accountType = accountType;

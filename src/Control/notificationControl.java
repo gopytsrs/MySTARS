@@ -22,8 +22,8 @@ public class notificationControl implements notification{
 
     /**
      * This method sends a notification to the student who got assigned into a course
-     * @param S
-     * @param C
+     * @param S The student
+     * @param C The course registered
      */
     public void sendnotification(Student S, CourseRegistration C)
     {

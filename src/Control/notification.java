@@ -9,8 +9,8 @@ import Entity.Student;
 public interface notification {
     /**
      * This abstract method will be implemented by concrete classes to send notifications
-     * @param S
-     * @param C
+     * @param S The student
+     * @param C The course registered
      */
     public void sendnotification(Student S, CourseRegistration C);
 }
