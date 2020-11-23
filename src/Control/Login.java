@@ -26,7 +26,7 @@ public class Login {
     /**
      * An arraylist/collection of all the accounts.
      */
-    private ArrayList<Account> accountlist;
+    private ArrayList<Account> accountList;
     /**
      * An arraylist/collection of all the students.
      */
@@ -150,7 +150,7 @@ public class Login {
      */
     private void AccountsFromDatabase() {                                       // change to binary file
         String filename = "database_student.bin";
-        accountlist = new ArrayList<Account>();
+        accountList = new ArrayList<Account>();
 
         studentList = new ArrayList<Student>();
         try {
@@ -163,7 +163,7 @@ public class Login {
             e.printStackTrace();
         }
         for (Student s : studentList) {
-            accountlist.add(s.getAccount());
+            accountList.add(s.getAccount());
         }
         adminList = new ArrayList<>();
         filename = "database_admin.bin";
@@ -187,9 +187,9 @@ public class Login {
      * @return true if the username and password matches and is correct.
      */
     private boolean Authenticatepassword() {
-        int size = accountlist.size();
+        int size = accountList.size();
         for (int i = 0; i < size; i++) {
-            Account B = accountlist.get(i);
+            Account B = accountList.get(i);
             boolean v = B.validate(this.userName, this.password);
             if (v == true) {
                 if (domain.equals("student")) {
