@@ -26,7 +26,7 @@ public class Login {
     /**
      * An arraylist/collection of all the accounts.
      */
-    private ArrayList<Account> Accountlist;
+    private ArrayList<Account> accountList;
     /**
      * An arraylist/collection of all the students.
      */
@@ -89,7 +89,7 @@ public class Login {
      * A constructor for the class login.
      */
     public Login() {
-        AccountsFromDatabase();
+        accountsFromDatabase();
         collectDomain();
 
         //missing accessperiod check need read student file
@@ -102,14 +102,14 @@ public class Login {
 //            password = new String(pw);
             System.out.println("Enter your password");
             password = sc.nextLine();
-            valid = Authenticatepassword();
+            valid = authenticatepassword();
             if (valid == false) {
                 System.out.println("Invalid username/password. Please try again.");
                 continue;
             }
             if (domain == "student")
             {
-                validap = check_access_period(s.getSchoolName());
+                validap = checkAccessPeriod(s.getSchoolName());
             }
             if (!validap)
             {
@@ -148,9 +148,9 @@ public class Login {
      * A method that gets the accounts from the specific binary file.
      * @param domain Domain to get the accounts.
      */
-    private void AccountsFromDatabase() {                                       // change to binary file
+    private void accountsFromDatabase() {                                       // change to binary file
         String filename = "database_student.bin";
-        Accountlist = new ArrayList<Account>();
+        accountList = new ArrayList<Account>();
 
         studentList = new ArrayList<Student>();
         try {
@@ -163,7 +163,7 @@ public class Login {
             e.printStackTrace();
         }
         for (Student s : studentList) {
-            Accountlist.add(s.getAccount());
+            accountList.add(s.getAccount());
         }
         adminList = new ArrayList<>();
         filename = "database_admin.bin";
@@ -177,7 +177,7 @@ public class Login {
             e.printStackTrace();
         }
         for (Admin a : adminList) {
-            Accountlist.add(a.getAccount());
+            accountList.add(a.getAccount());
         }
 
     }
@@ -186,10 +186,10 @@ public class Login {
      * A boolean method that authenticates the password.
      * @return true if the username and password matches and is correct.
      */
-    private boolean Authenticatepassword() {
-        int size = Accountlist.size();
+    private boolean authenticatepassword() {
+        int size = accountList.size();
         for (int i = 0; i < size; i++) {
-            Account B = Accountlist.get(i);
+            Account B = accountList.get(i);
             boolean v = B.validate(this.userName, this.password);
             if (v == true) {
                 if (domain.equals("student")) {
@@ -225,7 +225,7 @@ public class Login {
      * @param schoolname The school name of the user.
      * @return true if the current date time is within the access period.
      */
-    public boolean check_access_period(String schoolname)
+    public boolean checkAccessPeriod(String schoolname)
     {
         ArrayList<School> schoolList = new ArrayList<>();
         String schoolFileName = "database_school.bin"; //purely for testing
