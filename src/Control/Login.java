@@ -177,7 +177,7 @@ public class Login {
             e.printStackTrace();
         }
         for (Admin a : adminList) {
-            accountlist.add(a.getAccount());
+            accountList.add(a.getAccount());
         }
 
     }
