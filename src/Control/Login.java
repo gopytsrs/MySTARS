@@ -89,7 +89,7 @@ public class Login {
      * A constructor for the class login.
      */
     public Login() {
-        AccountsFromDatabase();
+        accountsFromDatabase();
         collectDomain();
 
         //missing accessperiod check need read student file
@@ -102,14 +102,14 @@ public class Login {
 //            password = new String(pw);
             System.out.println("Enter your password");
             password = sc.nextLine();
-            valid = Authenticatepassword();
+            valid = authenticatepassword();
             if (valid == false) {
                 System.out.println("Invalid username/password. Please try again.");
                 continue;
             }
             if (domain == "student")
             {
-                validap = check_access_period(s.getSchoolName());
+                validap = checkAccessPeriod(s.getSchoolName());
             }
             if (!validap)
             {
@@ -148,7 +148,7 @@ public class Login {
      * A method that gets the accounts from the specific binary file.
      * @param domain Domain to get the accounts.
      */
-    private void AccountsFromDatabase() {                                       // change to binary file
+    private void accountsFromDatabase() {                                       // change to binary file
         String filename = "database_student.bin";
         accountList = new ArrayList<Account>();
 
@@ -186,7 +186,7 @@ public class Login {
      * A boolean method that authenticates the password.
      * @return true if the username and password matches and is correct.
      */
-    private boolean Authenticatepassword() {
+    private boolean authenticatepassword() {
         int size = accountList.size();
         for (int i = 0; i < size; i++) {
             Account B = accountList.get(i);
@@ -225,7 +225,7 @@ public class Login {
      * @param schoolname The school name of the user.
      * @return true if the current date time is within the access period.
      */
-    public boolean check_access_period(String schoolname)
+    public boolean checkAccessPeriod(String schoolname)
     {
         ArrayList<School> schoolList = new ArrayList<>();
         String schoolFileName = "database_school.bin"; //purely for testing
