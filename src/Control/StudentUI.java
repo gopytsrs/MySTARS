@@ -9,7 +9,7 @@ public class StudentUI {
     /**
      * A student object.
      */
-    Student student;
+    private Student student;
     //Course course;
 
     /**
