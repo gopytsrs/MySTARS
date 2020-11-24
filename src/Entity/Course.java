@@ -212,7 +212,7 @@ public class Course implements Serializable {
             System.out.println("Invalid vacancy! Enter Vacancy again: ");
             vacancy = sc.nextInt();
         }
-        Index I = new Index(courseCode, courseName, indexNo, groupNo, vacancy);
+        Index I = new Index(courseName, courseCode, indexNo, groupNo, vacancy);
         indexList.add(I);
         System.out.println("Index Added");
     }
