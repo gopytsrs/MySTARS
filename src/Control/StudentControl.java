@@ -29,6 +29,7 @@ public class StudentControl {
 
     /**
      * Creates a new student controller.
+     *
      * @param student is an object of a student.
      */
     //Create StudentControl using this constructor
@@ -111,8 +112,7 @@ public class StudentControl {
                 if (courseName >= 0 && courseName < i) { //if courseName is 0, 1, 2, 3
                     courseExists = true;
                     courseChosen = courseList.get(courseName);
-                }
-                else { //if not, it comes here
+                } else { //if not, it comes here
                     System.out.println("Choice is out of range, try again.");
                 }
             } while (courseName < 0 || courseName >= i);
@@ -130,8 +130,7 @@ public class StudentControl {
 //                continue;
 //            }
 
-            if (!registeredCourse.isEmpty())
-            {
+            if (!registeredCourse.isEmpty()) {
                 for (CourseRegistration alreadyRegisteredCourse : registeredCourse) {
                     if (courseChosen.getCourseCode().equals(alreadyRegisteredCourse.getCourseCode())) {
                         System.out.println("Already registered the course. Index: " + alreadyRegisteredCourse.getIndex().getIndexNo());
@@ -140,8 +139,7 @@ public class StudentControl {
                 }
             }
 
-            if (!waitListCourse.isEmpty())
-            {
+            if (!waitListCourse.isEmpty()) {
                 for (CourseRegistration aboutToRegisterCourse : waitListCourse) {
                     if (courseChosen.getCourseCode().equals(aboutToRegisterCourse.getCourseCode())) {
                         System.out.println("Already added this course to the waitlist. Index: " + aboutToRegisterCourse.getIndex().getIndexNo());
@@ -225,15 +223,14 @@ public class StudentControl {
 
                             }
                         }
-                    }
-                    else if (student.checkAU(newCourse) && indexChosen.assignStudent(student)) {
+                    } else if (student.checkAU(newCourse) && indexChosen.assignStudent(student)) {
                         student.addAssignedCourse(newCourse);
                         System.out.println("Successfully registered for course " + newCourse.getCourseName() + ", index " + indexChosen.getIndexNo());
                         return;
-                    } else if(student.checkAU(newCourse) && !indexChosen.assignStudent(student)){
+                    } else if (student.checkAU(newCourse) && !indexChosen.assignStudent(student)) {
                         student.addWaitList(newCourse);
                         indexChosen.addToWaitlist(student);
-                        System.out.printf("Added %d of %s to waitlist.%n",indexChosen.getIndexNo(),newCourse.getCourseCode());
+                        System.out.printf("Added %d of %s to waitlist.%n", indexChosen.getIndexNo(), newCourse.getCourseCode());
                     }
 
                     break;
@@ -245,8 +242,8 @@ public class StudentControl {
                 default:
                     break;
             }
-        }while (choice < 1 || choice > 2);
-        }
+        } while (choice < 1 || choice > 2);
+    }
 
     /**
      * A method that allows the student to drop a specific course and index.
@@ -276,8 +273,8 @@ public class StudentControl {
         //i = 3, ...
         System.out.println("WaitList Courses");
         if (student.getAssignedCourse().isEmpty()) {
-            for (i = lastChoice + 1; i < lastChoice + 1 + student.getWaitList().size(); i++){
-                System.out.println((i) + ": " + student.getWaitList().get(i-lastChoice-1));
+            for (i = lastChoice + 1; i < lastChoice + 1 + student.getWaitList().size(); i++) {
+                System.out.println((i) + ": " + student.getWaitList().get(i - lastChoice - 1));
                 lastChoice2 = i;
             }
         } else {
@@ -304,7 +301,7 @@ public class StudentControl {
                         courseToDrop = student.getAssignedCourse().get(droppingCourse);
 
                         // droppingCourse = 3, last choice = 2   droppingCourse = 3, 2 + 1 + 1
-                    } else if (droppingCourse >= student.getAssignedCourse().size() && droppingCourse < student.getAssignedCourse().size()+student.getWaitList().size()) {
+                    } else if (droppingCourse >= student.getAssignedCourse().size() && droppingCourse < student.getAssignedCourse().size() + student.getWaitList().size()) {
                         courseFound = true;                      //assuming you choose 4, droppingCourse = 3, lastChoice = 2,
                         courseToDrop = student.getWaitList().get(droppingCourse - student.getAssignedCourse().size());
                     } else {
@@ -425,7 +422,7 @@ public class StudentControl {
         while (true) {
             try {
                 System.out.println("Enter index number:");
-                indexNo = Integer.valueOf(scanner.nextLine());
+                indexNo = Integer.valueOf(scanner.next());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a index number.");
@@ -437,7 +434,7 @@ public class StudentControl {
             for (Index index : indexes) {
                 //Index exists, print out the vacancies and exit the method
 
-                if(index.getIndexNo() == indexNo){
+                if (index.getIndexNo() == indexNo) {
                     int total;
                     if (index.getAssignedStudents() == null) {
                         total = index.getVacancy();
@@ -496,8 +493,8 @@ public class StudentControl {
 
 
         Course course = null;
-        for(Course c: courseList){
-            if(c.getCourseCode().equals(courseR.getCourseCode())){
+        for (Course c : courseList) {
+            if (c.getCourseCode().equals(courseR.getCourseCode())) {
                 indexList = c.getIndexList();
                 course = c;
             }
@@ -528,7 +525,7 @@ public class StudentControl {
 //                System.out.printf("Index %d has no vacancies", desiredIndex.getIndexNo());
 //                validIndex = false;
 //            }
-          else {
+            else {
                 for (CourseRegistration c1 : all) {
                     if (c1.getIndex() == desiredIndex) {
                         System.out.println("Already registered for index " + desiredIndex.getIndexNo());
@@ -551,25 +548,25 @@ public class StudentControl {
                     System.out.printf("Changed from Index %d to Index %d %n", currentIndexNo, desiredIndexNo);
                     currentIndex.removeStudentFromAssigned(student);
                     desiredIndex.assignStudent(student);
-                    student.updateIndex(currentIndex,desiredIndex,false);
+                    student.updateIndex(currentIndex, desiredIndex, false);
 
-                //From waitList in old to assigned in new
-                } else if (currentIndex.getWaitList().contains(student) && desiredIndex.getVacancy() > 0){
+                    //From waitList in old to assigned in new
+                } else if (currentIndex.getWaitList().contains(student) && desiredIndex.getVacancy() > 0) {
                     System.out.println(desiredIndex.getCourseCode());
                     System.out.printf("Changed from Index %d to Index %d %n", currentIndexNo, desiredIndexNo);
                     currentIndex.removeFromWaitlist(student);
                     desiredIndex.assignStudent(student);
-                    student.updateIndex(currentIndex,desiredIndex,true);
+                    student.updateIndex(currentIndex, desiredIndex, true);
 
-                //From waitlist in old to waitlist in new
+                    //From waitlist in old to waitlist in new
                 } else if (currentIndex.getWaitList().contains(student) && desiredIndex.getVacancy() == 0) {
                     System.out.println(desiredIndex.getCourseCode());
                     System.out.printf("Changed waitlist from Index %d to Index %d %n", currentIndexNo, desiredIndex);
                     currentIndex.removeFromWaitlist(student);
                     desiredIndex.addToWaitlist(student);
-                    student.updateIndex(currentIndex,desiredIndex,false);
+                    student.updateIndex(currentIndex, desiredIndex, false);
 
-                //From assigned in old to waitList in new, not allowed
+                    //From assigned in old to waitList in new, not allowed
                 } else {
                     System.out.println("Not allowed!");
                 }
@@ -709,19 +706,18 @@ public class StudentControl {
                         // Editing school data
                         boolean assignedM = false;
                         boolean assignedH = false;
-                        for (Course c: courseList){
-                            if (c.getCourseCode().equals(myindex.getCourseCode())){
-                                for (Index i: c.getIndexList()){
-                                    if (i.getIndexNo() == myindex.getIndexNo()){
+                        for (Course c : courseList) {
+                            if (c.getCourseCode().equals(myindex.getCourseCode())) {
+                                for (Index i : c.getIndexList()) {
+                                    if (i.getIndexNo() == myindex.getIndexNo()) {
                                         i.removeStudentFromAssigned(student);
                                         assignedM = i.assignStudent(studenttoswap);
-                                    }
-                                    else if (i.getIndexNo() == hisIndex.getIndexNo()){
+                                    } else if (i.getIndexNo() == hisIndex.getIndexNo()) {
                                         i.removeStudentFromAssigned(studenttoswap);
                                         assignedH = i.assignStudent(student);
                                     }
 
-                                    if(assignedM && assignedH){
+                                    if (assignedM && assignedH) {
                                         break;
                                     }
                                 }
@@ -748,7 +744,7 @@ public class StudentControl {
                     System.out.println("Please enter a valid option.");
                     break;
             }
-        } while (choice != 1 && choice !=2);
+        } while (choice != 1 && choice != 2);
     }
 
     /**
@@ -782,6 +778,7 @@ public class StudentControl {
 
     /**
      * A boolean method to check whether an input is an integer.
+     *
      * @param str is a string.
      * @return true if it is an integer, false if it is not an integer.
      */

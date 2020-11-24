@@ -1,6 +1,5 @@
 package Control;
 
-import Entity.Course;
 import Entity.Student;
 
 import java.util.Scanner;
@@ -14,7 +13,8 @@ public class StudentUI {
 
     /**
      * Creates the StudentUI.
-    @param s This is the student object
+     *
+     * @param s This is the student object
      */
     public StudentUI(Student s) {
         this.student = s;
@@ -40,8 +40,13 @@ public class StudentUI {
             System.out.println("7. Logout");
             System.out.println("Enter your choice here: ");
 
-            choice = sc.nextInt();
-            sc.nextLine();
+            try {
+                String dummy = sc.next();
+                choice = Integer.parseInt(dummy);
+            } catch (Exception e) {
+                System.out.println("Input should be an integer!");
+                continue;
+            }
 
             switch (choice) {
                 case 1:
