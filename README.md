@@ -1,83 +1,12 @@
-# MySTARS-CZ2002
+| File  | Use   |
+|---|---|
+| compile.bat  | Generate class files of the project   |
+| Generate.bat  | Generate the pre-defined data into the binary files  |
+|  Run.bat | Run the program on terminal   |
 
-## Links
-- <a href="https://en.wikipedia.org/wiki/Entity-control-boundary">Entity-Control-Boundary Pattern</a>
-- <a href="https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/">Git and Github setup</a>
 
-<br></br>
+1.Run "compile.bat", then "Generate.bat". 
 
-![](https://i.ibb.co/ygWZc8q/Screenshot-2020-11-03-143649.jpg)
+2.Run the "Run.bat" batch file. 
 
-<br></br>
-### Before you start
-
-Make sure to clone the repository to your local machine first
-```bash
- $ git clone git@github.com:seangoats/MySTARS-CZ2002.git
-```
-
-Or if that doesn't work, try:
-
-```bash
- $ git clone https://github.com/seangoats/MySTARS-CZ2002.git
-```
-
-### Workflow
-1. Firstly, pull the updates in main to your local repo
-
-    ```bash
-    $ git pull
-    ```
-
-2. Checkout a new branch to work on your code
-    ```bash
-    $ git checkout -b branch-name
-    ```
-3. You should be in the branch you created now, to check type this command
-    ```bash
-    $ git branch
-      main
-    * branch-name
-    ```
-   The * tells you which branch you are in
-   
-4. Make the desired changes in the current branch, add and commit.
-    ```bash
-    $ git add .
-    ```
-    The "." means to add all the files modified.
-    You can add individual files by specifying their name.
-    
-    ```bash
-    $ git commit -m "Your commit message here"
-    ```
-5. Fetch and merge in case there are any changes
-    ```bash
-    $ git fetch
-    ```
-    
-    ```bash
-    $ git merge
-    ```
-   Manually resolve merge conflicts at this step if there are any
-   
-   After resolving merge conflicts, add and commit again
-   <hr>
-   
-6. Push your commits to a remote branch with the same name
-    ```bash
-    $ git push -u origin branch-name
-    ```
-7. Return to the Github repo on your browser, this should appear, click on the button
-
-    ![](https://i.ibb.co/fMjdcp8/Screenshot-2020-11-03-231544.jpg)
-    ****
-    
-8. Create the pull request.
-    
-    ![](https://i.ibb.co/3hcc6Dw/Screenshot-2020-11-03-231612.jpg)
-    ****
-    
-    If it doesn't appear, try clicking on branch and create the pull request from there
-    
-9. Let your team check the code before they merge the pull request
+Might need to use JDK14.0.2 to run the program.
