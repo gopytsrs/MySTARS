@@ -1,8 +1,6 @@
 package Control;
 
 import Entity.Admin;
-import Entity.Course;
-import Entity.Student;
 
 import java.util.Scanner;
 
@@ -15,20 +13,20 @@ public class AdminUI {
 
     /**
      * Creates the AdminUI.
+     *
      * @param admin is an object of admin.
      */
-    public AdminUI(Admin admin){
+    public AdminUI(Admin admin) {
         this.admin = admin;
     }
 
     /**
      * A method that allows an admin to select what to do, of the 8.
      */
-    public void adminMenu(){
+    public void adminMenu() {
         Scanner sc = new Scanner(System.in);
         AdminControl acontrol = new AdminControl(admin);
         int choice = 0;
-
         do {
             System.out.println("1. Edit student access periods");
             System.out.println("2. Add a student");
@@ -40,7 +38,14 @@ public class AdminUI {
             System.out.println("8. Logout");
             System.out.println("Enter your choice here: ");
 
-            choice = sc.nextInt();
+            try {
+                String dummy = sc.next();
+                choice = Integer.parseInt(dummy);
+            } catch (Exception e) {
+                System.out.println("Input should be an integer!");
+                continue;
+            }
+
 
             switch (choice) {
                 case 1:

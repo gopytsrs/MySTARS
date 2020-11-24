@@ -1,4 +1,5 @@
 package Entity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,7 +28,7 @@ public class Course implements Serializable {
      * The School that offers the Course.
      */
     private School offeringSchool;      // comment this out if no need
-                                        // gerpe/ue attribute
+    // gerpe/ue attribute
     /**
      * The list of Indexes the Course has.
      */
@@ -35,12 +36,12 @@ public class Course implements Serializable {
 
     /**
      * Creates a new Course object based on the given course code, course name and number of AUs.
+     *
      * @param courseCode The course code of the Course.
      * @param courseName The course name of the Course.
-     * @param au The number of AUs of the Course.
+     * @param au         The number of AUs of the Course.
      */
-    public Course(String courseCode, String courseName, int au)
-    {
+    public Course(String courseCode, String courseName, int au) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.au = au;
@@ -50,6 +51,7 @@ public class Course implements Serializable {
 
     /**
      * Gets the course code of the Course.
+     *
      * @return The course code of the Course.
      */
     public String getCourseCode() {
@@ -58,6 +60,7 @@ public class Course implements Serializable {
 
     /**
      * Sets the course code of the Course.
+     *
      * @param courseCode The course code of the Course.
      */
     public void setCourseCode(String courseCode) {
@@ -65,7 +68,8 @@ public class Course implements Serializable {
     }
 
     /**
-     *  Gets the course name of the Course.
+     * Gets the course name of the Course.
+     *
      * @return The course name of the Course.
      */
     public String getCourseName() {
@@ -74,6 +78,7 @@ public class Course implements Serializable {
 
     /**
      * Sets the course name of the Course.
+     *
      * @param courseName The course name of the Course.
      */
     public void setCourseName(String courseName) {
@@ -82,6 +87,7 @@ public class Course implements Serializable {
 
     /**
      * Gets the number of AUs of the Course.
+     *
      * @return The number of AUs of the Course.
      */
     public int getAu() {
@@ -90,6 +96,7 @@ public class Course implements Serializable {
 
     /**
      * Sets the number of AUs of the Course.
+     *
      * @param au The number of AUs of the Course.
      */
     public void setAu(int au) {
@@ -98,6 +105,7 @@ public class Course implements Serializable {
 
     /**
      * Gets the list of lesson types of the Course.
+     *
      * @return The list of lesson types of the Course..
      */
     public ArrayList<String> getLessonType() {
@@ -106,6 +114,7 @@ public class Course implements Serializable {
 
     /**
      * Sets the list of lesson types of the Course.
+     *
      * @param lessonType The list of lesson types of the Course.
      */
     public void setLessonType(ArrayList<String> lessonType) {
@@ -115,8 +124,7 @@ public class Course implements Serializable {
     /**
      * Adds a lesson type to the list of lesson types of the Course.
      */
-    public void addLessonType()
-    {
+    public void addLessonType() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input the lessonType: ");
         String lessonType = sc.next();
@@ -125,6 +133,7 @@ public class Course implements Serializable {
 
     /**
      * Adds a lesson type to  the list of lesson types of the Course.
+     *
      * @param lessonType
      */
     public void addLessonType1(String lessonType)       //use purely for binary
@@ -134,6 +143,7 @@ public class Course implements Serializable {
 
     /**
      * Gets the School that offers the Course.
+     *
      * @return The School that offers the Course.
      */
     public School getOfferingSchool() {
@@ -142,6 +152,7 @@ public class Course implements Serializable {
 
     /**
      * Sets the School that offers the Course.
+     *
      * @param offeringSchool The School that offers the Course.
      */
     public void setOfferingSchool(School offeringSchool) {
@@ -150,6 +161,7 @@ public class Course implements Serializable {
 
     /**
      * Gets the list of Indexes of the Course.
+     *
      * @return The list of Indexes of the Course.
      */
     public ArrayList<Index> getIndexList() {
@@ -158,35 +170,37 @@ public class Course implements Serializable {
 
     /**
      * Adds an Index to the list of Indexes of the Course.
+     *
      * @param I The Index to add.
      */
-    public void setindexlist(Index I){indexList.add(I);}
+    public void setindexlist(Index I) {
+        indexList.add(I);
+    }
 
     /**
      * Adds an Index to the list of Indexes of the Course.
      */
-    public void addIndex()
-    {
+    public void addIndex() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input the indexNo: ");
         int indexNo;
-        try{
+        try {
             String dummy = sc.next();
             indexNo = Integer.parseInt(dummy);
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Please enter an integer");
             return;
         }
-        for(Index J: indexList) {
+        for (Index J : indexList) {
             while (indexNo == J.getIndexNo()) {
                 System.out.println("Index No already exists! ");
                 return;
             }
         }
+ 
         System.out.println("Input the groupNo: ");
         String groupNo = sc.next();
-        for(Index I: indexList) {
+        for (Index I : indexList) {
             while (groupNo.equals(I.getGroupNo())) {
                 System.out.println("Group No already exists! ");
                 return;
@@ -198,7 +212,7 @@ public class Course implements Serializable {
             System.out.println("Invalid vacancy! Enter Vacancy again: ");
             vacancy = sc.nextInt();
         }
-        Index I = new Index(courseCode,courseName,indexNo,groupNo,vacancy);
+        Index I = new Index(courseCode, courseName, indexNo, groupNo, vacancy);
         indexList.add(I);
         System.out.println("Index Added");
     }
@@ -206,20 +220,21 @@ public class Course implements Serializable {
     /**
      * Prints the list of Indexes of the Course.
      */
-    public void printIndexList(){
-        if(this.indexList == null){
+    public void printIndexList() {
+        if (this.indexList == null) {
             System.out.println("No indexes");
         } else {
             System.out.println(courseCode + "\t" + courseName + "\t" + au + "AU");
             System.out.println("Indexes:\tVacancies");
-            for(Index index: indexList){
-                System.out.printf("%d\t%d%n",index.getIndexNo(),index.getVacancy());
+            for (Index index : indexList) {
+                System.out.printf("%d\t%d%n", index.getIndexNo(), index.getVacancy());
             }
         }
     }
 
     /**
      * Formats the Course object to a String when passed to a print method.
+     *
      * @return
      */
     @Override
