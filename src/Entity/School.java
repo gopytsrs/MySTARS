@@ -112,11 +112,27 @@ public class School implements Serializable {
             }
         }
 
+        boolean checkAu = false;
+        au = -1;
         System.out.print("Enter number of AU for this course: ");
-        au = sc.nextInt();
+        while (!checkAu) {
+            try {
+                String dummy = sc.next();
+                au = Integer.parseInt(dummy);
+                checkAu = true;
+            } catch (Exception e) {
+                System.out.println("Input should be an integer! Please try again: ");
+            }
+        }
+
         while (au < 1 || au > 10) {
             System.out.println("Invalid AU count! Enter AU again: ");
-            au = sc.nextInt();
+            try {
+                String dummy = sc.next();
+                au = Integer.parseInt(dummy);
+            } catch (Exception e) {
+                System.out.println("Input should be an integer!");
+            }
         }
 
         Course C1 = new Course(courseCode, courseName, au);

@@ -219,23 +219,38 @@ public class AdminControl {
                         return;
                     }
                 }
+                boolean checkInt = false;
 
                 System.out.println("Enter student's year of study: ");
-                year = sc.nextInt();
+                while (!checkInt) {
+                    try {
+                        String dummy = sc.next();
+                        year = Integer.parseInt(dummy);
+                        checkInt = true;
+                    } catch (Exception e) {
+                        System.out.println("Input should be an integer! Please try again:");
+                    }
+                }
+
                 while (year > 4 || year < 1) {
                     System.out.println("Invalid year! Enter again");
-                    year = sc.nextInt();
+                    try {
+                        String dummy = sc.next();
+                        year = Integer.parseInt(dummy);
+                    } catch (Exception e) {
+                        System.out.println("Input should be an integer!");
+                    }
                 }
                 sc.nextLine();
                 System.out.println("Enter student's gender (M/F): ");
-                gender = sc.nextLine();
+                gender = sc.next();
                 while (!gender.equals("M") && !gender.equals("F")) {
                     System.out.println("Invalid gender! Enter again");
-                    gender = sc.nextLine();
+                    gender = sc.next();
                 }
 
                 System.out.println("Enter student's nationality: ");
-                nationality = sc.nextLine();
+                nationality = sc.next();
 
 
                 System.out.println("Which school will they attend? ");
@@ -249,7 +264,7 @@ public class AdminControl {
                     String dummy = sc.next();
                     boolean test = isInteger(dummy);
                     if (test == false) {
-                        System.out.println("Input should be an integer.");
+                        System.out.println("Input should be an integer. Please try again: ");
                         continue;
                     }
                     choice = Integer.parseInt(dummy);
@@ -355,13 +370,13 @@ public class AdminControl {
                         String dummy = sc.next();
                         boolean check = isInteger(dummy);
                         if (check == false) {
-                            System.out.println("Input should be an integer.");
+                            System.out.println("Input should be an integer. Please try again: ");
                             continue;
                         }
                         option = Integer.parseInt(dummy);
                         option -= 1;
                         if (option < 0 || option > schoolList.size() - 1) {
-                            System.out.println("Your data is out of range, try again.");
+                            System.out.println("Your input is out of range, try again.");
                         }
                     } while (option < 0 || option > schoolList.size() - 1);
                     C = schoolList.get(option).getCourseList();
@@ -397,7 +412,14 @@ public class AdminControl {
                         System.out.println("4. Update Vacancy");
                         System.out.println("5. End");
                         System.out.println("Key in the option you would like to use below: ");
-                        pick = sc.nextInt();
+                        try {
+                            String dummy = sc.next();
+                            pick = Integer.parseInt(dummy);
+                        } catch (Exception e) {
+                            System.out.println("Input should be an integer!");
+                            continue;
+                        }
+
                         switch (pick) {
                             case (1): {
                                 int option3 = -1;
@@ -411,7 +433,7 @@ public class AdminControl {
                                     }
                                 }
                                 do {
-                                    System.out.println("Please key in the number beside the school you select: ");
+                                    System.out.println("Please key in the number beside the school you select (It will save after you exit): ");
                                     String dummy = sc.next();
                                     boolean check = isInteger(dummy);
                                     if (check == false) {

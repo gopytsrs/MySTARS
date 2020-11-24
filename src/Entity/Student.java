@@ -379,7 +379,7 @@ public class Student implements Serializable {
         }
 
         if (!clashAssigned & !clashWait) {
-            System.out.println("Index does not clash with current timetable.");
+            System.out.println(this.name + ": Index does not clash with current timetable.");
             return noclash;
         } else if (clashAssigned) {
             System.out.println("Index clash with assigned timetable.");

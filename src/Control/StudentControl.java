@@ -475,9 +475,10 @@ public class StudentControl {
             try {
                 printRegisteredCourses();
                 System.out.println("Enter current index no. you have");
-                currentIndexNo = Integer.valueOf(scanner.nextLine());
+                currentIndexNo = Integer.valueOf(scanner.next());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Enter an index number.");
+                continue;
             }
             for (CourseRegistration courseRegistration : all) {
                 if (courseRegistration.getIndex().getIndexNo() == currentIndexNo) {
@@ -505,11 +506,12 @@ public class StudentControl {
         while (!validIndex) {
             try {
                 course.printIndexList();
-                System.out.println("\n");
+                System.out.println("");
                 System.out.println("Enter index no. to change to.");
-                desiredIndexNo = Integer.valueOf(scanner.nextLine());
+                desiredIndexNo = Integer.valueOf(scanner.next());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid index number!");
+                continue;
             }
 
             for (Index index : indexList) {
@@ -628,12 +630,23 @@ public class StudentControl {
         CourseRegistration hiscourseSwap = null;
         CourseRegistration courseSwaptome = null;
         CourseRegistration courseSwaptohim = null;
+        boolean hisIndexBool = false;
+        boolean myIndexBool = false;
+
         while (!hisindexFound) {
             while (true) {
                 try {
-                    System.out.println("Enter index of student to swap with: ");
-                    indextoSwapH = scanner.nextInt();
-                    break;
+                    if (hisIndexBool) {
+                        System.out.println("Enter index of student to swap with: ");
+                        indextoSwapH = scanner.nextInt();
+                        scanner.nextLine();
+                        break;
+                    } else {
+                        System.out.println("Enter index of student to swap with: ");
+                        indextoSwapH = scanner.nextInt();
+                        hisIndexBool = true;
+                        break;
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid input. Please enter a index number.");
                 }
@@ -656,9 +669,17 @@ public class StudentControl {
         while (!myindexFound) {
             while (true) {
                 try {
-                    System.out.println("Enter your index to swap: ");
-                    indextoSwapM = scanner.nextInt();
-                    break;
+                    if (myIndexBool) {
+                        System.out.println("Enter your index to swap: ");
+                        indextoSwapM = scanner.nextInt();
+                        scanner.nextLine();
+                        break;
+                    } else {
+                        System.out.println("Enter your index to swap: ");
+                        indextoSwapM = scanner.nextInt();
+                        myIndexBool = true;
+                        break;
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid input. Please enter a index number.");
                 }
