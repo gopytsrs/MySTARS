@@ -3,7 +3,7 @@ package Control;
 import Entity.Admin;
 import Entity.Student;
 
-public class testmain {
+public class MainApp {
     public static void main(String args[]) {
         while (true) {
             Login Log = new Login();
@@ -11,7 +11,6 @@ public class testmain {
             if (domain.equals("student")) {
                 //open the display for student
                 //System.out.println("Student");
-                //get student
                 Student stud = Log.getStudent();
                 StudentUI sUI = new StudentUI(stud);
                 System.out.println("Hello, " + Log.getUserName() + ". What would you like to do today?");

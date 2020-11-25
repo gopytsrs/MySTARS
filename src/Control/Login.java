@@ -65,6 +65,7 @@ public class Login {
 
     /**
      * Gets the username of this user.
+     *
      * @return the username.
      */
     public String getUserName() {
@@ -74,15 +75,16 @@ public class Login {
 
     /**
      * Gets the password of this user.
+     *
      * @return the password.
      */
     public String getPassword() {
-
         return password;
     }
 
     /**
      * Get the domain of this user.
+     *
      * @return the domain.
      */
     public String getDomain() {
@@ -96,13 +98,12 @@ public class Login {
         accountsFromDatabase();
         collectDomain();
 
-        //missing accessperiod check need read student file
         validap = true;
         do {
-            if(domain=="admin") validap = true;
+            if (domain == "admin") validap = true;
             System.out.println("Please enter your Username: ");
             userName = sc.nextLine();
-            char [] pw = console.readPassword("Please enter your password:\n");
+            char[] pw = console.readPassword("Please enter your password:\n");
             password = new String(pw);
             //System.out.println("Enter your password");
             //password = sc.nextLine();
@@ -111,13 +112,11 @@ public class Login {
                 System.out.println("Invalid username/password. Please try again.");
                 continue;
             }
-            if (domain == "student")
-            {
+            if (domain == "student") {
                 validap = checkAccessPeriod(s.getSchoolName());
             }
-            if (!validap)
-            {
-                System.out.println("The access period is "+AP.getStartDate()+" to "+AP.getEndDate()+". Current time is "+LocalDateTime.now());
+            if (!validap) {
+                System.out.println("The access period is " + AP.getStartDate() + " to " + AP.getEndDate() + ". Current time is " + LocalDateTime.now());
                 collectDomain();
             }
         } while (valid != true || validap != true);
@@ -127,29 +126,30 @@ public class Login {
      * A method that splits the user into admin or student login page, based on what they have chosen.
      */
     private void collectDomain() {
-        int domaindata = -1;
+        int domainData = -1;
         do {
             System.out.println("Please enter the domain(student/admin): ");
             System.out.println("Key in 1 for student");
             System.out.println("Key in 2 for admin");
-            try{
+            try {
                 String dummy = sc.nextLine();
-                domaindata = Integer.parseInt(dummy);
-            }catch(Exception E){
+                domainData = Integer.parseInt(dummy);
+            } catch (Exception E) {
                 System.out.println("Please key in integer");
                 continue;
             }
-            if (domaindata == 1)
+            if (domainData == 1)
                 domain = "student";
-            else if (domaindata == 2)
+            else if (domainData == 2)
                 domain = "admin";
             else
                 System.out.println("Your input was invalid. Please try again.");
-        } while (domaindata != 1 && domaindata != 2);
+        } while (domainData != 1 && domainData != 2);
     }
 
     /**
      * A method that gets the accounts from the specific binary file.
+     *
      * @param domain Domain to get the accounts.
      */
     private void accountsFromDatabase() {                                       // change to binary file
@@ -188,11 +188,11 @@ public class Login {
 
     /**
      * A boolean method that authenticates the password.
+     *
      * @return true if the username and password matches and is correct.
      */
     private boolean authenticatePassword() {
-        if (domain.equals("student"))
-        {
+        if (domain.equals("student")) {
             int size = studentAccountList.size();
             for (int i = 0; i < size; i++) {
                 Account B = studentAccountList.get(i);
@@ -208,9 +208,7 @@ public class Login {
 
             }
             return false;
-        }
-        else
-        {
+        } else {
             int size = adminAccountList.size();
             for (int i = 0; i < size; i++) {
                 Account B = adminAccountList.get(i);
@@ -232,6 +230,7 @@ public class Login {
 
     /**
      * Gets the student object if the user is a student.
+     *
      * @return the student object.
      */
     public Student getStudent() {
@@ -240,6 +239,7 @@ public class Login {
 
     /**
      * Gets the admin object if the user is an admin.
+     *
      * @return the admin object.
      */
     public Admin getAdmin() {
@@ -248,11 +248,11 @@ public class Login {
 
     /**
      * A method to check the access period.
+     *
      * @param schoolname The school name of the user.
      * @return true if the current date time is within the access period.
      */
-    public boolean checkAccessPeriod(String schoolname)
-    {
+    public boolean checkAccessPeriod(String schoolname) {
         ArrayList<School> schoolList = new ArrayList<>();
         String schoolFileName = "database_school.bin"; //purely for testing
         try {
@@ -265,17 +265,15 @@ public class Login {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        for (School sch:schoolList)
-        {
-            if (schoolname.equals(sch.getSchoolName()))
-            {
+        for (School sch : schoolList) {
+            if (schoolname.equals(sch.getSchoolName())) {
                 AP = sch.getAccessperiod();
                 break;
             }
         }
         if (AP == null)
             return false;
-        else if (LocalDateTime.now().isAfter(AP.getEndDate())||LocalDateTime.now().isBefore(AP.getStartDate()))
+        else if (LocalDateTime.now().isAfter(AP.getEndDate()) || LocalDateTime.now().isBefore(AP.getStartDate()))
             return false;
         else
             return true;

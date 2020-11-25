@@ -1,15 +1,17 @@
 package Entity;
+
+import org.apache.commons.codec.binary.Base64;
+
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.SecureRandom;
-import org.apache.commons.codec.binary.Base64;
 
-public class encrypt {
+public class Encrypt {
     /**
      * Fixed number of iterations
      */
-    private static final int iterations = 20*1000;
+    private static final int iterations = 20 * 1000;
     /**
      * number of random bytes for salt len
      */
@@ -22,24 +24,29 @@ public class encrypt {
 
     /**
      * method which pulls in password for hashing
+     *
      * @param password The password
      * @return
      */
-    public static String getSaltedHash(String password){
+    public static String getSaltedHash(String password) {
         try {
             byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(saltLen);
             // store the salt with the password
             return Base64.encodeBase64String(salt) + "$" + hash(password, salt);
-        }catch(Exception E){System.out.println("Error in hashing");return"fail";}
+        } catch (Exception E) {
+            System.out.println("Error in hashing");
+            return "fail";
+        }
     }
 
     /**
      * This method checks the password
-     * @param password  The password you enter
-     * @param stored    The hashed password stored in the database
+     *
+     * @param password The password you enter
+     * @param stored   The hashed password stored in the database
      * @return
      */
-    public static boolean check(String password, String stored){
+    public static boolean check(String password, String stored) {
         String[] saltAndHash = stored.split("\\$");
         if (saltAndHash.length != 2) {
             System.out.println(
@@ -51,19 +58,23 @@ public class encrypt {
 
     /**
      * This method hashes the password
-     * @param password  The password you enter
-     * @param salt  The number of random bytes for hashing
+     *
+     * @param password The password you enter
+     * @param salt     The number of random bytes for hashing
      * @return
      */
     private static String hash(String password, byte[] salt) {
-        try{
+        try {
             if (password == null || password.length() == 0)
                 throw new IllegalArgumentException("Empty passwords are not supported.");
             SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             SecretKey key = f.generateSecret(new PBEKeySpec(
                     password.toCharArray(), salt, iterations, desiredKeyLen));
             return Base64.encodeBase64String(key.getEncoded());
-        }catch (Exception E){System.out.println("Error in hashing"); return"fail";}
+        } catch (Exception E) {
+            System.out.println("Error in hashing");
+            return "fail";
+        }
 
     }
 }

@@ -579,8 +579,8 @@ public class AdminControl {
                                                 student1.addAssignedCourse(courseToDrop);
                                                 student1.removeWaitList(courseToDrop);
                                             }
-                                            notification n = new notificationControl();
-                                            n.sendnotification(FirstInlist, courseToDrop);
+                                            Notification n = new NotificationControl();
+                                            n.sendNotification(FirstInlist, courseToDrop);
                                         }
                                     }
                                 }

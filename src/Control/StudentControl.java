@@ -117,18 +117,6 @@ public class StudentControl {
                 }
             } while (courseName < 0 || courseName >= i);
 
-//            for (Course course : courseList) {
-//                if (course.getCourseCode().equals(courseName)) {
-//                    courseExists = true;
-//                    courseChosen = course;
-//                    break;
-//                }
-//            }
-
-//            if (!courseExists) {
-//                System.out.println("Please enter valid course code!");
-//                continue;
-//            }
 
             if (!registeredCourse.isEmpty()) {
                 for (CourseRegistration alreadyRegisteredCourse : registeredCourse) {
@@ -180,17 +168,6 @@ public class StudentControl {
                 }
             } while (indexName < 0 || indexName >= j);
 
-//            indexno = scanner.nextInt();
-//            for (Index index : indexList) {
-//                if (index.getIndexNo() == indexno) {
-//                    indexExists = true;
-//                    indexChosen = index;
-//                    break;
-//                }
-//            }
-//            if (!indexExists) {
-//                System.out.println("Please enter valid index!");
-//            }
         } while (!indexExists);
 
         CourseRegistration newCourse = new CourseRegistration(indexChosen, indexChosen.getCourseCode(), courseChosen.getCourseName(), courseChosen.getAu(), student);
@@ -359,8 +336,8 @@ public class StudentControl {
                             student1.addAssignedCourse(courseToDrop);
                             student1.removeWaitList(courseToDrop);
                         }
-                        notification n = new notificationControl();
-                        n.sendnotification(Firstinlist, courseToDrop);
+                        Notification n = new NotificationControl();
+                        n.sendNotification(Firstinlist, courseToDrop);
                     }
                 }
             } catch (IndexOutOfBoundsException e) {
@@ -370,20 +347,7 @@ public class StudentControl {
             System.out.println("Input should be an integer.");
         }
     }
-
-//                String courseCode = scanner.nextLine();
-//
-//                for (CourseRegistration course : all) {
-//                    if (course.getCourseCode().equals(courseCode)) {
-//                        courseToDrop = course;
-//                        courseFound = true;
-//                        break;
-//                    }
-//                }
-//                if (!courseFound) {
-//                    System.out.println("You are not registered for " + courseCode);
-//                    return;
-//                }
+    
 
     /**
      * A method that allows the student to print out all their registered courses and waitlist courses.
@@ -604,7 +568,7 @@ public class StudentControl {
                 continue;
             }
             do {
-                char [] pw= console.readPassword("Please enter password of student to swap index with:\n");
+                char[] pw = console.readPassword("Please enter password of student to swap index with:\n");
                 studentpassSwap = String.valueOf(pw);
                 //System.out.println("Please enter password of student to swap index with:");
                 //studentpassSwap = scanner.next();

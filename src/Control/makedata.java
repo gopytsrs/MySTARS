@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class makedata {
+public class MakeData {
     public static void main(String args[]) {
         LocalDateTime dateTime = LocalDateTime.parse("2021-12-13T09:00");
         LocalDateTime dateTime1 = LocalDateTime.parse("2021-12-14T09:00");

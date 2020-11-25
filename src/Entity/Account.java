@@ -1,6 +1,5 @@
 package Entity;
 
-import Entity.encrypt;
 import java.io.Serializable;
 
 /**
@@ -22,17 +21,17 @@ public class Account implements Serializable {
 
     /**
      * Creates an account using username, password, accountType
-     * @param username The username of the account
-     * @param password The password of the account
+     *
+     * @param username    The username of the account
+     * @param password    The password of the account
      * @param accountType The account type which can be student or admin
      */
     public Account(String username, String password, String accountType) {
         setUsername(username);
-        try{
-            String hashed = encrypt.getSaltedHash(password);
+        try {
+            String hashed = Encrypt.getSaltedHash(password);
             setPassword(hashed);
-        }catch(Exception E)
-        {
+        } catch (Exception E) {
             System.out.println("password setting error");
             return;
         }
@@ -41,15 +40,16 @@ public class Account implements Serializable {
 
     /**
      * Checks the username and password is valid
-     * @param username  The username you enter
-     * @param password  The password you enter
+     *
+     * @param username The username you enter
+     * @param password The password you enter
      * @return
      */
-    public boolean validate(String username, String password){
+    public boolean validate(String username, String password) {
 
         if (!(username.equals(this.username)))
             return false;
-        else if (!encrypt.check(password,this.password))
+        else if (!Encrypt.check(password, this.password))
             return false;
         else
             return true;
@@ -57,7 +57,8 @@ public class Account implements Serializable {
 
     /**
      * Get username
-     * @return  The username of account
+     *
+     * @return The username of account
      */
     public String getUsername() {
         return username;
@@ -65,7 +66,8 @@ public class Account implements Serializable {
 
     /**
      * Get password
-     * @return  The password of account
+     *
+     * @return The password of account
      */
     public String getPassword() {
         return password;
@@ -73,7 +75,8 @@ public class Account implements Serializable {
 
     /**
      * Get accountType, either student or admin
-     * @return  The account type of this account
+     *
+     * @return The account type of this account
      */
     public String getAccountType() {
         return accountType;
@@ -81,7 +84,8 @@ public class Account implements Serializable {
 
     /**
      * Changes username of an account
-     * @param username  The username of account
+     *
+     * @param username The username of account
      */
     public void setUsername(String username) {
         this.username = username;
@@ -89,7 +93,8 @@ public class Account implements Serializable {
 
     /**
      * Changes the password of an account
-     * @param password  The password of this account
+     *
+     * @param password The password of this account
      */
     public void setPassword(String password) {
         this.password = password;
@@ -97,7 +102,8 @@ public class Account implements Serializable {
 
     /**
      * Changes the accountType of an account
-     * @param accountType   The account type of this account
+     *
+     * @param accountType The account type of this account
      */
     public void setAccountType(String accountType) {
         this.accountType = accountType;

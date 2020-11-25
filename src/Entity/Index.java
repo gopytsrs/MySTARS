@@ -8,8 +8,6 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -59,11 +57,12 @@ public class Index implements Serializable {
 
     /**
      * Creates a new Index object based on the given course name, course code, index number, group number and vacancy.
+     *
      * @param courseName The name of the course.
      * @param courseCode The course code of the course.
-     * @param indexNo The index number of this Index.
-     * @param groupNo The group number of this Index.
-     * @param vacancy The vacancy of this Index.
+     * @param indexNo    The index number of this Index.
+     * @param groupNo    The group number of this Index.
+     * @param vacancy    The vacancy of this Index.
      */
     public Index(String courseName, String courseCode, int indexNo, String groupNo, int vacancy) {
         this.courseName = courseName;
@@ -76,6 +75,7 @@ public class Index implements Serializable {
 
     /**
      * Gets the course name of the course of this Index.
+     *
      * @return The course name of the course of this Index.
      */
     public String getCourseName() {
@@ -84,6 +84,7 @@ public class Index implements Serializable {
 
     /**
      * Sets the course name of the course of this Index.
+     *
      * @param courseName The course name of the course of this Index.
      */
     public void setCourseName(String courseName) {
@@ -92,12 +93,16 @@ public class Index implements Serializable {
 
     /**
      * Gets the course code of the course of this Index.
+     *
      * @return The course code of the course of this Index.
      */
-    public String getCourseCode(){return courseCode;}
+    public String getCourseCode() {
+        return courseCode;
+    }
 
     /**
      * Sets the course code of the course of this Index.
+     *
      * @param courseCode The course code of the course of this Index.
      */
     public void setCourseCode(String courseCode) {
@@ -106,6 +111,7 @@ public class Index implements Serializable {
 
     /**
      * Gets the index number of this Index.
+     *
      * @return The index number of this Index.
      */
     public int getIndexNo() {
@@ -114,6 +120,7 @@ public class Index implements Serializable {
 
     /**
      * Sets the index number of this Index.
+     *
      * @param indexNo The index number of this Index.
      */
     public void setIndexNo(int indexNo) {
@@ -122,6 +129,7 @@ public class Index implements Serializable {
 
     /**
      * Gets the group number of this Index.
+     *
      * @return The group number of this Index.
      */
     public String getGroupNo() {
@@ -130,6 +138,7 @@ public class Index implements Serializable {
 
     /**
      * Sets the group number of this Index.
+     *
      * @param groupNo The group number of this Index.
      */
     public void setGroupNo(String groupNo) {
@@ -138,6 +147,7 @@ public class Index implements Serializable {
 
     /**
      * Gets the current vacancy of this Index.
+     *
      * @return The current vacancy of this Index.
      */
     public int getVacancy() {
@@ -146,6 +156,7 @@ public class Index implements Serializable {
 
     /**
      * Sets the current vacancy of this Index.
+     *
      * @param vacancy The current vacancy of this Index.
      */
     public void setVacancy(int vacancy) {
@@ -154,6 +165,7 @@ public class Index implements Serializable {
 
     /**
      * Adds a Student to the waitlist of this Index.
+     *
      * @param student The Student to add.
      */
     public void addToWaitlist(Student student) {
@@ -163,6 +175,7 @@ public class Index implements Serializable {
 
     /**
      * Gets the list of Students on the waitlist of this Index.
+     *
      * @return The list of Students on the waitlist of this Index.
      */
     public ArrayList<Student> getWaitList() {
@@ -171,13 +184,12 @@ public class Index implements Serializable {
 
     /**
      * Removes a student from the list of Students on the waitlist of this Index.
+     *
      * @param student A Student to remove.
      */
     public void removeFromWaitlist(Student student) {
-        for (int i = 0; i<waitList.size();i++)
-        {
-            if ( waitList.get(i).getEmail().equals(student.getEmail()) )
-            {
+        for (int i = 0; i < waitList.size(); i++) {
+            if (waitList.get(i).getEmail().equals(student.getEmail())) {
                 waitList.remove(i);
             }
         }
@@ -185,21 +197,24 @@ public class Index implements Serializable {
 
     /**
      * Adds a student the list of Students on the assigned list of this Index if there is vacancies.
+     *
      * @param student A Student to add.
      * @return true or false depending on whether the student can be added.
      */
-    public boolean assignStudent(Student student){
+    public boolean assignStudent(Student student) {
         if (vacancy != 0) {
             assignedStudents.add(student);
             this.vacancy -= 1;
             return true;
+        } else {
+            return false;
         }
-        else{return false;}
 
     }
 
     /**
      * Gets the list of lessons of this Index.
+     *
      * @return The list of lessons of this Index.
      */
     public ArrayList<Lesson> getLessons() {
@@ -208,6 +223,7 @@ public class Index implements Serializable {
 
     /**
      * Sets the list of lessons of this Index.
+     *
      * @param L The list of lessons of this Index.
      */
     public void setLessons(Lesson L) {
@@ -216,6 +232,7 @@ public class Index implements Serializable {
 
     /**
      * Checks whether this Index clashes with another Index. It compares the lessons, days and weeks of the indexes.
+     *
      * @param indexToCheck The Index to check with.
      * @return true or false depending on whether there is a clash.
      */
@@ -224,10 +241,10 @@ public class Index implements Serializable {
             for (Lesson lesson1 : indexToCheck.getLessons()) {
                 if ((lesson.getWeeks() == lesson1.getWeeks()
                         || (lesson.getWeeks() == Week.EVERY && (lesson1.getWeeks() == Week.ODD || lesson1.getWeeks() == Week.EVEN))
-                        || (lesson1.getWeeks() == Week.EVERY && (lesson.getWeeks() == Week.ODD || lesson.getWeeks() == Week.EVEN )))
-                    && lesson.getDay() == lesson1.getDay()) {
+                        || (lesson1.getWeeks() == Week.EVERY && (lesson.getWeeks() == Week.ODD || lesson.getWeeks() == Week.EVEN)))
+                        && lesson.getDay() == lesson1.getDay()) {
                     //Datetime logic needed for range
-                    if (((lesson.getStartTime().isAfter(lesson1.getStartTime()) || lesson.getStartTime().equals(lesson1.getStartTime()))&&
+                    if (((lesson.getStartTime().isAfter(lesson1.getStartTime()) || lesson.getStartTime().equals(lesson1.getStartTime())) &&
                             lesson.getStartTime().isBefore(lesson1.getEndTime()))
                             || (lesson.getEndTime().isAfter(lesson1.getStartTime()) &&
                             (lesson.getEndTime().isBefore(lesson1.getEndTime()) || lesson.getEndTime().equals(lesson1.getEndTime())))) {
@@ -241,6 +258,7 @@ public class Index implements Serializable {
 
     /**
      * Gets the list of Students on the assigned list of this Index.
+     *
      * @return The list of Students on the assigned list of this Index.
      */
     public ArrayList<Student> getAssignedStudents() {
@@ -355,13 +373,12 @@ public class Index implements Serializable {
 
     /**
      * Removes a student from the list of Students on the assigned list of this Index.
+     *
      * @param student A Student to remove.
      */
-    public void removeStudentFromAssigned(Student student){
-        for (int i = 0; i<assignedStudents.size();i++)
-        {
-            if ( assignedStudents.get(i).getEmail().equals(student.getEmail()) )
-            {
+    public void removeStudentFromAssigned(Student student) {
+        for (int i = 0; i < assignedStudents.size(); i++) {
+            if (assignedStudents.get(i).getEmail().equals(student.getEmail())) {
                 assignedStudents.remove(i);
             }
         }
