@@ -36,7 +36,6 @@ public class StudentUI {
             System.out.println("4. Check vacancies available");
             System.out.println("5. Change index number of course");
             System.out.println("6. Swap index number with another student");
-            //change pw
             System.out.println("7. Logout");
             System.out.println("Enter your choice here: ");
 
