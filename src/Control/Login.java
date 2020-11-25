@@ -24,9 +24,13 @@ public class Login {
      */
     private String domain;
     /**
-     * An arraylist/collection of all the accounts.
+     * An arraylist/collection of all the student accounts.
      */
-    private ArrayList<Account> accountList;
+    private ArrayList<Account> studentAccountList;
+    /**
+     * An arraylist/collection of all the admin accounts
+     */
+    private ArrayList<Account> adminAccountList;
     /**
      * An arraylist/collection of all the students.
      */
@@ -150,8 +154,8 @@ public class Login {
      */
     private void accountsFromDatabase() {                                       // change to binary file
         String filename = "database_student.bin";
-        accountList = new ArrayList<Account>();
-
+        studentAccountList = new ArrayList<Account>();
+        adminAccountList = new ArrayList<Account>();
         studentList = new ArrayList<Student>();
         try {
             FileInputStream file = new FileInputStream(filename);
@@ -163,7 +167,7 @@ public class Login {
             e.printStackTrace();
         }
         for (Student s : studentList) {
-            accountList.add(s.getAccount());
+            studentAccountList.add(s.getAccount());
         }
         adminList = new ArrayList<>();
         filename = "database_admin.bin";
@@ -177,7 +181,7 @@ public class Login {
             e.printStackTrace();
         }
         for (Admin a : adminList) {
-            accountList.add(a.getAccount());
+            adminAccountList.add(a.getAccount());
         }
 
     }
@@ -187,21 +191,43 @@ public class Login {
      * @return true if the username and password matches and is correct.
      */
     private boolean authenticatePassword() {
-        int size = accountList.size();
-        for (int i = 0; i < size; i++) {
-            Account B = accountList.get(i);
-            boolean v = B.validate(this.userName, this.password);
-            if (v == true) {
-                if (domain.equals("student")) {
-                    this.s = studentList.get(i);
-                } else {
-                    this.a = adminList.get(0);
+        if (domain.equals("student"))
+        {
+            int size = studentAccountList.size();
+            for (int i = 0; i < size; i++) {
+                Account B = studentAccountList.get(i);
+                boolean v = B.validate(this.userName, this.password);
+                if (v == true) {
+                    if (domain.equals("student")) {
+                        this.s = studentList.get(i);
+                    } else {
+                        this.a = adminList.get(0);
+                    }
+                    return true;
                 }
-                return true;
-            }
 
+            }
+            return false;
         }
-        return false;
+        else
+        {
+            int size = adminAccountList.size();
+            for (int i = 0; i < size; i++) {
+                Account B = adminAccountList.get(i);
+                boolean v = B.validate(this.userName, this.password);
+                if (v == true) {
+                    if (domain.equals("student")) {
+                        this.s = studentList.get(i);
+                    } else {
+                        this.a = adminList.get(0);
+                    }
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
     }
 
     /**
