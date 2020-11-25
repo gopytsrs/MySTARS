@@ -102,10 +102,10 @@ public class Login {
             if(domain=="admin") validap = true;
             System.out.println("Please enter your Username: ");
             userName = sc.nextLine();
-//            char [] pw = console.readPassword("Please enter your password:\n");
-//            password = new String(pw);
-            System.out.println("Enter your password");
-            password = sc.nextLine();
+            char [] pw = console.readPassword("Please enter your password:\n");
+            password = new String(pw);
+            //System.out.println("Enter your password");
+            //password = sc.nextLine();
             valid = authenticatePassword();
             if (valid == false) {
                 System.out.println("Invalid username/password. Please try again.");

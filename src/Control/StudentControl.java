@@ -604,10 +604,10 @@ public class StudentControl {
                 continue;
             }
             do {
-//                char [] pw= console.readPassword("Please enter password of student to swap index with:\n");
-//                studentpassSwap = String.valueOf(pw);
-                System.out.println("Please enter password of student to swap index with:");
-                studentpassSwap = scanner.next();
+                char [] pw= console.readPassword("Please enter password of student to swap index with:\n");
+                studentpassSwap = String.valueOf(pw);
+                //System.out.println("Please enter password of student to swap index with:");
+                //studentpassSwap = scanner.next();
                 boolean check = studenttoswap.getAccount().validate(studentnameSwap, studentpassSwap);
                 if (check) {
                     passwordcheck = true;
